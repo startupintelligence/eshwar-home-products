@@ -103,3 +103,4 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--brand-red); out
   .skeleton-card { animation: none; opacity: .45; will-change: auto; }
   .button, .header-contact, .location-directions { transition: none; }
 }
+\n.hero-copy .hero-brand { font: 700 clamp(2.25rem, 5vw, 4.4rem)/1.05 "Plus Jakarta Sans", Montserrat, var(--sans); margin: 0; color: var(--brand-red); letter-spacing: -.055em; }\n@media (max-width: 650px) { .hero-copy .hero-brand { font-size: clamp(2.05rem, 10vw, 3.2rem); } }\n
