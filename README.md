@@ -44,4 +44,4 @@ The client portal reads these GitHub Actions secrets at build time:
 - VITE_FIREBASE_PROJECT_ID
 - VITE_FIREBASE_APP_ID
 
-If they are not configured, the sign-in page shows a setup notice. Do not add private service-account credentials to the frontend.
+The workflow maps these existing secret names to Astro's PUBLIC_FIREBASE_ environment variables. If they are not configured, the sign-in page shows a setup notice. Do not add private service-account credentials to the frontend.
