@@ -36,7 +36,7 @@ export default function PublishedCatalogue() {
   return (
     <div className="live-catalogue" aria-live="polite">
       {products.map((product) => (
-        <article className="live-product" key={product.id}>
+        <article className="live-product" data-group={product.categoryId} key={product.id}>
           <div>
             <p className="eyebrow">{categoryLabels[product.categoryId] ?? "Store selection"}</p>
             <h2>{product.name}</h2>
