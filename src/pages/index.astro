@@ -1,0 +1,60 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import catalogue from "../data/catalogue.json";
+const base = import.meta.env.BASE_URL;
+---
+<SiteLayout title="Eshwar Home Products | Traditional foods in Perambur" description="Explore traditional rice, millets, millet flours, cold-pressed oils and pantry essentials at Eshwar Home Products, Nelvayal Road, Perambur, Chennai." current="home">
+  <section class="home-hero">
+    <div class="container home-hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">A neighbourhood food store · Perambur, Chennai</p>
+        <h1>Traditional food,<br /><em>close to home.</em></h1>
+        <p class="hero-intro">Traditional rice, millets, millet flours and everyday pantry ingredients, right here in Perambur. Visit us on Nelvayal Road or call to ask what is available today.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href={base + "products/"}>Explore the pantry <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href={base + "contact/"}>Find the store</a>
+        </div>
+      </div>
+      <aside class="hero-index" aria-label="At a glance">
+        <p class="eyebrow">At the store</p>
+        <ol>
+          <li><span>01</span><strong>Traditional rice & millets</strong></li>
+          <li><span>02</span><strong>Millet flours & pantry foods</strong></li>
+          <li><span>03</span><strong>Oils, ghee & dairy</strong></li>
+          <li><span>04</span><strong>Honey, pulses & more</strong></li>
+        </ol>
+        <p class="index-note">Product range and availability can change. Call ahead if you are looking for something specific.</p>
+      </aside>
+    </div>
+  </section>
+  <section class="location-ribbon">
+    <div class="container location-ribbon-inner">
+      <span>Find us</span>
+      <strong>119/1 Nelvayal Road, Perambur</strong>
+      <a href="https://www.google.com/maps/search/?api=1&query=Door%20No.%20119%2F1%2C%20Nelvayal%20Road%2C%20Perambur%2C%20Chennai%20600011" target="_blank" rel="noreferrer">Get directions ↗</a>
+    </div>
+  </section>
+  <section class="section container">
+    <div class="section-intro">
+      <div><p class="eyebrow">A guide to our shelves</p><h2>What you’ll find<br /><em>in the pantry.</em></h2></div>
+      <p>From traditional grains to useful kitchen staples, browse the range by category. For exact varieties and current stock, speak with the store.</p>
+    </div>
+    <div class="directory-list">
+      {catalogue.groups.map((group, index) => (
+        <a class="directory-row" href={base + "products/#" + group.id}>
+          <span class="directory-number">{String(index + 1).padStart(2, "0")}</span>
+          <span class="directory-main"><small>{group.eyebrow}</small><strong>{group.title}</strong></span>
+          <span class="directory-description">{group.description}</span>
+          <span class="directory-arrow" aria-hidden="true">↗</span>
+        </a>
+      ))}
+    </div>
+    <div class="section-end"><a class="text-link" href={base + "products/"}>View the full pantry index ↗</a></div>
+  </section>
+  <section class="story-strip">
+    <div class="container story-strip-inner">
+      <p class="eyebrow">A little about Eshwar</p>
+      <div><h2>Good ingredients<br /><em>for everyday cooking.</em></h2><p>We bring together traditional foods and familiar pantry essentials for homes in and around Perambur. Visit the store, ask a question and check what is available.</p><a class="text-link" href={base + "about/"}>Read our story ↗</a></div>
+    </div>
+  </section>
+</SiteLayout>

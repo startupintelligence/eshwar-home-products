@@ -1,0 +1,44 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import catalogue from "../data/catalogue.json";
+import PublishedCatalogue from "../components/PublishedCatalogue";
+---
+<SiteLayout title="The pantry | Eshwar Home Products" description="Browse traditional rice, millets, millet flours, oils, ghee, dairy and pantry essentials at Eshwar Home Products in Perambur." current="products">
+  <section class="page-heading"><div class="container">
+    <p class="eyebrow">The pantry · Eshwar Home Products</p>
+    <h1>Browse the<br /><em>pantry index.</em></h1>
+    <p>A guide to the kinds of products available at our store. Specific varieties, pack sizes and availability may change.</p>
+  </div></section>
+  <section class="section container">
+    <div class="catalogue-toolbar">
+      <div><p class="eyebrow">Browse by shelf</p><h2>Find what you need.</h2></div>
+      <div class="filter-list" role="group" aria-label="Filter pantry categories">
+        <button type="button" class="filter-button is-active" data-filter="all" aria-pressed="true">All shelves</button>
+        <button type="button" class="filter-button" data-filter="grains" aria-pressed="false">Rice & millets</button>
+        <button type="button" class="filter-button" data-filter="oils" aria-pressed="false">Oils & ghee</button>
+        <button type="button" class="filter-button" data-filter="pantry" aria-pressed="false">Pantry essentials</button>
+      </div>
+    </div>
+    <PublishedCatalogue client:load />
+    <div class="pantry-directory" id="static-catalogue">
+    <div class="pantry-directory-inner" id="pantry-directory" aria-live="polite">
+      {catalogue.groups.map((group, index) => (
+        <section class="pantry-group" id={group.id} data-group={group.id}>
+          <div class="pantry-group-heading">
+            <span class="directory-number">{String(index + 1).padStart(2, "0")}</span>
+            <div><p class="eyebrow">{group.eyebrow}</p><h2>{group.title}</h2><p>{group.description}</p></div>
+          </div>
+          <ul class="pantry-items">
+            {group.items.map((item) => <li><strong>{item.title}</strong><span>{item.detail}</span></li>)}
+          </ul>
+        </section>
+      ))}
+    </div>
+    </div>
+    <p class="catalogue-footnote">Looking for a particular variety or pack size? Please call the store to check before visiting.</p>
+    <div class="enquiry-row"><div><p class="eyebrow">Need help finding something?</p><h2>Ask us about today’s range.</h2></div><a class="button button-dark" href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20would%20like%20to%20check%20product%20availability.">Enquire on WhatsApp ↗</a></div>
+  </section>
+</SiteLayout>
+<script>
+  import "../scripts/catalogue-filter.js";
+</script>

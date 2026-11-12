@@ -1,0 +1,32 @@
+---
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import "../styles/global.css";
+interface Props {
+  title: string;
+  description: string;
+  current?: "home" | "about" | "products" | "contact";
+}
+const { title, description, current = "home" } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://startupintelligence.github.io").toString();
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f8f7f2" />
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <SiteHeader current={current} />
+    <main id="main-content"><slot /></main>
+    <SiteFooter />
+  </body>
+</html>

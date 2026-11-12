@@ -1,9 +1,28 @@
 {
   "name": "eshwar-home-products",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
-  "scripts": {"dev":"vite","build":"tsc -b && vite build","preview":"vite preview","typecheck":"tsc -b --pretty"},
-  "dependencies": {"firebase":"^12.5.0","react":"^19.2.0","react-dom":"^19.2.0"},
-  "devDependencies": {"@types/react":"^19.2.2","@types/react-dom":"^19.2.2","@vitejs/plugin-react":"^5.0.4","typescript":"^5.9.3","vite":"^7.2.2"}
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "check": "astro check",
+    "preview": "astro preview",
+    "test:rules": "firebase emulators:exec --only firestore --project demo-eshwar-home-products \"node --test tests/firestore.rules.test.mjs\""
+  },
+  "dependencies": {
+    "@astrojs/react": "4.4.2",
+    "astro": "5.15.0",
+    "firebase": "12.5.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.4",
+    "@firebase/rules-unit-testing": "5.0.2",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "firebase-tools": "14.22.0",
+    "typescript": "5.9.3"
+  }
 }
