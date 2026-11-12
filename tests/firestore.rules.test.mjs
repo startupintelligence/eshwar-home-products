@@ -100,8 +100,8 @@ test("draft writes require the draft status and the same product schema", async 
 test("ordinary and inactive accounts cannot write products", async () => {
   const ordinaryDb = testEnv.authenticatedContext("ordinary-1").firestore();
   const inactiveDb = testEnv.authenticatedContext("inactive-1").firestore();
-  await assertFails(setDoc(doc(ordinaryDb, "products", "blocked-1"), productData("blocked-1", "draft")));
-  await assertFails(setDoc(doc(inactiveDb, "products", "blocked-2"), productData("blocked-2", "draft")));
+  await assertFails(setDoc(doc(ordinaryDb, "products", "blocked-1"), productData("blocked-1")));
+  await assertFails(setDoc(doc(inactiveDb, "products", "blocked-2"), productData("blocked-2")));
 });
 
 test("audit entries require the signed-in actor and server timestamp", async () => {

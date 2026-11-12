@@ -1,8 +1,17 @@
 const filterButtons = document.querySelectorAll("[data-filter]");
+let selectedFilter = "all";
+
+function applySelectedFilter() {
+  document.querySelectorAll("[data-group]").forEach((group) => {
+    const visible =
+      selectedFilter === "all" || group.getAttribute("data-group") === selectedFilter;
+    group.hidden = !visible;
+  });
+}
 
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    const filter = button.getAttribute("data-filter") || "all";
+    selectedFilter = button.getAttribute("data-filter") || "all";
 
     filterButtons.forEach((item) => {
       const active = item === button;
@@ -10,10 +19,9 @@ filterButtons.forEach((button) => {
       item.setAttribute("aria-pressed", String(active));
     });
 
-    // Query at click time so this includes Firebase products rendered after hydration.
-    document.querySelectorAll("[data-group]").forEach((group) => {
-      const visible = filter === "all" || group.getAttribute("data-group") === filter;
-      group.hidden = !visible;
-    });
+    applySelectedFilter();
   });
 });
+
+// Firebase catalogue items may render after a visitor has already chosen a filter.
+document.addEventListener("catalogue:updated", applySelectedFilter);
