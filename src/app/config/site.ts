@@ -1,0 +1,3 @@
+export const siteConfig={name:"Eshwar Home Products",tagline:"Traditional foods · Perambur, Chennai",phoneDisplay:"+91 99412 09953",phoneLink:"+919941209953",email:"info.eshwarhomeproducts@gmail.com",address:"Door No. 119/1, Nelvayal Road, Perambur, Chennai – 600011",mapsUrl:"https://www.google.com/maps/search/?api=1&query=Door%20No.%20119%2F1%2C%20Nelvayal%20Road%2C%20Perambur%2C%20Chennai%20600011",whatsappUrl:"https://wa.me/919941209953"} as const;
+export const basePath=import.meta.env.BASE_URL;
+export function sitePath(path=""){return basePath.replace(/\/$/,"")+"/"+path.replace(/^\//,"");}
