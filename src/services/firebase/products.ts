@@ -1,0 +1,2 @@
+import {collection,getDocs,query,where} from "firebase/firestore";import {db} from "./client";import type {Product} from "../../types/content";
+export async function getPublishedProducts():Promise<Product[]>{if(!db)return [];const snapshot=await getDocs(query(collection(db,"products"),where("status","==","published")));return snapshot.docs.map(item=>({id:item.id,...item.data()} as Product));}

@@ -1,0 +1,1 @@
+export type ProductStatus="draft"|"published";export interface Product{id:string;name:string;categoryId:string;description:string;price?:number;imagePath?:string;available:boolean;status:ProductStatus;updatedAt?:unknown;}export interface PublicSiteSettings{businessName:string;phone:string;email:string;address:string;whatsappNumber:string;openingHours?:string;}

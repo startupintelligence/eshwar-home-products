@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+ match /databases/{database}/documents {
+  function signedIn(){return request.auth != null;}
+  function isClientEditor(){return signedIn() && exists(/databases/$(database)/documents/admin_users/$(request.auth.uid)) && get(/databases/$(database)/documents/admin_users/$(request.auth.uid)).data.active == true && get(/databases/$(database)/documents/admin_users/$(request.auth.uid)).data.role == 'products-contact';}
+  match /admin_users/{userId}{allow read:if signedIn() && request.auth.uid==userId;allow write:if false;}
+  match /products/{productId}{allow read:if resource.data.status=='published'||isClientEditor();allow create,update,delete:if isClientEditor();}
+  match /product_drafts/{draftId}{allow read,create,update,delete:if isClientEditor();}
+  match /categories/{categoryId}{allow read:if resource.data.published==true||isClientEditor();allow create,update,delete:if isClientEditor();}
+  match /site_settings/{documentId}{allow read:if documentId=='public'||isClientEditor();allow create,update,delete:if isClientEditor();}
+  match /site_settings_drafts/{documentId}{allow read,create,update,delete:if isClientEditor();}
+  match /change_history/{changeId}{allow read,create:if isClientEditor();allow update,delete:if false;}
+  match /{document=**}{allow read,write:if false;}
+ }
+}
