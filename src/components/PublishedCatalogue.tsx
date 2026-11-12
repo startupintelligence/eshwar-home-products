@@ -28,26 +28,39 @@ export default function PublishedCatalogue() {
       .finally(() => {
         if (active) setLoaded(true);
       });
-    return () => { active = false; };
+    return () => {
+      active = false;
+    };
   }, []);
+
+  useEffect(() => {
+    // Reapply the selected category after Firebase products are rendered.
+    document.dispatchEvent(new Event("catalogue:updated"));
+  }, [products]);
 
   if (!loaded || products.length === 0) return null;
 
   return (
     <div className="live-catalogue" aria-live="polite">
-      {products.map((product) => (
-        <article className="live-product" key={product.id}>
-          <div>
-            <p className="eyebrow">{categoryLabels[product.categoryId] ?? "Store selection"}</p>
-            <h2>{product.name}</h2>
-            <p>{product.description}</p>
-          </div>
-          <div className="live-product-meta">
-            {typeof product.price === "number" && <strong>₹{product.price.toLocaleString("en-IN")}</strong>}
-            <span>{product.available ? "Available" : "Currently unavailable"}</span>
-          </div>
-        </article>
-      ))}
+      {products.map((product) => {
+        const categoryId = categoryLabels[product.categoryId]
+          ? product.categoryId
+          : "uncategorized";
+
+        return (
+          <article className="live-product" data-group={categoryId} key={product.id}>
+            <div>
+              <p className="eyebrow">{categoryLabels[product.categoryId] ?? "Store selection"}</p>
+              <h2>{product.name}</h2>
+              <p>{product.description}</p>
+            </div>
+            <div className="live-product-meta">
+              {typeof product.price === "number" && <strong>₹{product.price.toLocaleString("en-IN")}</strong>}
+              <span>{product.available ? "Available" : "Currently unavailable"}</span>
+            </div>
+          </article>
+        );
+      })}
     </div>
   );
 }

@@ -12,6 +12,31 @@ service cloud.firestore {
         && get(/databases/$(database)/documents/admin_users/$(request.auth.uid)).data.role == 'products-contact';
     }
 
+    function validProductData(productId, expectedStatus) {
+      let data = request.resource.data;
+      return data.keys().hasAll([
+          'id', 'name', 'categoryId', 'description', 'available', 'status', 'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'id', 'name', 'categoryId', 'description', 'available', 'status', 'updatedAt',
+          'price', 'imagePath'
+        ])
+        && data.id == productId
+        && data.name is string
+        && data.name.size() > 0
+        && data.name.size() <= 100
+        && data.categoryId in ['grains', 'oils', 'pantry']
+        && data.description is string
+        && data.description.size() <= 500
+        && data.available is bool
+        && data.status == expectedStatus
+        && data.updatedAt == request.time
+        && (!data.keys().hasAny(['price'])
+          || (data.price is number && data.price >= 0 && data.price <= 10000000))
+        && (!data.keys().hasAny(['imagePath'])
+          || (data.imagePath is string && data.imagePath.size() <= 500));
+    }
+
     function validChangeHistoryEntry() {
       return request.resource.data.keys().hasAll(['actorUid', 'action', 'entityType', 'entityId', 'summary', 'createdAt'])
         && request.resource.data.keys().hasOnly(['actorUid', 'action', 'entityType', 'entityId', 'summary', 'createdAt'])
@@ -31,10 +56,13 @@ service cloud.firestore {
     }
     match /products/{productId} {
       allow read: if resource.data.status == 'published' || isClientEditor();
-      allow create, update, delete: if isClientEditor();
+      allow create, update: if isClientEditor() && validProductData(productId, 'published');
+      allow delete: if isClientEditor();
     }
     match /product_drafts/{draftId} {
-      allow read, create, update, delete: if isClientEditor();
+      allow read: if isClientEditor();
+      allow create, update: if isClientEditor() && validProductData(draftId, 'draft');
+      allow delete: if isClientEditor();
     }
     match /categories/{categoryId} {
       allow read: if resource.data.published == true || isClientEditor();

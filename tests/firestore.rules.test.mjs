@@ -7,6 +7,18 @@ import { collection, deleteDoc, doc, getDoc, getDocs, query, serverTimestamp, se
 const projectId = "demo-eshwar-home-products";
 let testEnv;
 
+function productData(id, status = "published") {
+  return {
+    id,
+    name: "Published rice",
+    categoryId: "grains",
+    description: "Traditional rice for everyday cooking.",
+    available: true,
+    status,
+    updatedAt: serverTimestamp(),
+  };
+}
+
 before(async () => {
   const rulesPath = fileURLToPath(new URL("../firestore.rules", import.meta.url));
   testEnv = await initializeTestEnvironment({ projectId, firestore: { rules: readFileSync(rulesPath, "utf8") } });
@@ -14,8 +26,8 @@ before(async () => {
     const db = context.firestore();
     await setDoc(doc(db, "admin_users", "editor-1"), { active: true, role: "products-contact" });
     await setDoc(doc(db, "admin_users", "inactive-1"), { active: false, role: "products-contact" });
-    await setDoc(doc(db, "products", "published-1"), { name: "Published rice", status: "published" });
-    await setDoc(doc(db, "products", "draft-1"), { name: "Unpublished rice", status: "draft" });
+    await setDoc(doc(db, "products", "published-1"), productData("published-1"));
+    await setDoc(doc(db, "products", "draft-1"), productData("draft-1", "draft"));
   });
 });
 
@@ -41,16 +53,55 @@ test("public visitors cannot list the mixed products collection", async () => {
   await assertFails(getDocs(collection(db, "products")));
 });
 
-test("an active products-contact editor can update products", async () => {
+test("an active products-contact editor can update a valid published product", async () => {
   const db = testEnv.authenticatedContext("editor-1").firestore();
-  await assertSucceeds(setDoc(doc(db, "products", "published-1"), { name: "Updated rice", status: "published" }));
+  await assertSucceeds(setDoc(doc(db, "products", "published-1"), {
+    ...productData("published-1"),
+    name: "Updated rice",
+  }));
+});
+
+test("product writes reject unknown fields and invalid values", async () => {
+  const db = testEnv.authenticatedContext("editor-1").firestore();
+
+  await assertSucceeds(setDoc(doc(db, "products", "valid-new"), productData("valid-new")));
+
+  await assertFails(setDoc(doc(db, "products", "extra-field"), {
+    ...productData("extra-field"),
+    administrator: true,
+  }));
+
+  await assertFails(setDoc(doc(db, "products", "bad-category"), {
+    ...productData("bad-category"),
+    categoryId: "not-a-store-category",
+  }));
+
+  await assertFails(setDoc(doc(db, "products", "negative-price"), {
+    ...productData("negative-price"),
+    price: -1,
+  }));
+
+  await assertFails(setDoc(doc(db, "products", "wrong-id"), productData("different-id")));
+});
+
+test("draft writes require the draft status and the same product schema", async () => {
+  const db = testEnv.authenticatedContext("editor-1").firestore();
+
+  await assertSucceeds(setDoc(doc(db, "product_drafts", "valid-draft"), productData("valid-draft", "draft")));
+
+  await assertFails(setDoc(doc(db, "product_drafts", "published-as-draft"), productData("published-as-draft")));
+
+  await assertFails(setDoc(doc(db, "product_drafts", "invalid-draft"), {
+    ...productData("invalid-draft", "draft"),
+    unexpected: "not allowed",
+  }));
 });
 
 test("ordinary and inactive accounts cannot write products", async () => {
   const ordinaryDb = testEnv.authenticatedContext("ordinary-1").firestore();
   const inactiveDb = testEnv.authenticatedContext("inactive-1").firestore();
-  await assertFails(setDoc(doc(ordinaryDb, "products", "blocked-1"), { name: "Blocked", status: "draft" }));
-  await assertFails(setDoc(doc(inactiveDb, "products", "blocked-2"), { name: "Blocked", status: "draft" }));
+  await assertFails(setDoc(doc(ordinaryDb, "products", "blocked-1"), productData("blocked-1")));
+  await assertFails(setDoc(doc(inactiveDb, "products", "blocked-2"), productData("blocked-2")));
 });
 
 test("audit entries require the signed-in actor and server timestamp", async () => {
