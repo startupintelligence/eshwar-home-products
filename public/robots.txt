@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://startupintelligence.github.io/eshwar-home-products/sitemap.xml

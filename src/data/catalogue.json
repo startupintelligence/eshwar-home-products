@@ -1,0 +1,68 @@
+{
+  "groups": [
+    {
+      "id": "grains",
+      "title": "Rice & millets",
+      "eyebrow": "Traditional grains",
+      "description": "Traditional rice varieties, millet grains and millet-based pantry choices.",
+      "items": [
+        {
+          "title": "Traditional rice varieties",
+          "detail": "A selection of familiar and traditional rice varieties."
+        },
+        {
+          "title": "Millet varieties",
+          "detail": "Explore millet options for everyday cooking."
+        },
+        {
+          "title": "Millet flours",
+          "detail": "Flours for home cooking, snacks and traditional recipes."
+        },
+        {
+          "title": "Flakes, vermicelli & pasta",
+          "detail": "Millet-based pantry options for quick meals."
+        },
+        {
+          "title": "Millet cookies",
+          "detail": "A snack option within the millet range."
+        }
+      ]
+    },
+    {
+      "id": "oils",
+      "title": "Oils, ghee & dairy",
+      "eyebrow": "Cooking essentials",
+      "description": "Everyday cooking essentials. Please check current varieties and pack sizes with the store.",
+      "items": [
+        {
+          "title": "Cold-pressed oils",
+          "detail": "Ask about gingelly, groundnut and coconut oils, and the pack sizes currently available."
+        },
+        {
+          "title": "Ghee & dairy",
+          "detail": "Ask the store about the ghee and dairy products currently available."
+        }
+      ]
+    },
+    {
+      "id": "pantry",
+      "title": "Pantry essentials",
+      "eyebrow": "More to explore",
+      "description": "A wider selection of ingredients and traditional pantry products.",
+      "items": [
+        {
+          "title": "Honey, pulses, dry fruits & nuts",
+          "detail": "Everyday pantry selections for home kitchens."
+        },
+        {
+          "title": "Health mix",
+          "detail": "A traditional mix. Contact the store for product details."
+        },
+        {
+          "title": "Mudavattukal Kilangu",
+          "detail": "Ask the team about current availability."
+        }
+      ]
+    }
+  ]
+}

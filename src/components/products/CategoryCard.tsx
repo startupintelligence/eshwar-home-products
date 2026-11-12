@@ -1,1 +1,0 @@
-export function CategoryCard({title,description,tag,index}:{title:string;description:string;tag:string;index:number}){return <article className={"category-card category-card-"+(index+1)}><div className="category-art" aria-hidden="true"><span>{tag}</span><i /></div><div className="category-copy"><h3>{title}</h3><p>{description}</p></div></article>;} 

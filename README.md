@@ -1,13 +1,47 @@
 # Eshwar Home Products
 
-Five-page responsive public website by Quantora Digital.
+A static, editorial-style website for Eshwar Home Products in Perambur, Chennai.
 
-Pages: `index.html` (Home), `about.html` (Our story), `products.html` (Catalogue), `gallery.html` (Gallery), `contact.html` (Contact).
+## Stack
 
-Shared files: `assets/css/site.css` and `assets/js/site.js`.
+- Astro static site generation
+- Vanilla CSS with CSS custom properties
+- Small browser-native JavaScript for mobile navigation and pantry filters
+- React is retained only for the existing client sign-in screen
+- Firebase client integration remains separate from the public catalogue
 
-Image note: the current public preview uses CSS category illustrations, not real product photos. The previous artwork used fixed-height containers and `overflow:hidden`, which clipped decorative shapes. The new illustrations use aspect-ratio-based sizing and visible overflow. Future real photos should use `img{max-width:100%;height:auto}` and `object-fit:contain` when the entire product must remain visible.
+## Routes
 
-Responsive breakpoints support 320–480px phones, tablet widths around 768px and desktop 1200px+. The mobile navigation is touch- and keyboard-accessible.
+- / — Home
+- /about/ — Our story
+- /products/ — Pantry catalogue and category filters
+- /contact/ — Store details and directions
+- /admin/ — Client sign-in (not indexed)
 
-Build: `npm install` then `npm run build`. Product imagery remains illustrative until client-approved photographs are supplied. This is a catalogue/exploration site, not an e-commerce checkout.
+## Local development
+
+    npm install
+    npm run dev
+
+## Production checks
+
+    npm run check
+    npm run build
+    npm run preview
+
+The production build is generated in dist/ and deployed to GitHub Pages by .github/workflows/deploy.yml.
+
+## Content and photography
+
+The pantry index is maintained in src/data/catalogue.json. Update it when the client confirms product names and availability. No stock photographs or placeholder product images are used. Add only client-approved photographs under public/images/.
+
+## Firebase
+
+The client portal reads these GitHub Actions secrets at build time:
+
+- VITE_FIREBASE_API_KEY
+- VITE_FIREBASE_AUTH_DOMAIN
+- VITE_FIREBASE_PROJECT_ID
+- VITE_FIREBASE_APP_ID
+
+If they are not configured, the sign-in page shows a setup notice. Do not add private service-account credentials to the frontend.
