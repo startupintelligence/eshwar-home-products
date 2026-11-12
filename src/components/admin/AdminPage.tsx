@@ -44,7 +44,8 @@ export function AdminPage() {
   }
 
   useEffect(() => {
-    if (!auth || !db) return;
+    const database = db;
+    if (!auth || !database) return;
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (!currentUser) {
         setUser(null);
@@ -53,7 +54,7 @@ export function AdminPage() {
         return;
       }
       try {
-        const profile = await getDoc(doc(db, "admin_users", currentUser.uid));
+        const profile = await getDoc(doc(database, "admin_users", currentUser.uid));
         const data = profile.data();
         if (!profile.exists() || data?.active !== true || data?.role !== "products-contact") {
           await signOutClient();
