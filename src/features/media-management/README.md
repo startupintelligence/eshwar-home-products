@@ -1,3 +1,5 @@
 # Media management
 
-Firebase Storage is excluded on the Spark plan. QD manages product images in the repository until a suitable free option is approved.
+Direct uploads are not implemented. Firebase Storage is intentionally not enabled under the agreed Firebase Spark plan.
+
+For now, Quantora Digital manages approved image files in the website repository under public/images/. Do not use stock or generated images as real product photography. Add only client-approved product and store photographs, with accurate alt text and compressed formats.
