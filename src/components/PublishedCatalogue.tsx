@@ -34,11 +34,20 @@ export default function PublishedCatalogue() {
   }, []);
 
   useEffect(() => {
-    // Reapply the selected category after Firebase products are rendered.
     document.dispatchEvent(new Event("catalogue:updated"));
   }, [products]);
 
-  if (!loaded || products.length === 0) return null;
+  if (!loaded) {
+    return (
+      <div className="live-catalogue-skeleton" aria-hidden="true">
+        <div className="skeleton-card" />
+        <div className="skeleton-card" />
+        <div className="skeleton-card" />
+      </div>
+    );
+  }
+
+  if (products.length === 0) return null;
 
   return (
     <div className="live-catalogue" aria-live="polite">
@@ -46,7 +55,6 @@ export default function PublishedCatalogue() {
         const categoryId = categoryLabels[product.categoryId]
           ? product.categoryId
           : "uncategorized";
-
         return (
           <article className="live-product" data-group={categoryId} key={product.id}>
             <div>

@@ -2,6 +2,7 @@
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import "../styles/global.css";
+import "../styles/theme-2.css";
 interface Props {
   title: string;
   description: string;
@@ -9,19 +10,44 @@ interface Props {
 }
 const { title, description, current = "home" } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://startupintelligence.github.io").toString();
+const siteUrl = new URL(import.meta.env.BASE_URL, Astro.site ?? "https://startupintelligence.github.io").toString();
+const storeSchema = {
+  "@context": "https://schema.org",
+  "@type": "GroceryStore",
+  "@id": siteUrl + "#store",
+  name: "Eshwar Home Products",
+  alternateName: "ஈஸ்வர் ஹோம் புராடக்ட்ஸ்",
+  url: siteUrl,
+  telephone: "+91-99412-09953",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Door No. 119/1, Nelvayal Road, Neelam Garden, Bunder Garden, Perambur",
+    addressLocality: "Chennai",
+    addressRegion: "Tamil Nadu",
+    postalCode: "600011",
+    addressCountry: "IN"
+  },
+  openingHours: ["Mo-Sa 10:00-21:00", "Su 10:00-14:00"],
+  areaServed: "Perambur, Chennai"
+};
 ---
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f8f7f2" />
+    <meta name="theme-color" content="#FFFFFF" />
     <meta name="description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:locale" content="en_IN" />
     <link rel="canonical" href={canonical} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(storeSchema)} />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>

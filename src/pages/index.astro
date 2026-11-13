@@ -2,20 +2,24 @@
 import SiteLayout from "../layouts/SiteLayout.astro";
 import catalogue from "../data/catalogue.json";
 const base = import.meta.env.BASE_URL;
+const mapsUrl = "https://www.google.com/maps/search/?api=1&query=Door%20No.%20119%2F1%2C%20Nelvayal%20Road%2C%20Perambur%2C%20Chennai%20600011";
+const whatsappUrl = "https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20would%20like%20to%20enquire%20about%20your%20millet%20products.";
 ---
-<SiteLayout title="Eshwar Home Products | Traditional foods in Perambur" description="Explore traditional rice, millets, millet flours, cold-pressed oils and pantry essentials at Eshwar Home Products, Nelvayal Road, Perambur, Chennai." current="home">
+<SiteLayout title="Eshwar Home Products | Millet Products in Perambur, Chennai" description="Explore millet products, traditional rice, millet flours and everyday pantry essentials at Eshwar Home Products, Nelvayal Road, Perambur, Chennai." current="home">
   <section class="home-hero">
     <div class="container home-hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">A neighbourhood food store · Perambur, Chennai</p>
-        <h1>Traditional food,<br /><em>close to home.</em></h1>
-        <p class="hero-intro">Traditional rice, millets, millet flours and everyday pantry ingredients, right here in Perambur. Visit us on Nelvayal Road or call to ask what is available today.</p>
+        <p class="eyebrow">Perambur · Chennai</p>
+        <p class="hero-tamil" lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</p>
+        <h1 class="hero-brand">ESHWAR HOME PRODUCTS</h1>
+        <p class="hero-tagline">All Kinds of Millet Products Under One Roof</p>
+        <p class="hero-intro">Explore traditional rice, millets, millet flours and everyday pantry ingredients at our Perambur store. Contact us to ask about current varieties and availability.</p>
         <div class="hero-actions">
-          <a class="button button-dark" href={base + "products/"}>Explore the pantry <span aria-hidden="true">↗</span></a>
-          <a class="text-link" href={base + "contact/"}>Find the store</a>
+          <a class="button button-dark" href="#pantry">Explore the Pantry <span aria-hidden="true">↗</span></a>
+          <a class="button button-whatsapp" href={whatsappUrl}>Enquire on WhatsApp <span aria-hidden="true">↗</span></a>
         </div>
       </div>
-      <aside class="hero-index" aria-label="At a glance">
+      <aside class="hero-index" aria-label="Store information">
         <p class="eyebrow">At the store</p>
         <ol>
           <li><span>01</span><strong>Traditional rice & millets</strong></li>
@@ -27,23 +31,49 @@ const base = import.meta.env.BASE_URL;
       </aside>
     </div>
   </section>
-  <section class="location-ribbon">
-    <div class="container location-ribbon-inner">
-      <span>Find us</span>
-      <strong>119/1 Nelvayal Road, Perambur</strong>
-      <a href="https://www.google.com/maps/search/?api=1&query=Door%20No.%20119%2F1%2C%20Nelvayal%20Road%2C%20Perambur%2C%20Chennai%20600011" target="_blank" rel="noreferrer">Get directions ↗</a>
+  <section class="trust-strip" aria-label="Store information">
+    <div class="container trust-strip-grid">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M5 8c3-1 5 0 7 4 2-4 4-5 7-4M6 16c2-1 4 0 6 3 2-3 4-4 6-3"/></svg>
+        <span>Traditional Millets</span>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M6 7v13h12V7M9 7V4h6v3M9 11h6"/></svg>
+        <span>Everyday Pantry</span>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12Z"/><circle cx="12" cy="9" r="2.2"/></svg>
+        <span>Local Perambur Store</span>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg>
+        <span>Call to Check Availability</span>
+      </div>
     </div>
   </section>
-  <section class="section container">
+  <section class="location-banner">
+    <div class="container location-banner-inner">
+      <div class="location-copy">
+        <p class="eyebrow">Visit our store</p>
+        <strong>Door No. 119/1, Nelvayal Road, Perambur, Chennai – 600011</strong>
+        <span>Mon–Sat: 10:00 AM – 9:00 PM · Sun: 10:00 AM – 2:00 PM</span>
+      </div>
+      <div class="location-actions">
+        <a href="tel:+919941209953">+91 99412 09953</a>
+        <a class="location-directions" href={mapsUrl} target="_blank" rel="noopener noreferrer">Get Directions ↗</a>
+      </div>
+    </div>
+  </section>
+  <section class="section container pantry-section" id="pantry">
     <div class="section-intro">
-      <div><p class="eyebrow">A guide to our shelves</p><h2>What you’ll find<br /><em>in the pantry.</em></h2></div>
-      <p>From traditional grains to useful kitchen staples, browse the range by category. For exact varieties and current stock, speak with the store.</p>
+      <div><p class="eyebrow">A guide to our shelves</p><h2>Explore the pantry.</h2></div>
+      <p>Browse the range by category. For exact varieties, pack sizes and current stock, please contact the store.</p>
     </div>
     <div class="directory-list">
       {catalogue.groups.map((group, index) => (
         <a class="directory-row" href={base + "products/#" + group.id}>
           <span class="directory-number">{String(index + 1).padStart(2, "0")}</span>
-          <span class="directory-main"><small>{group.eyebrow}</small><strong>{group.title}</strong></span>
+          <span class="directory-main"><small>{group.eyebrow}</small>{" "}<strong>{group.title}</strong></span>
           <span class="directory-description">{group.description}</span>
           <span class="directory-arrow" aria-hidden="true">↗</span>
         </a>
@@ -54,7 +84,7 @@ const base = import.meta.env.BASE_URL;
   <section class="story-strip">
     <div class="container story-strip-inner">
       <p class="eyebrow">A little about Eshwar</p>
-      <div><h2>Good ingredients<br /><em>for everyday cooking.</em></h2><p>We bring together traditional foods and familiar pantry essentials for homes in and around Perambur. Visit the store, ask a question and check what is available.</p><a class="text-link" href={base + "about/"}>Read our story ↗</a></div>
+      <div><h2>Traditional foods for<br /><em>everyday cooking.</em></h2><p>We bring together traditional foods and familiar pantry essentials for homes in and around Perambur. Visit the store, ask a question and check what is available.</p><a class="text-link" href={base + "about/"}>Read our story ↗</a></div>
     </div>
   </section>
 </SiteLayout>
