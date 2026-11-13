@@ -255,3 +255,37 @@ h1, h2, h3 {
 .youtube-promo-copy > span:last-child { color: var(--text-muted, #5A534C); font-size: .82rem; }
 .youtube-promo-action { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 8px 0; font-size: .8rem; font-weight: 700; white-space: nowrap; border-bottom: 1px solid var(--border-light, #E5E0D8); }
 @media (max-width: 650px) { .youtube-promo-card { align-items: flex-start; flex-direction: column; gap: 12px; padding: 20px; } }
+
+
+/* Homepage editorial guide and share links */
+.home-guide { padding-top: 64px; padding-bottom: 64px; }
+.home-guide-intro { max-width: 720px; margin-bottom: 34px; }
+.home-guide-intro h2, .home-visit-grid h2, .home-faq h2 { margin: 8px 0 14px; font: 400 clamp(1.9rem, 3.5vw, 2.8rem)/1.12 var(--serif); }
+.home-guide-intro > p:last-child, .home-guide-grid article p:last-child, .home-visit-copy p { color: var(--text-muted, #5A534C); font-size: .9rem; line-height: 1.8; }
+.home-guide-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 36px; border-top: 1px solid var(--border-light, #E5E0D8); }
+.home-guide-grid article { padding: 24px 0; border-bottom: 1px solid var(--border-light, #E5E0D8); }
+.home-guide-grid h3 { margin: 8px 0; font: 400 1.45rem/1.2 var(--serif); }
+.home-guide-grid article p:last-child { margin-bottom: 0; }
+.home-visit-guide { padding: 54px 0; background: var(--bg-subtle, #FAF8F5); border-block: 1px solid var(--border-light, #E5E0D8); }
+.home-visit-grid { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); gap: 40px; }
+.home-visit-copy p:first-child { margin-top: 0; }
+.home-visit-copy a { color: inherit; text-underline-offset: 3px; }
+.home-guide-actions { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 20px; }
+.home-faq { padding-top: 54px; padding-bottom: 54px; }
+.home-faq-list { border-top: 1px solid var(--border-light, #E5E0D8); }
+.home-faq-list details { border-bottom: 1px solid var(--border-light, #E5E0D8); }
+.home-faq-list summary { display: flex; align-items: center; min-height: 54px; padding: 12px 24px 12px 0; cursor: pointer; font: 400 1.05rem/1.4 var(--serif); }
+.home-faq-list details p { max-width: 760px; margin: 0 0 18px; color: var(--text-muted, #5A534C); font-size: .86rem; line-height: 1.7; }
+.home-share { border-top: 1px solid var(--border-light, #E5E0D8); }
+.home-share-inner { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 24px; padding-top: 22px; padding-bottom: 22px; }
+.home-share-inner > p { margin: 0; }
+.home-share-inner > strong { font: 400 1.1rem var(--serif); }
+.home-share nav { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-left: auto; }
+.home-share nav a { display: inline-flex; align-items: center; min-height: 48px; color: var(--text-main, #231F20); font-size: .78rem; font-weight: 700; text-underline-offset: 4px; }
+@media (max-width: 700px) {
+  .home-guide { padding-top: 42px; padding-bottom: 42px; }
+  .home-guide-grid, .home-visit-grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .home-visit-grid { gap: 12px; }
+  .home-share-inner { align-items: flex-start; flex-direction: column; }
+  .home-share nav { margin-left: 0; }
+}
