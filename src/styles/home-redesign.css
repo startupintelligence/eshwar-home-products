@@ -1,5 +1,5 @@
 /* Eshwar homepage visual refresh — scoped to homepage sections */
-.home-hero,.home-page { --ehp-red:#B81D13; --ehp-green:#1B3B2B; --ehp-gold:#D99B26; --ehp-border:#E5E0D8; --ehp-ivory:#FAF8F5; }
+:root { --ehp-red:#B81D13; --ehp-green:#1B3B2B; --ehp-gold:#D99B26; --ehp-border:#E5E0D8; --ehp-ivory:#FAF8F5; }
 .home-hero { background:var(--ehp-ivory); border-bottom:1px solid var(--ehp-border); padding:clamp(54px,7vw,88px) 0; }
 .home-hero-grid { grid-template-columns:minmax(0,1.1fr) minmax(270px,.9fr); gap:clamp(36px,6vw,82px); }
 .home-hero .eyebrow,.home-guide .eyebrow,.home-faq .eyebrow { color:var(--ehp-green); }
