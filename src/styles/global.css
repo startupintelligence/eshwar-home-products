@@ -83,7 +83,10 @@ h1, h2, h3 {
 .pantry-shelf-link span:last-child { color: var(--accent-gold, #D99B26); }
 .pantry-shelf-link:hover { border-color: var(--accent-gold, #D99B26); }
 
+.pantry-directory { border-top: 1px solid var(--border-light, #E5E0D8); }
+
 .pantry-group {
+  border-bottom: 1px solid var(--border-light, #E5E0D8);
   grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
   gap: clamp(24px, 4vw, 48px);
   align-items: start;
