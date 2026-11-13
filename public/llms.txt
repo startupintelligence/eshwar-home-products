@@ -20,12 +20,12 @@ Eshwar Home Products is a neighbourhood food and pantry store in Perambur, Chenn
 
 ## Store offerings
 The store catalogue describes these categories and selections:
-- Traditional rice varieties and millet varieties
+- Traditional rice varieties and millet varieties (Siruthaniyam)
 - Millet flours, millet cookies, flakes, vermicelli and pasta
-- Cold-pressed oils
+- Cold-pressed oils: gingelly, groundnut and coconut
 - Ghee and dairy
 - Honey, pulses, dry fruits and nuts
-- Health mix
+- Health mix (Sathumaavu)
 - Mudavattukal Kilangu
 
 The catalogue is a guide to product categories, not a live stock guarantee. Specific varieties, pack sizes, prices and availability may change. Customers should contact the store to confirm current details before visiting.
@@ -33,6 +33,7 @@ The catalogue is a guide to product categories, not a live stock guarantee. Spec
 ## Useful public pages
 - Home: https://startupintelligence.github.io/eshwar-home-products/
 - Pantry: https://startupintelligence.github.io/eshwar-home-products/products/
+- Perambur millet and pantry store guide: https://startupintelligence.github.io/eshwar-home-products/perambur-millet-store/
 - About: https://startupintelligence.github.io/eshwar-home-products/about/
 - Contact and directions: https://startupintelligence.github.io/eshwar-home-products/contact/
 
