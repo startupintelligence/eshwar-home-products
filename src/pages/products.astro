@@ -63,13 +63,14 @@ const pantryBreadcrumbs = {
     </div>
     <nav class="pantry-shelf-nav pantry-track" aria-label="Jump to a pantry shelf">
       {catalogue.groups.map((group) => (
-        <a class="pantry-shelf-link card" href={`#${group.id}`}>
+        <a class="pantry-shelf-link card" href="#catalogue-results" data-filter={group.id} aria-label={`Show ${group.title} products`}>
           <span>{group.id === "grains" ? `${group.title} (Siruthaniyam)` : group.title}</span><span aria-hidden="true">↘</span>
         </a>
       ))}
     </nav>
-    <PublishedCatalogue client:visible />
-    <div class="pantry-directory" id="static-catalogue">
+    <div id="catalogue-results" class="catalogue-results" tabindex="-1">
+      <PublishedCatalogue client:visible />
+      <div class="pantry-directory" id="static-catalogue">
       <div class="pantry-directory-inner" id="pantry-directory" aria-live="polite">
         {catalogue.groups.map((group, index) => (
           <section class="pantry-group" id={group.id} data-group={group.id}>
@@ -91,6 +92,7 @@ const pantryBreadcrumbs = {
             </div>
           </section>
         ))}
+      </div>
       </div>
     </div>
     <!-- PANTRY_FAQS_SLOT -->

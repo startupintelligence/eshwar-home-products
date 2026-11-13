@@ -1,4 +1,5 @@
-const filterButtons = document.querySelectorAll("[data-filter]");
+const filterButtons = document.querySelectorAll("button[data-filter]");
+const shelfLinks = document.querySelectorAll(".pantry-shelf-link[data-filter]");
 let selectedFilter = "all";
 
 function applySelectedFilter() {
@@ -8,15 +9,27 @@ function applySelectedFilter() {
   });
 }
 
+function selectFilter(filter) {
+  selectedFilter = filter;
+  filterButtons.forEach((button) => {
+    const active = button.getAttribute("data-filter") === selectedFilter;
+    button.classList.toggle("is-active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+  applySelectedFilter();
+}
+
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    selectedFilter = button.getAttribute("data-filter") || "all";
-    filterButtons.forEach((item) => {
-      const active = item === button;
-      item.classList.toggle("is-active", active);
-      item.setAttribute("aria-pressed", String(active));
-    });
-    applySelectedFilter();
+    selectFilter(button.getAttribute("data-filter") || "all");
+  });
+});
+
+shelfLinks.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    selectFilter(link.getAttribute("data-filter") || "all");
+    document.getElementById("catalogue-results")?.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 });
 
