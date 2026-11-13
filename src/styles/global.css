@@ -58,3 +58,163 @@ h1, h2, h3 {
     display: none;
   }
 }
+
+
+/* Pantry catalogue — Theme 2 editorial shelves and lightweight live cards */
+.pantry-shelf-nav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0 0 30px;
+}
+
+.pantry-shelf-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 58px;
+  padding: 14px 16px;
+  color: var(--text-main, #231F20);
+  font: 400 1.05rem/1.25 var(--serif);
+  text-decoration: none;
+}
+
+.pantry-shelf-link span:last-child { color: var(--accent-gold, #D99B26); }
+.pantry-shelf-link:hover { border-color: var(--accent-gold, #D99B26); }
+
+.pantry-group {
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  gap: clamp(24px, 4vw, 48px);
+  align-items: start;
+  padding: 32px 0;
+}
+
+.pantry-group-visual { min-width: 0; }
+.pantry-image-frame,
+.live-product-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid var(--border-light, #E5E0D8);
+  background: var(--bg-subtle, #FAF8F5);
+}
+
+.pantry-image-frame img,
+.live-product-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.representative-caption {
+  margin: 7px 0 0;
+  color: var(--text-muted, #5A534C);
+  font-size: .65rem;
+  line-height: 1.4;
+}
+
+.pantry-group-content { min-width: 0; }
+.pantry-group-content .pantry-group-heading { margin-bottom: 14px; }
+.pantry-group-content .pantry-items li { grid-template-columns: minmax(0, .8fr) minmax(0, 1fr); }
+
+.live-catalogue {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0 0 30px;
+}
+
+.live-product {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border-light, #E5E0D8);
+  border-radius: 10px;
+  background: #FAF8F5;
+}
+
+.live-product-media { min-width: 0; }
+.live-product-image { border: 0; border-bottom: 1px solid var(--border-light, #E5E0D8); }
+
+.live-product-content { padding: 16px; }
+.category-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 23px;
+  padding: 3px 8px;
+  border: 1px solid rgba(217, 155, 38, .42);
+  background: rgba(217, 155, 38, .12);
+  color: #76500F;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+.live-product h2 { margin: 10px 0 5px; font: 400 1.25rem/1.2 var(--serif); }
+.live-product-content > p { margin: 0; color: var(--text-muted, #5A534C); font-size: .78rem; }
+.live-product-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border-light, #E5E0D8); }
+.live-product-meta strong { font: 700 .95rem var(--sans); }
+.live-product-meta span { color: var(--text-muted, #5A534C); font-size: .7rem; }
+
+.live-catalogue-skeleton {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0 0 30px;
+}
+
+.skeleton-card {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  min-width: 0;
+  min-height: 148px;
+  padding: 12px;
+  border: 1px solid #E5E0D8;
+  background: #FAF8F5;
+  opacity: .62;
+  animation: catalogue-skeleton-pulse 1.4s ease-in-out infinite alternate;
+}
+
+.skeleton-card::before {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  content: "";
+  background: #F0ECE5;
+}
+
+.skeleton-card::after {
+  display: block;
+  width: 68%;
+  height: 9px;
+  content: "";
+  background: #E5E0D8;
+}
+
+@keyframes catalogue-skeleton-pulse {
+  from { opacity: .48; }
+  to { opacity: .9; }
+}
+
+.store-location-note { max-width: 560px; margin: 8px 0 0; color: var(--text-muted, #5A534C); font-size: .76rem; line-height: 1.6; }
+
+@media (max-width: 768px) {
+  .pantry-shelf-nav { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; padding: 0 0 8px; -webkit-overflow-scrolling: touch; }
+  .pantry-shelf-nav .pantry-shelf-link { flex: 0 0 85%; scroll-snap-align: center; }
+  .pantry-group { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .pantry-group-content .pantry-items li { grid-template-columns: minmax(0, 1fr); gap: 3px; }
+  .live-catalogue, .live-catalogue-skeleton { grid-template-columns: minmax(0, 1fr); }
+  .live-product { display: grid; grid-template-columns: minmax(112px, 38%) minmax(0, 1fr); align-items: stretch; }
+  .live-product-media { min-width: 0; }
+  .live-product-image { aspect-ratio: 4 / 3; align-self: start; border-right: 1px solid var(--border-light, #E5E0D8); border-bottom: 0; }
+  .live-product-media > .representative-caption { padding-inline: 8px; font-size: .57rem; }
+  .live-product-content { padding: 12px; }
+  .live-product h2 { font-size: 1.08rem; }
+  .live-product-meta { align-items: flex-start; flex-direction: column; gap: 4px; }
+  .skeleton-card { min-height: 148px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-card { animation: none; opacity: .7; }
+}
