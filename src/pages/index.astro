@@ -69,9 +69,9 @@ const whatsappUrl = "https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Pro
       <div><p class="eyebrow">A guide to our shelves</p><h2>Explore the pantry.</h2></div>
       <p>Browse the range by category. For exact varieties, pack sizes and current stock, please contact the store.</p>
     </div>
-    <div class="directory-list">
+    <div class="directory-list pantry-track">
       {catalogue.groups.map((group, index) => (
-        <a class="directory-row" href={base + "products/#" + group.id}>
+        <a class="directory-row card" href={base + "products/#" + group.id}>
           <span class="directory-number">{String(index + 1).padStart(2, "0")}</span>
           <span class="directory-main"><small>{group.eyebrow}</small>{" "}<strong>{group.title}</strong></span>
           <span class="directory-description">{group.description}</span>
