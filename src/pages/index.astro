@@ -73,6 +73,7 @@ const whatsappUrl = "https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Pro
     <div class="directory-list pantry-track">
       {catalogue.groups.map((group, index) => (
         <a class="directory-row card" href={base + "products/#" + group.id}>
+          <span class="directory-image"><img src={base + group.placeholderImage} alt={group.placeholderAlt} loading="lazy" decoding="async" /></span>
           <span class="directory-number">{String(index + 1).padStart(2, "0")}</span>
           <span class="directory-main"><small>{group.eyebrow}</small>{" "}<strong>{group.title}</strong></span>
           <span class="directory-description">{group.description}</span>
