@@ -3,20 +3,32 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 import catalogue from "../data/catalogue.json";
 import PublishedCatalogue from "../components/PublishedCatalogue";
 const siteRoot = Astro.site ?? new URL("https://startupintelligence.github.io");
-const pageUrl = new URL(Astro.url.pathname, siteRoot).toString();
+const pageUrl = new URL(`${import.meta.env.BASE_URL}products/`, siteRoot).toString();
 const storeId = `${new URL(import.meta.env.BASE_URL, siteRoot).toString()}#store`;
 const homeUrl = new URL(import.meta.env.BASE_URL, siteRoot).toString();
 const pantryItemList = {
   "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": "The Pantry at Eshwar Home Products",
-  "url": pageUrl,
-  "provider": { "@id": storeId },
-  "itemListElement": catalogue.groups.map((group, index) => ({
-    "@type": "ListItem",
-    "position": index + 1,
-    "item": { "@type": "Thing", "name": group.id === "grains" ? "Rice & millets (Siruthaniyam)" : group.title, "url": `${pageUrl}#${group.id}` },
-  })),
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${pageUrl}#webpage`,
+      "url": pageUrl,
+      "name": "The Pantry at Eshwar Home Products",
+      "about": { "@id": storeId },
+      "mainEntity": { "@id": `${pageUrl}#pantry-list` },
+    },
+    {
+      "@type": "ItemList",
+      "@id": `${pageUrl}#pantry-list`,
+      "name": "The Pantry at Eshwar Home Products",
+      "url": pageUrl,
+      "itemListElement": catalogue.groups.map((group, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": { "@type": "Thing", "name": group.id === "grains" ? "Rice & millets (Siruthaniyam)" : group.title, "url": `${pageUrl}#${group.id}` },
+      })),
+    },
+  ],
 };
 const pantryBreadcrumbs = {
   "@context": "https://schema.org",
@@ -71,8 +83,8 @@ const pantryBreadcrumbs = {
               <div class="pantry-group-heading">
                 <span class="directory-number">{String(index + 1).padStart(2, "0")}</span>
                 <div><p class="eyebrow">{group.eyebrow}</p><h2>{group.title}</h2><p>{group.description}</p></div>
+                <a class="shelf-whatsapp-link" href={`https://wa.me/919941209953?text=${encodeURIComponent(`Hello Eshwar Home Products, please help me check current stock in the ${group.title} shelf.`)}`} target="_blank" rel="noopener noreferrer">Check stock on WhatsApp ↗</a>
               </div>
-              <a class="shelf-whatsapp-link" href={`https://wa.me/919941209953?text=${encodeURIComponent(`Hello Eshwar Home Products, please help me check current stock in the ${group.title} shelf.`)}`} target="_blank" rel="noopener noreferrer">Check stock on WhatsApp ↗</a>
               <ul class="pantry-items">
                 {group.items.map((item) => <li><strong>{item.title}</strong><span>{item.detail}</span></li>)}
               </ul>
