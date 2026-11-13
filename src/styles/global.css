@@ -244,3 +244,14 @@ h1, h2, h3 {
   .shelf-whatsapp-link { margin-left: 48px; }
   .catalogue-contact-notice { align-items: flex-start; flex-direction: column; gap: 8px; }
 }
+
+
+/* Official YouTube links: lightweight outbound links, no embedded player */
+.footer-youtube { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 8px 0; color: var(--ink); text-decoration: none; }
+.youtube-icon { width: 22px; height: 22px; flex: 0 0 auto; }
+.youtube-promo-card { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 104px; padding: 20px 24px; border: 1px solid var(--border-light, #E5E0D8); color: inherit; text-decoration: none; }
+.youtube-promo-copy { display: grid; gap: 7px; }
+.youtube-promo-copy strong { font: 500 1.25rem/1.3 var(--serif); }
+.youtube-promo-copy > span:last-child { color: var(--text-muted, #5A534C); font-size: .82rem; }
+.youtube-promo-action { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 8px 0; font-size: .8rem; font-weight: 700; white-space: nowrap; border-bottom: 1px solid var(--border-light, #E5E0D8); }
+@media (max-width: 650px) { .youtube-promo-card { align-items: flex-start; flex-direction: column; gap: 12px; padding: 20px; } }
