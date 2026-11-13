@@ -221,3 +221,26 @@ h1, h2, h3 {
 @media (prefers-reduced-motion: reduce) {
   .skeleton-card { animation: none; opacity: .7; }
 }
+
+
+/* Pantry conversion, FAQ and touch-target refinements */
+.filter-list { gap: 8px; }
+.filter-button { min-height: 48px; padding: 10px 12px; }
+.shelf-whatsapp-link { display: inline-flex; align-items: center; min-height: 48px; margin: 2px 0 10px 48px; color: var(--accent-green, #1B3B2B); font-size: .74rem; font-weight: 700; text-decoration: underline; text-decoration-color: var(--accent-gold, #D99B26); text-underline-offset: 4px; }
+.phone-action { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 10px 14px; }
+.footer-phone { display: inline-flex; align-items: center; min-height: 48px; padding: 8px 0; }
+.catalogue-contact-notice { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 12px 0; border-bottom: 1px solid var(--border-light, #E5E0D8); }
+.catalogue-contact-notice .catalogue-footnote { margin: 8px 0; }
+.pantry-faq { margin: 42px 0 24px; padding: 28px 0 12px; border-top: 1px solid var(--border-light, #E5E0D8); }
+.pantry-faq h2 { margin: 8px 0 20px; font: 400 clamp(1.8rem, 3vw, 2.5rem)/1.12 var(--serif); }
+.pantry-faq-list { border-top: 1px solid var(--border-light, #E5E0D8); }
+.pantry-faq-list details { border-bottom: 1px solid var(--border-light, #E5E0D8); }
+.pantry-faq-list summary { display: flex; align-items: center; min-height: 52px; padding: 12px 28px 12px 0; cursor: pointer; font: 400 1.05rem/1.35 var(--serif); }
+.pantry-faq-list details p { max-width: 720px; margin: 0 0 18px; color: var(--text-muted, #5A534C); font-size: .82rem; }
+.pantry-faq-list a { text-underline-offset: 3px; }
+@media (max-width: 768px) {
+  .filter-list { gap: 8px; }
+  .filter-button { min-height: 48px; padding: 10px 12px; }
+  .shelf-whatsapp-link { margin-left: 48px; }
+  .catalogue-contact-notice { align-items: flex-start; flex-direction: column; gap: 8px; }
+}

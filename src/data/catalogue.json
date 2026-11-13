@@ -3,8 +3,8 @@
     {
       "id": "grains",
       "title": "Rice & millets",
-      "eyebrow": "Traditional grains",
-      "description": "Traditional rice varieties, millet grains and millet-based pantry choices.",
+      "eyebrow": "Traditional rice & millets (Siruthaniyam)",
+      "description": "Traditional rice varieties, millet grains (Siruthaniyam) and millet-based pantry choices.",
       "items": [
         {
           "title": "Traditional rice varieties",
@@ -27,8 +27,8 @@
           "detail": "A snack option within the millet range."
         }
       ],
-      "placeholderImage": "images/placeholders/rice-millets.svg",
-      "placeholderAlt": "Representative image of traditional millets and grains"
+      "placeholderImage": "images/placeholders/rice-millets.webp",
+      "placeholderAlt": "Representative illustration of traditional rice and millet grains"
     },
     {
       "id": "oils",
@@ -37,7 +37,7 @@
       "description": "Everyday cooking essentials. Please check current varieties and pack sizes with the store.",
       "items": [
         {
-          "title": "Cold-pressed oils",
+          "title": "Cold-pressed oils (Chekku oils: gingelly, groundnut, coconut)",
           "detail": "Ask about gingelly, groundnut and coconut oils, and the pack sizes currently available."
         },
         {
@@ -45,8 +45,8 @@
           "detail": "Ask the store about the ghee and dairy products currently available."
         }
       ],
-      "placeholderImage": "images/placeholders/oils-ghee.svg",
-      "placeholderAlt": "Representative image of cooking oils and ghee"
+      "placeholderImage": "images/placeholders/oils-ghee.webp",
+      "placeholderAlt": "Representative illustration of cooking oils and ghee"
     },
     {
       "id": "pantry",
@@ -59,7 +59,7 @@
           "detail": "Everyday pantry selections for home kitchens."
         },
         {
-          "title": "Health mix",
+          "title": "Health mix (Sathumaavu)",
           "detail": "A traditional mix. Contact the store for product details."
         },
         {
@@ -67,8 +67,8 @@
           "detail": "Ask the team about current availability."
         }
       ],
-      "placeholderImage": "images/placeholders/pantry-essentials.svg",
-      "placeholderAlt": "Representative image of pantry essentials"
+      "placeholderImage": "images/placeholders/pantry-essentials.webp",
+      "placeholderAlt": "Representative illustration of pantry essentials"
     }
   ]
 }

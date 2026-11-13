@@ -1,11 +1,9 @@
 # Temporary pantry category visuals
 
-These SVGs are representative category illustrations, not photographs of products in stock.
+These optimized 800 × 600 WebP illustrations are original representative category artwork, not photographs of products currently in stock. Each shelf image uses a 4:3 frame and is labelled on the public page with “Representative visual · Store photos coming soon”.
 
-- `rice-millets.svg` — Rice & millets shelf (`grains` category)
-- `oils-ghee.svg` — Oils & ghee shelf (`oils` category)
-- `pantry-essentials.svg` — Pantry essentials shelf (`pantry` category)
+- `rice-millets.webp` — Rice & millets (`grains`)
+- `oils-ghee.webp` — Oils, ghee & dairy (`oils`)
+- `pantry-essentials.webp` — Pantry essentials (`pantry`)
 
-The public site labels these visuals with descriptive representative-image alt text and the caption “Representative visual · Store photos coming soon”. They reserve a 4:3 frame. Replace them only when the client supplies or approves original store/category photographs; keep the same frame ratio and dimensions to avoid layout shift.
-
-For temporary raster images, use royalty-free sources with licence/attribution recorded and compress to WebP. Custom SVG illustrations are preferred for small file size and sharp rendering. Never use these visuals to imply a specific product, package, brand, certification, price, or availability.
+Each asset is kept below 80 KB. Replace only with client-supplied or client-approved original store/category photography. Preserve the 4:3 frame and update the alt text to describe the actual approved image. Do not imply a specific product, brand, price, certification or availability.
