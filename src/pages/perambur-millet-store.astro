@@ -87,6 +87,7 @@ const discoverySchema = {
   title="Traditional Rice & Millet Store in Perambur, Chennai | Eshwar Home Products"
   description="Find traditional rice, Siruthaniyam millets and pantry categories at Eshwar Home Products, Perambur, Chennai. Check current stock directly with the store."
   current="products"
+  canonicalUrl={pageUrl}
   includeStoreSchema={false}
 >
   <script type="application/ld+json" set:html={JSON.stringify(discoverySchema)} />
@@ -95,8 +96,8 @@ const discoverySchema = {
     <div class="discovery-container hero-layout">
       <div class="hero-copy">
         <p class="eyebrow">Local pantry guide · Perambur, Chennai</p>
-        <p class="brand-tamil" lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</p>
-        <h1>Traditional Millets &amp; Pantry Store in Perambur, Chennai</h1>
+        <h1><span class="brand-tamil" lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</span><span class="brand-english">Traditional Millets &amp; Pantry Store in Perambur, Chennai</span></h1>
+        
         <p class="hero-summary">Explore traditional rice, Siruthaniyam millets and everyday pantry categories at Eshwar Home Products. Browse the store guide, then contact the team to check current varieties and stock before visiting.</p>
         <div class="hero-actions">
           <a class="action action-primary" href={whatsappUrl} target="_blank" rel="noopener noreferrer">Check stock on WhatsApp <span aria-hidden="true">↗</span></a>
@@ -224,7 +225,8 @@ const discoverySchema = {
   .discovery-hero { padding: clamp(44px, 7vw, 88px) 0; background: var(--bg-page); }
   .hero-layout { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(290px, .88fr); gap: clamp(30px, 6vw, 76px); align-items: start; }
   .eyebrow { margin: 0; color: var(--accent-green); font-size: .68rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
-  .brand-tamil { margin: 22px 0 10px; color: var(--brand-red); font-family: "Noto Sans Tamil", system-ui, sans-serif; font-size: clamp(1.2rem, 2.2vw, 1.65rem); font-weight: 600; line-height: 1.5; }
+  .brand-tamil { display: block; margin: 0 0 12px; color: var(--brand-red); font-family: "Noto Sans Tamil", system-ui, sans-serif; font-size: clamp(1.2rem, 2.2vw, 1.65rem); font-weight: 600; letter-spacing: 0; line-height: 1.55; }
+  .brand-english { display: block; }
   h1, h2, h3 { text-wrap: balance; }
   h1 { max-width: 760px; margin: 0; color: #231F20; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.55rem, 5.2vw, 4.8rem); font-weight: 400; letter-spacing: -.045em; line-height: 1.04; }
   .hero-summary { max-width: 650px; margin: 24px 0 0; color: #5A534C; font-size: 1rem; line-height: 1.8; }

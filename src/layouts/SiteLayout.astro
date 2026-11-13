@@ -8,9 +8,10 @@ interface Props {
   description: string;
   current?: "home" | "about" | "products" | "contact";
   includeStoreSchema?: boolean;
+  canonicalUrl?: string;
 }
-const { title, description, current = "home", includeStoreSchema = true } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://startupintelligence.github.io").toString();
+const { title, description, current = "home", includeStoreSchema = true, canonicalUrl } = Astro.props;
+const canonical = canonicalUrl ?? new URL(Astro.url.pathname, Astro.site ?? "https://startupintelligence.github.io").toString();
 const siteUrl = new URL(import.meta.env.BASE_URL, Astro.site ?? "https://startupintelligence.github.io").toString();
 const storeSchema = {
   "@context": "https://schema.org",
