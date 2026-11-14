@@ -30,7 +30,7 @@ const pantryItemList = {
       "itemListElement": catalogue.groups.map((group, index) => ({
         "@type": "ListItem",
         "position": index + 1,
-        "item": { "@type": "Thing", "name": group.id === "grains" ? "Rice & millets (Siruthaniyam)" : group.title, "url": `${pageUrl}#${group.id}` },
+        "item": { "@type": "Thing", "name": shelfGuides[group.id].title, "alternateName": shelfGuides[group.id].categoryName, "url": `${pageUrl}#${group.id}` },
       })),
     },
   ],
