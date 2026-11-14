@@ -6,113 +6,138 @@ const siteRoot = Astro.site ?? new URL("https://startupintelligence.github.io");
 const pageUrl = new URL(`${import.meta.env.BASE_URL}products/`, siteRoot).toString();
 const storeId = `${new URL(import.meta.env.BASE_URL, siteRoot).toString()}#store`;
 const homeUrl = new URL(import.meta.env.BASE_URL, siteRoot).toString();
+const whatsappNumber = "919941209953";
+const shelfDetails = {
+  grains: {
+    label: "Rice & Millets (Siruthaniyam)",
+    intro: "Traditional rice, whole millets and millet flours for everyday meals, breakfast and tiffin. Use the Tamil and English grain names as a handy guide when asking the store.",
+    cues: ["Traditional rice varieties", "Thinai · Foxtail millet", "Varagu · Kodo millet", "Samai · Little millet", "Kuthiraivali · Barnyard millet", "Ragi · Finger millet", "Kambu · Pearl millet", "Millet flours", "Idli / Upma rava"],
+    occasions: ["Breakfast & tiffin", "Everyday meals", "Pongal & upma"]
+  },
+  oils: {
+    label: "Cold-Pressed Oils, Ghee & Dairy (Chekku)",
+    intro: "Traditional wood-pressed gingelly, groundnut and coconut oils, alongside ghee and everyday dairy essentials for South Indian home cooking.",
+    cues: ["Wood-pressed gingelly oil", "Wood-pressed groundnut oil", "Wood-pressed coconut oil", "Ghee", "Everyday dairy essentials"],
+    occasions: ["Everyday cooking", "Seasoning & tempering", "Traditional recipes"]
+  },
+  pantry: {
+    label: "Millet Snacks, Honey & Pantry",
+    intro: "A practical pantry mix for teatime, tiffin and everyday kitchen planning, from millet-based quick-cook options to familiar pantry staples.",
+    cues: ["Millet flakes", "Sevai · vermicelli", "Millet pasta", "Millet cookies", "Sathumaavu · traditional mix", "Wild honey", "Native pulses", "Dry fruits & nuts"],
+    occasions: ["Teatime", "Tiffin", "Quick meals & snacks"]
+  }
+};
 const pantryItemList = {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": `${pageUrl}#webpage`,
-      "url": pageUrl,
-      "name": "The Pantry at Eshwar Home Products",
-      "about": { "@id": storeId },
-      "mainEntity": { "@id": `${pageUrl}#pantry-list` },
-    },
-    {
-      "@type": "ItemList",
-      "@id": `${pageUrl}#pantry-list`,
-      "name": "The Pantry at Eshwar Home Products",
-      "url": pageUrl,
-      "itemListElement": catalogue.groups.map((group, index) => ({
-        "@type": "ListItem",
-        "position": index + 1,
-        "item": { "@type": "Thing", "name": group.id === "grains" ? "Rice & millets (Siruthaniyam)" : group.title, "url": `${pageUrl}#${group.id}` },
-      })),
-    },
-  ],
+    { "@type": "WebPage", "@id": `${pageUrl}#webpage`, "url": pageUrl, "name": "The Pantry at Eshwar Home Products", "about": { "@id": storeId }, "mainEntity": { "@id": `${pageUrl}#pantry-list` } },
+    { "@type": "ItemList", "@id": `${pageUrl}#pantry-list`, "name": "The Pantry at Eshwar Home Products", "url": pageUrl,
+      "itemListElement": catalogue.groups.map((group, index) => ({ "@type": "ListItem", "position": index + 1, "item": { "@type": "Thing", "name": shelfDetails[group.id as keyof typeof shelfDetails]?.label ?? group.title, "url": `${pageUrl}#${group.id}` } })) }
+  ]
 };
-const pantryBreadcrumbs = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": homeUrl },
-    { "@type": "ListItem", "position": 2, "name": "The Pantry", "item": pageUrl },
-  ],
-};
+const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+  { "@type": "ListItem", "position": 1, "name": "Home", "item": homeUrl },
+  { "@type": "ListItem", "position": 2, "name": "The Pantry", "item": pageUrl }
+] };
 ---
-<SiteLayout title="Pantry & Traditional Groceries in Perambur, Chennai | Eshwar Home Products" description="Explore the pantry shelves at Eshwar Home Products in Perambur, Chennai: traditional rice and millets (Siruthaniyam), cold-pressed Chekku oils, ghee and everyday pantry essentials including Sathumaavu. Call or WhatsApp the store to confirm current varieties and availability." current="products">
+<SiteLayout title="The Pantry | Traditional Rice, Millets & Kitchen Essentials in Perambur" description="Explore traditional rice and Siruthaniyam millets, Chekku oils, ghee, millet snacks and everyday pantry categories at Eshwar Home Products in Perambur, Chennai. Ask the store about today's stock on WhatsApp." current="products">
   <script type="application/ld+json" set:html={JSON.stringify(pantryItemList)} />
   <script type="application/ld+json" set:html={JSON.stringify(pantryBreadcrumbs)} />
   <section class="page-heading"><div class="container">
     <p class="eyebrow">The pantry · Eshwar Home Products · Perambur, Chennai</p>
-    <h1>Browse the<br /><em>pantry index.</em></h1>
-    <p>A guide to the kinds of products covered by our store. Specific varieties, pack sizes and availability may change. Contact the Perambur store to confirm before visiting.</p>
+    <h1>Good things for<br /><em>everyday cooking.</em></h1>
+    <p>Explore the grains, cooking essentials and pantry favourites used across South Indian home kitchens. Browse by shelf, then message the store about the variety or pack size you need.</p>
     <div class="hero-actions">
-      <a class="button button-dark" href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20would%20like%20to%20check%20the%20pantry%20range." target="_blank" rel="noopener noreferrer">Ask on WhatsApp ↗</a>
+      <a class="button button-dark" href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20please%20help%20me%20check%20today%27s%20pantry%20stock." target="_blank" rel="noopener noreferrer">Check today's stock on WhatsApp ↗</a>
       <a class="text-link phone-action" href="tel:+919941209953">Call +91 99412 09953</a>
     </div>
   </div></section>
-  <section class="section container">
-    <div class="catalogue-toolbar">
-      <div><p class="eyebrow">Browse by shelf</p><h2>Find your pantry aisle.</h2></div>
-      <div class="filter-list" role="group" aria-label="Filter pantry categories">
-        <button type="button" class="filter-button is-active" data-filter="all" aria-pressed="true">All shelves</button>
-        <button type="button" class="filter-button" data-filter="grains" aria-pressed="false">Rice & millets (Siruthaniyam)</button>
-        <button type="button" class="filter-button" data-filter="oils" aria-pressed="false">Oils & ghee</button>
-        <button type="button" class="filter-button" data-filter="pantry" aria-pressed="false">Pantry essentials</button>
-      </div>
+  <section class="section container pantry-page">
+    <div class="pantry-intro-row">
+      <div><p class="eyebrow">Three familiar shelves</p><h2>Find a place to start.</h2></div>
+      <p>From traditional grains for breakfast and meals to cooking oils, teatime snacks and pantry staples, explore the categories in one simple guide.</p>
     </div>
     <nav class="pantry-shelf-nav pantry-track" aria-label="Jump to a pantry shelf">
-      {catalogue.groups.map((group) => (
-        <a class="pantry-shelf-link card" href="#catalogue-results" data-filter={group.id} aria-label={`Show ${group.title} products`}>
-          <span>{group.id === "grains" ? `${group.title} (Siruthaniyam)` : group.title}</span><span aria-hidden="true">↘</span>
-        </a>
-      ))}
+      {catalogue.groups.map((group) => <a class="pantry-shelf-link card" href={`#${group.id}`}><span>{shelfDetails[group.id as keyof typeof shelfDetails]?.label ?? group.title}</span><span aria-hidden="true">↘</span></a>)}
     </nav>
-    <div id="catalogue-results" class="catalogue-results" tabindex="-1">
-      <PublishedCatalogue client:visible />
-      <div class="pantry-directory" id="static-catalogue">
-      <div class="pantry-directory-inner" id="pantry-directory" aria-live="polite">
-        {catalogue.groups.map((group, index) => (
-          <section class="pantry-group" id={group.id} data-group={group.id}>
+    <div class="catalogue-live-intro"><p class="eyebrow">Client-published products</p><h2>Recently published to the store catalogue</h2><p>Product details shown here come from the store's publishing system. For anything else, ask the team directly.</p></div>
+    <PublishedCatalogue client:visible />
+    <div class="pantry-directory" id="static-catalogue">
+      <div class="pantry-directory-inner">
+        {catalogue.groups.map((group, index) => {
+          const shelf = shelfDetails[group.id as keyof typeof shelfDetails];
+          const categoryName = shelf?.label ?? group.title;
+          const message = `Hello Eshwar Home Products, please help me check today's stock for ${categoryName}.`;
+          return <section class="pantry-group" id={group.id} data-group={group.id}>
             <div class="pantry-group-visual">
-              <div class="pantry-image-frame">
-                <img src={`${import.meta.env.BASE_URL}${group.placeholderImage}`} alt={group.placeholderAlt} width="800" height="600" loading="lazy" decoding="async" />
-              </div>
-              <p class="representative-caption">Representative visual · Store photos coming soon</p>
+              <div class="pantry-image-frame"><img src={`${import.meta.env.BASE_URL}${group.placeholderImage}`} alt={group.placeholderAlt} width="800" height="600" loading="lazy" decoding="async" /></div>
+              <p class="representative-caption">Representative visual · Store photography will be added when supplied</p>
             </div>
             <div class="pantry-group-content">
-              <div class="pantry-group-heading">
-                <span class="directory-number">{String(index + 1).padStart(2, "0")}</span>
-                <div><p class="eyebrow">{group.eyebrow}</p><h2>{group.title}</h2><p>{group.description}</p></div>
-                <a class="shelf-whatsapp-link" href={`https://wa.me/919941209953?text=${encodeURIComponent(`Hello Eshwar Home Products, please help me check current stock in the ${group.title} shelf.`)}`} target="_blank" rel="noopener noreferrer">Check stock on WhatsApp ↗</a>
-              </div>
-              <ul class="pantry-items">
-                {group.items.map((item) => <li><strong>{item.title}</strong><span>{item.detail}</span></li>)}
-              </ul>
+              <div class="pantry-group-heading"><span class="directory-number">{String(index + 1).padStart(2, "0")}</span><div>
+                <p class="eyebrow">{group.eyebrow}</p><h2>{categoryName}</h2><p>{shelf?.intro ?? group.description}</p>
+              </div></div>
+              <p class="kitchen-cue-label">Kitchen-use guide</p>
+              <ul class="kitchen-cues">{(shelf?.cues ?? group.items.map((item) => item.title)).map((cue) => <li>{cue}</li>)}</ul>
+              <div class="meal-occasions">{(shelf?.occasions ?? []).map((occasion) => <span>{occasion}</span>)}</div>
+              <a class="shelf-whatsapp-link" href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`} target="_blank" rel="noopener noreferrer">Check Today's Stock on WhatsApp ↗</a>
+              <details class="catalogue-details"><summary>See the published category notes</summary><ul class="pantry-items">{group.items.map((item) => <li><strong>{item.title}</strong><span>{item.detail}</span></li>)}</ul></details>
             </div>
-          </section>
-        ))}
-      </div>
+          </section>;
+        })}
       </div>
     </div>
-    <!-- PANTRY_FAQS_SLOT -->
-    <section class="pantry-faq" id="pantry-faqs" aria-labelledby="pantry-faq-title">
-      <p class="eyebrow">Before you visit</p>
-      <h2 id="pantry-faq-title">Pantry questions, answered.</h2>
+    <p class="pantry-stock-note">Looking for a particular variety or pack size? Message us on WhatsApp anytime to check today's fresh arrivals and options.</p>
+    <section class="pantry-faq" aria-labelledby="pantry-faq-title">
+      <p class="eyebrow">A little help before you visit</p><h2 id="pantry-faq-title">Pantry questions.</h2>
       <div class="pantry-faq-list">
-        <details><summary>Does this page show live stock?</summary><p>No. This page is a guide to the store’s pantry categories, not a live stock list. Please call or WhatsApp to confirm a product and its current availability.</p></details>
-        <details><summary>Can I check varieties and pack sizes before visiting?</summary><p>Yes. Contact the store and ask about the specific variety or pack size you need. The team can confirm the latest information before you travel.</p></details>
-        <details><summary>Where is Eshwar Home Products?</summary><p>Door No. 119/1, Nelvayal Road, Neelam Garden, Bunder Garden, Perambur, Chennai, Tamil Nadu 600011, India.</p></details>
-        <details><summary>How do I contact the Perambur store?</summary><p>Call <a href="tel:+919941209953">+91 99412 09953</a> or message the store on WhatsApp to ask about the pantry range.</p></details>
+        <details><summary>Can I ask about a Tamil millet name?</summary><p>Yes. Use the Tamil–English millet reference in our <a href={`${import.meta.env.BASE_URL}perambur-millet-store/#millet-reference`}>Perambur store guide</a>, then message the team about the variety you have in mind.</p></details>
+        <details><summary>Can I check pack sizes before visiting?</summary><p>Yes. Send the product or variety name through WhatsApp and ask the team about current options.</p></details>
+        <details><summary>Where is the store?</summary><p>Door No. 119/1, Nelvayal Road, Neelam Garden, Bunder Garden, Perambur, Chennai, Tamil Nadu 600011, India.</p></details>
       </div>
     </section>
-    <div class="catalogue-contact-notice">
-      <p class="catalogue-footnote">This pantry guide is not a live stock list. Please call or message the store to confirm a particular variety or pack size before travelling.</p>
-      <a class="button button-dark phone-action" href="tel:+919941209953">Call +91 99412 09953</a>
-    </div>
-    <div class="enquiry-row"><div><p class="eyebrow">Shopping in Perambur?</p><h2>Ask us about today’s range.</h2><p class="store-location-note">Eshwar Home Products · Door No. 119/1, Nelvayal Road, Neelam Garden, Bunder Garden, Perambur, Chennai, Tamil Nadu 600011.</p></div><a class="button button-dark" href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20would%20like%20to%20check%20product%20availability." target="_blank" rel="noopener noreferrer">Enquire on WhatsApp ↗</a></div>
+    <div class="enquiry-row"><div><p class="eyebrow">A neighbourhood pantry in Perambur</p><h2>Need help choosing a shelf?</h2><p class="store-location-note">Call or message the store. The team can help you check today's options before you visit.</p></div><a class="button button-dark" href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20need%20help%20with%20the%20pantry%20range." target="_blank" rel="noopener noreferrer">Ask on WhatsApp ↗</a></div>
   </section>
 </SiteLayout>
-<script>
-  import "../scripts/catalogue-filter.js";
-</script>
+<script>import "../scripts/catalogue-filter.js";</script>
+<style>
+  .pantry-page h2,.pantry-page h3 { text-wrap: balance; }
+  .pantry-intro-row { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:32px; align-items:end; margin-bottom:28px; }
+  .pantry-intro-row h2,.catalogue-live-intro h2 { margin:8px 0 0; font:400 clamp(2rem,4vw,3rem)/1.1 Georgia,"Times New Roman",serif; }
+  .pantry-intro-row > p,.catalogue-live-intro > p:last-child { margin:0; color:var(--text-muted,#5A534C); font-size:.88rem; line-height:1.75; }
+  .catalogue-live-intro { margin:32px 0 16px; padding:20px 0 14px; border-top:1px solid var(--border-light); }
+  .catalogue-live-intro h2 { font-size:1.65rem; }
+  .catalogue-live-intro > p:last-child { margin-top:8px; }
+  .pantry-group { display:grid; grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr); gap:clamp(24px,4vw,48px); align-items:start; padding:34px 0; border-bottom:1px solid var(--border-light); }
+  .pantry-group-visual { min-width:0; }
+  .pantry-image-frame { overflow:hidden; aspect-ratio:4/3; border:1px solid var(--border-light); background:var(--bg-subtle); }
+  .pantry-image-frame img { display:block; width:100%; height:100%; object-fit:cover; }
+  .representative-caption { margin:7px 0 0; color:var(--text-muted); font-size:.65rem; }
+  .pantry-group-heading { display:grid; grid-template-columns:34px minmax(0,1fr); gap:12px; }
+  .pantry-group-heading h2 { margin:4px 0 8px; font:400 clamp(1.55rem,2.8vw,2.1rem)/1.18 Georgia,"Times New Roman",serif; }
+  .pantry-group-heading div > p:last-child { margin:0; color:var(--text-muted); font-size:.86rem; line-height:1.75; }
+  .kitchen-cue-label { margin:20px 0 9px; color:var(--accent-green); font-size:.67rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+  .kitchen-cues { display:flex; flex-wrap:wrap; gap:8px; margin:0; padding:0; list-style:none; }
+  .kitchen-cues li { display:flex; min-height:34px; align-items:center; padding:6px 10px; border:1px solid var(--border-light); background:var(--bg-subtle); color:var(--text-main); font-size:.74rem; line-height:1.35; }
+  .meal-occasions { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+  .meal-occasions span { color:var(--text-muted); font-size:.7rem; }
+  .meal-occasions span + span::before { content:"·"; margin-right:8px; color:var(--accent-gold); }
+  .shelf-whatsapp-link { display:inline-flex; min-height:48px; align-items:center; justify-content:center; margin:18px 0 8px; padding:10px 16px; border:1px solid var(--brand-red); background:var(--brand-red); color:#fff; font-size:.76rem; font-weight:700; text-decoration:none; }
+  .shelf-whatsapp-link:hover { background:#99180F; }
+  .catalogue-details { margin-top:8px; border-top:1px solid var(--border-light); }
+  .catalogue-details summary { display:flex; min-height:48px; align-items:center; color:var(--accent-green); cursor:pointer; font-size:.76rem; font-weight:700; }
+  .pantry-items { margin:0; padding:0; list-style:none; }
+  .pantry-items li { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1fr); gap:16px; padding:10px 0; border-top:1px solid var(--border-light); }
+  .pantry-items strong { font:400 1rem Georgia,"Times New Roman",serif; }
+  .pantry-items span { color:var(--text-muted); font-size:.75rem; }
+  .pantry-stock-note { margin:26px 0; padding:16px 18px; border:1px solid var(--border-light); background:var(--bg-subtle); color:var(--text-main); font-size:.86rem; line-height:1.65; }
+  .pantry-faq { margin:42px 0 24px; padding:28px 0 12px; border-top:1px solid var(--border-light); }
+  .pantry-faq h2 { margin:8px 0 20px; font:400 clamp(1.8rem,3vw,2.5rem)/1.12 Georgia,"Times New Roman",serif; }
+  .pantry-faq-list { border-top:1px solid var(--border-light); }
+  .pantry-faq-list details { border-bottom:1px solid var(--border-light); }
+  .pantry-faq-list summary { display:flex; min-height:52px; align-items:center; padding:12px 28px 12px 0; cursor:pointer; font:400 1.05rem/1.35 Georgia,"Times New Roman",serif; }
+  .pantry-faq-list details p { max-width:720px; margin:0 0 18px; color:var(--text-muted); font-size:.82rem; }
+  .pantry-faq-list a { text-underline-offset:3px; }
+  .enquiry-row { margin-top:24px; }
+  @media(max-width:760px) { .pantry-intro-row,.pantry-group { grid-template-columns:minmax(0,1fr); gap:16px; } .pantry-group-visual { max-width:560px; } .pantry-items li { grid-template-columns:minmax(0,1fr); gap:3px; } }
+</style>
