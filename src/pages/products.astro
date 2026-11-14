@@ -30,7 +30,7 @@ const pantryItemList = {
       "itemListElement": catalogue.groups.map((group, index) => ({
         "@type": "ListItem",
         "position": index + 1,
-        "item": { "@type": "Thing", "name": shelfGuides[group.id].title, "alternateName": shelfGuides[group.id].categoryName, "url": `${pageUrl}#${group.id}` },
+        "item": { "@type": "Thing", "name": shelfGuides[group.id as keyof typeof shelfGuides].title, "alternateName": shelfGuides[group.id as keyof typeof shelfGuides].categoryName, "url": `${pageUrl}#${group.id}` },
       })),
     },
   ],
@@ -89,19 +89,19 @@ const pantryBreadcrumbs = {
             <div class="pantry-group-content">
               <div class="pantry-group-heading">
                 <span class="directory-number">{String(index + 1).padStart(2, "0")}</span>
-                <div><p class="eyebrow">{shelfGuides[group.id].eyebrow}</p><h2>{shelfGuides[group.id].title}</h2><p>{shelfGuides[group.id].description}</p></div>
+                <div><p class="eyebrow">{shelfGuides[group.id as keyof typeof shelfGuides].eyebrow}</p><h2>{shelfGuides[group.id as keyof typeof shelfGuides].title}</h2><p>{shelfGuides[group.id as keyof typeof shelfGuides].description}</p></div>
               </div>
               <div class="kitchen-use-block">
                 <p class="kitchen-use-label">Kitchen-use guide</p>
-                <ul class="kitchen-use-list">{shelfGuides[group.id].cues.map((cue) => <li>{cue}</li>)}</ul>
+                <ul class="kitchen-use-list">{shelfGuides[group.id as keyof typeof shelfGuides].cues.map((cue) => <li>{cue}</li>)}</ul>
                 <p class="meal-occasion-label">Useful for</p>
-                <div class="meal-occasion-tags">{shelfGuides[group.id].occasions.map((occasion) => <span>{occasion}</span>)}</div>
+                <div class="meal-occasion-tags">{shelfGuides[group.id as keyof typeof shelfGuides].occasions.map((occasion) => <span>{occasion}</span>)}</div>
               </div>
               <div class="catalogue-source-items">
                 <p class="kitchen-use-label">From the store catalogue</p>
                 <ul class="pantry-items">{group.items.map((item) => <li><strong>{item.title}</strong><span>{item.detail}</span></li>)}</ul>
               </div>
-              <a class="shelf-whatsapp-button" href={`https://wa.me/919941209953?text=${encodeURIComponent(`Hello Eshwar Home Products, please check today's stock for ${shelfGuides[group.id].categoryName}.`)}`} target="_blank" rel="noopener noreferrer">Check Today's Stock on WhatsApp ↗</a>
+              <a class="shelf-whatsapp-button" href={`https://wa.me/919941209953?text=${encodeURIComponent(`Hello Eshwar Home Products, please check today's stock for ${shelfGuides[group.id as keyof typeof shelfGuides].categoryName}.`)}`} target="_blank" rel="noopener noreferrer">Check Today's Stock on WhatsApp ↗</a>
             </div>
           </section>
         ))}
