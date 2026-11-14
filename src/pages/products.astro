@@ -62,7 +62,7 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
     </nav>
     <div class="catalogue-live-intro"><p class="eyebrow">Client-published products</p><h2>Recently published to the store catalogue</h2><p>Product details shown here come from the store's publishing system. For anything else, ask the team directly.</p></div>
     <PublishedCatalogue client:visible />
-    <div class="pantry-directory" id="static-catalogue">
+    <div class="pantry-directory" id="pantry-shelves">
       <div class="pantry-directory-inner">
         {catalogue.groups.map((group, index) => {
           const shelf = shelfDetails[group.id as keyof typeof shelfDetails];
