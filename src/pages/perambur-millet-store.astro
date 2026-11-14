@@ -1,0 +1,297 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import catalogue from "../data/catalogue.json";
+
+const base = import.meta.env.BASE_URL;
+const siteOrigin = Astro.site ?? new URL("https://startupintelligence.github.io");
+const pageUrl = new URL(base + "perambur-millet-store/", siteOrigin).toString();
+const storeAddress = "Door No. 119/1, Nelvayal Road, Neelam Garden, Bunder Garden, Perambur, Chennai, Tamil Nadu 600011, India";
+const phone = "+91 99412 09953";
+const phoneHref = "tel:+919941209953";
+const whatsappUrl = "https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20would%20like%20to%20check%20current%20stock%20for%3A";
+const mapsUrl = "https://www.google.com/maps/search/?api=1&query=Door%20No.%20119%2F1%2C%20Nelvayal%20Road%2C%20Neelam%20Garden%2C%20Bunder%20Garden%2C%20Perambur%2C%20Chennai%20600011";
+const youtubeUrl = "https://www.youtube.com/@EHP_PeramburOfficial";
+
+const faqs = [
+  {
+    question: "What traditional rice and millet categories can I ask about in Perambur?",
+    answer: "The Eshwar Home Products catalogue lists traditional rice varieties, millet varieties known as Siruthaniyam, millet flours, flakes, vermicelli, pasta and millet cookies. Contact the store to confirm the varieties currently available."
+  },
+  {
+    question: "Does Eshwar Home Products show live stock or prices online?",
+    answer: "No. This website is a guide to store categories, not a live inventory or online checkout. Stock, varieties, pack sizes and prices may change. Call or message the store before visiting to confirm current details."
+  },
+  {
+    question: "Which other pantry categories are listed?",
+    answer: "The published catalogue also lists cold-pressed gingelly, groundnut and coconut oils, ghee and dairy, honey, pulses, dry fruits, nuts, Sathumaavu and Mudavattukal Kilangu. Ask the store about current options and pack sizes."
+  },
+  {
+    question: "Can I check whether a particular millet or pantry item is available?",
+    answer: "Yes. Send the store the item or variety name through WhatsApp, or call +91 99412 09953. Include a preferred pack size if you have one. The store team can confirm the latest information available to them."
+  },
+  {
+    question: "Where is the traditional millet and pantry store in Perambur?",
+    answer: "Eshwar Home Products is at Door No. 119/1, Nelvayal Road, Neelam Garden, Bunder Garden, Perambur, Chennai, Tamil Nadu 600011, India."
+  },
+  {
+    question: "Can visitors from Kolathur, Sembium or Korattur plan a visit?",
+    answer: "The store address is in Perambur, Chennai. Visitors travelling from Kolathur, Sembium or Korattur can open the Google Maps directions link on this page to plan their route. Check the route and current travel conditions before setting out; this page does not publish travel-time or delivery-coverage claims."
+  },
+  {
+    question: "What are the store opening hours?",
+    answer: "The published store hours are Monday to Saturday, 10:00 AM to 9:00 PM, and Sunday, 10:00 AM to 2:00 PM. Call ahead if you are unsure about holiday or special-day hours."
+  },
+  {
+    question: "How can I contact Eshwar Home Products?",
+    answer: "Call +91 99412 09953 or use the WhatsApp stock-check link. The official YouTube channel is @EHP_PeramburOfficial."
+  }
+];
+
+const discoverySchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "GroceryStore",
+      "@id": new URL(base, siteOrigin).toString() + "#store",
+      name: "Eshwar Home Products",
+      alternateName: "ஈஸ்வர் ஹோம் புராடக்ட்ஸ்",
+      url: pageUrl,
+      telephone: "+91-99412-09953",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Door No. 119/1, Nelvayal Road, Neelam Garden, Bunder Garden, Perambur",
+        addressLocality: "Chennai",
+        addressRegion: "Tamil Nadu",
+        postalCode: "600011",
+        addressCountry: "IN"
+      },
+      openingHours: ["Mo-Sa 10:00-21:00", "Su 10:00-14:00"],
+      areaServed: { "@type": "City", name: "Chennai" },
+      sameAs: [youtubeUrl]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": pageUrl + "#frequently-asked-questions",
+      url: pageUrl,
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: { "@type": "Answer", text: faq.answer }
+      }))
+    }
+  ]
+};
+---
+
+<SiteLayout
+  title="Traditional Rice & Millet Store in Perambur, Chennai | Eshwar Home Products"
+  description="Find traditional rice, Siruthaniyam millets and pantry categories at Eshwar Home Products, Perambur, Chennai. Check current stock directly with the store."
+  current="products"
+  canonicalUrl={pageUrl}
+  includeStoreSchema={false}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(discoverySchema)} />
+
+  <section class="discovery-hero">
+    <div class="discovery-container hero-layout">
+      <div class="hero-copy">
+        <p class="eyebrow">Local pantry guide · Perambur, Chennai</p>
+        <h1><span class="brand-tamil" lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</span><span class="brand-english">Traditional Millets &amp; Pantry Store in Perambur, Chennai</span></h1>
+        
+        <p class="hero-summary">Explore traditional rice, Siruthaniyam millets and everyday pantry categories at Eshwar Home Products. Browse the store guide, then contact the team to check current varieties and stock before visiting.</p>
+        <div class="hero-actions">
+          <a class="action action-primary" href={whatsappUrl} target="_blank" rel="noopener noreferrer">Check stock on WhatsApp <span aria-hidden="true">↗</span></a>
+          <a class="action action-secondary" href={base + "products/"}>Browse pantry catalogue <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <aside class="entity-card" aria-labelledby="glance-title">
+        <p class="eyebrow">Verified store details</p>
+        <h2 id="glance-title">At a glance</h2>
+        <dl>
+          <div>
+            <dt>Store</dt>
+            <dd>Eshwar Home Products</dd>
+          </div>
+          <div>
+            <dt>Address</dt>
+            <dd>{storeAddress}</dd>
+          </div>
+          <div>
+            <dt>Opening hours</dt>
+            <dd>Monday–Saturday: 10:00 AM–9:00 PM<br />Sunday: 10:00 AM–2:00 PM</dd>
+          </div>
+          <div>
+            <dt>WhatsApp / Phone</dt>
+            <dd><a href={phoneHref}>{phone}</a></dd>
+          </div>
+          <div>
+            <dt>Official YouTube</dt>
+            <dd><a href={youtubeUrl} target="_blank" rel="noopener noreferrer">@EHP_PeramburOfficial ↗</a></dd>
+          </div>
+        </dl>
+        <p class="entity-note">Store categories are published for guidance. Current stock, varieties, pack sizes and prices must be confirmed with the store.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="category-section" aria-labelledby="category-title">
+    <div class="discovery-container">
+      <div class="section-heading">
+        <p class="eyebrow">Explore the published catalogue</p>
+        <h2 id="category-title">What can you ask the store about?</h2>
+        <p>These are catalogue categories, not a promise that every listed item is in stock today.</p>
+      </div>
+      <div class="category-list">
+        {catalogue.groups.map((group, index) => (
+          <article class="category-row">
+            <span class="category-number">{String(index + 1).padStart(2, "0")}</span>
+            <div>
+              <p class="category-eyebrow">{group.eyebrow}</p>
+              <h3>{group.title}</h3>
+              <p>{group.description}</p>
+              <ul>
+                {group.items.map((item) => <li><strong>{item.title}</strong><span>{item.detail}</span></li>)}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+      <a class="inline-link" href={base + "products/"}>Open the full pantry catalogue <span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+
+  <section class="local-guide">
+    <div class="discovery-container local-guide-grid">
+      <div>
+        <p class="eyebrow">A local store in Chennai</p>
+        <h2>Planning a visit from nearby neighbourhoods?</h2>
+      </div>
+      <div class="local-guide-copy">
+        <p>Eshwar Home Products is located in Perambur, Chennai. If you are travelling from Kolathur, Sembium or Korattur, use the directions link to check your route to the store. Travel distance and time depend on your starting point and current road conditions.</p>
+        <p>For a specific rice variety, millet, oil or pantry item, contact the store before travelling. The website does not provide live inventory, online ordering, delivery coverage or guaranteed availability.</p>
+        <a class="inline-link" href={mapsUrl} target="_blank" rel="noopener noreferrer">Get Google Maps directions <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section" aria-labelledby="faq-title">
+    <div class="discovery-container faq-layout">
+      <div class="section-heading">
+        <p class="eyebrow">Helpful answers</p>
+        <h2 id="faq-title">Questions people ask about the Perambur millet store</h2>
+        <p>Clear information about store categories, stock checks, location and visiting.</p>
+      </div>
+      <div class="faq-list">
+        {faqs.map((faq) => (
+          <details>
+            <summary>{faq.question}</summary>
+            <p>{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENT_FAQS_AND_BLOGS_SLOT -->
+
+  <section class="conversion-section" aria-label="Contact Eshwar Home Products">
+    <div class="discovery-container conversion-inner">
+      <div>
+        <p class="eyebrow">Ask before you visit</p>
+        <h2>Looking for a particular variety?</h2>
+        <p>Send the item name to the store or call to confirm current availability.</p>
+      </div>
+      <nav class="conversion-actions" aria-label="Store actions">
+        <a class="action action-primary" href={whatsappUrl} target="_blank" rel="noopener noreferrer">WhatsApp stock check <span aria-hidden="true">↗</span></a>
+        <a class="action action-secondary" href={phoneHref}>Call {phone}</a>
+        <a class="action action-secondary" href={base + "products/"}>Full pantry catalogue</a>
+        <a class="action action-secondary" href={mapsUrl} target="_blank" rel="noopener noreferrer">Google Maps directions <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </section>
+</SiteLayout>
+
+<style>
+  :global(:root) {
+    --bg-page: #FFFFFF;
+    --bg-subtle: #FAF8F5;
+    --brand-red: #B81D13;
+    --accent-gold: #D99B26;
+    --accent-green: #1B3B2B;
+    --border-light: #E5E0D8;
+  }
+
+  .discovery-container { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+  .discovery-hero { padding: clamp(44px, 7vw, 88px) 0; background: var(--bg-page); }
+  .hero-layout { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(290px, .88fr); gap: clamp(30px, 6vw, 76px); align-items: start; }
+  .eyebrow { margin: 0; color: var(--accent-green); font-size: .68rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+  .brand-tamil { display: block; margin: 0 0 12px; color: var(--brand-red); font-family: "Noto Sans Tamil", system-ui, sans-serif; font-size: clamp(1.2rem, 2.2vw, 1.65rem); font-weight: 600; letter-spacing: 0; line-height: 1.55; }
+  .brand-english { display: block; }
+  h1, h2, h3 { text-wrap: balance; }
+  h1 { max-width: 760px; margin: 0; color: #231F20; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.55rem, 5.2vw, 4.8rem); font-weight: 400; letter-spacing: -.045em; line-height: 1.04; }
+  .hero-summary { max-width: 650px; margin: 24px 0 0; color: #5A534C; font-size: 1rem; line-height: 1.8; }
+  .hero-actions, .conversion-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .action { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 12px; padding: 10px 16px; border: 1px solid var(--border-light); border-radius: 0; font-size: .78rem; font-weight: 700; line-height: 1.35; text-align: center; text-decoration: none; }
+  .action-primary { border-color: var(--brand-red); background: var(--brand-red); color: #fff; }
+  .action-primary:hover { background: #99180F; }
+  .action-secondary { background: var(--bg-page); color: #231F20; }
+  .action-secondary:hover { border-color: var(--accent-gold); }
+  .entity-card { padding: 24px; border: 1px solid var(--border-light); background: var(--bg-page); }
+  .entity-card h2 { margin: 7px 0 16px; font: 400 1.8rem/1.2 Georgia, "Times New Roman", serif; }
+  .entity-card dl { margin: 0; }
+  .entity-card dl > div { padding: 12px 0; border-top: 1px solid var(--border-light); }
+  .entity-card dt { margin-bottom: 4px; color: var(--accent-green); font-size: .67rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+  .entity-card dd { margin: 0; color: #38332F; font-size: .82rem; line-height: 1.65; overflow-wrap: anywhere; }
+  .entity-card a { text-underline-offset: 3px; }
+  .entity-note { margin: 16px 0 0; padding-top: 13px; border-top: 1px solid var(--border-light); color: #5A534C; font-size: .73rem; line-height: 1.65; }
+  .category-section, .faq-section { padding: clamp(48px, 7vw, 82px) 0; background: var(--bg-subtle); }
+  .section-heading { max-width: 690px; margin-bottom: 30px; }
+  .section-heading h2, .local-guide h2, .conversion-inner h2 { margin: 8px 0 12px; color: #231F20; font: 400 clamp(2rem, 4vw, 3.25rem)/1.08 Georgia, "Times New Roman", serif; letter-spacing: -.035em; }
+  .section-heading > p:last-child, .local-guide-copy p, .conversion-inner > div > p:last-child { color: #5A534C; font-size: .88rem; line-height: 1.8; }
+  .category-list { border-top: 1px solid var(--border-light); }
+  .category-row { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 18px; padding: 24px 0; border-bottom: 1px solid var(--border-light); }
+  .category-number { color: var(--brand-red); font-size: .72rem; font-variant-numeric: tabular-nums; }
+  .category-eyebrow { margin: 0 0 5px; color: var(--accent-green); font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; }
+  .category-row h3 { margin: 0; font: 400 1.55rem/1.2 Georgia, "Times New Roman", serif; }
+  .category-row > div > p:not(.category-eyebrow) { margin: 7px 0 12px; color: #5A534C; font-size: .83rem; line-height: 1.7; }
+  .category-row ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; margin: 0; padding: 0; list-style: none; }
+  .category-row li { display: grid; gap: 3px; padding: 10px 0; border-top: 1px solid var(--border-light); }
+  .category-row li strong { color: #292421; font: 400 1rem Georgia, "Times New Roman", serif; }
+  .category-row li span { color: #625B53; font-size: .75rem; line-height: 1.55; }
+  .inline-link { display: inline-flex; min-height: 48px; align-items: center; gap: 10px; margin-top: 18px; color: var(--accent-green); font-size: .82rem; font-weight: 700; text-underline-offset: 4px; }
+  .local-guide { padding: clamp(48px, 7vw, 78px) 0; border-block: 1px solid var(--border-light); background: var(--bg-page); }
+  .local-guide-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(26px, 6vw, 74px); }
+  .local-guide-copy p:first-child { margin-top: 0; }
+  .faq-layout { display: grid; grid-template-columns: minmax(230px, .8fr) minmax(0, 1.2fr); gap: clamp(28px, 6vw, 72px); }
+  .faq-layout .section-heading { margin: 0; }
+  .faq-list { border-top: 1px solid var(--border-light); }
+  .faq-list details { border-bottom: 1px solid var(--border-light); }
+  .faq-list summary { display: flex; min-height: 56px; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 4px 12px 0; color: #292421; cursor: pointer; font: 400 1.02rem/1.45 Georgia, "Times New Roman", serif; list-style: none; }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary::after { content: "+"; color: var(--brand-red); font: 400 1.2rem system-ui, sans-serif; }
+  .faq-list details[open] summary::after { content: "−"; }
+  .faq-list details p { margin: 0 0 18px; color: #5A534C; font-size: .83rem; line-height: 1.8; }
+  .conversion-section { padding: clamp(40px, 6vw, 68px) 0; background: var(--accent-green); color: #fff; }
+  .conversion-inner { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 30px; align-items: center; }
+  .conversion-section .eyebrow { color: #E9C98B; }
+  .conversion-inner h2 { color: #fff; }
+  .conversion-inner > div > p:last-child { color: #F0ECE5; }
+  .conversion-actions { margin-top: 0; }
+  .conversion-actions .action-secondary { border-color: rgba(255,255,255,.5); background: transparent; color: #fff; }
+  .conversion-actions .action-secondary:hover { border-color: #E9C98B; }
+  @media (max-width: 760px) {
+    .discovery-container { width: calc(100% - 34px); }
+    .hero-layout, .local-guide-grid, .faq-layout, .conversion-inner { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+    .discovery-hero { padding: 44px 0; }
+    h1 { font-size: clamp(2.45rem, 11vw, 3.6rem); }
+    .entity-card { padding: 20px; }
+    .category-row { grid-template-columns: 28px minmax(0, 1fr); gap: 10px; }
+    .category-row ul { grid-template-columns: minmax(0, 1fr); }
+    .faq-layout .section-heading { margin-bottom: 0; }
+    .conversion-actions { display: grid; grid-template-columns: minmax(0, 1fr); }
+    .conversion-actions .action { width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :global(html) { scroll-behavior: auto; }
+  }
+</style>

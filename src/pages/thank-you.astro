@@ -1,0 +1,144 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+---
+<SiteLayout
+  title="Thank you | Eshwar Home Products"
+  description="Thank you for contacting Eshwar Home Products in Perambur, Chennai. Our store team responds during store hours."
+  current="contact"
+  includeStoreSchema={false}
+  noindex={true}
+>
+  <section class="thank-you-section" aria-labelledby="thank-you-title">
+    <div class="thank-you-card">
+      <div class="confirmation-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="img" focusable="false">
+          <path d="m5 12.5 4.2 4.2L19 7" />
+        </svg>
+      </div>
+      <p class="eyebrow">Message received</p>
+      <h1 id="thank-you-title">Thank you for contacting Eshwar Home Products.</h1>
+      <p class="thank-you-copy">
+        Your message is important to us. The Perambur store team responds during store hours.
+        For an urgent stock check, you can contact the team directly on WhatsApp.
+      </p>
+      <div class="store-hours" aria-label="Store hours">
+        <strong>Store hours</strong>
+        <span>Mon–Sat: 10:00 AM – 9:00 PM</span>
+        <span>Sun: 10:00 AM – 2:00 PM</span>
+      </div>
+      <div class="thank-you-actions">
+        <a class="thank-you-button primary" href="https://wa.me/919941209953" target="_blank" rel="noopener noreferrer">
+          Chat on WhatsApp Now <span aria-hidden="true">↗</span>
+        </a>
+        <a class="thank-you-button secondary" href="/eshwar-home-products/products/">Browse the Pantry</a>
+        <a class="thank-you-home" href="/eshwar-home-products/">Return to Home</a>
+      </div>
+    </div>
+  </section>
+</SiteLayout>
+
+<style>
+  .thank-you-section {
+    min-height: 68vh;
+    display: grid;
+    place-items: center;
+    padding: 64px 20px;
+    background: var(--bg-page);
+  }
+  .thank-you-card {
+    width: min(100%, 720px);
+    padding: clamp(28px, 6vw, 56px);
+    border: 1px solid var(--border-light);
+    background: var(--bg-subtle);
+    text-align: center;
+  }
+  .confirmation-mark {
+    width: 64px;
+    height: 64px;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    background: #EAF0EB;
+    color: var(--accent-green);
+  }
+  .confirmation-mark svg {
+    width: 34px;
+    height: 34px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .thank-you-card .eyebrow {
+    margin: 0 0 12px;
+    color: var(--accent-green);
+    font-family: var(--serif);
+    font-weight: 600;
+  }
+  .thank-you-card h1 {
+    max-width: 590px;
+    margin: 0 auto;
+    color: var(--text-main);
+    font-family: var(--sans);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -.045em;
+    line-height: 1.12;
+  }
+  .thank-you-copy {
+    max-width: 540px;
+    margin: 20px auto 0;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .store-hours {
+    display: grid;
+    gap: 6px;
+    margin: 28px auto 0;
+    padding: 18px;
+    border: 1px solid var(--border-light);
+    background: var(--bg-page);
+    color: var(--text-main);
+    line-height: 1.5;
+  }
+  .store-hours strong { color: var(--accent-green); }
+  .thank-you-actions {
+    display: grid;
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .thank-you-button {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 18px;
+    border: 1px solid var(--brand-red);
+    border-radius: 4px;
+    font-weight: 650;
+    text-decoration: none;
+  }
+  .thank-you-button.primary {
+    background: var(--brand-red);
+    color: #fff;
+  }
+  .thank-you-button.secondary {
+    background: var(--bg-page);
+    color: var(--brand-red);
+  }
+  .thank-you-home {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .thank-you-button { transition: none; }
+  }
+</style>
