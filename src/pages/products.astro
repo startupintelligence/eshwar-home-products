@@ -81,7 +81,7 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
               <ul class="kitchen-cues">{(shelf?.cues ?? group.items.map((item) => item.title)).map((cue) => <li>{cue}</li>)}</ul>
               <div class="meal-occasions">{(shelf?.occasions ?? []).map((occasion) => <span>{occasion}</span>)}</div>
               <a class="shelf-whatsapp-link" href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`} target="_blank" rel="noopener noreferrer">Check Today's Stock on WhatsApp ↗</a>
-              <details class="catalogue-details"><summary>See the published category notes</summary><ul class="pantry-items">{group.items.map((item) => <li><strong>{item.title}</strong><span>{item.detail}</span></li>)}</ul></details>
+              <details class="catalogue-details" data-static-catalogue-items><summary>See the published category notes</summary><ul class="pantry-items">{group.items.map((item) => <li><strong>{item.title}</strong><span>{item.detail}</span></li>)}</ul></details>
             </div>
           </section>;
         })}

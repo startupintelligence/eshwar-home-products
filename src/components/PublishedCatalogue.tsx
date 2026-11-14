@@ -35,7 +35,9 @@ export default function PublishedCatalogue() {
         if (!active) return;
         setProducts(items);
         if (items.length > 0) {
-          document.getElementById("static-catalogue")?.setAttribute("hidden", "");
+          document.querySelectorAll("[data-static-catalogue-items]").forEach((element) => {
+            element.setAttribute("hidden", "");
+          });
         }
       })
       .catch(() => {
