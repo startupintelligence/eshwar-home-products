@@ -7,21 +7,18 @@ const base = import.meta.env.BASE_URL;
   <div class="container header-inner">
     <a class="wordmark" href={base} aria-label="Eshwar Home Products home">
       <span class="wordmark-tamil" lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</span>
-      <span class="wordmark-name">ESHWAR HOME PRODUCTS</span>
+      <span class="wordmark-name">Eshwar Home Products</span>
       <span class="wordmark-place">Traditional foods · Perambur, Chennai</span>
     </a>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
-      <span class="menu-toggle-label">Menu</span>
-      <span class="menu-toggle-lines" aria-hidden="true"></span>
-    </button>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation"><span class="menu-toggle-label">Menu</span><span class="menu-toggle-lines" aria-hidden="true"></span></button>
     <nav class="main-nav" id="primary-navigation" aria-label="Main navigation">
       <a href={base} aria-current={current === "home" ? "page" : undefined}>Home</a>
-      <a href={base + "about/"} aria-current={current === "about" ? "page" : undefined}>Our story</a>
-      <a href={base + "products/"} aria-current={current === "products" ? "page" : undefined}>The pantry</a>
-      <a href={base + "contact/"} aria-current={current === "contact" ? "page" : undefined}>Visit us</a>
-      <a href={base + "blog/"} aria-current={current === "blog" ? "page" : undefined}>Kitchen guides</a>
+      <a href={base+"about/"} aria-current={current === "about" ? "page" : undefined}>Our story</a>
+      <a href={base+"products/"} aria-current={current === "products" ? "page" : undefined}>The pantry</a>
+      <a href={base+"contact/"} aria-current={current === "contact" ? "page" : undefined}>Visit us</a>
+      <a href={base+"blog/"} aria-current={current === "blog" ? "page" : undefined}>Kitchen guides</a>
     </nav>
-    <a class="header-contact" href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20would%20like%20to%20make%20an%20enquiry.">WhatsApp enquiry <span aria-hidden="true">↗</span></a>
+    <a class="header-contact" href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20would%20like%20to%20make%20an%20enquiry.">WhatsApp enquiry ↗</a>
   </div>
 </header>
 <script>
@@ -35,12 +32,10 @@ const base = import.meta.env.BASE_URL;
       navigation.classList.toggle("is-open", !expanded);
       label.textContent = expanded ? "Menu" : "Close";
     });
-    navigation.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        toggle.setAttribute("aria-expanded", "false");
-        navigation.classList.remove("is-open");
-        label.textContent = "Menu";
-      });
-    });
+    navigation.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
+      toggle.setAttribute("aria-expanded", "false");
+      navigation.classList.remove("is-open");
+      label.textContent = "Menu";
+    }));
   }
 </script>
