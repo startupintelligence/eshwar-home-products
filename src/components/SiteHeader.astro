@@ -6,7 +6,10 @@ const base = import.meta.env.BASE_URL;
 <header class="site-header">
   <div class="container header-inner">
     <a class="wordmark" href={base} aria-label="Eshwar Home Products home">
-      <span class="wordmark-tamil" lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</span>
+      <picture class="wordmark-emblem">
+        <source srcset={base + "images/brand/eshwar-logo.webp"} type="image/webp" />
+        <img src={base + "images/brand/eshwar-logo.png"} alt="Eshwar Home Products Official Emblem" width="640" height="366" />
+      </picture>
       <span class="wordmark-name">ESHWAR HOME PRODUCTS</span>
       <span class="wordmark-place">Traditional foods · Perambur, Chennai</span>
     </a>
@@ -43,3 +46,11 @@ const base = import.meta.env.BASE_URL;
     });
   }
 </script>
+
+<style>
+.wordmark { display:flex; align-items:center; gap:12px; }
+.wordmark-emblem { display:block; flex:0 0 auto; height:44px; width:auto; }
+.wordmark-emblem img { display:block; width:auto; height:44px; max-width:78px; object-fit:contain; }
+.wordmark-name,.wordmark-place { display:block; }
+@media(max-width:650px){.wordmark-emblem,.wordmark-emblem img{height:40px}.wordmark-emblem img{max-width:70px}}
+</style>

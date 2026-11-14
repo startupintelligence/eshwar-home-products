@@ -40,6 +40,10 @@ const categories = [
     <div class="container home-hero-grid home-refresh-hero-grid">
       <div class="hero-copy">
         <p class="eyebrow">Perambur · Chennai</p>
+        <picture class="hero-official-emblem">
+          <source srcset={base + "images/brand/eshwar-logo.webp"} type="image/webp" />
+          <img src={base + "images/brand/eshwar-logo.png"} alt="Eshwar Home Products Official Emblem" width="640" height="366" loading="eager" fetchpriority="high" />
+        </picture>
         <p class="hero-tamil" lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</p>
         <h1 class="hero-brand">ESHWAR HOME PRODUCTS</h1>
         <p class="hero-tagline">Traditional foods, close to home.</p>
@@ -147,3 +151,8 @@ const categories = [
     </div>
   </section>
 </SiteLayout>
+
+<style>
+.hero-official-emblem{display:block;width:min(100%,250px);margin:0 0 20px}
+.hero-official-emblem img{display:block;width:100%;height:auto}
+</style>

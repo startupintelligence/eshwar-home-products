@@ -22,6 +22,7 @@ const storeSchema = {
   name: "Eshwar Home Products",
   alternateName: "ஈஸ்வர் ஹோம் புராடக்ட்ஸ்",
   url: siteUrl,
+  logo: new URL("images/brand/eshwar-logo.png", siteUrl).toString(),
   telephone: "+91-99412-09953",
   address: {
     "@type": "PostalAddress",
@@ -42,6 +43,8 @@ const storeSchema = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#FFFFFF" />
+    <link rel="icon" type="image/png" sizes="48x48" href={new URL("favicon.png", siteUrl).toString()} />
+    <link rel="apple-touch-icon" sizes="180x180" href={new URL("apple-touch-icon.png", siteUrl).toString()} />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <meta property="og:type" content="website" />
