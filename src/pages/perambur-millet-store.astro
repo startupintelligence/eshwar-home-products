@@ -11,6 +11,7 @@ const phoneHref = "tel:+919941209953";
 const whatsappUrl = "https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20would%20like%20to%20check%20current%20stock%20for%3A";
 const mapsUrl = "https://www.google.com/maps/search/?api=1&query=Door%20No.%20119%2F1%2C%20Nelvayal%20Road%2C%20Neelam%20Garden%2C%20Bunder%20Garden%2C%20Perambur%2C%20Chennai%20600011";
 const youtubeUrl = "https://www.youtube.com/@EHP_PeramburOfficial";
+const milletNameRows = [["Thinai", "Foxtail millet"], ["Varagu", "Kodo millet"], ["Samai", "Little millet"], ["Kuthiraivali", "Barnyard millet"], ["Kambu", "Pearl millet"], ["Ragi", "Finger millet"], ["Cholam", "Sorghum"]];
 
 const faqs = [
   {
@@ -160,6 +161,16 @@ const discoverySchema = {
     </div>
   </section>
 
+  <section class="millet-reference-section" id="millet-name-guide" aria-labelledby="millet-name-title">
+    <div class="discovery-container millet-reference-grid">
+      <div class="millet-reference-intro"><p class="eyebrow">A small kitchen reference</p><h2 id="millet-name-title">Tamil millet names, in English</h2><p>Millet names can appear in Tamil or English on recipes, pantry notes and product labels. Use this quick reference when browsing a recipe or asking the Perambur store about a grain.</p></div>
+      <div class="millet-table-wrap">
+        <table class="millet-name-table"><caption>Common Tamil millet names and their English equivalents</caption><thead><tr><th scope="col">Tamil name</th><th scope="col">English name</th></tr></thead><tbody>{milletNameRows.map(([tamilName, englishName]) => <tr><th scope="row">{tamilName}</th><td>{englishName}</td></tr>)}</tbody></table>
+        <p class="millet-reference-note">This is a name guide, not a stock list. Ask the store which grains and pack sizes are currently available.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="local-guide">
     <div class="discovery-container local-guide-grid">
       <div>
@@ -294,4 +305,8 @@ const discoverySchema = {
   @media (prefers-reduced-motion: reduce) {
     :global(html) { scroll-behavior: auto; }
   }
+</style>
+
+<style>
+.millet-reference-section{padding:clamp(48px,7vw,82px) 0;border-block:1px solid var(--border-light);background:var(--bg-page)}.millet-reference-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(26px,6vw,72px);align-items:start}.millet-reference-intro h2{margin:8px 0 12px;color:#231F20;font:400 clamp(2rem,4vw,3.1rem)/1.08 Georgia,"Times New Roman",serif;letter-spacing:-.035em;text-wrap:balance}.millet-reference-intro p:last-child,.millet-reference-note{color:#5A534C;font-size:.84rem;line-height:1.8}.millet-table-wrap{overflow-x:auto;border:1px solid var(--border-light);background:var(--bg-subtle)}.millet-name-table{width:100%;border-collapse:collapse;text-align:left}.millet-name-table caption{padding:14px 16px;color:var(--accent-green);font-size:.72rem;font-weight:700;text-align:left}.millet-name-table th,.millet-name-table td{padding:13px 16px;border-top:1px solid var(--border-light);font-size:.84rem}.millet-name-table thead th{background:#F2EEE7;color:#37312C;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase}.millet-name-table tbody th{color:var(--brand-red);font-weight:700}.millet-reference-note{margin:12px 0 0;font-size:.74rem}@media(max-width:760px){.millet-reference-grid{grid-template-columns:minmax(0,1fr);gap:24px}.millet-name-table th,.millet-name-table td{padding:12px}}
 </style>
