@@ -3,23 +3,9 @@ const base = import.meta.env.BASE_URL;
 ---
 <footer class="site-footer">
   <div class="container footer-main">
-    <div>
-      <a class="footer-name" href={base}>Eshwar Home Products</a>
-      <p>Traditional foods and pantry essentials<br />Perambur, Chennai</p>
-    </div>
-    <nav class="footer-nav" aria-label="Footer navigation">
-      <a href={base + "about/"}>Our story</a>
-      <a href={base + "products/"}>The pantry</a>
-      <a href={base + "contact/"}>Visit us</a>
-      <a href={base + "perambur-millet-store/"}>Perambur guide</a>
-    </nav>
+    <div class="footer-brand"><a class="footer-name" href={base}>Eshwar Home Products</a><p lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</p><p>Traditional foods and pantry essentials<br>Perambur, Chennai</p></div>
+    <nav class="footer-nav" aria-label="Footer navigation"><a href={base+"about/"}>Our story</a><a href={base+"products/"}>The pantry</a><a href={base+"contact/"}>Visit us</a><a href={base+"perambur-millet-store/"}>Perambur guide</a><a href={base+"blog/"}>Kitchen guides</a></nav>
+    <div class="footer-contact"><span>CALL THE STORE</span><a href="tel:+919941209953">+91 99412 09953</a><span>MON–SAT 10 AM–9 PM · SUN 10 AM–2 PM</span></div>
   </div>
-  <div class="container footer-bottom">
-    <span>Door No. 119/1, Nelvayal Road, Perambur, Chennai – 600011</span>
-    <a class="footer-phone" href="tel:+919941209953">+91 99412 09953</a>
-    <a class="footer-youtube" href="https://www.youtube.com/@EHP_PeramburOfficial" target="_blank" rel="noopener noreferrer" aria-label="Eshwar Home Products official YouTube channel">
-      <svg class="youtube-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.2 3.6-6.2 3.6Z"/></svg>
-      <span>YouTube</span>
-    </a>
-  </div>
+  <div class="container footer-bottom"><span>Door No. 119/1, Nelvayal Road, Perambur, Chennai – 600011</span><a href="https://www.youtube.com/@EHP_PeramburOfficial" target="_blank" rel="noopener noreferrer">Official YouTube channel ↗</a><span>© {new Date().getFullYear()} Eshwar Home Products</span></div>
 </footer>
