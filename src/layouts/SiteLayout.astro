@@ -23,5 +23,24 @@ const storeSchema = { "@context":"https://schema.org", "@type":"GroceryStore", "
 <script src="https://analytics.ahrefs.com/analytics.js" data-key="T8+LOj2/EakoZK7/pjg3rg" async></script>
 {includeStoreSchema && <script type="application/ld+json" set:html={JSON.stringify(storeSchema)} />}
 </head>
-<body><a class="skip-link" href="#main-content">Skip to content</a><SiteHeader current={current} /><main id="main-content"><slot /></main><SiteFooter /></body>
+<body><a class="skip-link" href="#main-content">Skip to content</a><SiteHeader current={current} /><main id="main-content"><slot /></main><SiteFooter />
+<script is:inline>
+  (() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion || !('IntersectionObserver' in window)) return;
+    const items = document.querySelectorAll('.reveal-item');
+    if (!items.length) return;
+    document.documentElement.classList.add('has-reveal');
+    const observer = new IntersectionObserver((entries, activeObserver) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          activeObserver.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -36px 0px', threshold: 0.08 });
+    items.forEach((item) => observer.observe(item));
+  })();
+</script>
+</body>
 </html>

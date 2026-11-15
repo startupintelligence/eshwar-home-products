@@ -32,20 +32,30 @@ const categories = [
         </div>
         <div class="editorial-hero-index"><span>01</span><span>GOOD FOOD, CLOSE TO HOME</span></div>
       </div>
-      <div class="editorial-hero-visual">
+      <div class="editorial-hero-visual hero-3d-stage reveal-item">
+        <div class="hero-3d-card">
         <div class="editorial-image-meta"><span>FROM OUR SHELVES</span><span>CHENNAI · INDIA</span></div>
         <div class="editorial-image-wrap">
           <img src={base + "images/placeholders/rice-millets.webp"} alt="Representative artwork for traditional rice and millets" width="800" height="600" fetchpriority="high" />
-          <span class="editorial-image-seal" aria-hidden="true"><small>THE LOCAL</small><strong>ஈ</strong><small>PANTRY</small></span>
+          <span class="editorial-image-seal hero-3d-badge" aria-hidden="true"><small>THE LOCAL</small><strong>ஈ</strong><small>PANTRY</small></span>
         </div>
         <div class="editorial-image-caption"><span>01 / 03</span><p>Ingredients for the meals, rituals and everyday moments that bring us together.</p></div>
         <p class="editorial-image-disclaimer">Representative category artwork. Store photography will replace these visuals when supplied.</p>
+        </div>
       </div>
       <span class="editorial-hero-side-note" aria-hidden="true">A STORE CLOSE TO HOME · EST. PERAMBUR</span>
     </div>
   </section>
 
-  <section class="editorial-intro container" aria-labelledby="intro-title">
+
+  <div class="heritage-marquee" aria-label="Store categories and location">
+    <div class="heritage-marquee-track" aria-hidden="true">
+      <span>Siruthaniyam Millets</span><i>✳</i><span>Traditional Rice</span><i>✳</i><span>Chekku Oils</span><i>✳</i><span>Ghee &amp; Honey</span><i>✳</i><span>Nelvayal Road · Perambur</span><i>✳</i>
+      <span>Siruthaniyam Millets</span><i>✳</i><span>Traditional Rice</span><i>✳</i><span>Chekku Oils</span><i>✳</i><span>Ghee &amp; Honey</span><i>✳</i><span>Nelvayal Road · Perambur</span><i>✳</i>
+    </div>
+  </div>
+
+  <section class="editorial-intro container reveal-item" aria-labelledby="intro-title">
     <p class="editorial-label">A LITTLE BIT OF EVERYTHING</p>
     <div class="editorial-intro-content">
       <h2 id="intro-title">A familiar stop<br />for <em>everyday needs.</em></h2>
@@ -53,14 +63,14 @@ const categories = [
     </div>
   </section>
 
-  <section class="editorial-categories" aria-labelledby="categories-title">
+  <section class="editorial-categories reveal-item" aria-labelledby="categories-title">
     <div class="container">
       <div class="editorial-section-top">
         <div><p class="editorial-label">BROWSE THE SHELVES <span>01—03</span></p><h2 id="categories-title">What are you<br /><em>looking for?</em></h2></div>
         <p>Start with a category. Explore the range, then contact the store to check today's availability and pack sizes.</p>
       </div>
       <div class="editorial-category-list">
-        {categories.map((category) => <article class="editorial-category">
+        {categories.map((category) => <article class="editorial-category pantry-card-3d reveal-item">
           <a class="editorial-category-image" href={category.href} aria-label={"Browse " + category.title}>
             <img src={base + "images/placeholders/" + category.image} alt={category.alt} width="800" height="600" loading="lazy" decoding="async" />
             <span class="editorial-category-number">{category.number}</span>
@@ -79,7 +89,7 @@ const categories = [
     </div>
   </section>
 
-  <section class="editorial-store-story" aria-labelledby="store-story-title">
+  <section class="editorial-store-story reveal-item" aria-labelledby="store-story-title">
     <div class="container editorial-story-grid">
       <div class="editorial-story-aside"><span lang="ta">எங்கள் கடை</span><strong>LOCAL<br />FOOD.<br />LOCAL<br />FAMILIARITY.</strong><small>PERAMBUR · CHENNAI</small></div>
       <div class="editorial-story-copy">
@@ -92,7 +102,7 @@ const categories = [
     </div>
   </section>
 
-  <section class="editorial-visit container" aria-labelledby="visit-title">
+  <section class="editorial-visit container reveal-item" aria-labelledby="visit-title">
     <div class="editorial-visit-copy">
       <p class="editorial-label">COME BY THE STORE</p>
       <h2 id="visit-title">A good pantry<br />is <em>closer than<br />you think.</em></h2>
@@ -107,7 +117,7 @@ const categories = [
     </div>
   </section>
 
-  <section class="editorial-faq" aria-labelledby="faq-title">
+  <section class="editorial-faq reveal-item" aria-labelledby="faq-title">
     <div class="container editorial-faq-grid">
       <div><p class="editorial-label">BEFORE YOU VISIT</p><h2 id="faq-title">A few things<br /><em>to know.</em></h2></div>
       <div class="editorial-faq-list">
@@ -119,7 +129,7 @@ const categories = [
     </div>
   </section>
 
-  <section class="editorial-final">
+  <section class="editorial-final reveal-item">
     <div class="container editorial-final-inner">
       <div><p class="editorial-label editorial-label-light">ESHwar HOME PRODUCTS · PERAMBUR</p><h2>Make room for<br /><em>good things.</em></h2></div>
       <div><a class="editorial-button editorial-button-light" href={base + "products/"}>Explore the pantry <span aria-hidden="true">↗</span></a><a class="editorial-final-link" href={ask("your pantry requirements")}>Have a question? Talk to the store ↗</a></div>
