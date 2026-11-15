@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
 
-const pages = ["", "about", "products", "contact"];
+const pages = ["", "about", "products", "contact", "blog", "perambur-millet-store"];
 
 export const GET: APIRoute = ({ site }) => {
   const origin = site?.toString().replace(/\/$/, "") ?? "https://eshwar-home-products.vercel.app";
