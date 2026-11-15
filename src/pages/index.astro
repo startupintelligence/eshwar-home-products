@@ -3,7 +3,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 import "../styles/home-editorial.css";
 
 const base = import.meta.env.BASE_URL;
-const mapsUrl = "https://www.google.com/maps/search/?api=1&query=Door%20No.%20119%2F1%2C%20Nelvayal%20Road%2C%20Perambur%2C%20Chennai%20600011";
+const mapsUrl = "https://maps.app.goo.gl/whb51npkYebvVQbp6?g_st=aw";
 const ask = (item: string) => "https://wa.me/919941209953?text=" + encodeURIComponent("Hello Eshwar Home Products, please help me check today's availability and pack sizes for " + item + ".");
 const categories = [
   { number: "01", tamil: "அரிசி · சிறுதானியம்", title: "Rice & millets", detail: "Traditional rice varieties, whole millets and millet flours for everyday meals, breakfast and tiffin.", image: "rice-millets.webp", alt: "Representative category artwork for rice and millets", href: base + "products/#grains", enquiry: "rice and millet varieties", note: "Grains for everyday meals" },
@@ -15,7 +15,7 @@ const categories = [
   <div class="home-utility" aria-label="Store details">
     <div class="container home-utility-inner">
       <span>NEIGHBOURHOOD PANTRY <i aria-hidden="true">/</i> PERAMBUR, CHENNAI</span>
-      <span>MON–SAT 10 AM–9 PM <i aria-hidden="true">·</i> SUN 10 AM–2 PM</span>
+      <span>MON–SAT 9 AM–9 PM <i aria-hidden="true">·</i> SUN CLOSED</span>
       <a href="tel:+919941209953">+91 99412 09953</a>
     </div>
   </div>
@@ -110,8 +110,8 @@ const categories = [
       <a class="editorial-button editorial-button-red" href={mapsUrl} target="_blank" rel="noopener noreferrer">Get directions <span aria-hidden="true">↗</span></a>
     </div>
     <div class="editorial-visit-details">
-      <div><span>01 / FIND US</span><p>Door No. 119/1, Nelvayal Road, Neelam Garden, Bunder Garden, Perambur, Chennai, Tamil Nadu 600011, India.</p></div>
-      <div><span>02 / OPENING HOURS</span><p>Monday to Saturday, 10:00 AM–9:00 PM<br />Sunday, 10:00 AM–2:00 PM</p></div>
+      <div><span>01 / FIND US</span><p>119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India.</p></div>
+      <div><span>02 / OPENING HOURS</span><p>Monday to Saturday, 9:00 AM–9:00 PM<br />Sunday, Closed</p></div>
       <div><span>03 / CALL THE STORE</span><p><a href="tel:+919941209953">+91 99412 09953</a></p></div>
       <div><span>04 / QUICK ENQUIRY</span><p><a href={ask("your pantry requirements")}>Message us on WhatsApp ↗</a></p></div>
     </div>
@@ -122,8 +122,8 @@ const categories = [
       <div><p class="editorial-label">BEFORE YOU VISIT</p><h2 id="faq-title">A few things<br /><em>to know.</em></h2></div>
       <div class="editorial-faq-list">
         <details><summary>Can I check today's stock on WhatsApp?</summary><p>Yes. Send us the product or variety name and preferred pack size. Our team can help check the latest information from the store. <a href={ask("a product or variety you are looking for")}>Message us on WhatsApp ↗</a></p></details>
-        <details><summary>What are the store timings?</summary><p>Monday to Saturday, 10:00 AM to 9:00 PM. Sunday, 10:00 AM to 2:00 PM. For special-day timing changes, please call before visiting.</p></details>
-        <details><summary>Where exactly is the store?</summary><p>Door No. 119/1, Nelvayal Road, Neelam Garden, Bunder Garden, Perambur, Chennai, Tamil Nadu 600011, India. <a href={mapsUrl} target="_blank" rel="noopener noreferrer">Open Google Maps ↗</a></p></details>
+        <details><summary>What are the store timings?</summary><p>Monday to Saturday, 9:00 AM to 9:00 PM. Sunday, closed. For special-day timing changes, please call before visiting.</p></details>
+        <details><summary>Where exactly is the store?</summary><p>119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India. <a href={mapsUrl} target="_blank" rel="noopener noreferrer">Open Google Maps ↗</a></p></details>
         <details><summary>Can I ask about a particular millet or rice variety?</summary><p>Of course. Browse the <a href={base + "perambur-millet-store/"}>Perambur millet store guide</a>, then contact the store to check availability.</p></details>
       </div>
     </div>
