@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /eshwar-home-products/admin/
-Disallow: /eshwar-home-products/admin
-
-Sitemap: https://startupintelligence.github.io/eshwar-home-products/sitemap-index.xml
