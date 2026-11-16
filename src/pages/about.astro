@@ -1,28 +1,75 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
+import "../styles/story-theme2.css";
+
 const base = import.meta.env.BASE_URL;
+const mapsUrl = "https://maps.app.goo.gl/whb51npkYebvVQbp6?g_st=aw";
+const whatsappUrl = "https://wa.me/919941209953";
 ---
-<SiteLayout title="Our story | Eshwar Home Products" description="Meet Eshwar Home Products, a neighbourhood traditional foods store on Paddy Field Road in Perambur, Chennai." current="about">
-  <div class="reading-progress" aria-hidden="true"></div>
-  <section class="page-heading"><div class="container">
-    <p class="eyebrow">Our story · Perambur</p>
-    <h1>A neighbourhood store<br /><em>for everyday kitchens.</em></h1>
-    <p>Traditional foods and pantry essentials, brought together in one familiar place on Paddy Field Road.</p>
-  </div></section>
-  <section class="section container about-content">
-    <div class="about-aside"><span>ESH</span><p>ESHWAR HOME PRODUCTS<br />PERAMBUR · CHENNAI</p></div>
-    <div class="prose">
-      <p class="eyebrow">What matters to us</p>
-      <h2>Useful ingredients.<br /><em>A local place to find them.</em></h2>
-      <p>Eshwar Home Products is a neighbourhood food store in Perambur, Chennai. The range brings together traditional rice varieties, millets, millet-based foods, cooking oils and other pantry essentials.</p>
-      <p>We know that people often visit with a particular ingredient or variety in mind. If you are looking for something specific, call us before you travel. Our team can help you check what is currently available.</p>
-      <a class="button button-dark" href={base + "contact/"}>Visit the store <span aria-hidden="true">↗</span></a>
-    </div>
-  </section>
-  <section class="visit-note"><div class="container visit-note-inner">
-    <p class="eyebrow">In Perambur, Chennai</p>
-    <h2>Find us on<br /><em>Paddy Field Road.</em></h2>
-    <p>119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India.</p>
-    <a class="text-link" href={base + "contact/"}>Contact and directions ↗</a>
-  </div></section>
+<SiteLayout title="Our Story | Eshwar Home Products, Perambur" description="Discover the story behind Eshwar Home Products, named in devotion to the family deity Eshwaran, and serving everyday kitchens in Perambur, Chennai." current="about">
+  <div class="ehp-about-page">
+    <section class="ehp-about-hero" aria-labelledby="about-title">
+      <div class="container ehp-about-hero-inner">
+        <p class="ehp-about-tamil" lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</p>
+        <p class="ehp-about-eyebrow">Our Story <span aria-hidden="true">·</span> Perambur, Chennai</p>
+        <h1 id="about-title">Named after Eshwaran.<br /><em>Built for everyday kitchens in Perambur.</em></h1>
+        <p class="ehp-about-intro">A neighbourhood pantry shaped by devotion, familiar foods and the simple value of helping people find what they need.</p>
+      </div>
+    </section>
+
+    <section class="ehp-name-story" aria-labelledby="name-story-title">
+      <div class="container ehp-name-story-grid">
+        <div class="ehp-name-mark"><img class="ehp-story-logo" src={base + "images/brand/eshwar-home-products-logo.png"} alt="Official Eshwar Home Products emblem featuring a Rudraksha bead, Trishuls, drums and lemons" width="320" height="183" loading="lazy" decoding="async" /></div>
+        <div class="ehp-about-prose">
+          <p class="ehp-about-eyebrow">The Story Behind Our Name</p>
+          <h2 id="name-story-title">A name held with <em>devotion.</em></h2>
+          <p>The name Eshwar Home Products honours the family deity, Eshwaran (Lord Shiva). It is a meaningful part of the store’s identity, not just a name on the signboard.</p>
+          <p>That devotion is reflected in the official Rudraksha and Trishul emblem. It also reminds us of the values we want our neighbourhood store to stand for: honesty, gratitude and care in the everyday foods people bring home.</p>
+          <p>Our aim is simple: make familiar pantry essentials easier to find, and make every visit feel welcoming and straightforward.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="ehp-commitments" aria-labelledby="commitments-title">
+      <div class="container">
+        <div class="ehp-commitments-heading">
+          <p class="ehp-about-eyebrow">What You Can Expect</p>
+          <h2 id="commitments-title">Everyday essentials.<br /><em>Considered service.</em></h2>
+        </div>
+        <div class="ehp-commitment-grid">
+          <article class="ehp-commitment">
+            <span class="ehp-commitment-number">01</span>
+            <h3>Honest Pantry Guidance</h3>
+            <p>Helping Perambur families choose the traditional rice, millet (<em>Siruthaniyam</em>) or <em>Chekku</em> oil that suits their everyday cooking needs.</p>
+          </article>
+          <article class="ehp-commitment">
+            <span class="ehp-commitment-number">02</span>
+            <h3>All Essentials Under One Roof</h3>
+            <p>Bringing together whole grains, flours, wood-pressed oils, ghee, wild honey, nuts and millet snacks in one accessible neighbourhood stop.</p>
+          </article>
+          <article class="ehp-commitment">
+            <span class="ehp-commitment-number">03</span>
+            <h3>Convenient Neighbourhood Hours</h3>
+            <p>Visit us Monday to Saturday, 10:00 AM–9:00 PM, and Sunday, 10:00 AM–2:00 PM, at Door No. 119/1, Nelvayal Road, Perambur, Chennai.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="ehp-visit-cta" aria-labelledby="visit-cta-title">
+      <div class="container ehp-visit-cta-inner">
+        <div>
+          <p class="ehp-about-eyebrow">Visit & Enquire</p>
+          <h2 id="visit-cta-title">A familiar place for your <em>everyday pantry.</em></h2>
+          <p>Looking for a particular variety or pack size? Speak with the store team before you visit.</p>
+          <p class="ehp-address">Door No. 119/1, Nelvayal Road, Perambur, Chennai, Tamil Nadu, India.</p>
+        </div>
+        <div class="ehp-visit-actions">
+          <a class="ehp-action ehp-action-primary" href={base + "products/"}>Explore the Pantry <span aria-hidden="true">↗</span></a>
+          <a class="ehp-action ehp-action-secondary" href={whatsappUrl} target="_blank" rel="noopener noreferrer">Chat on WhatsApp <span aria-hidden="true">↗</span></a>
+          <a class="ehp-action ehp-action-outline" href={mapsUrl} target="_blank" rel="noopener noreferrer">Get Directions <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </div>
 </SiteLayout>
