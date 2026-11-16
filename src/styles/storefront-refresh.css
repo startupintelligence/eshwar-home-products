@@ -1,0 +1,155 @@
+/* Eshwar Home Products — welcoming, dependable storefront system */
+:root {
+  --paper: #fbf8f1 !important;
+  --surface: #fffdf8 !important;
+  --ink: #292a22 !important;
+  --muted: #68665c !important;
+  --olive: #315b42 !important;
+  --olive-soft: #e8eee5 !important;
+  --clay: #a9573c !important;
+  --line: #e4ddcf !important;
+  --pantry-paper: #fbf8f1 !important;
+  --pantry-cream: #f2eadb !important;
+  --pantry-ink: #292a22 !important;
+  --pantry-muted: #68665c !important;
+  --pantry-green: #315b42 !important;
+  --pantry-green-deep: #244533 !important;
+  --pantry-red: #a9573c !important;
+  --pantry-gold: #d3a34b !important;
+  --pantry-line: #e4ddcf !important;
+  --pantry-serif: Georgia, "Times New Roman", serif;
+}
+body { background: var(--paper); color: var(--ink); }
+::selection { background: #dce7d9; color: #244533; }
+
+/* Clear, calm navigation that feels like a real local business */
+.site-header { background: #fffdf8; border-bottom: 1px solid #e4ddcf; }
+.header-inner { min-height: 90px; }
+.wordmark-name { color: #294a36; font-size: 1.42rem; letter-spacing: -.035em; }
+.wordmark-tamil { color: #a9573c; font-size: .78rem; font-weight: 700; }
+.wordmark-place { color: #68665c; letter-spacing: .08em; }
+.main-nav { gap: clamp(14px, 2vw, 27px); }
+.main-nav a { color: #44473d; font-weight: 600; }
+.main-nav a[aria-current=page] { color: #315b42; border-color: #a9573c; }
+.main-nav a:hover, .header-contact:hover { color: #a9573c; }
+.header-contact { min-height: 42px; display: inline-flex; align-items: center; padding: 0 14px; border: 1px solid #315b42; color: #315b42; font-weight: 700; }
+.menu-toggle { border-color: #d9d1c3; background: #fffdf8; color: #315b42; }
+.menu-toggle:focus-visible, .header-contact:focus-visible { outline-color: #a9573c; }
+
+/* Homepage: warm, confident, less editorially cold */
+.pantry-hero { background: #f2eadb; border-bottom-color: #e4ddcf; }
+.pantry-hero-grid { gap: clamp(32px, 5vw, 72px); padding-block: clamp(58px, 7vw, 94px) 48px; }
+.pantry-eyebrow { color: #a9573c; letter-spacing: .11em; }
+.pantry-hero h1 { color: #294a36; font-size: clamp(3.7rem, 6.6vw, 6.4rem); letter-spacing: -.065em; line-height: .98; }
+.pantry-hero h1 em, .pantry-section-heading h2 em, .pantry-story h2 em,
+.pantry-visit h2 em, .pantry-faq h2 em, .pantry-final h2 em { color: #a9573c; }
+.pantry-hero-lede { color: #5f6257; font-size: 1rem; line-height: 1.8; }
+.pantry-button { min-height: 52px; padding-inline: 20px; font-size: .78rem; }
+.pantry-button-green { background: #315b42; border-color: #315b42; color: #fff; }
+.pantry-button-green:hover { background: #244533; border-color: #244533; }
+.pantry-link { color: #315b42; }
+.pantry-hero-meta { border-color: #d7cbb8; color: #68665c; }
+.pantry-hero-photo { padding: 8px; background: #fffdf8; border-color: #ded4c3; }
+.pantry-hero-photo img { background: #e8e0d2; }
+.pantry-hero-photo figcaption { color: #315b42; }
+.pantry-hero-bottom { border-color: #e4ddcf; color: #6c695e; }
+.pantry-categories { background: #fffdf8; }
+.pantry-section-heading h2, .pantry-visit h2, .pantry-faq h2 { color: #294a36; }
+.pantry-category-photo { background: #eee8dc; }
+.pantry-category-photo img { transition: transform .25s ease; }
+.pantry-category-index { background: #315b42; }
+.pantry-category-arrow { background: #d3a34b; color: #244533; }
+.pantry-category-copy > p { color: #a9573c; }
+.pantry-category-copy h3 { color: #294a36; }
+.pantry-category-copy > span { color: #68665c; }
+.pantry-category-copy > a { color: #315b42; }
+.pantry-photo-note { color: #777367; }
+
+/* Human warmth: a soft sage story panel instead of a heavy dark block */
+.pantry-story { background: #e8eee5; color: #292a22; }
+.pantry-story .pantry-eyebrow { color: #a9573c; }
+.pantry-story h2 { color: #294a36; }
+.pantry-story h2 em { color: #a9573c; }
+.pantry-story-content > div p { color: #565e52; }
+.pantry-link-light { color: #315b42; }
+.pantry-story-stamp { border-color: #c4d1c0; color: #315b42; }
+
+/* Store details are easy to scan and feel reassuring, not sales-heavy */
+.pantry-visit { padding-block: clamp(64px, 7vw, 96px); }
+.pantry-visit-heading > p:not(.pantry-eyebrow) { color: #62645a; }
+.pantry-button-red { background: #a9573c; border-color: #a9573c; }
+.pantry-button-red:hover { background: #87432f; border-color: #87432f; }
+.pantry-visit-details { background: #fffdf8; border-color: #e4ddcf; border-top-color: #315b42; }
+.pantry-visit-details > div { border-color: #e4ddcf; }
+.pantry-visit-details span { color: #a9573c; }
+.pantry-visit-details p { color: #55594f; }
+.pantry-visit-details a { color: #315b42; }
+.pantry-faq { background: #f2eadb; border-color: #e4ddcf; }
+.pantry-faq-list { border-color: #d9cfbf; }
+.pantry-faq-list details { border-color: #d9cfbf; }
+.pantry-faq-list summary { color: #292a22; }
+.pantry-faq-list summary:after { color: #a9573c; }
+.pantry-faq-list details p { color: #62645a; }
+.pantry-faq-list a { color: #315b42; }
+.pantry-final { background: #315b42; border-top: 4px solid #d3a34b; }
+.pantry-final .pantry-eyebrow { color: #f0d59e; }
+.pantry-final h2 { color: #fffdf8; }
+.pantry-final h2 em { color: #f0d59e; }
+.pantry-button-cream { background: #fffdf8; border-color: #fffdf8; color: #315b42; }
+.pantry-button-cream:hover { background: #f2eadb; color: #a9573c; }
+
+/* Consistent visual language across About, Products, Contact and guides */
+.eyebrow, .directory-number, .contact-list dt { color: #a9573c; }
+.hero-copy h1 em, .page-heading h1 em, .section-intro h2 em, .story-strip h2 em,
+.prose h2 em, .visit-note h2 em, .contact-details-panel h2 em, .directions-panel h2 em { color: #a9573c; }
+.button-dark { background: #315b42; border-color: #315b42; }
+.button-dark:hover { background: #244533; }
+.text-link, .location-ribbon-inner a, .contact-list a { color: #315b42; }
+.page-heading { background: #f2eadb; border-color: #e4ddcf; }
+.story-strip, .visit-note { background: #e8eee5; border-color: #e4ddcf; }
+.about-aside, .directions-panel { background: #fffdf8; border-color: #e4ddcf; }
+.about-aside span { color: #315b42; }
+.location-ribbon { background: #fffdf8; border-color: #e4ddcf; }
+.directory-list, .directory-row { border-color: #e4ddcf; }
+.directory-row:hover { background: #f1f3ec; }
+.catalogue-toolbar h2, .enquiry-row h2, .pantry-group-heading h2,
+.pantry-items strong { color: #294a36; }
+.filter-button { border-color: #ded7ca; color: #5f6257; background: #fffdf8; }
+.filter-button[aria-pressed=true] { background: #315b42; border-color: #315b42; }
+.pantry-shelf-link { background: #fffdf8; border: 1px solid #e4ddcf; color: #294a36; }
+.pantry-shelf-link span:last-child { color: #a9573c; }
+.pantry-group, .pantry-directory { border-color: #e4ddcf; }
+.pantry-image-frame, .live-product-image { border-color: #e4ddcf; background: #f2eadb; }
+.live-product { border-color: #e4ddcf; background: #fffdf8; }
+.category-badge { border-color: #e3c99a; background: #f8efd9; color: #77551c; }
+.enquiry-row { border-color: #e4ddcf; }
+.contact-list, .contact-list > div { border-color: #e4ddcf; }
+.site-footer { background: #244533; border-color: #244533; color: #fffdf8; }
+.footer-name, .footer-brand p[lang=ta] { color: #fffdf8; }
+.footer-main p, .footer-nav a, .footer-bottom { color: #e1e7dc; }
+.footer-nav a:hover, .footer-bottom a { color: #f0d59e; }
+.footer-contact span { color: #f0d59e; }
+.footer-contact a { color: #fffdf8; font-weight: 700; }
+.footer-bottom { border-color: rgba(255,255,255,.2); }
+
+/* Clear focus and motion behaviour */
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid #a9573c; outline-offset: 3px; }
+.pantry-story a:focus-visible, .pantry-final a:focus-visible { outline-color: #f0d59e; }
+@media (max-width: 850px) {
+  .header-inner { min-height: 82px; }
+  .main-nav { gap: 13px; }
+}
+@media (max-width: 650px) {
+  .header-inner { min-height: 74px; }
+  .wordmark-name { font-size: 1.2rem; }
+  .main-nav { background: #fffdf8; }
+  .pantry-hero-grid { padding-block: 48px 30px; }
+  .pantry-hero h1 { font-size: clamp(3.35rem, 12vw, 4.6rem); }
+  .pantry-story { padding-block: 0; }
+  .pantry-story h2 { font-size: clamp(2.8rem, 10vw, 4rem); }
+  .site-footer { padding-top: 30px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pantry-category-photo img { transition: none; }
+  .pantry-category-photo:hover img { transform: none; }
+}

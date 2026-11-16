@@ -5,6 +5,7 @@ import "../styles/global.css";
 import "../styles/theme-2.css";
 import "../styles/shared-editorial.css";
 import "../styles/brand-system.css";
+import "../styles/storefront-refresh.css";
 interface Props { title:string; description:string; current?:"home"|"about"|"products"|"contact"|"blog"; includeStoreSchema?:boolean; canonicalUrl?:string; noindex?:boolean; }
 const { title, description, current="home", includeStoreSchema=true, canonicalUrl, noindex=false } = Astro.props;
 const canonical = canonicalUrl ?? new URL(Astro.url.pathname, Astro.site ?? "https://startupintelligence.github.io").toString();
@@ -15,7 +16,7 @@ const storeSchema = { "@context":"https://schema.org", "@type":"GroceryStore", "
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="theme-color" content="#183F32" />
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="theme-color" content="#315B42" />
 <meta name="description" content={description} />{noindex && <meta name="robots" content="noindex, nofollow" />}
 <meta property="og:type" content="website" /><meta property="og:site_name" content="Eshwar Home Products" /><meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:locale" content="en_IN" /><meta property="og:url" content={canonical} /><meta property="og:image" content={ogImage} /><meta property="og:image:secure_url" content={ogImage} /><meta property="og:image:type" content="image/png" /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta property="og:image:alt" content="Eshwar Home Products, Perambur, Chennai" />
 <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={ogImage} />
