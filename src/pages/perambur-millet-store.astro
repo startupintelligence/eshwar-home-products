@@ -5,7 +5,7 @@ import catalogue from "../data/catalogue.json";
 const base = import.meta.env.BASE_URL;
 const siteOrigin = Astro.site ?? new URL("https://startupintelligence.github.io");
 const pageUrl = new URL(base + "perambur-millet-store/", siteOrigin).toString();
-const storeAddress = "119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India.";
+const storeAddress = "Door No. 119/1, Nelvayal Road, Perambur, Chennai, Tamil Nadu, India.";
 const phone = "+91 99412 09953";
 const phoneHref = "tel:+919941209953";
 const whatsappUrl = "https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20would%20like%20to%20check%20current%20stock%20for%3A";
@@ -31,7 +31,7 @@ const faqs = [
   },
   {
     question: "Where is the traditional millet and pantry store in Perambur?",
-    answer: "Eshwar Home Products is at 119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India."
+    answer: "Eshwar Home Products is at Door No. 119/1, Nelvayal Road, Perambur, Chennai, Tamil Nadu, India."
   },
   {
     question: "Can visitors from Kolathur, Sembium or Korattur plan a visit?",
@@ -39,7 +39,7 @@ const faqs = [
   },
   {
     question: "What are the store opening hours?",
-    answer: "The published store hours are Monday to Saturday, 9:00 AM to 9:00 PM. The store is closed on Sunday. Call ahead if you are unsure about holiday or special-day hours."
+    answer: "The published store hours are Monday to Saturday, 10:00 AM to 9:00 PM, and Sunday, 10:00 AM to 2:00 PM. Call ahead if you are unsure about holiday or special-day hours."
   },
   {
     question: "How can I contact Eshwar Home Products?",
@@ -59,13 +59,13 @@ const discoverySchema = {
       telephone: "+91-99412-09953",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "119/1, Paddy Field Road, Perambur",
+        streetAddress: "Door No. 119/1, Nelvayal Road, Perambur",
         addressLocality: "Chennai",
         addressRegion: "Tamil Nadu",
         postalCode: "600011",
         addressCountry: "IN"
       },
-      openingHours: ["Mo-Sa 09:00-21:00"],
+      openingHours: ["Mo-Sa 10:00-21:00", "Su 10:00-14:00"],
       areaServed: { "@type": "City", name: "Chennai" },
       sameAs: [youtubeUrl]
     },
@@ -118,7 +118,7 @@ const discoverySchema = {
           </div>
           <div>
             <dt>Opening hours</dt>
-            <dd>Monday–Saturday: 9:00 AM–9:00 PM<br />Sunday: Closed</dd>
+            <dd>Monday–Saturday: 10:00 AM–9:00 PM<br />Sunday: 10:00 AM–2:00 PM</dd>
           </div>
           <div>
             <dt>WhatsApp / Phone</dt>
