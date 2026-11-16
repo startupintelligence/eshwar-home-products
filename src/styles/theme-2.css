@@ -130,3 +130,12 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--brand-red); out
 @media (prefers-reduced-motion: reduce) {
   .hero-3d-card, .hero-3d-badge, .pantry-card-3d, .reveal-item, .heritage-marquee-track, .button, .editorial-button { animation: none !important; transition: none !important; transform: none !important; opacity: 1 !important; }
 }
+
+
+@media print {
+  html.has-reveal .reveal-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
