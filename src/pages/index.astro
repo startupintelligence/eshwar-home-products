@@ -1,21 +1,28 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
 import "../styles/home-editorial.css";
+import "../styles/story-theme2.css";
+
+import { existsSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 
 const base = import.meta.env.BASE_URL;
 const mapsUrl = "https://maps.app.goo.gl/whb51npkYebvVQbp6?g_st=aw";
-const ask = (item: string) => "https://wa.me/919941209953?text=" + encodeURIComponent("Hello Eshwar Home Products, please help me check today's availability and pack sizes for " + item + ".");
+const logoPath = fileURLToPath(new URL("../../public/images/brand/eshwar-logo.webp", import.meta.url));
+const hasOfficialLogo = existsSync(logoPath);
+const whatsappUrl = "https://wa.me/919941209953";
+const ask = (item: string) => whatsappUrl + "?text=" + encodeURIComponent("Hello Eshwar Home Products, please help me check today's availability and pack sizes for " + item + ".");
 const categories = [
   { number: "01", title: "Rice & millets", tamil: "அரிசி · சிறுதானியம்", detail: "Traditional rice, whole millets and millet flours.", image: "rice-millets.webp", alt: "Stock photograph of rice and grains arranged in bowls", href: base + "products/#grains", enquiry: "rice and millet varieties" },
   { number: "02", title: "Oils & ghee", tamil: "செக்கு எண்ணெய்", detail: "Chekku oils, ghee and everyday cooking essentials.", image: "oils-rice.webp", alt: "Stock photograph of a bottle of cooking oil beside a bowl of rice", href: base + "products/#oils", enquiry: "oils and ghee" },
   { number: "03", title: "Pantry favourites", tamil: "சிற்றுண்டி · மளிகை", detail: "Millet snacks, pulses, honey, dry fruits and more.", image: "spices-pantry.webp", alt: "Stock photograph of Indian spices, lentils and pantry ingredients", href: base + "products/#pantry", enquiry: "pantry essentials and snacks" }
 ];
 ---
-<SiteLayout title="Eshwar Home Products | Traditional Foods & Millets in Perambur, Chennai" description="Explore traditional rice, Siruthaniyam millets, Chekku oils and pantry essentials at Eshwar Home Products, Paddy Field Road, Perambur, Chennai." current="home">
+<SiteLayout title="Eshwar Home Products | Traditional Foods & Millets in Perambur, Chennai" description="Explore traditional rice, Siruthaniyam millets, Chekku oils and pantry essentials at Eshwar Home Products, Nelvayal Road, Perambur, Chennai." current="home">
   <div class="home-utility" aria-label="Store details">
     <div class="container home-utility-inner">
       <span>YOUR NEIGHBOURHOOD PANTRY <i aria-hidden="true">/</i> PERAMBUR, CHENNAI</span>
-      <span>MON–SAT 9 AM–9 PM <i aria-hidden="true">·</i> SUN CLOSED</span>
+      <span>MON–SAT 10 AM–9 PM <i aria-hidden="true">·</i> SUN 10 AM–2 PM</span>
       <a href="tel:+919941209953">+91 99412 09953</a>
     </div>
   </div>
@@ -30,7 +37,7 @@ const categories = [
           <a class="pantry-button pantry-button-green" href={base + "products/"}>Explore the pantry <span aria-hidden="true">↗</span></a>
           <a class="pantry-link" href={ask("your pantry requirements")}>Ask the store <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="pantry-hero-meta"><span>119/1, Paddy Field Road</span><span>MON–SAT · 9 AM–9 PM</span></div>
+        <div class="pantry-hero-meta"><span>119/1, Nelvayal Road</span><span>MON–SAT · 10 AM–9 PM</span></div>
       </div>
       <figure class="pantry-hero-photo reveal-item">
         <img src={base + "images/stock/hero-pantry.webp"} alt="Stock photograph of Indian pantry ingredients, lentils, spices and garlic arranged on a dark surface" width="1600" height="1067" fetchpriority="high" decoding="async" />
@@ -62,19 +69,37 @@ const categories = [
     </div>
   </section>
 
-  <section class="pantry-story reveal-item" aria-labelledby="story-title">
-    <div class="container pantry-story-inner">
-      <p class="pantry-eyebrow">A STORE THAT FEELS CLOSE</p>
-      <div class="pantry-story-content"><h2 id="story-title">The little things that make a kitchen <em>feel like home.</em></h2><div><p>From the rice we grew up with to the pantry staples we reach for every week, Eshwar Home Products brings familiar everyday essentials together in Perambur.</p><a class="pantry-link pantry-link-light" href={base + "about/"}>A little about our store ↗</a></div></div>
-      <div class="pantry-story-stamp" aria-hidden="true"><span>ஈ</span><small>ESHwar HOME<br />PRODUCTS</small></div>
+  <section class="ehp-story-home" aria-labelledby="story-title">
+    <div class="container ehp-story-grid">
+      <aside class="ehp-story-proof" aria-label="Eshwar Home Products store identity">
+        <div class="ehp-story-proof-inner">
+          {hasOfficialLogo && <img class="ehp-story-logo" src={base + "images/brand/eshwar-logo.webp"} alt="Official Eshwar Home Products Rudraksha and Trishul emblem" width="320" height="320" loading="lazy" decoding="async" />}
+          <p class="ehp-story-tamil" lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</p>
+          <p class="ehp-story-english">ESHWAR HOME PRODUCTS</p>
+          <p class="ehp-story-origin">Named in devotion to Eshwaran <span aria-hidden="true">·</span> Perambur, Chennai</p>
+          <a class="ehp-google-rating" href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="5.0 rated on Google Maps">5.0 <span aria-hidden="true">★</span> Rated on Google Maps</a>
+        </div>
+      </aside>
+      <div class="ehp-story-copy">
+        <p class="ehp-story-eyebrow">Our Story <span aria-hidden="true">·</span> Perambur, Chennai</p>
+        <h2 id="story-title">Rooted in devotion, serving everyday South Indian kitchens.</h2>
+        <p>Eshwar Home Products takes its name with devotion from the family deity, Eshwaran (Lord Shiva). That connection is reflected in the store’s Rudraksha and Trishul emblem, and in the values we want to bring to every household staple: honesty, gratitude and care.</p>
+        <p>At our store on Nelvayal Road, Perambur, you’ll find traditional rice varieties, whole millets (<em>Siruthaniyam</em>), stone-ground flours, wood-pressed <em>Chekku</em> oils, ghee and wholesome snacks together under one roof. Our store team is here to offer personal, unhurried guidance when you need help choosing.</p>
+        <div class="ehp-story-values" aria-label="Our values">
+          <div><span>01</span><strong>Rooted in Trust</strong></div>
+          <div><span>02</span><strong>Traditional Pantry Variety</strong></div>
+          <div><span>03</span><strong>Personal Local Service</strong></div>
+        </div>
+        <a class="ehp-story-read" href={base + "about/"}>Read our full story <span aria-hidden="true">→</span></a>
+      </div>
     </div>
   </section>
 
   <section class="pantry-visit container reveal-item" aria-labelledby="visit-title">
     <div class="pantry-visit-heading"><p class="pantry-eyebrow">COME BY THE STORE</p><h2 id="visit-title">We’re just <em>around the corner.</em></h2><p>Need a particular variety or pack size? Call or message before you visit so our team can check the latest availability.</p><a class="pantry-button pantry-button-red" href={mapsUrl} target="_blank" rel="noopener noreferrer">Get directions <span aria-hidden="true">↗</span></a></div>
     <div class="pantry-visit-details">
-      <div><span>FIND US</span><p>119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India.</p></div>
-      <div><span>OPENING HOURS</span><p>Monday–Saturday, 9 AM–9 PM<br />Sunday, Closed</p></div>
+      <div><span>FIND US</span><p>Door No. 119/1, Nelvayal Road, Perambur, Chennai, Tamil Nadu, India.</p></div>
+      <div><span>OPENING HOURS</span><p>Monday–Saturday, 10 AM–9 PM<br />Sunday, 10 AM–2 PM</p></div>
       <div><span>CALL OR WHATSAPP</span><p><a href="tel:+919941209953">+91 99412 09953</a><br /><a href={ask("your pantry requirements")}>Send an enquiry ↗</a></p></div>
     </div>
   </section>
@@ -82,8 +107,8 @@ const categories = [
   <section class="pantry-faq" aria-labelledby="faq-title">
     <div class="container pantry-faq-inner"><div><p class="pantry-eyebrow">GOOD TO KNOW</p><h2 id="faq-title">Before you <em>visit.</em></h2></div><div class="pantry-faq-list">
       <details><summary>Can I check today's stock on WhatsApp?</summary><p>Yes. Send us the product or variety name and preferred pack size. Our team can check the latest store information. <a href={ask("a product or variety you are looking for")}>Message us ↗</a></p></details>
-      <details><summary>What are the store timings?</summary><p>Monday to Saturday, 9 AM to 9 PM. Sunday, closed. Please call before visiting on special days.</p></details>
-      <details><summary>Where is the store located?</summary><p>119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India. <a href={mapsUrl} target="_blank" rel="noopener noreferrer">Open Google Maps ↗</a></p></details>
+      <details><summary>What are the store timings?</summary><p>Monday to Saturday, 10 AM to 9 PM. Sunday, 10 AM to 2 PM.</p></details>
+      <details><summary>Where is the store located?</summary><p>Door No. 119/1, Nelvayal Road, Perambur, Chennai, Tamil Nadu, India. <a href={mapsUrl} target="_blank" rel="noopener noreferrer">Open Google Maps ↗</a></p></details>
     </div></div>
   </section>
 
