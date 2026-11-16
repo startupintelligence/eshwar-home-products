@@ -6,133 +6,86 @@ const base = import.meta.env.BASE_URL;
 const mapsUrl = "https://maps.app.goo.gl/whb51npkYebvVQbp6?g_st=aw";
 const ask = (item: string) => "https://wa.me/919941209953?text=" + encodeURIComponent("Hello Eshwar Home Products, please help me check today's availability and pack sizes for " + item + ".");
 const categories = [
-  { number: "01", tamil: "அரிசி · சிறுதானியம்", title: "Rice & millets", detail: "Traditional rice varieties, whole millets and millet flours for everyday meals, breakfast and tiffin.", image: "rice-millets.webp", alt: "Representative category artwork for rice and millets", href: base + "products/#grains", enquiry: "rice and millet varieties", note: "Grains for everyday meals" },
-  { number: "02", tamil: "செக்கு எண்ணெய்", title: "Oils, ghee & dairy", detail: "Chekku gingelly, groundnut and coconut oils, alongside ghee and everyday dairy essentials.", image: "oils-ghee.webp", alt: "Representative category artwork for oils and ghee", href: base + "products/#oils", enquiry: "cold-pressed oils, ghee and dairy", note: "Everyday cooking essentials" },
-  { number: "03", tamil: "சிற்றுண்டி · மளிகை", title: "Snacks & pantry", detail: "Millet flakes, vermicelli, pasta and cookies, Sathumaavu, honey, pulses, dry fruits and nuts.", image: "pantry-essentials.webp", alt: "Representative category artwork for pantry essentials", href: base + "products/#pantry", enquiry: "millet snacks and pantry essentials", note: "Little things for the pantry" }
+  { number: "01", title: "Rice & millets", tamil: "அரிசி · சிறுதானியம்", detail: "Traditional rice, whole millets and millet flours.", image: "rice-millets.webp", alt: "Stock photograph of rice and grains arranged in bowls", href: base + "products/#grains", enquiry: "rice and millet varieties" },
+  { number: "02", title: "Oils & ghee", tamil: "செக்கு எண்ணெய்", detail: "Chekku oils, ghee and everyday cooking essentials.", image: "oils-rice.webp", alt: "Stock photograph of a bottle of cooking oil beside a bowl of rice", href: base + "products/#oils", enquiry: "oils and ghee" },
+  { number: "03", title: "Pantry favourites", tamil: "சிற்றுண்டி · மளிகை", detail: "Millet snacks, pulses, honey, dry fruits and more.", image: "spices-pantry.webp", alt: "Stock photograph of Indian spices, lentils and pantry ingredients", href: base + "products/#pantry", enquiry: "pantry essentials and snacks" }
 ];
 ---
-<SiteLayout title="Eshwar Home Products | Traditional Foods & Millets in Perambur, Chennai" description="Explore traditional rice, Siruthaniyam millets, Chekku oils and everyday pantry essentials at Eshwar Home Products, Nelvayal Road, Perambur, Chennai." current="home">
+<SiteLayout title="Eshwar Home Products | Traditional Foods & Millets in Perambur, Chennai" description="Explore traditional rice, Siruthaniyam millets, Chekku oils and pantry essentials at Eshwar Home Products, Paddy Field Road, Perambur, Chennai." current="home">
   <div class="home-utility" aria-label="Store details">
     <div class="container home-utility-inner">
-      <span>NEIGHBOURHOOD PANTRY <i aria-hidden="true">/</i> PERAMBUR, CHENNAI</span>
+      <span>YOUR NEIGHBOURHOOD PANTRY <i aria-hidden="true">/</i> PERAMBUR, CHENNAI</span>
       <span>MON–SAT 9 AM–9 PM <i aria-hidden="true">·</i> SUN CLOSED</span>
       <a href="tel:+919941209953">+91 99412 09953</a>
     </div>
   </div>
 
-  <section class="editorial-hero" aria-labelledby="home-title">
-    <div class="container editorial-hero-grid">
-      <div class="editorial-hero-copy">
-        <p class="editorial-kicker"><span></span> ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</p>
-        <h1 id="home-title">The everyday<br />things that make<br /><em>a kitchen home.</em></h1>
-        <p class="editorial-lede">Traditional rice, Siruthaniyam millets, Chekku oils and pantry favourites, brought together at your neighbourhood store in Perambur.</p>
-        <div class="editorial-hero-actions">
-          <a class="editorial-button editorial-button-dark" href={base + "products/"}>Explore the pantry <span aria-hidden="true">↗</span></a>
-          <a class="editorial-text-link" href={ask("your pantry requirements")}>Ask about availability <span aria-hidden="true">↗</span></a>
+  <section class="pantry-hero" aria-labelledby="home-title">
+    <div class="container pantry-hero-grid">
+      <div class="pantry-hero-copy">
+        <p class="pantry-eyebrow"><span></span> ஈஸ்வர் ஹோம் புராடக்ட்ஸ் · PERAMBUR</p>
+        <h1 id="home-title">A pantry full of <em>good things.</em></h1>
+        <p class="pantry-hero-lede">Traditional rice, Siruthaniyam millets, Chekku oils and everyday favourites, all close to home.</p>
+        <div class="pantry-hero-actions">
+          <a class="pantry-button pantry-button-green" href={base + "products/"}>Explore the pantry <span aria-hidden="true">↗</span></a>
+          <a class="pantry-link" href={ask("your pantry requirements")}>Ask the store <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="editorial-hero-index"><span>01</span><span>GOOD FOOD, CLOSE TO HOME</span></div>
+        <div class="pantry-hero-meta"><span>119/1, Paddy Field Road</span><span>MON–SAT · 9 AM–9 PM</span></div>
       </div>
-      <div class="editorial-hero-visual hero-3d-stage reveal-item">
-        <div class="hero-3d-card">
-        <div class="editorial-image-meta"><span>FROM OUR SHELVES</span><span>CHENNAI · INDIA</span></div>
-        <div class="editorial-image-wrap">
-          <img src={base + "images/placeholders/rice-millets.webp"} alt="Representative artwork for traditional rice and millets" width="800" height="600" fetchpriority="high" />
-          <span class="editorial-image-seal hero-3d-badge" aria-hidden="true"><small>THE LOCAL</small><strong>ஈ</strong><small>PANTRY</small></span>
-        </div>
-        <div class="editorial-image-caption"><span>01 / 03</span><p>Ingredients for the meals, rituals and everyday moments that bring us together.</p></div>
-        <p class="editorial-image-disclaimer">Representative category artwork. Store photography will replace these visuals when supplied.</p>
-        </div>
-      </div>
-      <span class="editorial-hero-side-note" aria-hidden="true">A STORE CLOSE TO HOME · EST. PERAMBUR</span>
+      <figure class="pantry-hero-photo reveal-item">
+        <img src={base + "images/stock/hero-pantry.webp"} alt="Stock photograph of Indian pantry ingredients, lentils, spices and garlic arranged on a dark surface" width="1600" height="1067" fetchpriority="high" decoding="async" />
+        <figcaption><span>THE EVERYDAY PANTRY</span><span>PERAMBUR · CHENNAI</span></figcaption>
+      </figure>
     </div>
+    <div class="pantry-hero-bottom"><span>GOOD FOOD, CLOSE TO HOME</span><span>SCROLL TO EXPLORE ↓</span></div>
   </section>
 
-
-  <div class="heritage-marquee" aria-label="Store categories and location">
-    <div class="heritage-marquee-track" aria-hidden="true">
-      <span>Siruthaniyam Millets</span><i>✳</i><span>Traditional Rice</span><i>✳</i><span>Chekku Oils</span><i>✳</i><span>Ghee &amp; Honey</span><i>✳</i><span>Nelvayal Road · Perambur</span><i>✳</i>
-      <span>Siruthaniyam Millets</span><i>✳</i><span>Traditional Rice</span><i>✳</i><span>Chekku Oils</span><i>✳</i><span>Ghee &amp; Honey</span><i>✳</i><span>Nelvayal Road · Perambur</span><i>✳</i>
-    </div>
-  </div>
-
-  <section class="editorial-intro container reveal-item" aria-labelledby="intro-title">
-    <p class="editorial-label">A LITTLE BIT OF EVERYTHING</p>
-    <div class="editorial-intro-content">
-      <h2 id="intro-title">A familiar stop<br />for <em>everyday needs.</em></h2>
-      <div><p>Some things belong in every kitchen. The rice we grew up with. The oil we cook with. The small pantry favourites we reach for through the week.</p><p>Find them at Eshwar Home Products, on Nelvayal Road, Perambur.</p><a href={base + "about/"} class="editorial-text-link">A little about our store <span aria-hidden="true">↗</span></a></div>
-    </div>
-  </section>
-
-  <section class="editorial-categories reveal-item" aria-labelledby="categories-title">
+  <section class="pantry-categories" aria-labelledby="categories-title">
     <div class="container">
-      <div class="editorial-section-top">
-        <div><p class="editorial-label">BROWSE THE SHELVES <span>01—03</span></p><h2 id="categories-title">What are you<br /><em>looking for?</em></h2></div>
-        <p>Start with a category. Explore the range, then contact the store to check today's availability and pack sizes.</p>
+      <div class="pantry-section-heading reveal-item">
+        <div><p class="pantry-eyebrow">A FEW GOOD PLACES TO START</p><h2 id="categories-title">Find your <em>favourites.</em></h2></div>
+        <a class="pantry-link" href={base + "products/"}>View all categories ↗</a>
       </div>
-      <div class="editorial-category-list">
-        {categories.map((category) => <article class="editorial-category pantry-card-3d reveal-item">
-          <a class="editorial-category-image" href={category.href} aria-label={"Browse " + category.title}>
-            <img src={base + "images/placeholders/" + category.image} alt={category.alt} width="800" height="600" loading="lazy" decoding="async" />
-            <span class="editorial-category-number">{category.number}</span>
-            <span class="editorial-category-arrow" aria-hidden="true">↗</span>
+      <div class="pantry-card-grid">
+        {categories.map((category) => <article class="pantry-category-card reveal-item">
+          <a class="pantry-category-photo" href={category.href} aria-label={"Explore " + category.title}>
+            <img src={base + "images/stock/" + category.image} alt={category.alt} width="1200" height="800" loading="lazy" decoding="async" />
+            <span class="pantry-category-index">{category.number}</span><span class="pantry-category-arrow" aria-hidden="true">↗</span>
           </a>
-          <div class="editorial-category-copy">
-            <p class="editorial-category-tamil" lang="ta">{category.tamil}</p>
-            <h3>{category.title}</h3>
-            <p>{category.detail}</p>
-            <span class="editorial-category-note">{category.note}</span>
-            <div class="editorial-category-links"><a href={category.href}>Browse category ↗</a><a href={ask(category.enquiry)}>Check availability ↗</a></div>
+          <div class="pantry-category-copy">
+            <p lang="ta">{category.tamil}</p><h3>{category.title}</h3><span>{category.detail}</span>
+            <a href={ask(category.enquiry)}>Ask about availability ↗</a>
           </div>
         </article>)}
       </div>
-      <p class="editorial-stock-note">Product availability and pack sizes can change. Please contact the store before making a special trip.</p>
+      <p class="pantry-photo-note">Illustrative stock photography from Pexels. Product and store photographs will be added when supplied by the client.</p>
     </div>
   </section>
 
-  <section class="editorial-store-story reveal-item" aria-labelledby="store-story-title">
-    <div class="container editorial-story-grid">
-      <div class="editorial-story-aside"><span lang="ta">எங்கள் கடை</span><strong>LOCAL<br />FOOD.<br />LOCAL<br />FAMILIARITY.</strong><small>PERAMBUR · CHENNAI</small></div>
-      <div class="editorial-story-copy">
-        <p class="editorial-label editorial-label-light">YOUR NEIGHBOURHOOD STORE</p>
-        <h2 id="store-story-title">For the recipes<br />we know. <em>And the<br />ones still to come.</em></h2>
-        <p>Eshwar Home Products is here on Nelvayal Road for families looking for traditional staples and pantry favourites close to home. Drop in, tell us what you are looking for, and explore the shelves with our team.</p>
-        <a href={base + "about/"} class="editorial-story-link">Get to know our store <span aria-hidden="true">↗</span></a>
-      </div>
-      <div class="editorial-story-mark" aria-hidden="true"><span>ஈ</span><small>ESHwar<br />HOME PRODUCTS</small></div>
+  <section class="pantry-story reveal-item" aria-labelledby="story-title">
+    <div class="container pantry-story-inner">
+      <p class="pantry-eyebrow">A STORE THAT FEELS CLOSE</p>
+      <div class="pantry-story-content"><h2 id="story-title">The little things that make a kitchen <em>feel like home.</em></h2><div><p>From the rice we grew up with to the pantry staples we reach for every week, Eshwar Home Products brings familiar everyday essentials together in Perambur.</p><a class="pantry-link pantry-link-light" href={base + "about/"}>A little about our store ↗</a></div></div>
+      <div class="pantry-story-stamp" aria-hidden="true"><span>ஈ</span><small>ESHwar HOME<br />PRODUCTS</small></div>
     </div>
   </section>
 
-  <section class="editorial-visit container reveal-item" aria-labelledby="visit-title">
-    <div class="editorial-visit-copy">
-      <p class="editorial-label">COME BY THE STORE</p>
-      <h2 id="visit-title">A good pantry<br />is <em>closer than<br />you think.</em></h2>
-      <p>Need a particular variety or pack size? Call or message before you visit. Our team can help check the latest store information.</p>
-      <a class="editorial-button editorial-button-red" href={mapsUrl} target="_blank" rel="noopener noreferrer">Get directions <span aria-hidden="true">↗</span></a>
-    </div>
-    <div class="editorial-visit-details">
-      <div><span>01 / FIND US</span><p>119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India.</p></div>
-      <div><span>02 / OPENING HOURS</span><p>Monday to Saturday, 9:00 AM–9:00 PM<br />Sunday, Closed</p></div>
-      <div><span>03 / CALL THE STORE</span><p><a href="tel:+919941209953">+91 99412 09953</a></p></div>
-      <div><span>04 / QUICK ENQUIRY</span><p><a href={ask("your pantry requirements")}>Message us on WhatsApp ↗</a></p></div>
+  <section class="pantry-visit container reveal-item" aria-labelledby="visit-title">
+    <div class="pantry-visit-heading"><p class="pantry-eyebrow">COME BY THE STORE</p><h2 id="visit-title">We’re just <em>around the corner.</em></h2><p>Need a particular variety or pack size? Call or message before you visit so our team can check the latest availability.</p><a class="pantry-button pantry-button-red" href={mapsUrl} target="_blank" rel="noopener noreferrer">Get directions <span aria-hidden="true">↗</span></a></div>
+    <div class="pantry-visit-details">
+      <div><span>FIND US</span><p>119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India.</p></div>
+      <div><span>OPENING HOURS</span><p>Monday–Saturday, 9 AM–9 PM<br />Sunday, Closed</p></div>
+      <div><span>CALL OR WHATSAPP</span><p><a href="tel:+919941209953">+91 99412 09953</a><br /><a href={ask("your pantry requirements")}>Send an enquiry ↗</a></p></div>
     </div>
   </section>
 
-  <section class="editorial-faq reveal-item" aria-labelledby="faq-title">
-    <div class="container editorial-faq-grid">
-      <div><p class="editorial-label">BEFORE YOU VISIT</p><h2 id="faq-title">A few things<br /><em>to know.</em></h2></div>
-      <div class="editorial-faq-list">
-        <details><summary>Can I check today's stock on WhatsApp?</summary><p>Yes. Send us the product or variety name and preferred pack size. Our team can help check the latest information from the store. <a href={ask("a product or variety you are looking for")}>Message us on WhatsApp ↗</a></p></details>
-        <details><summary>What are the store timings?</summary><p>Monday to Saturday, 9:00 AM to 9:00 PM. Sunday, closed. For special-day timing changes, please call before visiting.</p></details>
-        <details><summary>Where exactly is the store?</summary><p>119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India. <a href={mapsUrl} target="_blank" rel="noopener noreferrer">Open Google Maps ↗</a></p></details>
-        <details><summary>Can I ask about a particular millet or rice variety?</summary><p>Of course. Browse the <a href={base + "perambur-millet-store/"}>Perambur millet store guide</a>, then contact the store to check availability.</p></details>
-      </div>
-    </div>
+  <section class="pantry-faq" aria-labelledby="faq-title">
+    <div class="container pantry-faq-inner"><div><p class="pantry-eyebrow">GOOD TO KNOW</p><h2 id="faq-title">Before you <em>visit.</em></h2></div><div class="pantry-faq-list">
+      <details><summary>Can I check today's stock on WhatsApp?</summary><p>Yes. Send us the product or variety name and preferred pack size. Our team can check the latest store information. <a href={ask("a product or variety you are looking for")}>Message us ↗</a></p></details>
+      <details><summary>What are the store timings?</summary><p>Monday to Saturday, 9 AM to 9 PM. Sunday, closed. Please call before visiting on special days.</p></details>
+      <details><summary>Where is the store located?</summary><p>119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India. <a href={mapsUrl} target="_blank" rel="noopener noreferrer">Open Google Maps ↗</a></p></details>
+    </div></div>
   </section>
 
-  <section class="editorial-final reveal-item">
-    <div class="container editorial-final-inner">
-      <div><p class="editorial-label editorial-label-light">ESHwar HOME PRODUCTS · PERAMBUR</p><h2>Make room for<br /><em>good things.</em></h2></div>
-      <div><a class="editorial-button editorial-button-light" href={base + "products/"}>Explore the pantry <span aria-hidden="true">↗</span></a><a class="editorial-final-link" href={ask("your pantry requirements")}>Have a question? Talk to the store ↗</a></div>
-    </div>
-  </section>
+  <section class="pantry-final"><div class="container pantry-final-inner"><div><p class="pantry-eyebrow">ESHwar HOME PRODUCTS · PERAMBUR</p><h2>Something good<br /><em>for your kitchen.</em></h2></div><a class="pantry-button pantry-button-cream" href={base + "products/"}>Explore the pantry <span aria-hidden="true">↗</span></a></div></section>
 </SiteLayout>
