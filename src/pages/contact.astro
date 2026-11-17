@@ -42,6 +42,17 @@ import SiteLayout from "../layouts/SiteLayout.astro";
     <div class="directions-panel">
       <p class="eyebrow">Find the shop</p><h2>Paddy Field Road,<br /><em>Perambur.</em></h2>
       <p>119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India.</p>
+      <iframe
+        class="contact-map-embed"
+        src="https://www.google.com/maps?q=119%2F1%2C%20Paddy%20Field%20Road%2C%20Perambur%2C%20Chennai%2C%20Tamil%20Nadu%20600%20011&output=embed"
+        title="Map showing Eshwar Home Products on Paddy Field Road, Perambur"
+        width="100%"
+        height="280"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        style="border:0; width:100%; height:280px; border-radius:10px;"
+        allowfullscreen
+      ></iframe>
       <a class="text-link" href="https://www.google.com/maps/search/?api=1&query=119%2F1%2C%20Paddy%20Field%20Road%2C%20Perambur%2C%20Chennai%2C%20Tamil%20Nadu%20600%20011" target="_blank" rel="noopener noreferrer">Open directions in Google Maps ↗</a>
     </div>
   </section>
@@ -59,6 +70,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 </SiteLayout>
 
 <style>
+  .contact-map-embed { display: block; max-width: 100%; margin: 20px 0 16px; border: 1px solid #E2D6C5 !important; }
   .contact-hero-grid {
     width: min(1120px, calc(100% - 56px));
     display: grid;

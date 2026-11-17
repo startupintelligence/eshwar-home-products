@@ -1,5 +1,7 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
+import reviewData from "../data/reviews.json";
+const reviews = reviewData as Array<{ reviewer: string; text: string; source: "Google Maps" | "Justdial"; rating?: number }>;
 import "../styles/home-editorial.css";
 import "../styles/story-theme2.css";
 const base = import.meta.env.BASE_URL;
@@ -64,6 +66,23 @@ const products = [
     <a href={ask("your pantry requirements")} target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span><p>Direct WhatsApp<br />Support</p></a>
   </div></section>
 
+  {reviews.length > 0 && <section class="ehp-reviews-section" aria-labelledby="reviews-title">
+    <div class="container">
+      <header class="ehp-reviews-heading"><p class="ehp-section-kicker">CUSTOMER WORDS · PERAMBUR</p><h2 id="reviews-title">Loved by Perambur Families</h2><p>Selected customer feedback shared on our public review profiles.</p></header>
+      <div class="ehp-reviews-grid">
+        {reviews.map((review) => <article class="ehp-review-card">
+          <p class="ehp-review-source">{review.source}{review.rating ? ` · ${review.rating.toFixed(1)} ★` : ""}</p>
+          <blockquote>{review.text}</blockquote>
+          <p class="ehp-reviewer">— {review.reviewer}</p>
+        </article>)}
+      </div>
+      <nav class="ehp-review-links" aria-label="Verify customer reviews">
+        <a href={mapsUrl} target="_blank" rel="noopener noreferrer">Read reviews on Google Maps ↗</a>
+        <a href="https://www.justdial.com/Chennai/Eshwar-Home-Products-Perambur/044PXX44-XX44-230926121128-L4A9_BZDET" target="_blank" rel="noopener noreferrer">View our Justdial profile ↗</a>
+      </nav>
+    </div>
+  </section>}
+
   <section class="ehp-story-home" aria-labelledby="story-title"><div class="container ehp-story-grid">
     <aside class="ehp-story-proof"><div class="ehp-story-proof-inner"><img class="ehp-story-logo ehp-story-logo-cream" src={base + "images/brand/eshwar-home-products-logo.png"} alt="Official Eshwar Home Products emblem with a Rudraksha bead, golden Trishuls, Damrus and lemons" width="320" height="320" loading="lazy" decoding="async" /><p class="ehp-story-tamil" lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</p><p class="ehp-story-english">ESHWAR HOME PRODUCTS</p><p class="ehp-story-origin">Named in devotion to Eshwaran · Perambur, Chennai</p><a class="ehp-google-rating" href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="5.0 star rated on Google Maps in Perambur"><strong>5.0</strong><span aria-hidden="true">★</span> Rated on Google Maps · Perambur</a></div></aside>
     <div class="ehp-story-copy"><p class="ehp-story-eyebrow">OUR STORY · PERAMBUR, CHENNAI</p><h2 id="story-title">Rooted in devotion, serving everyday kitchens.</h2><p>Eshwar Home Products is named with devotion after our family deity, Eshwaran (Lord Shiva). That connection is reflected in the store’s Rudraksha and Trishul emblem, and in the values we bring to everyday household staples: honesty, gratitude and care.</p><p>At our store on Paddy Field Road, Perambur, explore traditional rice varieties, whole millets (<em>Siruthaniyam</em>), millet flours, cold-pressed oils, ghee and other pantry essentials. Our team is here to offer personal guidance when you need help choosing.</p><a class="ehp-story-link" href={base + "about/"}>Read Our Story <span aria-hidden="true">→</span></a></div>
@@ -71,3 +90,18 @@ const products = [
 
   <section class="ehp-visit-section" aria-labelledby="visit-title"><div class="container ehp-visit-grid"><div><p class="ehp-gold-eyebrow">VISIT OUR STORE</p><h2 id="visit-title">Good food, close to home.</h2><p>Come by and explore our traditional pantry range in Perambur.</p><a class="ehp-gold-button" href={mapsUrl} target="_blank" rel="noopener noreferrer">Get Directions <span aria-hidden="true">↗</span></a></div><div class="ehp-visit-details"><div><span>ADDRESS</span><p>119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India</p></div><div><span>OPENING HOURS</span><p>Mon–Sat: 9:00 AM – 9:00 PM<br />Sunday: Closed</p></div><div><span>CALL OR WHATSAPP</span><p><a href="tel:+919941209953">+91 99412 09953</a><br /><a href={ask("your pantry requirements")} target="_blank" rel="noopener noreferrer">Send an enquiry ↗</a></p></div></div></div></section>
 </SiteLayout>
+
+<style>
+  .ehp-reviews-section { padding: clamp(48px, 7vw, 84px) 0; background: #FAF8F5; }
+  .ehp-reviews-heading { max-width: 680px; margin: 0 auto 28px; text-align: center; }
+  .ehp-reviews-heading h2 { margin: 8px 0; color: #2A1508; font: 400 clamp(2rem, 4vw, 3rem)/1.12 Georgia, "Times New Roman", serif; }
+  .ehp-reviews-heading > p:last-child { color: #4A3525; font-size: .88rem; line-height: 1.7; }
+  .ehp-reviews-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .ehp-review-card { min-width: 0; padding: 20px; border: 1px solid #E2D6C5; border-top: 3px solid #D99B26; background: #FFFDF9; }
+  .ehp-review-source { margin: 0 0 12px; color: #8A5A08; font-size: .7rem; font-weight: 700; letter-spacing: .04em; }
+  .ehp-review-card blockquote { margin: 0; color: #2A1508; font: 400 1rem/1.65 Georgia, "Times New Roman", serif; }
+  .ehp-reviewer { margin: 16px 0 0; color: #4A3525; font-size: .76rem; font-weight: 700; }
+  .ehp-review-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 24px; margin-top: 22px; }
+  .ehp-review-links a { display: inline-flex; min-height: 48px; align-items: center; color: #432818; font-size: .78rem; font-weight: 700; text-underline-offset: 4px; }
+  @media (max-width: 760px) { .ehp-reviews-grid { grid-template-columns: 1fr; } }
+</style>
