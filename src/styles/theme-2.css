@@ -354,3 +354,110 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--brand-red);outline-
 .site-footer .footer-nav a:hover, .site-footer .footer-bottom a:hover { color: #FFFDF9; }
 .site-footer .footer-socials { gap: 12px; }
 .site-footer .footer-socials a { min-height: 44px; }
+
+
+/* Mobile touch ergonomics: generous hit areas without costly visual effects. */
+@media (max-width: 768px) {
+  .ehp-product-card-copy > a,
+  .ehp-product-enquiry {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    min-height: 48px;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+  }
+
+  .ehp-category-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+  }
+
+  .site-footer {
+    padding-bottom: calc(28px + env(safe-area-inset-bottom));
+  }
+
+  .site-footer a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+  }
+
+  .site-footer .footer-brand-lockup {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .site-footer .footer-brand-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .site-footer .footer-name,
+  .site-footer .footer-name-copy {
+    color: #FFFDF9;
+    text-decoration: none;
+  }
+
+  .site-footer .footer-brand-tamil {
+    margin: 0;
+    color: #D99B26;
+  }
+
+  .site-footer .footer-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .site-footer .footer-contact-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .site-footer .footer-socials {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .site-footer .footer-social-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-footer .footer-nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px 16px;
+    width: 100%;
+  }
+
+  .site-footer .footer-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    width: 100%;
+  }
+
+  .site-footer .footer-nav a:last-child {
+    grid-column: 1 / -1;
+  }
+}

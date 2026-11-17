@@ -52,7 +52,7 @@ const products = [
       <div class="ehp-product-grid">
         {products.map((product) => <article class="ehp-product-card">
           <figure><img src={base + "images/placeholders/" + product.image} alt={product.alt} width="420" height="420" loading="lazy" decoding="async" /><figcaption>Representative visual</figcaption></figure>
-          <div class="ehp-product-card-copy"><h3>{product.title}</h3><a href={ask(product.enquiry)} target="_blank" rel="noopener noreferrer" aria-label={`WhatsApp enquiry about ${product.title}`}><span aria-hidden="true">↗</span></a></div>
+          <div class="ehp-product-card-copy"><h3>{product.title}</h3><a class="ehp-product-enquiry" href={ask(product.enquiry)} target="_blank" rel="noopener noreferrer" aria-label={`WhatsApp enquiry about ${product.title}`}><span aria-hidden="true">↗</span></a></div>
         </article>)}
       </div>
       <p class="ehp-product-note">Images are representative. Please contact the store to confirm current varieties, pack sizes and availability.</p>
