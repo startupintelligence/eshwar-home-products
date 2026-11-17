@@ -339,3 +339,18 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--brand-red);outline-
 .pantry-page .shelf-whatsapp-link:hover, .pantry-page .shelf-whatsapp-link:focus-visible { border-color: #D99B26; background: #432818; color: #FFFDF9; }
 @media (max-width: 760px) { .pantry-hero-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; } .pantry-store-card { max-width: 620px; } }
 @media (max-width: 400px) { .pantry-hero { padding-block: 38px; } .pantry-store-card { padding: 20px 18px; } .pantry-hero .hero-actions { align-items: stretch; flex-direction: column; gap: 8px; } .pantry-hero .hero-actions > a { width: 100%; } }
+
+
+/* Footer identity and link contrast on the espresso surface */
+.site-footer { background: #432818; color: #FFFDF9; border-color: #D99B26; }
+.site-footer .footer-name { display: inline-flex; align-items: center; gap: 12px; color: #FFFDF9; text-decoration: none; }
+.site-footer .footer-name:hover, .site-footer .footer-name:focus-visible { color: #FFFDF9; text-decoration: none; }
+.site-footer .footer-name-copy { color: #FFFDF9; }
+.site-footer .footer-logo-badge { display: inline-flex; align-items: center; padding: 6px 10px; border-radius: 8px; border: 1px solid #D99B26; background: #FFFDF9; }
+.site-footer .footer-logo { display: block; width: 64px; height: 44px; object-fit: contain; }
+.site-footer .footer-brand-tamil { color: #D99B26; }
+.site-footer .footer-brand > p:not(.footer-brand-tamil) { color: #FFFDF9; }
+.site-footer .footer-nav a, .site-footer .footer-bottom a { color: #D99B26; }
+.site-footer .footer-nav a:hover, .site-footer .footer-bottom a:hover { color: #FFFDF9; }
+.site-footer .footer-socials { gap: 12px; }
+.site-footer .footer-socials a { min-height: 44px; }
