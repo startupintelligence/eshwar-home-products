@@ -5,11 +5,11 @@ import catalogue from "../data/catalogue.json";
 const base = import.meta.env.BASE_URL;
 const siteOrigin = Astro.site ?? new URL("https://startupintelligence.github.io");
 const pageUrl = new URL(base + "perambur-millet-store/", siteOrigin).toString();
-const storeAddress = "Door No. 119/1, Nelvayal Road, Perambur, Chennai, Tamil Nadu, India.";
+const storeAddress = "119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India";
 const phone = "+91 99412 09953";
 const phoneHref = "tel:+919941209953";
 const whatsappUrl = "https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20would%20like%20to%20check%20current%20stock%20for%3A";
-const mapsUrl = "https://maps.app.goo.gl/whb51npkYebvVQbp6?g_st=aw";
+const mapsUrl = "https://www.google.com/maps/search/?api=1&query=119%2F1%2C%20Paddy%20Field%20Road%2C%20Perambur%2C%20Chennai%2C%20Tamil%20Nadu%20600%20011";
 const youtubeUrl = "https://www.youtube.com/@EHP_PeramburOfficial";
 
 const faqs = [
@@ -31,7 +31,7 @@ const faqs = [
   },
   {
     question: "Where is the traditional millet and pantry store in Perambur?",
-    answer: "Eshwar Home Products is at Door No. 119/1, Nelvayal Road, Perambur, Chennai, Tamil Nadu, India."
+    answer: "Eshwar Home Products is at 119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India"
   },
   {
     question: "Can visitors from Kolathur, Sembium or Korattur plan a visit?",
@@ -39,7 +39,7 @@ const faqs = [
   },
   {
     question: "What are the store opening hours?",
-    answer: "The published store hours are Monday to Saturday, 10:00 AM to 9:00 PM, and Sunday, 10:00 AM to 2:00 PM. Call ahead if you are unsure about holiday or special-day hours."
+    answer: "The published store hours are Monday to Saturday, 9:00 AM to 9:00 PM. Sunday: Closed. Call ahead if you are unsure about holiday or special-day hours."
   },
   {
     question: "How can I contact Eshwar Home Products?",
@@ -59,13 +59,13 @@ const discoverySchema = {
       telephone: "+91-99412-09953",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "Door No. 119/1, Nelvayal Road, Perambur",
+        streetAddress: "119/1, Paddy Field Road, Perambur",
         addressLocality: "Chennai",
         addressRegion: "Tamil Nadu",
-        postalCode: "600011",
+        postalCode: "600 011",
         addressCountry: "IN"
       },
-      openingHours: ["Mo-Sa 10:00-21:00", "Su 10:00-14:00"],
+      openingHours: ["Mo-Sa 09:00-21:00"], description: "Mon–Sat: 9:00 AM – 9:00 PM · Sun: Closed",
       areaServed: { "@type": "City", name: "Chennai" },
       sameAs: [youtubeUrl]
     },
@@ -118,7 +118,7 @@ const discoverySchema = {
           </div>
           <div>
             <dt>Opening hours</dt>
-            <dd>Monday–Saturday: 10:00 AM–9:00 PM<br />Sunday: 10:00 AM–2:00 PM</dd>
+            <dd>Monday–Saturday: 9:00 AM–9:00 PM<br />Sunday: Closed</dd>
           </div>
           <div>
             <dt>WhatsApp / Phone</dt>
@@ -239,8 +239,8 @@ const discoverySchema = {
 
 <style>
   :global(:root) {
-    --bg-page: #FFFFFF;
-    --bg-subtle: #FAF8F5;
+    --bg-page: #FAF8F5;
+    --bg-subtle: #F6F1E7;
     --brand-red: #B81D13;
     --accent-gold: #D99B26;
     --accent-green: #1B3B2B;
@@ -254,36 +254,36 @@ const discoverySchema = {
   .brand-tamil { display: block; margin: 0 0 12px; color: var(--brand-red); font-family: "Noto Sans Tamil", system-ui, sans-serif; font-size: clamp(1.2rem, 2.2vw, 1.65rem); font-weight: 600; letter-spacing: 0; line-height: 1.55; }
   .brand-english { display: block; }
   h1, h2, h3 { text-wrap: balance; }
-  h1 { max-width: 760px; margin: 0; color: #231F20; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.55rem, 5.2vw, 4.8rem); font-weight: 400; letter-spacing: -.045em; line-height: 1.04; }
-  .hero-summary { max-width: 650px; margin: 24px 0 0; color: #5A534C; font-size: 1rem; line-height: 1.8; }
+  h1 { max-width: 760px; margin: 0; color: #2A1A10; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.55rem, 5.2vw, 4.8rem); font-weight: 400; letter-spacing: -.045em; line-height: 1.04; }
+  .hero-summary { max-width: 650px; margin: 24px 0 0; color: #5A4638; font-size: 1rem; line-height: 1.8; }
   .hero-actions, .conversion-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
   .action { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 12px; padding: 10px 16px; border: 1px solid var(--border-light); border-radius: 0; font-size: .78rem; font-weight: 700; line-height: 1.35; text-align: center; text-decoration: none; }
   .action-primary { border-color: var(--brand-red); background: var(--brand-red); color: #fff; }
   .action-primary:hover { background: #99180F; }
-  .action-secondary { background: var(--bg-page); color: #231F20; }
+  .action-secondary { background: var(--bg-page); color: #2A1A10; }
   .action-secondary:hover { border-color: var(--accent-gold); }
   .entity-card { padding: 24px; border: 1px solid var(--border-light); background: var(--bg-page); }
   .entity-card h2 { margin: 7px 0 16px; font: 400 1.8rem/1.2 Georgia, "Times New Roman", serif; }
   .entity-card dl { margin: 0; }
   .entity-card dl > div { padding: 12px 0; border-top: 1px solid var(--border-light); }
   .entity-card dt { margin-bottom: 4px; color: var(--accent-green); font-size: .67rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
-  .entity-card dd { margin: 0; color: #38332F; font-size: .82rem; line-height: 1.65; overflow-wrap: anywhere; }
+  .entity-card dd { margin: 0; color: #3B281B; font-size: .82rem; line-height: 1.65; overflow-wrap: anywhere; }
   .entity-card a { text-underline-offset: 3px; }
-  .entity-note { margin: 16px 0 0; padding-top: 13px; border-top: 1px solid var(--border-light); color: #5A534C; font-size: .73rem; line-height: 1.65; }
+  .entity-note { margin: 16px 0 0; padding-top: 13px; border-top: 1px solid var(--border-light); color: #5A4638; font-size: .73rem; line-height: 1.65; }
   .category-section, .faq-section { padding: clamp(48px, 7vw, 82px) 0; background: var(--bg-subtle); }
   .section-heading { max-width: 690px; margin-bottom: 30px; }
-  .section-heading h2, .local-guide h2, .conversion-inner h2 { margin: 8px 0 12px; color: #231F20; font: 400 clamp(2rem, 4vw, 3.25rem)/1.08 Georgia, "Times New Roman", serif; letter-spacing: -.035em; }
-  .section-heading > p:last-child, .local-guide-copy p, .conversion-inner > div > p:last-child { color: #5A534C; font-size: .88rem; line-height: 1.8; }
+  .section-heading h2, .local-guide h2, .conversion-inner h2 { margin: 8px 0 12px; color: #2A1A10; font: 400 clamp(2rem, 4vw, 3.25rem)/1.08 Georgia, "Times New Roman", serif; letter-spacing: -.035em; }
+  .section-heading > p:last-child, .local-guide-copy p, .conversion-inner > div > p:last-child { color: #5A4638; font-size: .88rem; line-height: 1.8; }
   .category-list { border-top: 1px solid var(--border-light); }
   .category-row { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 18px; padding: 24px 0; border-bottom: 1px solid var(--border-light); }
   .category-number { color: var(--brand-red); font-size: .72rem; font-variant-numeric: tabular-nums; }
   .category-eyebrow { margin: 0 0 5px; color: var(--accent-green); font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; }
   .category-row h3 { margin: 0; font: 400 1.55rem/1.2 Georgia, "Times New Roman", serif; }
-  .category-row > div > p:not(.category-eyebrow) { margin: 7px 0 12px; color: #5A534C; font-size: .83rem; line-height: 1.7; }
+  .category-row > div > p:not(.category-eyebrow) { margin: 7px 0 12px; color: #5A4638; font-size: .83rem; line-height: 1.7; }
   .category-row ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; margin: 0; padding: 0; list-style: none; }
   .category-row li { display: grid; gap: 3px; padding: 10px 0; border-top: 1px solid var(--border-light); }
-  .category-row li strong { color: #292421; font: 400 1rem Georgia, "Times New Roman", serif; }
-  .category-row li span { color: #625B53; font-size: .75rem; line-height: 1.55; }
+  .category-row li strong { color: #2A1A10; font: 400 1rem Georgia, "Times New Roman", serif; }
+  .category-row li span { color: #5A4638; font-size: .75rem; line-height: 1.55; }
   .inline-link { display: inline-flex; min-height: 48px; align-items: center; gap: 10px; margin-top: 18px; color: var(--accent-green); font-size: .82rem; font-weight: 700; text-underline-offset: 4px; }
   .millet-reference-section { padding: clamp(48px, 7vw, 82px) 0; background: var(--bg-subtle); border-block: 1px solid var(--border-light); }
   .millet-table-wrap { overflow-x: auto; border: 1px solid var(--border-light); background: var(--bg-page); }
@@ -303,19 +303,19 @@ const discoverySchema = {
   .faq-layout .section-heading { margin: 0; }
   .faq-list { border-top: 1px solid var(--border-light); }
   .faq-list details { border-bottom: 1px solid var(--border-light); }
-  .faq-list summary { display: flex; min-height: 56px; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 4px 12px 0; color: #292421; cursor: pointer; font: 400 1.02rem/1.45 Georgia, "Times New Roman", serif; list-style: none; }
+  .faq-list summary { display: flex; min-height: 56px; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 4px 12px 0; color: #2A1A10; cursor: pointer; font: 400 1.02rem/1.45 Georgia, "Times New Roman", serif; list-style: none; }
   .faq-list summary::-webkit-details-marker { display: none; }
   .faq-list summary::after { content: "+"; color: var(--brand-red); font: 400 1.2rem system-ui, sans-serif; }
   .faq-list details[open] summary::after { content: "−"; }
-  .faq-list details p { margin: 0 0 18px; color: #5A534C; font-size: .83rem; line-height: 1.8; }
-  .conversion-section { padding: clamp(40px, 6vw, 68px) 0; background: var(--accent-green); color: #fff; }
+  .faq-list details p { margin: 0 0 18px; color: #5A4638; font-size: .83rem; line-height: 1.8; }
+  .conversion-section { padding: clamp(40px, 6vw, 68px) 0; background: var(--earth-dark); color: #FFFDF9; }
   .conversion-inner { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 30px; align-items: center; }
-  .conversion-section .eyebrow { color: #E9C98B; }
+  .conversion-section .eyebrow { color: var(--accent-gold); }
   .conversion-inner h2 { color: #fff; }
   .conversion-inner > div > p:last-child { color: #F0ECE5; }
   .conversion-actions { margin-top: 0; }
   .conversion-actions .action-secondary { border-color: rgba(255,255,255,.5); background: transparent; color: #fff; }
-  .conversion-actions .action-secondary:hover { border-color: #E9C98B; }
+  .conversion-actions .action-secondary:hover { border-color: var(--accent-gold); }
   @media (max-width: 760px) {
     .discovery-container { width: calc(100% - 34px); }
     .hero-layout, .local-guide-grid, .faq-layout, .conversion-inner { grid-template-columns: minmax(0, 1fr); gap: 28px; }

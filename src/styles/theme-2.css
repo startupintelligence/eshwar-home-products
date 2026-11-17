@@ -1,14 +1,16 @@
 :root {
-  --bg-page: #FFFFFF; --bg-subtle: #FAF8F5; --brand-red: #B81D13; --accent-gold: #D99B26; --accent-green: #1B3B2B;
-  --text-main: #231F20; --text-muted: #5A534C; --border-light: #E5E0D8;
-  --paper: var(--bg-page); --surface: var(--bg-subtle); --ink: var(--text-main); --muted: var(--text-muted);
-  --olive: var(--accent-green); --olive-soft: #EEF1EC; --clay: var(--brand-red); --line: var(--border-light);
-  --serif: "Lora", Georgia, serif; --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-family: var(--sans); color: var(--text-main); background: var(--bg-page); font-synthesis: none;
+  color-scheme: light;
+  --bg-page:#FAF8F5; --bg-subtle:#F6F1E7; --bg-card:#FFFFFF; --earth-dark:#432818;
+  --brand-red:#B81D13; --accent-gold:#D99B26; --accent-green:#1B3B2B;
+  --text-main:#2A1A10; --text-muted:#5A4638; --border-light:#E5D8C8;
+  --paper:var(--bg-page); --surface:var(--bg-card); --ink:var(--text-main); --muted:var(--text-muted);
+  --olive:var(--accent-green); --olive-soft:#F6F1E7; --clay:var(--brand-red); --line:var(--border-light);
+  --serif:"Lora", Georgia, serif; --sans:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family:var(--sans); color:var(--text-main); background:var(--bg-page); font-synthesis:none;
 }
 body { background: var(--bg-page); color: var(--text-main); }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--brand-red); outline-offset: 3px; }
-.site-header { background: #fff; border-bottom-color: var(--border-light); }
+.site-header { background: var(--bg-page); border-bottom-color: var(--border-light); }
 .header-inner { min-height: 92px; }
 .wordmark { gap: 2px; }
 .wordmark-tamil { color: var(--brand-red); font-family: "Noto Sans Tamil", sans-serif; font-size: .82rem; font-weight: 600; line-height: 1.45; }
@@ -139,3 +141,35 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--brand-red); out
     transition: none;
   }
 }
+
+/* Contrast and surface contract: light surfaces use espresso ink; dark ribbons use warm ivory. */
+body{background:var(--bg-page);color:var(--text-main)}
+.site-header{background:var(--bg-page);color:var(--text-main)}
+.wordmark-name{color:var(--text-main)}
+.wordmark-tamil{color:var(--brand-red)}
+.wordmark-place{color:var(--text-muted)}
+.main-nav a{color:var(--text-main)}
+.main-nav a:hover,.main-nav a[aria-current=page]{color:var(--brand-red);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.header-contact{background:var(--brand-red);border-color:var(--brand-red);color:#FFFDF9}
+.header-contact:hover{background:#94180F;color:#FFFDF9}
+.menu-toggle{background:var(--bg-card);color:var(--text-main);border-color:var(--earth-dark)}
+:where(h1,h2,h3,h4,h5,h6){color:var(--text-main)}
+:where(p,li,dd,dt,label,small,summary){color:inherit}
+:where(.eyebrow,.section-kicker,.pantry-eyebrow,.category-eyebrow,.directory-main small){color:var(--accent-green)}
+:where(.text-link,.inline-link,.directory-arrow,.home-refresh-story-link,.guide-card-link){color:var(--accent-green);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+:where(.home-hero,.page-heading,.guide-hero,.discovery-hero,.category-section,.faq-section,.local-guide,.millet-reference-section,.visit-section,.contact-details-panel,.directions-panel){background:var(--bg-page);color:var(--text-main)}
+:where(.location-ribbon,.site-footer,.footer,.location-banner-inner){background:var(--earth-dark);color:#FFFDF9;border-color:var(--accent-gold)}
+:where(.location-ribbon,.site-footer,.footer,.location-banner-inner) :where(h1,h2,h3,h4,h5,h6,p,li,span,small,address,dt,dd){color:#FFFDF9}
+:where(.location-ribbon,.site-footer,.footer,.location-banner-inner) :where(a){color:var(--accent-gold);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+:where(.location-ribbon,.site-footer,.footer,.location-banner-inner) :where(a:hover){color:#FFFDF9}
+:where(.market-hero,.market-story,.market-closing,.conversion-section){background:var(--earth-dark);color:#FFFDF9}
+:where(.market-hero,.market-story,.market-closing,.conversion-section) :where(h1,h2,h3,p,li,span){color:#FFFDF9}
+:where(.market-hero,.market-story,.market-closing,.conversion-section) .eyebrow{color:var(--accent-gold)}
+:where(.button-dark,.action-primary,.thank-you-button.primary,.shelf-whatsapp-link){background:var(--brand-red);border-color:var(--brand-red);color:#FFFDF9}
+:where(.button-dark,.action-primary,.thank-you-button.primary,.shelf-whatsapp-link):hover{background:#94180F;border-color:#94180F;color:#FFFDF9}
+:where(.button-whatsapp,.action-secondary,.thank-you-button.secondary){color:var(--accent-green);background:var(--bg-card);border-color:var(--accent-green)}
+:where(.button-whatsapp,.action-secondary,.thank-you-button.secondary):hover{color:var(--accent-green);background:var(--bg-subtle)}
+:where(.product-card,.entity-card,.map-card,.thank-you-card,.home-refresh-card,.guide-card){background:var(--bg-card);color:var(--text-main)}
+:where(.product-card,.entity-card,.map-card,.thank-you-card,.home-refresh-card,.guide-card) :where(h1,h2,h3,h4,h5,h6,p,li,dd,dt,small){color:var(--text-main)}
+:where(.product-card,.entity-card,.map-card,.thank-you-card,.home-refresh-card,.guide-card) :where(.muted,.description,.guide-note){color:var(--text-muted)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--brand-red);outline-offset:3px}
