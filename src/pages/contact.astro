@@ -57,19 +57,44 @@ import SiteLayout from "../layouts/SiteLayout.astro";
     </div>
   </section>
 
-  <section class="section container youtube-promo" aria-labelledby="youtube-promo-title">
-    <a class="youtube-promo-card" href="https://www.youtube.com/@EHP_PeramburOfficial" target="_blank" rel="noopener noreferrer">
-      <span class="youtube-promo-copy">
-        <span class="eyebrow">Our official channel</span>
-        <strong id="youtube-promo-title">Watch Our Store &amp; Products on YouTube</strong>
-        <span>See videos and updates from Eshwar Home Products in Perambur.</span>
-      </span>
-      <span class="youtube-promo-action">Visit YouTube ↗</span>
-    </a>
+  <section class="section container youtube-promo" aria-label="Follow Eshwar Home Products">
+    <div class="social-profile-grid">
+      <a class="social-profile-card" href="https://www.youtube.com/@EHP_PeramburOfficial" target="_blank" rel="noopener noreferrer">
+        <span><span class="eyebrow">Official YouTube</span><strong>@EHP_PeramburOfficial</strong></span>
+        <span class="social-profile-action">Visit channel ↗</span>
+      </a>
+      <a class="social-profile-card" href="https://www.instagram.com/eshwar_home_products/" target="_blank" rel="noopener noreferrer">
+        <span><span class="eyebrow">Official Instagram</span><strong>@eshwar_home_products</strong></span>
+        <span class="social-profile-action">Visit profile ↗</span>
+      </a>
+    </div>
   </section>
 </SiteLayout>
 
 <style>
+  .social-profile-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .social-profile-card {
+    display: flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 12px 16px;
+    border: 1px solid #E2D6C5;
+    border-top: 3px solid #D99B26;
+    background: #FFFDF9;
+    color: #432818;
+    text-decoration: none;
+  }
+  .social-profile-card strong { display: block; color: #432818; font-size: .9rem; overflow-wrap: anywhere; }
+  .social-profile-card .eyebrow { display: block; margin-bottom: 4px; color: #8A5A08; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .social-profile-action { flex: 0 0 auto; color: #432818; font-size: .76rem; font-weight: 700; }
+  .social-profile-card:hover { border-color: #D99B26; background: #FAF3E8; }
+  @media (max-width: 600px) { .social-profile-grid { grid-template-columns: 1fr; } }
   .contact-map-embed { display: block; max-width: 100%; margin: 20px 0 16px; border: 1px solid #E2D6C5 !important; }
   .contact-hero-grid {
     width: min(1120px, calc(100% - 56px));
