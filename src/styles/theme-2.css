@@ -461,3 +461,93 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--brand-red);outline-
     grid-column: 1 / -1;
   }
 }
+
+
+/* Calm pantry ticker — a lightweight, accessible editorial detail. */
+.pantry-ticker {
+  overflow: hidden;
+  white-space: nowrap;
+  background-color: #FAF8F5;
+  border-block: 1px solid #E2D6C5;
+  padding: 12px 0;
+  user-select: none;
+}
+
+.pantry-ticker-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+}
+
+.pantry-ticker-group {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 20px;
+  margin: 0;
+  padding: 0 20px 0 0;
+  list-style: none;
+}
+
+.pantry-ticker-item {
+  flex: 0 0 auto;
+  color: #5A4638;
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.pantry-ticker-dot {
+  color: #D99B26;
+  font-weight: 700;
+}
+
+.pantry-ticker:focus-visible {
+  outline: 2px solid #D99B26;
+  outline-offset: -3px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pantry-ticker-track {
+    will-change: transform;
+    animation: gentle-pantry-drift 38s linear infinite;
+  }
+
+  .pantry-ticker:hover .pantry-ticker-track,
+  .pantry-ticker:focus-within .pantry-ticker-track,
+  .pantry-ticker:active .pantry-ticker-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes gentle-pantry-drift {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pantry-ticker {
+    overflow: visible;
+    white-space: normal;
+    padding-inline: 16px;
+  }
+
+  .pantry-ticker-track {
+    display: block;
+    width: auto;
+    animation: none;
+    transform: none;
+  }
+
+  .pantry-ticker-group {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 16px;
+    padding: 0;
+  }
+
+  .pantry-ticker-group[aria-hidden="true"] {
+    display: none;
+  }
+}
