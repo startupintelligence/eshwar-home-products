@@ -4,7 +4,6 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 const base = import.meta.env.BASE_URL;
 const siteOrigin = Astro.site ?? new URL("https://startupintelligence.github.io");
 const pageUrl = new URL(base + "kitchen-guides/", siteOrigin).toString();
-const mapsUrl = "https://www.google.com/maps/search/?api=1&query=119%2F1%2C%20Paddy%20Field%20Road%2C%20Perambur%2C%20Chennai%2C%20Tamil%20Nadu%20600%20011";
 
 const guides = [
   {
@@ -61,7 +60,7 @@ const schema = {
 <SiteLayout
   title="Kitchen Guides & Tamil Pantry Notes | Eshwar Home Products"
   description="Practical Tamil kitchen references, millet name guides and pantry-use notes from Eshwar Home Products in Perambur, Chennai."
-  current="kitchen-guides"
+  current="blog"
   canonicalUrl={pageUrl}
 >
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
