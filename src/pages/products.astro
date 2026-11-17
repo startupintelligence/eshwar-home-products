@@ -43,14 +43,22 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
 <SiteLayout title="The Pantry | Traditional Rice, Millets & Kitchen Essentials in Perambur" description="Explore traditional rice and Siruthaniyam millets, Chekku oils, ghee, millet snacks and everyday pantry categories at Eshwar Home Products in Perambur, Chennai. Ask the store about today's stock on WhatsApp." current="products">
   <script type="application/ld+json" set:html={JSON.stringify(pantryItemList)} />
   <script type="application/ld+json" set:html={JSON.stringify(pantryBreadcrumbs)} />
-  <section class="page-heading"><div class="container">
-    <p class="eyebrow">The pantry · Eshwar Home Products · Perambur, Chennai</p>
-    <h1>Good things for<br /><em>everyday cooking.</em></h1>
-    <p>Explore the grains, cooking essentials and pantry favourites used across South Indian home kitchens. Browse by shelf, then message the store about the variety or pack size you need.</p>
-    <div class="hero-actions">
-      <a class="button button-dark" href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20please%20help%20me%20check%20today%27s%20pantry%20stock." target="_blank" rel="noopener noreferrer">Check today's stock on WhatsApp ↗</a>
-      <a class="text-link phone-action" href="tel:+919941209953">Call +91 99412 09953</a>
+  <section class="page-heading pantry-hero"><div class="container pantry-hero-grid">
+    <div class="pantry-hero-copy">
+      <p class="eyebrow">The Pantry · Perambur, Chennai</p>
+      <h1>Good things for<br /><em>everyday cooking.</em></h1>
+      <p>Explore traditional rice, millets, cooking essentials and familiar pantry favourites for everyday South Indian kitchens. Browse by shelf, then ask our team about the variety or pack size you need.</p>
+      <div class="hero-actions">
+        <a class="button pantry-hero-cta" href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20please%20help%20me%20check%20today%27s%20pantry%20stock." target="_blank" rel="noopener noreferrer">Check today's stock on WhatsApp ↗</a>
+        <a class="text-link phone-action" href="tel:+919941209953">Call +91 99412 09953</a>
+      </div>
     </div>
+    <aside class="pantry-store-card" aria-label="Store details">
+      <p class="eyebrow">Visit our neighbourhood store</p>
+      <div class="pantry-store-detail"><span>Store location</span><address>119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011</address></div>
+      <div class="pantry-store-detail"><span>Opening hours</span><p>Mon–Sat: 9:00 AM – 9:00 PM · Sun: Closed</p></div>
+      <div class="pantry-store-detail"><span>Direct contact</span><a href="tel:+919941209953">+91 99412 09953</a></div>
+    </aside>
   </div></section>
   <section class="section container pantry-page">
     <div class="pantry-intro-row">
@@ -71,7 +79,7 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
           return <section class="pantry-group" id={group.id} data-group={group.id}>
             <div class="pantry-group-visual">
               <div class="pantry-image-frame"><img src={`${import.meta.env.BASE_URL}${group.placeholderImage}`} alt={group.placeholderAlt} width="800" height="600" loading="lazy" decoding="async" /></div>
-              <p class="representative-caption">Representative visual · Store photography will be added when supplied</p>
+              <p class="representative-caption">Representative visual · Store photos coming soon</p>
             </div>
             <div class="pantry-group-content">
               <div class="pantry-group-heading"><span class="directory-number">{String(index + 1).padStart(2, "0")}</span><div>
