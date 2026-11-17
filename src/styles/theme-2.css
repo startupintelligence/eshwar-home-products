@@ -21,7 +21,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--brand-red); out
 .header-contact { justify-content: center; border: 1px solid var(--brand-red); padding: 0 14px; color: var(--brand-red); font-weight: 650; }
 .header-contact:hover { color: var(--brand-red); background: var(--bg-subtle); }
 .menu-toggle { min-height: 48px; min-width: 48px; border-color: var(--border-light); }
-.home-hero { background: #fff; padding: 66px 0 54px; }
+.home-hero { background: var(--bg-page); color: var(--text-main); padding: 66px 0 54px; }
 .home-hero-grid { grid-template-columns: minmax(0, 1.15fr) minmax(250px, .85fr); gap: 68px; }
 .eyebrow { color: var(--accent-green); font-family: "Lora", Georgia, serif; font-size: .78rem; font-weight: 600; letter-spacing: .045em; text-transform: none; }
 .hero-tamil { margin: 18px 0 8px; color: var(--brand-red); font-family: "Noto Sans Tamil", sans-serif; font-size: clamp(1.2rem, 2.5vw, 1.8rem); font-weight: 600; line-height: 1.55; }
@@ -173,3 +173,12 @@ body{background:var(--bg-page);color:var(--text-main)}
 :where(.product-card,.entity-card,.map-card,.thank-you-card,.home-refresh-card,.guide-card) :where(h1,h2,h3,h4,h5,h6,p,li,dd,dt,small){color:var(--text-main)}
 :where(.product-card,.entity-card,.map-card,.thank-you-card,.home-refresh-card,.guide-card) :where(.muted,.description,.guide-note){color:var(--text-muted)}
 a:focus-visible,button:focus-visible{outline:3px solid var(--brand-red);outline-offset:3px}
+
+/* Earthy Brown / Cream contrast contract */
+.main-nav a,.header-contact{color:var(--text-main)}
+.hero-brand{color:var(--brand-red)}
+.hero-tagline,.eyebrow{color:var(--accent-green)}
+.hero-intro,.hero-copy,.page-heading>div>p:not(.eyebrow){color:var(--text-muted)}
+.text-link,.directory-arrow{color:var(--accent-green);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.button-dark,.header-contact{background:var(--brand-red);border-color:var(--brand-red);color:#FFFDF9}
+.button-dark:hover,.header-contact:hover{background:#94180F;border-color:#94180F;color:#FFFDF9}
