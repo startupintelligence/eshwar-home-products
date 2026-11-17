@@ -211,3 +211,25 @@ body{background:var(--brand-paper);color:var(--brand-ink);-webkit-font-smoothing
 :where(.page-heading,.visit-note,.contact-details-panel,.directions-panel) :where(a.text-link){color:#1B3B2B;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
 
 .market-button-gold,.market-button-gold :where(span){color:#2A1A10}
+
+
+/* Eshwar Home Products canonical Earthy Brown palette */
+:root {
+  --bg-page: #FAF8F5;
+  --bg-card: #FFFFFF;
+  --earth-dark: #432818;
+  --brand-red: #B81D13;
+  --accent-gold: #D99B26;
+  --accent-green: #1B3B2B;
+  --text-main: #2A1A10;
+  --text-muted: #5A4638;
+  --bg-subtle: #F6F1E7;
+  --border-light: #E5D8C8;
+  --paper: var(--bg-page);
+  --surface: var(--bg-card);
+  --ink: var(--text-main);
+  --muted: var(--text-muted);
+  --olive: var(--accent-green);
+  --clay: var(--brand-red);
+  --line: var(--border-light);
+}

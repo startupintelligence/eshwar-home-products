@@ -339,3 +339,25 @@ h1, h2, h3 {
 /* Official Eshwar Home Products logo in shared site chrome */
 .wordmark{display:flex;align-items:center;gap:12px}.wordmark-logo{display:block;width:64px;height:48px;object-fit:contain;flex:0 0 auto}.wordmark-copy{display:grid;gap:1px}.wordmark-tamil{font-size:.68rem;color:var(--muted);line-height:1.4}.footer-name{display:inline-flex;align-items:center;gap:12px}.footer-logo{display:block;width:76px;height:52px;object-fit:contain}
 @media(max-width:650px){.wordmark{gap:8px}.wordmark-logo{width:48px;height:38px}.wordmark-tamil{font-size:.59rem}.footer-logo{width:64px;height:44px}}
+
+
+/* Eshwar Home Products canonical Earthy Brown palette */
+:root {
+  --bg-page: #FAF8F5;
+  --bg-card: #FFFFFF;
+  --earth-dark: #432818;
+  --brand-red: #B81D13;
+  --accent-gold: #D99B26;
+  --accent-green: #1B3B2B;
+  --text-main: #2A1A10;
+  --text-muted: #5A4638;
+  --bg-subtle: #F6F1E7;
+  --border-light: #E5D8C8;
+  --paper: var(--bg-page);
+  --surface: var(--bg-card);
+  --ink: var(--text-main);
+  --muted: var(--text-muted);
+  --olive: var(--accent-green);
+  --clay: var(--brand-red);
+  --line: var(--border-light);
+}

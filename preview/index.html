@@ -183,6 +183,20 @@
     :focus-visible{outline:3px solid var(--brand-red);outline-offset:3px}
     @media(max-width:650px){.nav-links{background:var(--bg-page);border-bottom:1px solid var(--border-light)}.product-grid{grid-template-columns:1fr}}
     @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+  
+    /* Eshwar Home Products canonical Earthy Brown palette */
+    :root{--bg-page:#FAF8F5;--bg-card:#FFFFFF;--earth-dark:#432818;--brand-red:#B81D13;--accent-gold:#D99B26;--accent-green:#1B3B2B;--text-main:#2A1A10;--text-muted:#5A4638;--bg-subtle:#F6F1E7;--border-light:#E5D8C8;--paper:var(--bg-page);--surface:var(--bg-card);--ink:var(--text-main);--muted:var(--text-muted);--olive:var(--accent-green);--olive-dark:var(--earth-dark);--clay:var(--brand-red);--line:var(--border-light)}
+    body{background:var(--bg-page);color:var(--text-main)}
+    .site-header{background:var(--bg-page);border-bottom-color:var(--border-light)}
+    .brand-name,h1,h2,h3{color:var(--text-main)}
+    .brand-sub,.nav-links a,.hero-copy{color:var(--text-muted)}
+    .nav-links a:hover,.text-link{color:var(--accent-green);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+    .nav-cta,.button{background:var(--brand-red);border-color:var(--brand-red);color:#FFFDF9}
+    .nav-cta:hover,.button:hover{background:#94180F;border-color:#94180F;color:#FFFDF9}
+    .preview-note,.footer{background:var(--earth-dark);color:#FFFDF9}
+    .footer :where(p,a){color:#FFFDF9}
+    .footer a:hover{color:var(--accent-gold)}
+    a:focus-visible,button:focus-visible{outline:3px solid var(--accent-gold);outline-offset:3px}
   </style>
 </head>
 <body>
