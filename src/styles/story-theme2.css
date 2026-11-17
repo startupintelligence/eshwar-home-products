@@ -63,8 +63,8 @@
 .ehp-visit-cta-inner .ehp-address { font-size: .88rem; font-weight: 650; }
 .ehp-visit-actions { display: grid; gap: 10px; }
 .ehp-action { display: flex; min-height: 48px; align-items: center; justify-content: space-between; gap: 15px; padding: 0 18px; border: 1px solid var(--accent-green); font-size: .8rem; font-weight: 800; text-decoration: none; }
-.ehp-action-primary { background: var(--brand-red); border-color: var(--brand-red); color: #FFFDF9; }
-.ehp-action-secondary { background: var(--brand-red); border-color: var(--brand-red); color: #FFFDF9; }
+.ehp-action-primary { background: #D99B26; border-color: #D99B26; color: #2A1508; }
+.ehp-action-secondary { background: #432818; border-color: #432818; color: #FFFDF9; }
 .ehp-action-outline { background: var(--bg-page); color: var(--accent-green); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:4px; }
 @media (max-width: 760px) {
   .ehp-story-grid,.ehp-name-story-grid,.ehp-visit-cta-inner { grid-template-columns: 1fr; }
@@ -116,3 +116,50 @@
 .ehp-story-proof .ehp-google-rating strong { color: #2A1A10; font-size: .88rem; }
 .ehp-story-proof .ehp-google-rating span { color: #D99B26; }
 @media (max-width: 768px) { .ehp-story-grid { grid-template-columns: minmax(0,1fr); gap: 28px; } }
+
+/* Theme 03 refinements for the About page. */
+.ehp-about-page .ehp-about-hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+  align-items: center;
+  gap: clamp(30px, 5vw, 68px);
+}
+.ehp-about-hero-copy { min-width: 0; }
+.ehp-about-hero-proof {
+  min-width: 0;
+  padding: 22px 24px;
+  border: 1px solid #E2D6C5;
+  border-top: 3px solid #D99B26;
+  background: #FFFDF9;
+}
+.ehp-about-hero-proof-rating {
+  display: block;
+  color: #432818;
+  font-size: .9rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-decoration: none;
+}
+.ehp-about-hero-proof-rating strong { display: block; margin-bottom: 5px; color: #2A1508; font-size: 1.45rem; }
+.ehp-about-hero-proof-rating strong span { color: #D99B26; }
+.ehp-about-hero-proof p { margin: 13px 0 0; color: #4A3525; font-size: .82rem; line-height: 1.65; }
+.ehp-about-page .ehp-name-mark { background: #FFFDF9; }
+.ehp-about-page .ehp-name-mark .ehp-story-logo {
+  border: 0;
+  box-shadow: none;
+  mix-blend-mode: multiply;
+}
+.ehp-about-page .ehp-action-primary:hover { border-color: #432818; background: #E5AA3B; }
+.ehp-about-page .ehp-action-secondary:hover { border-color: #D99B26; }
+.ehp-about-page .ehp-action-primary:focus-visible,
+.ehp-about-page .ehp-action-secondary:focus-visible { outline: 3px solid #D99B26; outline-offset: 3px; }
+.ehp-about-page .ehp-about-hero h1 em,
+.ehp-about-page .ehp-about-pantry h2 em,
+.ehp-about-page .ehp-commitments-heading h2 em,
+.ehp-about-page .ehp-visit-cta h2 em { color: #7A4B16; }
+.ehp-about-page .ehp-commitment-number,
+.ehp-about-page .ehp-about-range-link > span:first-child { color: #7A4B16; }
+@media (max-width: 760px) {
+  .ehp-about-page .ehp-about-hero-inner { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .ehp-about-hero-proof { max-width: 460px; }
+}
