@@ -5,7 +5,7 @@
   --text-main:#2A1A10; --text-muted:#5A4638; --border-light:#E5D8C8;
   --paper:var(--bg-page); --surface:var(--bg-card); --ink:var(--text-main); --muted:var(--text-muted);
   --olive:var(--accent-green); --olive-soft:#F6F1E7; --clay:var(--brand-red); --line:var(--border-light);
-  --serif:"Lora", Georgia, serif; --sans:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --serif:Georgia, "Times New Roman", serif; --sans:Arial, Helvetica, sans-serif;
   font-family:var(--sans); color:var(--text-main); background:var(--bg-page); font-synthesis:none;
 }
 body { background: var(--bg-page); color: var(--text-main); }

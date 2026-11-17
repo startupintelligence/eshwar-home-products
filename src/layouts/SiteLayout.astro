@@ -10,7 +10,7 @@ const { title, description, current="home", includeStoreSchema=true, canonicalUr
 const canonical = canonicalUrl ?? new URL(Astro.url.pathname, Astro.site ?? "https://startupintelligence.github.io").toString();
 const siteUrl = new URL(import.meta.env.BASE_URL, Astro.site ?? "https://startupintelligence.github.io").toString();
 const ogImage = new URL("images/og-eshwar-home-products.png", siteUrl).toString();
-const storeSchema = { "@context":"https://schema.org", "@type":"GroceryStore", "@id":siteUrl+"#store", name:"Eshwar Home Products", alternateName:"ஈஸ்வர் ஹோம் புராடக்ட்ஸ்", url:siteUrl, telephone:"+91-99412-09953", address:{ "@type":"PostalAddress", streetAddress:"119/1, Paddy Field Road, Perambur", addressLocality:"Chennai", addressRegion:"Tamil Nadu", postalCode:"600 011", addressCountry:"IN" }, openingHours:["Mo-Sa 09:00-21:00"], description:"Mon–Sat: 9:00 AM – 9:00 PM · Sun: Closed", areaServed:"Perambur, Chennai", sameAs:["https://www.youtube.com/@EHP_PeramburOfficial"] };
+const storeSchema = { "@context":"https://schema.org", "@type":"GroceryStore", "@id":siteUrl+"#store", name:"Eshwar Home Products", alternateName:"ஈஸ்வர் ஹோம் புராடக்ட்ஸ்", url:siteUrl, logo:new URL("images/brand/eshwar-home-products-logo.png", siteUrl).toString(), telephone:"+91 99412 09953", email:"info.eshwarhomeproducts@gmail.com", address:{ "@type":"PostalAddress", streetAddress:"119/1, Paddy Field Road, Perambur", addressLocality:"Chennai", addressRegion:"Tamil Nadu", postalCode:"600 011", addressCountry:"IN" }, openingHours:["Mo-Sa 09:00-21:00"], description:"Mon–Sat: 9:00 AM – 9:00 PM · Sun: Closed", areaServed:"Perambur, Chennai", sameAs:["https://youtube.com"] };
 ---
 <!doctype html>
 <html lang="en">
@@ -23,11 +23,12 @@ const storeSchema = { "@context":"https://schema.org", "@type":"GroceryStore", "
 <script src="https://analytics.ahrefs.com/analytics.js" data-key="T8+LOj2/EakoZK7/pjg3rg" async></script>
 {includeStoreSchema && <script type="application/ld+json" set:html={JSON.stringify(storeSchema)} />}
 </head>
-<body><a class="skip-link" href="#main-content">Skip to content</a><SiteHeader current={current} /><main id="main-content"><slot /></main><SiteFooter />
+<body><div class="reading-progress" aria-hidden="true"></div><a class="skip-link" href="#main-content">Skip to content</a><SiteHeader current={current} /><main id="main-content"><slot /></main><SiteFooter />
 <script is:inline>
   (() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion || !('IntersectionObserver' in window)) return;
+    const lowMemoryDevice = 'deviceMemory' in navigator && navigator.deviceMemory <= 4;
+    if (reduceMotion || lowMemoryDevice || !('IntersectionObserver' in window)) return;
     const items = document.querySelectorAll('.reveal-item');
     if (!items.length) return;
     document.documentElement.classList.add('has-reveal');

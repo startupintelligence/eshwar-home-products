@@ -13,12 +13,15 @@ const hasOfficialLogo = existsSync(logoPath);
 const whatsappUrl = "https://wa.me/919941209953";
 const ask = (item: string) => whatsappUrl + "?text=" + encodeURIComponent("Hello Eshwar Home Products, please help me check today's availability and pack sizes for " + item + ".");
 const categories = [
-  { number: "01", title: "Rice & millets", tamil: "அரிசி · சிறுதானியம்", detail: "Traditional rice, whole millets and millet flours.", image: "rice-millets.webp", alt: "Stock photograph of rice and grains arranged in bowls", href: base + "products/#grains", enquiry: "rice and millet varieties" },
-  { number: "02", title: "Oils & ghee", tamil: "செக்கு எண்ணெய்", detail: "Chekku oils, ghee and everyday cooking essentials.", image: "oils-rice.webp", alt: "Stock photograph of a bottle of cooking oil beside a bowl of rice", href: base + "products/#oils", enquiry: "oils and ghee" },
-  { number: "03", title: "Pantry favourites", tamil: "சிற்றுண்டி · மளிகை", detail: "Millet snacks, pulses, honey, dry fruits and more.", image: "spices-pantry.webp", alt: "Stock photograph of Indian spices, lentils and pantry ingredients", href: base + "products/#pantry", enquiry: "pantry essentials and snacks" }
+  { number: "01", group: "RICE & GRAINS", title: "Traditional rice varieties", detail: "Explore familiar traditional rice varieties for everyday meals and recipes.", image: "category-traditional-rice.svg", enquiry: "traditional rice varieties" },
+  { number: "02", group: "RICE & GRAINS", title: "Millets & millet flours", detail: "Millet varieties and flour options for a range of everyday dishes.", image: "category-millets-flours.svg", enquiry: "millets and millet flours" },
+  { number: "03", group: "PANTRY ESSENTIALS", title: "Flakes, vermicelli & pasta", detail: "Explore flakes, vermicelli and pasta selections for your pantry.", image: "category-flakes-vermicelli-pasta.svg", enquiry: "flakes, vermicelli and pasta" },
+  { number: "04", group: "COOKING ESSENTIALS", title: "Cold-pressed oils", detail: "Ask about the cold-pressed oil varieties listed by the store.", image: "category-cold-pressed-oils.svg", enquiry: "cold-pressed oils" },
+  { number: "05", group: "COOKING ESSENTIALS", title: "Ghee & dairy essentials", detail: "Find out about the ghee and dairy products available at the store.", image: "category-ghee-dairy.svg", enquiry: "ghee and dairy essentials" },
+  { number: "06", group: "PANTRY ESSENTIALS", title: "Honey, pulses & more", detail: "Explore honey, pulses, dry fruits, nuts and other pantry selections.", image: "category-honey-pulses.svg", enquiry: "honey, pulses and pantry essentials" }
 ];
 ---
-<SiteLayout title="Eshwar Home Products | Traditional Foods & Millets in Perambur, Chennai" description="Explore traditional rice, Siruthaniyam millets, Chekku oils and pantry essentials at Eshwar Home Products, Paddy Field Road, Perambur, Chennai." current="home">
+<SiteLayout title="Eshwar Home Products | Traditional Foods & Millets in Perambur, Chennai" description="Explore traditional rice, Siruthaniyam millets, cold-pressed oils and pantry essentials at Eshwar Home Products, Paddy Field Road, Perambur, Chennai." current="home">
   <div class="home-utility" aria-label="Store details">
     <div class="container home-utility-inner">
       <span>YOUR NEIGHBOURHOOD PANTRY <i aria-hidden="true">/</i> PERAMBUR, CHENNAI</span>
@@ -30,42 +33,46 @@ const categories = [
   <section class="pantry-hero" aria-labelledby="home-title">
     <div class="container pantry-hero-grid">
       <div class="pantry-hero-copy">
-        <p class="pantry-eyebrow"><span></span> ஈஸ்வர் ஹோம் புராடக்ட்ஸ் · PERAMBUR</p>
-        <h1 id="home-title">A pantry full of <em>good things.</em></h1>
-        <p class="pantry-hero-lede">Traditional rice, Siruthaniyam millets, Chekku oils and everyday favourites, all close to home.</p>
+        <p class="pantry-eyebrow"><span></span> A THOUGHTFUL PANTRY BEGINS HERE · PERAMBUR</p>
+        <h1 id="home-title">Good food.<br /><em>Rooted in</em><br />tradition.</h1>
+        <p class="pantry-hero-lede">Discover traditional rice, millets and familiar everyday essentials at Eshwar Home Products. Explore our range and get in touch with our team for product enquiries.</p>
         <div class="pantry-hero-actions">
-          <a class="pantry-button pantry-button-green" href={base + "products/"}>Explore the pantry <span aria-hidden="true">↗</span></a>
-          <a class="pantry-link" href={ask("your pantry requirements")}>Ask the store <span aria-hidden="true">↗</span></a>
+          <a class="pantry-button pantry-button-green" href={base + "products/"}>Explore our products <span aria-hidden="true">↗</span></a>
+          <a class="pantry-link" href={base + "contact/"}>Find our store</a>
         </div>
         <div class="pantry-hero-meta"><span>119/1, Paddy Field Road</span><span>MON–SAT · 9 AM–9 PM</span></div>
       </div>
-      <figure class="pantry-hero-photo reveal-item">
-        <img src={base + "images/stock/hero-pantry.webp"} alt="Stock photograph of Indian pantry ingredients, lentils, spices and garlic arranged on a dark surface" width="1600" height="1067" fetchpriority="high" decoding="async" />
-        <figcaption><span>THE EVERYDAY PANTRY</span><span>PERAMBUR · CHENNAI</span></figcaption>
+      <figure class="pantry-hero-art reveal-item">
+        <img src={base + "images/placeholders/hero-grain-bowl.svg"} alt="Illustration of a traditional bowl filled with grains" width="520" height="460" fetchpriority="high" decoding="async" />
+        <figcaption>From familiar fields to your table</figcaption>
       </figure>
     </div>
     <div class="pantry-hero-bottom"><span>GOOD FOOD, CLOSE TO HOME</span><span>SCROLL TO EXPLORE ↓</span></div>
   </section>
 
+  <section class="pantry-intro-strip" aria-label="Store introduction">
+    <div class="container pantry-intro-inner"><p>Traditional choices. Everyday essentials.<br />One place to explore them.</p><span>Perambur · Chennai</span></div>
+  </section>
+
   <section class="pantry-categories" aria-labelledby="categories-title">
     <div class="container">
       <div class="pantry-section-heading reveal-item">
-        <div><p class="pantry-eyebrow">A FEW GOOD PLACES TO START</p><h2 id="categories-title">Find your <em>favourites.</em></h2></div>
-        <a class="pantry-link" href={base + "products/"}>View all categories ↗</a>
+        <div><p class="pantry-eyebrow">EXPLORE THE COLLECTION</p><h2 id="categories-title">Our product range</h2></div>
+        <p class="pantry-section-intro">Browse the categories available at our store. Contact us for current varieties, availability and details.</p>
       </div>
       <div class="pantry-card-grid">
         {categories.map((category) => <article class="pantry-category-card reveal-item">
-          <a class="pantry-category-photo" href={category.href} aria-label={"Explore " + category.title}>
-            <img src={base + "images/stock/" + category.image} alt={category.alt} width="1200" height="800" loading="lazy" decoding="async" />
-            <span class="pantry-category-index">{category.number}</span><span class="pantry-category-arrow" aria-hidden="true">↗</span>
-          </a>
+          <figure class="pantry-category-visual">
+            <img src={base + "images/placeholders/" + category.image} alt="" aria-hidden="true" width="220" height="190" loading="lazy" decoding="async" />
+            <figcaption>Representative visual</figcaption>
+          </figure>
           <div class="pantry-category-copy">
-            <p lang="ta">{category.tamil}</p><h3>{category.title}</h3><span>{category.detail}</span>
-            <a href={ask(category.enquiry)}>Ask about availability ↗</a>
+            <p class="pantry-category-group">{category.group}</p><h3>{category.title}</h3><span>{category.detail}</span>
+            <a href={ask(category.enquiry)} target="_blank" rel="noopener noreferrer">Enquire about this range ↗</a>
           </div>
         </article>)}
       </div>
-      <p class="pantry-photo-note">Illustrative stock photography from Pexels. Product and store photographs will be added when supplied by the client.</p>
+      <p class="pantry-photo-note">Illustrations are representative placeholders. Product varieties, pack sizes, prices and availability should be confirmed directly with the store.</p>
     </div>
   </section>
 
@@ -73,7 +80,7 @@ const categories = [
     <div class="container ehp-story-grid">
       <aside class="ehp-story-proof" aria-label="Eshwar Home Products store identity">
         <div class="ehp-story-proof-inner">
-          {hasOfficialLogo && <img class="ehp-story-logo" src={base + "images/brand/eshwar-home-products-logo.png"} alt="Official Eshwar Home Products Rudraksha and Trishul emblem" width="320" height="320" loading="lazy" decoding="async" />}
+          {hasOfficialLogo && <img class="ehp-story-logo" src={base + "images/brand/eshwar-home-products-logo.png"} alt="Official Eshwar Home Products emblem with a Rudraksha bead, golden Trishuls, Damrus and lemons" width="320" height="320" loading="lazy" decoding="async" />}
           <p class="ehp-story-tamil" lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</p>
           <p class="ehp-story-english">ESHWAR HOME PRODUCTS</p>
           <p class="ehp-story-origin">Named in devotion to Eshwaran <span aria-hidden="true">·</span> Perambur, Chennai</p>
@@ -83,8 +90,8 @@ const categories = [
       <div class="ehp-story-copy">
         <p class="ehp-story-eyebrow">Our Story <span aria-hidden="true">·</span> Perambur, Chennai</p>
         <h2 id="story-title">Rooted in devotion, serving everyday South Indian kitchens.</h2>
-        <p>Eshwar Home Products takes its name with devotion from the family deity, Eshwaran (Lord Shiva). That connection is reflected in the store’s Rudraksha and Trishul emblem, and in the values we want to bring to every household staple: honesty, gratitude and care.</p>
-        <p>At our store on Paddy Field Road, Perambur, you’ll find traditional rice varieties, whole millets (<em>Siruthaniyam</em>), stone-ground flours, wood-pressed <em>Chekku</em> oils, ghee and wholesome snacks together under one roof. Our store team is here to offer personal, unhurried guidance when you need help choosing.</p>
+        <p>Eshwar Home Products is named with devotion after our family deity, Eshwaran (Lord Shiva). That connection is reflected in the store’s Rudraksha and Trishul emblem, and in the values we want to bring to every household staple: honesty, gratitude and care.</p>
+        <p>At our store on Paddy Field Road, Perambur, you’ll find traditional rice varieties, whole millets (<em>Siruthaniyam</em>), millet flours, cold-pressed oils, ghee and other pantry essentials together under one roof. Our store team is here to offer personal, unhurried guidance when you need help choosing.</p>
         <div class="ehp-story-values" aria-label="Our values">
           <div><span>01</span><strong>Rooted in Trust</strong></div>
           <div><span>02</span><strong>Traditional Pantry Variety</strong></div>
@@ -99,7 +106,7 @@ const categories = [
     <div class="pantry-visit-heading"><p class="pantry-eyebrow">COME BY THE STORE</p><h2 id="visit-title">We’re just <em>around the corner.</em></h2><p>Need a particular variety or pack size? Call or message before you visit so our team can check the latest availability.</p><a class="pantry-button pantry-button-red" href={mapsUrl} target="_blank" rel="noopener noreferrer">Get directions <span aria-hidden="true">↗</span></a></div>
     <div class="pantry-visit-details">
       <div><span>FIND US</span><p>119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India</p></div>
-      <div><span>OPENING HOURS</span><p>Monday–Saturday, 9 AM–9 PM<br />Sunday: Closed</p></div>
+      <div><span>OPENING HOURS</span><p>Mon–Sat: 9:00 AM – 9:00 PM · Sun: Closed</p></div>
       <div><span>CALL OR WHATSAPP</span><p><a href="tel:+919941209953">+91 99412 09953</a><br /><a href={ask("your pantry requirements")}>Send an enquiry ↗</a></p></div>
     </div>
   </section>

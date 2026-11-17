@@ -233,3 +233,25 @@ body{background:var(--brand-paper);color:var(--brand-ink);-webkit-font-smoothing
   --clay: var(--brand-red);
   --line: var(--border-light);
 }
+
+/* Production Theme 03 contract — solid surfaces, contrast and 48px controls. */
+:root { --bg-page:#FAF8F5; --bg-subtle:#F6F1E7; --bg-card:#FFFFFF; --earth-dark:#432818; --brand-red:#B81D13; --accent-gold:#D99B26; --accent-green:#1B3B2B; --text-main:#2A1A10; --text-muted:#5A4638; --border-light:#E5D8C8; --serif:Georgia, "Times New Roman", serif; --sans:Arial, Helvetica, sans-serif; }
+html,body { background:var(--bg-page); color:var(--text-main); }
+.site-header { background:var(--bg-page); border-bottom:1px solid var(--border-light); }
+.wordmark-name { color:var(--text-main); } .wordmark-tamil { color:var(--brand-red); } .wordmark-place { color:var(--text-muted); }
+.main-nav a { min-height:48px; color:#3B281B; }
+.main-nav a:hover,.main-nav a[aria-current=page] { color:var(--brand-red); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:4px; }
+.header-contact { min-height:48px; border:1px solid var(--brand-red); background:var(--brand-red); color:#FFFDF9; }
+.header-contact:hover { background:#94180F; color:#FFFDF9; }
+.menu-toggle { min-width:48px; min-height:48px; background:var(--bg-card); color:var(--text-main); border:1px solid var(--earth-dark); }
+.home-utility { border-bottom:1px solid var(--accent-gold); background:var(--earth-dark); color:#FFFDF9; }
+.home-utility span { color:#FFFDF9; } .home-utility a { color:var(--accent-gold); text-decoration:underline; text-underline-offset:3px; }
+.site-footer { border-top:1px solid var(--accent-gold); background:var(--earth-dark); color:#FFFDF9; }
+.site-footer :where(h1,h2,h3,p,span,small,address,dt,dd) { color:#FFFDF9; }
+.site-footer :where(a) { color:var(--accent-gold); text-decoration:underline; text-underline-offset:4px; }
+.site-footer :where(a:hover) { color:#FFFDF9; }
+:where(h1,h2,h3,h4,h5,h6) { text-wrap:balance; }
+:where(.button,.header-contact,.main-nav a,.footer-nav a,.footer-bottom a,.pantry-button,.pantry-link,.pantry-category-copy>a,.ehp-action,.ehp-about-range-link,.ehp-about-rating,.ehp-google-rating,.action,.inline-link) { min-height:48px; }
+@media(max-width:650px) { .header-contact { display:inline-flex; grid-column:1/-1; width:100%; margin:8px 0 12px; } }
+@media(max-width:768px) { .hero-3d-card,.hero-3d-badge,.pantry-card-3d,.heritage-marquee-track { animation:none!important; transition:none!important; transform:none!important; } .pantry-category-photo img,.pantry-hero-art img { transition:none!important; transform:none!important; }
+  .reveal-item { opacity:1!important; transform:none!important; transition:none!important; } }

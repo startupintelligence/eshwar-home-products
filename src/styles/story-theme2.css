@@ -84,3 +84,26 @@
 @media (prefers-reduced-motion: reduce) {
   .ehp-story-home *, .ehp-about-page * { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
 }
+
+/* Theme 03 — Our Story on roasted brown; warm-ivory copy remains high contrast. */
+.ehp-story-home { background: var(--earth-dark); color: #FFFDF9; border-block: 1px solid var(--accent-gold); }
+.ehp-story-home .ehp-story-copy h2 { color: #FFFDF9; }
+.ehp-story-home .ehp-story-copy > p:not(.ehp-story-eyebrow) { color: #F6F1E7; }
+.ehp-story-home .ehp-story-eyebrow { color: var(--accent-gold); }
+.ehp-story-home .ehp-story-values > div { border-color: var(--accent-gold); background: var(--bg-card); }
+.ehp-story-home .ehp-story-values strong { color: var(--text-main); }
+.ehp-story-home .ehp-story-values span { color: var(--brand-red); }
+.ehp-story-home .ehp-story-read { color: #FFFDF9; }
+.ehp-about-rating { display: inline-flex; min-height: 48px; align-items: center; gap: 8px; margin-top: 18px; padding: 0 14px; border: 1px solid var(--border-light); background: var(--bg-subtle); color: var(--accent-green); font-size: .78rem; font-weight: 750; text-decoration: none; }
+.ehp-about-rating span { color: var(--accent-gold); }
+.ehp-about-pantry { padding-block: clamp(54px, 7vw, 84px); background: var(--bg-subtle); border-block: 1px solid var(--border-light); }
+.ehp-about-pantry h2 { margin: 0 0 26px; color: var(--text-main); font: 500 clamp(2.2rem, 4vw, 3.7rem)/1.05 Georgia, "Times New Roman", serif; text-wrap: balance; }
+.ehp-about-pantry h2 em { color: var(--brand-red); }
+.ehp-about-ranges { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--border-light); border-left: 1px solid var(--border-light); }
+.ehp-about-range-link { display: grid; min-width: 0; min-height: 112px; grid-template-columns: 30px 1fr; align-content: center; gap: 7px 12px; padding: 17px; border-right: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); background: var(--bg-card); text-decoration: none; }
+.ehp-about-range-link > span:first-child { grid-row: span 2; color: var(--brand-red); font-size: .7rem; font-weight: 800; }
+.ehp-about-range-link strong { color: var(--text-main); font: 500 1.12rem/1.25 Georgia, "Times New Roman", serif; text-wrap: balance; }
+.ehp-about-range-link > span:last-child { color: var(--accent-green); font-size: .7rem; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.ehp-about-range-link:hover { border-color: var(--accent-gold); }
+@media(max-width:850px) { .ehp-about-ranges { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media(max-width:600px) { .ehp-about-ranges { grid-template-columns: minmax(0, 1fr); } .ehp-about-range-link { min-height: 88px; } }

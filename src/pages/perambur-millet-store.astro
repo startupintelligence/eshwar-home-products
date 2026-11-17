@@ -7,6 +7,7 @@ const siteOrigin = Astro.site ?? new URL("https://startupintelligence.github.io"
 const pageUrl = new URL(base + "perambur-millet-store/", siteOrigin).toString();
 const storeAddress = "119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India";
 const phone = "+91 99412 09953";
+const email = "info.eshwarhomeproducts@gmail.com";
 const phoneHref = "tel:+919941209953";
 const whatsappUrl = "https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20would%20like%20to%20check%20current%20stock%20for%3A";
 const mapsUrl = "https://www.google.com/maps/search/?api=1&query=119%2F1%2C%20Paddy%20Field%20Road%2C%20Perambur%2C%20Chennai%2C%20Tamil%20Nadu%20600%20011";
@@ -56,7 +57,9 @@ const discoverySchema = {
       name: "Eshwar Home Products",
       alternateName: "ஈஸ்வர் ஹோம் புராடக்ட்ஸ்",
       url: pageUrl,
-      telephone: "+91-99412-09953",
+      telephone: "+91 99412 09953",
+      email,
+      logo: new URL("images/brand/eshwar-home-products-logo.png", new URL(base, siteOrigin)).toString(),
       address: {
         "@type": "PostalAddress",
         streetAddress: "119/1, Paddy Field Road, Perambur",
@@ -67,7 +70,7 @@ const discoverySchema = {
       },
       openingHours: ["Mo-Sa 09:00-21:00"], description: "Mon–Sat: 9:00 AM – 9:00 PM · Sun: Closed",
       areaServed: { "@type": "City", name: "Chennai" },
-      sameAs: [youtubeUrl]
+      sameAs: ["https://youtube.com"]
     },
     {
       "@type": "FAQPage",
@@ -118,11 +121,15 @@ const discoverySchema = {
           </div>
           <div>
             <dt>Opening hours</dt>
-            <dd>Monday–Saturday: 9:00 AM–9:00 PM<br />Sunday: Closed</dd>
+            <dd>Mon–Sat: 9:00 AM – 9:00 PM · Sun: Closed</dd>
           </div>
           <div>
             <dt>WhatsApp / Phone</dt>
             <dd><a href={phoneHref}>{phone}</a></dd>
+          </div>
+          <div>
+            <dt>Email</dt>
+            <dd><a href={"mailto:" + email}>{email}</a></dd>
           </div>
           <div>
             <dt>Official YouTube</dt>
