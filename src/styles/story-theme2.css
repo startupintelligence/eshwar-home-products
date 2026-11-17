@@ -109,3 +109,10 @@
 .ehp-about-range-link:hover { border-color: var(--accent-gold); }
 @media(max-width:850px) { .ehp-about-ranges { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media(max-width:600px) { .ehp-about-ranges { grid-template-columns: minmax(0, 1fr); } .ehp-about-range-link { min-height: 88px; } }
+
+
+/* Local proof badge inside the official emblem card. */
+.ehp-story-proof .ehp-google-rating { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 7px; margin-top: 18px; padding: 0 14px; border: 1px solid #D8C5AA; border-radius: 999px; background: #F5EDE3; color: #2A1A10; font-size: .72rem; font-weight: 750; line-height: 1.25; text-decoration: none; }
+.ehp-story-proof .ehp-google-rating strong { color: #2A1A10; font-size: .88rem; }
+.ehp-story-proof .ehp-google-rating span { color: #D99B26; }
+@media (max-width: 768px) { .ehp-story-grid { grid-template-columns: minmax(0,1fr); gap: 28px; } }

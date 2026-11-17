@@ -1,10 +1,10 @@
 :root {
   color-scheme: light;
-  --bg-page:#FAF8F5; --bg-subtle:#F6F1E7; --bg-card:#FFFFFF; --earth-dark:#432818;
+  --bg-page:#FAF8F5; --bg-subtle:#F5EDE3; --bg-card:#FFFDF9; --earth-dark:#3B2112;
   --brand-red:#B81D13; --accent-gold:#D99B26; --accent-green:#7A4B16;
   --text-main:#2A1A10; --text-muted:#5A4638; --border-light:#E5D8C8;
   --paper:var(--bg-page); --surface:var(--bg-card); --ink:var(--text-main); --muted:var(--text-muted);
-  --olive:var(--accent-green); --olive-soft:#F6F1E7; --clay:var(--brand-red); --line:var(--border-light);
+  --olive:var(--accent-green); --olive-soft:#F5EDE3; --clay:var(--brand-red); --line:var(--border-light);
   --serif:Georgia, "Times New Roman", serif; --sans:Arial, Helvetica, sans-serif;
   font-family:var(--sans); color:var(--text-main); background:var(--bg-page); font-synthesis:none;
 }
@@ -187,14 +187,14 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--brand-red);outline-
 /* Eshwar Home Products canonical Earthy Brown palette */
 :root {
   --bg-page: #FAF8F5;
-  --bg-card: #FFFFFF;
-  --earth-dark: #432818;
+  --bg-card: #FFFDF9;
+  --earth-dark: #3B2112;
   --brand-red: #B81D13;
   --accent-gold: #D99B26;
   --accent-green: #7A4B16;
   --text-main: #2A1A10;
   --text-muted: #5A4638;
-  --bg-subtle: #F6F1E7;
+  --bg-subtle: #F5EDE3;
   --border-light: #E5D8C8;
   --paper: var(--bg-page);
   --surface: var(--bg-card);
@@ -256,7 +256,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--brand-red);outline-
 .ehp-product-card figure figcaption{position:absolute;right:9px;bottom:7px;color:#765C43;font-size:.59rem}
 .ehp-product-card-copy{display:flex;min-height:76px;align-items:center;justify-content:space-between;gap:10px;padding:12px 13px}
 .ehp-product-card-copy h3{margin:0;color:#28180E;font:600 1rem/1.25 Arial,Helvetica,sans-serif}
-.ehp-product-card-copy>a{display:grid;width:44px;height:44px;flex:0 0 44px;place-items:center;border-radius:50%;background:var(--ehp-band);color:var(--ehp-ivory);font-size:1.15rem;text-decoration:none}
+.ehp-product-card-copy>a{display:grid;width:48px;height:48px;min-width:48px;min-height:48px;flex:0 0 48px;place-items:center;border-radius:50%;background:var(--ehp-band);color:var(--ehp-ivory);font-size:1.15rem;text-decoration:none}
 .ehp-product-card-copy>a:hover{background:#694022}
 .ehp-product-note{margin:18px 0 0;color:#705B47;text-align:center;font-size:.72rem}
 .ehp-trust-band{background:var(--ehp-espresso);color:var(--ehp-ivory)}
@@ -286,7 +286,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--brand-red);outline-
 .ehp-visit-details p{margin:4px 0 0;color:#FFF6E8;font-size:.9rem;line-height:1.6}
 .ehp-visit-details a{color:#F2C76D;text-underline-offset:3px}
 @media(max-width:900px){.ehp-site-header .header-inner{gap:14px}.ehp-site-header .wordmark{min-width:0}.ehp-site-header .wordmark-name{font-size:1.12rem}.ehp-site-header .main-nav{gap:12px}.ehp-site-header .main-nav a{font-size:.72rem}.ehp-site-header .header-contact{padding-inline:12px;font-size:.68rem}.ehp-hero-main{gap:20px;min-height:420px}.ehp-product-grid{grid-template-columns:repeat(2,minmax(0,1fr));max-width:680px;margin-inline:auto}}
-@media(max-width:680px){.ehp-site-header .header-inner{min-height:78px;flex-wrap:wrap;padding-block:9px}.ehp-site-header .wordmark-logo{width:52px;height:48px}.ehp-site-header .wordmark-name{font-size:1.08rem}.ehp-site-header .wordmark-tamil{font-size:.68rem}.ehp-site-header .menu-toggle{display:grid;width:48px;height:48px;place-items:center;margin-left:auto;border:1px solid rgba(217,155,38,.55);border-radius:50%;background:transparent}.ehp-site-header .menu-toggle-lines,.ehp-site-header .menu-toggle-lines:before,.ehp-site-header .menu-toggle-lines:after{display:block;width:19px;height:1.5px;background:#FFF6E8;content:""}.ehp-site-header .menu-toggle-lines{position:relative}.ehp-site-header .menu-toggle-lines:before{position:absolute;top:-6px}.ehp-site-header .menu-toggle-lines:after{position:absolute;top:6px}.ehp-site-header .main-nav{display:none;order:3;width:100%;flex-direction:column;align-items:stretch;gap:0;padding:8px 0 12px}.ehp-site-header .main-nav.is-open{display:flex}.ehp-site-header .main-nav a{min-height:46px;border-top:1px solid rgba(217,155,38,.18)}.ehp-site-header .header-contact{min-height:44px;padding-inline:13px;font-size:.68rem}.ehp-hero-main{grid-template-columns:1fr;gap:8px;padding-top:46px;padding-bottom:12px}.ehp-hero-copy{padding-bottom:0}.ehp-hero-copy h1{font-size:clamp(3.35rem,14vw,5rem)}.ehp-hero-lede{max-width:560px;font-size:.93rem}.ehp-hero-visual{min-height:230px;max-height:270px}.ehp-hero-visual img{max-height:270px}.ehp-hero-visual figcaption{right:8px;bottom:5px}.ehp-category-strip{display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:#A97522 transparent;padding-block:12px}.ehp-category-link{flex:0 0 31%;min-height:96px;scroll-snap-align:start;padding-inline:8px}.ehp-category-link:first-child{border-left:0}.ehp-cream-arch{height:38px}.ehp-products-section{padding:18px 0 52px}.ehp-products-heading{margin-bottom:22px}.ehp-products-heading>p:last-child span{max-width:300px;margin-inline:auto}.ehp-product-grid{gap:12px}.ehp-product-card-copy{min-height:68px;padding:9px}.ehp-product-card-copy h3{font-size:.88rem}.ehp-product-card-copy>a{width:40px;height:40px;flex-basis:40px}.ehp-trust-grid{grid-template-columns:repeat(2,minmax(0,1fr));padding-block:10px}.ehp-trust-grid>*{min-height:88px}.ehp-trust-grid>*+*{border-left:0}.ehp-trust-grid> :nth-child(even){border-left:1px solid rgba(217,155,38,.38)}.ehp-trust-grid> :nth-child(n+3){border-top:1px solid rgba(217,155,38,.25)}.ehp-story-home{padding:52px 0}.ehp-story-grid{grid-template-columns:1fr;gap:28px}.ehp-story-proof{max-width:360px;margin-inline:auto}.ehp-story-logo{height:150px}.ehp-visit-section{padding:52px 0}.ehp-visit-grid{grid-template-columns:1fr;gap:28px}.ehp-visit-details{padding:22px 0 0;border-left:0;border-top:1px solid rgba(217,155,38,.45)}}
+@media(max-width:680px){.ehp-site-header .header-inner{min-height:78px;flex-wrap:wrap;padding-block:9px}.ehp-site-header .wordmark-logo{width:52px;height:48px}.ehp-site-header .wordmark-name{font-size:1.08rem}.ehp-site-header .wordmark-tamil{font-size:.68rem}.ehp-site-header .menu-toggle{display:grid;width:48px;height:48px;place-items:center;margin-left:auto;border:1px solid rgba(217,155,38,.55);border-radius:50%;background:transparent}.ehp-site-header .menu-toggle-lines,.ehp-site-header .menu-toggle-lines:before,.ehp-site-header .menu-toggle-lines:after{display:block;width:19px;height:1.5px;background:#FFF6E8;content:""}.ehp-site-header .menu-toggle-lines{position:relative}.ehp-site-header .menu-toggle-lines:before{position:absolute;top:-6px}.ehp-site-header .menu-toggle-lines:after{position:absolute;top:6px}.ehp-site-header .main-nav{display:none;order:3;width:100%;flex-direction:column;align-items:stretch;gap:0;padding:8px 0 12px}.ehp-site-header .main-nav.is-open{display:flex}.ehp-site-header .main-nav a{min-height:46px;border-top:1px solid rgba(217,155,38,.18)}.ehp-site-header .header-contact{min-height:44px;padding-inline:13px;font-size:.68rem}.ehp-hero-main{grid-template-columns:1fr;gap:8px;padding-top:46px;padding-bottom:12px}.ehp-hero-copy{padding-bottom:0}.ehp-hero-copy h1{font-size:clamp(3.35rem,14vw,5rem)}.ehp-hero-lede{max-width:560px;font-size:.93rem}.ehp-hero-visual{min-height:230px;max-height:270px}.ehp-hero-visual img{max-height:270px}.ehp-hero-visual figcaption{right:8px;bottom:5px}.ehp-category-strip{display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:#A97522 transparent;padding-block:12px}.ehp-category-link{flex:0 0 31%;min-height:96px;scroll-snap-align:start;padding-inline:8px}.ehp-category-link:first-child{border-left:0}.ehp-cream-arch{height:38px}.ehp-products-section{padding:18px 0 52px}.ehp-products-heading{margin-bottom:22px}.ehp-products-heading>p:last-child span{max-width:300px;margin-inline:auto}.ehp-product-grid{gap:12px}.ehp-product-card-copy{min-height:68px;padding:9px}.ehp-product-card-copy h3{font-size:.88rem}.ehp-product-card-copy>a{width:48px;height:48px;min-width:48px;min-height:48px;flex-basis:48px}.ehp-trust-grid{grid-template-columns:repeat(2,minmax(0,1fr));padding-block:10px}.ehp-trust-grid>*{min-height:88px}.ehp-trust-grid>*+*{border-left:0}.ehp-trust-grid> :nth-child(even){border-left:1px solid rgba(217,155,38,.38)}.ehp-trust-grid> :nth-child(n+3){border-top:1px solid rgba(217,155,38,.25)}.ehp-story-home{padding:52px 0}.ehp-story-grid{grid-template-columns:1fr;gap:28px}.ehp-story-proof{max-width:360px;margin-inline:auto}.ehp-story-logo{height:150px}.ehp-visit-section{padding:52px 0}.ehp-visit-grid{grid-template-columns:1fr;gap:28px}.ehp-visit-details{padding:22px 0 0;border-left:0;border-top:1px solid rgba(217,155,38,.45)}}
 @media(max-width:390px){.ehp-site-header .wordmark{gap:7px}.ehp-site-header .wordmark-name{font-size:.96rem}.ehp-site-header .wordmark-tamil{font-size:.62rem}.ehp-site-header .header-contact{font-size:.61rem;padding-inline:10px}.ehp-category-link{flex-basis:38%}.ehp-product-card-copy h3{font-size:.8rem}}
 @media(prefers-reduced-motion:reduce){.ehp-category-strip{scroll-behavior:auto}}
 
@@ -309,3 +309,13 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--brand-red);outline-
 .ehp-about-page .ehp-about-eyebrow { color: #7A4B16; }
 .ehp-story-proof { background: #FFFDF9; }
 .ehp-story-proof .ehp-story-logo-cream { mix-blend-mode: multiply; }
+
+
+/* Shared wide-screen layout: 1120px content with fluid, touch-safe gutters. */
+.container { width: min(1120px, calc(100% - (2 * clamp(16px, 4vw, 32px)))); margin-inline: auto; }
+.page-heading, .directions-panel, .story-strip, .visit-note { background-color: #F5EDE3; color: #2A1A10; }
+.page-heading :is(h1,h2,h3), .directions-panel :is(h1,h2,h3), .story-strip :is(h2,h3), .visit-note :is(h2,h3) { color: #2A1A10; }
+.page-heading p:not(.eyebrow), .directions-panel p:not(.eyebrow), .story-strip p:not(.eyebrow), .visit-note p:not(.eyebrow) { color: #4A3525; }
+
+@media (max-width: 768px) { .ehp-product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 400px) { .ehp-product-grid { grid-template-columns: minmax(0, 1fr); max-width: 420px; } }
