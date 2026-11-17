@@ -1,0 +1,356 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+
+const base = import.meta.env.BASE_URL;
+const siteOrigin = Astro.site ?? new URL("https://startupintelligence.github.io");
+const pageUrl = new URL(base + "kitchen-guides/", siteOrigin).toString();
+
+const guides = [
+  {
+    number: "01",
+    eyebrow: "Tamil · English reference",
+    title: "A simple guide to Tamil millet names",
+    description: "Match familiar names such as Thinai, Varagu and Kuthiraivali with their English grain names and common kitchen uses.",
+    href: base + "perambur-millet-store/#millet-reference",
+    action: "Open the millet reference"
+  },
+  {
+    number: "02",
+    eyebrow: "Breakfast · Tiffin · Meals",
+    title: "Millets in everyday South Indian cooking",
+    description: "Explore meal ideas such as upma, pongal, dosa and other familiar ways grains and millet flours are used at home.",
+    href: base + "products/#grains",
+    action: "Explore rice & millets"
+  },
+  {
+    number: "03",
+    eyebrow: "Kitchen essentials · Chekku",
+    title: "A guide to traditional cooking oils",
+    description: "Get familiar with gingelly, groundnut and coconut oils, and the role of ghee in everyday kitchen routines.",
+    href: base + "products/#oils",
+    action: "Explore oils & ghee"
+  },
+  {
+    number: "04",
+    eyebrow: "Tea-time · Tiffin · Pantry",
+    title: "Millet snacks and quick pantry ideas",
+    description: "Browse millet flakes, sevai, pasta, cookies and other pantry categories as options to ask about for tea-time and tiffin.",
+    href: base + "products/#pantry",
+    action: "Explore snacks & pantry"
+  }
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Kitchen Guides | Eshwar Home Products",
+  url: pageUrl,
+  description: "Practical Tamil kitchen references and pantry guides from Eshwar Home Products in Perambur, Chennai.",
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: guides.map((guide, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: guide.title,
+      url: new URL(guide.href, siteOrigin).toString()
+    }))
+  }
+};
+---
+<SiteLayout
+  title="Kitchen Guides & Tamil Pantry Notes | Eshwar Home Products"
+  description="Practical Tamil kitchen references, millet name guides and pantry-use notes from Eshwar Home Products in Perambur, Chennai."
+  current="kitchen-guides"
+  canonicalUrl={pageUrl}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <section class="kitchen-guides-hero" aria-labelledby="kitchen-guides-title">
+    <div class="container kitchen-guides-hero-grid">
+      <div class="kitchen-guides-copy">
+        <nav class="kitchen-guides-breadcrumbs" aria-label="Breadcrumb">
+          <a href={base}>Home</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">Kitchen Guides</span>
+        </nav>
+        <p class="eyebrow">Kitchen notes · Eshwar Home Products · Perambur</p>
+        <h1 id="kitchen-guides-title">Small guides for<br />the <em>everyday</em><br /><em>Tamil kitchen.</em></h1>
+        <p class="kitchen-guides-intro">Helpful references for grains, pantry staples and familiar South Indian cooking. Start with a name, a meal or an ingredient, then explore the store’s pantry guide.</p>
+      </div>
+
+      <aside class="kitchen-guides-store-card" aria-label="Eshwar Home Products store details">
+        <p class="eyebrow">Your neighbourhood pantry</p>
+        <h2>Eshwar Home Products</h2>
+        <address>119/1, Paddy Field Road, Perambur, Chennai 600 011</address>
+        <p class="kitchen-guides-hours">Mon–Sat: 9:00 AM – 9:00 PM · Sun: Closed</p>
+        <a class="kitchen-guides-pantry-button" href={base + "products/"}>Explore the Pantry <span aria-hidden="true">↗</span></a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="container kitchen-guides-list" aria-labelledby="kitchen-guides-list-title">
+    <div class="kitchen-guides-list-heading">
+      <div>
+        <p class="eyebrow">Browse the guide shelf</p>
+        <h2 id="kitchen-guides-list-title">Practical notes, close to home.</h2>
+      </div>
+      <a class="kitchen-guides-browse-link" href={base + "products/"}>Browse the pantry ↗</a>
+    </div>
+
+    <div class="kitchen-guides-grid">
+      {guides.map((guide) => (
+        <a class="kitchen-guide-card" href={guide.href}>
+          <span class="eyebrow">{guide.number} · {guide.eyebrow}</span>
+          <h3>{guide.title}</h3>
+          <p>{guide.description}</p>
+          <span class="kitchen-guide-card-action">{guide.action} <span aria-hidden="true">↗</span></span>
+        </a>
+      ))}
+    </div>
+
+    <p class="kitchen-guides-note">These guides explain names and common kitchen uses. They are not medical advice or a live inventory. For current product details, varieties and pack sizes, contact the Perambur store directly.</p>
+  </section>
+</SiteLayout>
+
+<style>
+  .kitchen-guides-hero {
+    background: #F5EDE3;
+    border-bottom: 1px solid #E2D6C5;
+  }
+
+  .kitchen-guides-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+    align-items: center;
+    gap: clamp(36px, 7vw, 88px);
+    padding-block: clamp(44px, 6vw, 76px);
+  }
+
+  .kitchen-guides-copy { min-width: 0; }
+
+  .kitchen-guides-breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 28px;
+    color: #5A4638;
+    font-size: .68rem;
+  }
+
+  .kitchen-guides-breadcrumbs a {
+    color: #5A4638;
+    text-underline-offset: 3px;
+  }
+
+  .kitchen-guides-copy > .eyebrow,
+  .kitchen-guides-store-card > .eyebrow,
+  .kitchen-guides-list-heading .eyebrow {
+    margin: 0 0 9px;
+    color: #432818;
+    font-size: .64rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .kitchen-guides-copy h1 {
+    max-width: 680px;
+    margin: 0;
+    color: #2A1508;
+    font: 400 clamp(2.65rem, 5.4vw, 4.55rem)/.99 Georgia, "Times New Roman", serif;
+    letter-spacing: -.045em;
+    text-wrap: balance;
+  }
+
+  .kitchen-guides-copy h1 em { font-weight: 400; }
+
+  .kitchen-guides-intro {
+    max-width: 570px;
+    margin: 18px 0 0;
+    color: #5A4638;
+    font-size: .83rem;
+    line-height: 1.8;
+  }
+
+  .kitchen-guides-store-card {
+    width: 100%;
+    padding: 24px;
+    border: 1px solid #E2D6C5;
+    border-top: 3px solid #D99B26;
+    background: #FFFDF9;
+  }
+
+  .kitchen-guides-store-card h2 {
+    margin: 0 0 13px;
+    color: #2A1508;
+    font: 400 clamp(1.45rem, 2.4vw, 1.9rem)/1.15 Georgia, "Times New Roman", serif;
+  }
+
+  .kitchen-guides-store-card address,
+  .kitchen-guides-hours {
+    margin: 0;
+    color: #5A4638;
+    font-size: .7rem;
+    font-style: normal;
+    line-height: 1.7;
+  }
+
+  .kitchen-guides-hours { margin-top: 8px; }
+
+  .kitchen-guides-pantry-button {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 18px;
+    padding: 0 18px;
+    border: 1px solid #D99B26;
+    background: #D99B26;
+    color: #2A1508;
+    font-size: .72rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color .18s ease, border-color .18s ease;
+  }
+
+  .kitchen-guides-pantry-button:hover {
+    border-color: #B77D16;
+    background: #E7B64E;
+  }
+
+  .kitchen-guides-list {
+    padding-block: clamp(38px, 5vw, 60px) clamp(48px, 6vw, 76px);
+  }
+
+  .kitchen-guides-list-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 20px;
+  }
+
+  .kitchen-guides-list-heading h2 {
+    margin: 0;
+    color: #2A1508;
+    font: 400 clamp(1.75rem, 3.2vw, 2.5rem)/1.12 Georgia, "Times New Roman", serif;
+    letter-spacing: -.025em;
+  }
+
+  .kitchen-guides-browse-link {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    color: #432818;
+    font-size: .7rem;
+    font-weight: 700;
+    text-underline-offset: 4px;
+    white-space: nowrap;
+  }
+
+  .kitchen-guides-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid #E2D6C5;
+    border-left: 1px solid #E2D6C5;
+  }
+
+  .kitchen-guide-card {
+    display: flex;
+    min-width: 0;
+    min-height: 190px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: clamp(18px, 2.4vw, 28px);
+    border-right: 1px solid #E2D6C5;
+    border-bottom: 1px solid #E2D6C5;
+    background: #FAF8F5;
+    color: #2A1508;
+    text-decoration: none;
+    transition: transform .18s ease, border-color .18s ease, background-color .18s ease;
+  }
+
+  .kitchen-guide-card:hover {
+    z-index: 1;
+    transform: translateY(-3px);
+    border-color: #D99B26;
+    background: #FFFDF9;
+  }
+
+  .kitchen-guide-card:focus-visible {
+    position: relative;
+    z-index: 2;
+    outline: 3px solid #D99B26;
+    outline-offset: -3px;
+  }
+
+  .kitchen-guide-card > .eyebrow {
+    margin: 0 0 10px;
+    color: #6B4A2D;
+    font-size: .62rem;
+    font-weight: 700;
+    letter-spacing: .045em;
+  }
+
+  .kitchen-guide-card h3 {
+    margin: 0;
+    color: #2A1508;
+    font: 400 clamp(1.2rem, 2vw, 1.55rem)/1.18 Georgia, "Times New Roman", serif;
+    text-wrap: balance;
+  }
+
+  .kitchen-guide-card > p {
+    margin: 9px 0 16px;
+    color: #5A4638;
+    font-size: .72rem;
+    line-height: 1.7;
+  }
+
+  .kitchen-guide-card-action {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    gap: 7px;
+    margin-top: auto;
+    color: #432818;
+    font-size: .68rem;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: #D99B26;
+    text-underline-offset: 4px;
+  }
+
+  .kitchen-guides-note {
+    margin: 14px 0 0;
+    padding: 14px 16px;
+    border: 1px solid #E2D6C5;
+    background: #F5EDE3;
+    color: #5A4638;
+    font-size: .67rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 760px) {
+    .kitchen-guides-hero-grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 26px;
+      padding-block: 34px 38px;
+    }
+
+    .kitchen-guides-breadcrumbs { margin-bottom: 20px; }
+    .kitchen-guides-copy h1 { font-size: clamp(2.65rem, 11vw, 4rem); }
+    .kitchen-guides-store-card { max-width: 520px; }
+    .kitchen-guides-list { padding-block: 36px 48px; }
+    .kitchen-guides-list-heading { align-items: flex-start; flex-direction: column; gap: 8px; }
+    .kitchen-guides-grid { grid-template-columns: minmax(0, 1fr); }
+    .kitchen-guide-card { min-height: 176px; padding: 20px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kitchen-guide-card,
+    .kitchen-guides-pantry-button { transition: none; }
+    .kitchen-guide-card:hover { transform: none; }
+  }
+</style>

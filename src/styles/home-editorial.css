@@ -1,11 +1,11 @@
 
 :root {
   --pantry-paper: #FAF8F5;
-  --pantry-cream: #F6F1E7;
+  --pantry-cream: #F5EDE3;
   --pantry-ink: #2A1A10;
   --pantry-muted: #5A4638;
-  --pantry-green: #1B3B2B;
-  --pantry-green-deep: #432818;
+  --pantry-green: #7A4B16;
+  --pantry-green-deep: #3B2112;
   --pantry-red: #B81D13;
   --pantry-gold: #D99B26;
   --pantry-line: #E5D8C8;
@@ -128,3 +128,39 @@
  .pantry-category-photo img { transition:none; }
  .pantry-category-photo:hover img { transform:none; }
 }
+
+/* Theme 03 — Earthy Brown: lightweight, solid surfaces and touch-friendly controls. */
+.pantry-hero { background: var(--pantry-cream); }
+.pantry-hero-art { position: relative; display: grid; min-width: 0; min-height: 430px; place-items: center; overflow: hidden; margin: 0; padding: 22px; border: 1px solid var(--pantry-gold); background: var(--pantry-green-deep); }
+.pantry-hero-art img { display: block; width: min(100%, 520px); height: auto; max-height: 390px; object-fit: contain; }
+.pantry-hero-art figcaption { position: absolute; right: 18px; bottom: 18px; max-width: calc(100% - 36px); padding: 9px 12px; border: 1px solid var(--pantry-line); background: var(--bg-card); color: var(--pantry-ink); font: italic .86rem Georgia, "Times New Roman", serif; }
+.pantry-intro-strip { border-block: 1px solid var(--pantry-gold); background: var(--pantry-green-deep); color: #FFFDF9; }
+.pantry-intro-inner { display: flex; min-height: 112px; align-items: center; justify-content: space-between; gap: 24px; padding-block: 22px; }
+.pantry-intro-inner p { margin: 0; color: #FFFDF9; font: 400 clamp(1.2rem, 2.4vw, 1.7rem)/1.35 Georgia, "Times New Roman", serif; text-wrap: balance; }
+.pantry-intro-inner span { color: var(--pantry-gold); font-size: .68rem; font-weight: 750; letter-spacing: .14em; text-transform: uppercase; }
+.pantry-section-intro { max-width: 390px; margin: 0; color: var(--pantry-muted); font-size: .84rem; line-height: 1.8; }
+.pantry-card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.pantry-category-card { min-width: 0; border: 1px solid var(--pantry-line); background: var(--bg-card); }
+.pantry-category-visual { position: relative; display: grid; min-height: 190px; place-items: center; overflow: hidden; margin: 0; padding: 18px 18px 30px; border-bottom: 1px solid var(--pantry-line); background: var(--pantry-cream); }
+.pantry-category-visual img { display: block; width: min(100%, 220px); height: auto; max-height: 190px; object-fit: contain; }
+.pantry-category-visual figcaption { position: absolute; right: 10px; bottom: 8px; padding: 3px 7px; border: 1px solid var(--pantry-line); background: var(--bg-card); color: var(--pantry-ink); font-size: .58rem; letter-spacing: .04em; }
+.pantry-category-copy { padding: 17px 18px 20px; }
+.pantry-category-group { margin: 0 0 7px; color: var(--pantry-green); font-size: .62rem; font-weight: 750; letter-spacing: .12em; }
+.pantry-category-copy h3 { font-size: clamp(1.5rem, 2vw, 2rem); line-height: 1.12; }
+.pantry-category-copy > span { min-height: 56px; }
+.pantry-category-copy > a { display: inline-flex; min-height: 48px; align-items: center; margin-top: 8px; color: var(--pantry-green); font-size: .72rem; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.pantry-photo-note { padding-top: 14px; border-top: 1px solid var(--pantry-line); }
+.pantry-hero-actions a, .pantry-link, .pantry-button { min-height: 48px; }
+@media(max-width:980px) { .pantry-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media(max-width:700px) {
+  .pantry-hero-art { min-height: 300px; }
+  .pantry-intro-inner { min-height: 0; align-items: flex-start; flex-direction: column; gap: 8px; padding-block: 20px; }
+  .pantry-card-grid { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .pantry-category-visual { min-height: 176px; }
+  .pantry-category-copy > span { min-height: 0; }
+  .home-utility-inner { justify-content: space-between; flex-wrap: wrap; gap: 4px 12px; padding-block: 8px; }
+  .home-utility-inner > span:first-child { display: none; }
+  .home-utility-inner > span:nth-child(2) { display: inline; }
+}
+@media(max-width:380px) { .home-utility { font-size: .57rem; letter-spacing: .04em; } }
+@media(max-width:768px) { .pantry-category-photo img,.pantry-hero-art img { transition: none; transform: none; } }

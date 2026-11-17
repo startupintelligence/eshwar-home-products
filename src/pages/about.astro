@@ -5,27 +5,48 @@ import "../styles/story-theme2.css";
 const base = import.meta.env.BASE_URL;
 const mapsUrl = "https://www.google.com/maps/search/?api=1&query=119%2F1%2C%20Paddy%20Field%20Road%2C%20Perambur%2C%20Chennai%2C%20Tamil%20Nadu%20600%20011";
 const whatsappUrl = "https://wa.me/919941209953";
+const pantryRanges = ["Traditional rice varieties", "Millets & millet flours", "Flakes, vermicelli & pasta", "Cold-pressed oils", "Ghee & dairy essentials", "Honey, pulses & more"];
 ---
 <SiteLayout title="Our Story | Eshwar Home Products, Perambur" description="Discover the story behind Eshwar Home Products, named in devotion to the family deity Eshwaran, and serving everyday kitchens in Perambur, Chennai." current="about">
   <div class="ehp-about-page">
     <section class="ehp-about-hero" aria-labelledby="about-title">
       <div class="container ehp-about-hero-inner">
-        <p class="ehp-about-tamil" lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</p>
-        <p class="ehp-about-eyebrow">Our Story <span aria-hidden="true">·</span> Perambur, Chennai</p>
-        <h1 id="about-title">Named after Eshwaran.<br /><em>Built for everyday kitchens in Perambur.</em></h1>
-        <p class="ehp-about-intro">A neighbourhood pantry shaped by devotion, familiar foods and the simple value of helping people find what they need.</p>
+        <div class="ehp-about-hero-copy">
+          <p class="ehp-about-tamil" lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</p>
+          <p class="ehp-about-eyebrow">Our Story <span aria-hidden="true">·</span> Perambur, Chennai</p>
+          <h1 id="about-title">Named after Eshwaran.<br /><em>Built for everyday kitchens in Perambur.</em></h1>
+          <p class="ehp-about-intro">A neighbourhood pantry shaped by devotion, familiar foods and the simple value of helping people find what they need.</p>
+          <a class="ehp-about-rating" href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="5.0 star Google Maps rating">5.0 <span aria-hidden="true">★</span> Google Maps rating</a>
+        </div>
+        <aside class="ehp-about-hero-proof" aria-label="Neighbourhood store details">
+          <a class="ehp-about-hero-proof-rating" href={mapsUrl} target="_blank" rel="noopener noreferrer"><strong>5.0 <span aria-hidden="true">★</span></strong> Rated Neighbourhood Store on Google Maps</a>
+          <p>119/1, Paddy Field Road, Perambur, Chennai 600 011</p>
+          <p>Mon–Sat: 9:00 AM – 9:00 PM · Sun: Closed</p>
+        </aside>
       </div>
     </section>
 
     <section class="ehp-name-story" aria-labelledby="name-story-title">
       <div class="container ehp-name-story-grid">
-        <div class="ehp-name-mark"><img class="ehp-story-logo" src={base + "images/brand/eshwar-home-products-logo.png"} alt="Official Eshwar Home Products emblem featuring a Rudraksha bead, Trishuls, drums and lemons" width="320" height="183" loading="lazy" decoding="async" /></div>
+        <div class="ehp-name-mark"><img class="ehp-story-logo" src={base + "images/brand/eshwar-home-products-logo.png"} alt="Official Eshwar Home Products emblem with a Rudraksha bead, golden Trishuls, Damrus and lemons" width="320" height="183" loading="lazy" decoding="async" /></div>
         <div class="ehp-about-prose">
           <p class="ehp-about-eyebrow">The Story Behind Our Name</p>
           <h2 id="name-story-title">A name held with <em>devotion.</em></h2>
-          <p>The name Eshwar Home Products honours the family deity, Eshwaran (Lord Shiva). It is a meaningful part of the store’s identity, not just a name on the signboard.</p>
+          <p>Eshwar Home Products is named with devotion after our family deity, Eshwaran (Lord Shiva). It is a meaningful part of the store’s identity, not just a name on the signboard.</p>
           <p>That devotion is reflected in the official Rudraksha and Trishul emblem. It also reminds us of the values we want our neighbourhood store to stand for: honesty, gratitude and care in the everyday foods people bring home.</p>
           <p>Our aim is simple: make familiar pantry essentials easier to find, and make every visit feel welcoming and straightforward.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="ehp-about-pantry" aria-labelledby="about-pantry-title">
+      <div class="container">
+        <p class="ehp-about-eyebrow">Explore the Pantry</p>
+        <h2 id="about-pantry-title">Six ranges to <em>explore.</em></h2>
+        <div class="ehp-about-ranges">
+          {pantryRanges.map((range, index) => <a class="ehp-about-range-link" href={whatsappUrl + "?text=" + encodeURIComponent("Hello Eshwar Home Products, I would like to enquire about " + range + ".")} target="_blank" rel="noopener noreferrer">
+            <span>{String(index + 1).padStart(2, "0")}</span><strong>{range}</strong><span>WhatsApp enquiry ↗</span>
+          </a>)}
         </div>
       </div>
     </section>
@@ -40,12 +61,12 @@ const whatsappUrl = "https://wa.me/919941209953";
           <article class="ehp-commitment">
             <span class="ehp-commitment-number">01</span>
             <h3>Honest Pantry Guidance</h3>
-            <p>Helping Perambur families choose the traditional rice, millet (<em>Siruthaniyam</em>) or <em>Chekku</em> oil that suits their everyday cooking needs.</p>
+            <p>Helping Perambur families choose the traditional rice, millet (<em>Siruthaniyam</em>) or cold-pressed oils that suits their everyday cooking needs.</p>
           </article>
           <article class="ehp-commitment">
             <span class="ehp-commitment-number">02</span>
             <h3>All Essentials Under One Roof</h3>
-            <p>Bringing together whole grains, flours, wood-pressed oils, ghee, wild honey, nuts and millet snacks in one accessible neighbourhood stop.</p>
+            <p>Bringing together whole grains, millet flours, cold-pressed oils, ghee, honey, nuts and pantry essentials in one accessible neighbourhood stop.</p>
           </article>
           <article class="ehp-commitment">
             <span class="ehp-commitment-number">03</span>

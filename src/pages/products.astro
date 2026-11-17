@@ -43,14 +43,22 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
 <SiteLayout title="The Pantry | Traditional Rice, Millets & Kitchen Essentials in Perambur" description="Explore traditional rice and Siruthaniyam millets, Chekku oils, ghee, millet snacks and everyday pantry categories at Eshwar Home Products in Perambur, Chennai. Ask the store about today's stock on WhatsApp." current="products">
   <script type="application/ld+json" set:html={JSON.stringify(pantryItemList)} />
   <script type="application/ld+json" set:html={JSON.stringify(pantryBreadcrumbs)} />
-  <section class="page-heading"><div class="container">
-    <p class="eyebrow">The pantry · Eshwar Home Products · Perambur, Chennai</p>
-    <h1>Good things for<br /><em>everyday cooking.</em></h1>
-    <p>Explore the grains, cooking essentials and pantry favourites used across South Indian home kitchens. Browse by shelf, then message the store about the variety or pack size you need.</p>
-    <div class="hero-actions">
-      <a class="button button-dark" href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20please%20help%20me%20check%20today%27s%20pantry%20stock." target="_blank" rel="noopener noreferrer">Check today's stock on WhatsApp ↗</a>
-      <a class="text-link phone-action" href="tel:+919941209953">Call +91 99412 09953</a>
+  <section class="page-heading pantry-hero"><div class="container pantry-hero-grid">
+    <div class="pantry-hero-copy">
+      <p class="eyebrow">The Pantry · Perambur, Chennai</p>
+      <h1>Good things for<br /><em>everyday cooking.</em></h1>
+      <p>Explore traditional rice, millets, cooking essentials and familiar pantry favourites for everyday South Indian kitchens. Browse by shelf, then ask our team about the variety or pack size you need.</p>
+      <div class="hero-actions">
+        <a class="button pantry-hero-cta" href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20please%20help%20me%20check%20today%27s%20pantry%20stock." target="_blank" rel="noopener noreferrer">Check today's stock on WhatsApp ↗</a>
+        <a class="text-link phone-action" href="tel:+919941209953">Call +91 99412 09953</a>
+      </div>
     </div>
+    <aside class="pantry-store-card" aria-label="Store details">
+      <p class="eyebrow">Visit our neighbourhood store</p>
+      <div class="pantry-store-detail"><span>Store location</span><address>119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011</address></div>
+      <div class="pantry-store-detail"><span>Opening hours</span><p>Mon–Sat: 9:00 AM – 9:00 PM · Sun: Closed</p></div>
+      <div class="pantry-store-detail"><span>Direct contact</span><a href="tel:+919941209953">+91 99412 09953</a></div>
+    </aside>
   </div></section>
   <section class="section container pantry-page">
     <div class="pantry-intro-row">
@@ -71,7 +79,7 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
           return <section class="pantry-group" id={group.id} data-group={group.id}>
             <div class="pantry-group-visual">
               <div class="pantry-image-frame"><img src={`${import.meta.env.BASE_URL}${group.placeholderImage}`} alt={group.placeholderAlt} width="800" height="600" loading="lazy" decoding="async" /></div>
-              <p class="representative-caption">Representative visual · Store photography will be added when supplied</p>
+              <p class="representative-caption">Representative visual · Store photos coming soon</p>
             </div>
             <div class="pantry-group-content">
               <div class="pantry-group-heading"><span class="directory-number">{String(index + 1).padStart(2, "0")}</span><div>
@@ -81,7 +89,7 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
               <ul class="kitchen-cues">{(shelf?.cues ?? group.items.map((item) => item.title)).map((cue) => <li>{cue}</li>)}</ul>
               <div class="meal-occasions">{(shelf?.occasions ?? []).map((occasion) => <span>{occasion}</span>)}</div>
               <a class="shelf-whatsapp-link" href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`} target="_blank" rel="noopener noreferrer">Check Today's Stock on WhatsApp ↗</a>
-              <details class="catalogue-details" data-static-catalogue-items><summary>See the published category notes</summary><ul class="pantry-items">{group.items.map((item) => <li><strong>{item.title}</strong><span>{item.detail}</span></li>)}</ul></details>
+              
             </div>
           </section>;
         })}
@@ -94,10 +102,10 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
         <details><summary>Can I ask about a Tamil millet name?</summary><p>Yes. Use the Tamil–English millet reference in our <a href={`${import.meta.env.BASE_URL}perambur-millet-store/#millet-reference`}>Perambur store guide</a>, then message the team about the variety you have in mind.</p></details>
         <details><summary>Can I check pack sizes before visiting?</summary><p>Yes. Send the product or variety name through WhatsApp and ask the team about current options.</p></details>
         <details><summary>Where is the store?</summary><p>119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India.</p></details>
-        <details><summary>What are the store hours?</summary><p>Monday to Saturday, 9:00 AM to 9:00 PM. Sunday: Closed.</p></details>
+        <details><summary>What are the store hours?</summary><p>Monday – Saturday: 9:00 AM – 9:00 PM · Sunday: Closed</p></details>
       </div>
     </section>
-    <div class="enquiry-row"><div><p class="eyebrow">A neighbourhood pantry in Perambur</p><h2>Need help choosing a shelf?</h2><p class="store-location-note">Call or message the store. The team can help you check today's options before you visit.</p></div><a class="button button-dark" href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20need%20help%20with%20the%20pantry%20range." target="_blank" rel="noopener noreferrer">Ask on WhatsApp ↗</a></div>
+    <div class="enquiry-row"><div><p class="eyebrow">A neighbourhood pantry in Perambur</p><h2>Need help choosing a shelf?</h2><p class="store-location-note">Call or message the store. The team can help you check today's options before you visit.</p></div><a class="button pantry-bottom-whatsapp" href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20need%20help%20with%20the%20pantry%20range." target="_blank" rel="noopener noreferrer">Ask on WhatsApp ↗</a></div>
   </section>
 </SiteLayout>
 <script>import "../scripts/catalogue-filter.js";</script>
@@ -123,8 +131,11 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
   .meal-occasions { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
   .meal-occasions span { color:var(--text-muted); font-size:.7rem; }
   .meal-occasions span + span::before { content:"·"; margin-right:8px; color:var(--accent-gold); }
-  .shelf-whatsapp-link { display:inline-flex; min-height:48px; align-items:center; justify-content:center; margin:18px 0 8px; padding:10px 16px; border:1px solid var(--brand-red); background:var(--brand-red); color:#fff; font-size:.76rem; font-weight:700; text-decoration:none; }
-  .shelf-whatsapp-link:hover { background:#99180F; }
+  .shelf-whatsapp-link { display:inline-flex; min-height:48px; align-items:center; justify-content:center; margin:18px 0 8px; padding:10px 16px; border:1px solid #432818; background-color:#432818; color:#FFFDF9; font-size:.76rem; font-weight:700; text-decoration:none; }
+  .shelf-whatsapp-link:hover { border-color:#D99B26; }
+  .shelf-whatsapp-link:focus-visible { outline:2px solid #D99B26; outline-offset:3px; }
+  .pantry-bottom-whatsapp { background-color:#432818; color:#FFFDF9; border:1px solid #432818; }
+  .pantry-bottom-whatsapp:hover { border-color:#D99B26; }
   .catalogue-details { margin-top:8px; border-top:1px solid var(--border-light); }
   .catalogue-details summary { display:flex; min-height:48px; align-items:center; color:var(--accent-green); cursor:pointer; font-size:.76rem; font-weight:700; }
   .pantry-items { margin:0; padding:0; list-style:none; }
