@@ -85,15 +85,17 @@
   .ehp-story-home *, .ehp-about-page * { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
 }
 
-/* Theme 03 — Our Story on roasted brown; warm-ivory copy remains high contrast. */
-.ehp-story-home { background: var(--earth-dark); color: #FFFDF9; border-block: 1px solid var(--accent-gold); }
-.ehp-story-home .ehp-story-copy h2 { color: #FFFDF9; }
-.ehp-story-home .ehp-story-copy > p:not(.ehp-story-eyebrow) { color: #F6F1E7; }
-.ehp-story-home .ehp-story-eyebrow { color: var(--accent-gold); }
-.ehp-story-home .ehp-story-values > div { border-color: var(--accent-gold); background: var(--bg-card); }
-.ehp-story-home .ehp-story-values strong { color: var(--text-main); }
-.ehp-story-home .ehp-story-values span { color: var(--brand-red); }
-.ehp-story-home .ehp-story-read { color: #FFFDF9; }
+/* Theme 03: the homepage Our Story card sits on warm cream, not a dark band. */
+.ehp-story-home { background: #F5EDE3; color: #2A1A10; border-block: 1px solid var(--accent-gold); }
+.ehp-story-home .ehp-story-copy :is(h2,h3) { color: #2A1A10 !important; }
+.ehp-story-home .ehp-story-copy > p:not(.ehp-story-eyebrow) { color: #4A3525 !important; }
+.ehp-story-home .ehp-story-copy .ehp-story-eyebrow { color: #7A4B16 !important; }
+.ehp-story-home .ehp-story-proof { background: #FFFDF9; }
+.ehp-story-home .ehp-story-proof .ehp-story-logo-cream { mix-blend-mode: multiply; }
+.ehp-about-page { color: #2A1A10; }
+.ehp-about-page :is(h1,h2,h3) { color: #2A1A10; }
+.ehp-about-page p:not(.ehp-about-eyebrow) { color: #4A3525; }
+.ehp-about-page .ehp-about-eyebrow { color: #7A4B16; }
 .ehp-about-rating { display: inline-flex; min-height: 48px; align-items: center; gap: 8px; margin-top: 18px; padding: 0 14px; border: 1px solid var(--border-light); background: var(--bg-subtle); color: var(--accent-green); font-size: .78rem; font-weight: 750; text-decoration: none; }
 .ehp-about-rating span { color: var(--accent-gold); }
 .ehp-about-pantry { padding-block: clamp(54px, 7vw, 84px); background: var(--bg-subtle); border-block: 1px solid var(--border-light); }
