@@ -1,5 +1,5 @@
 ---
-interface Props { current?: "home" | "about" | "products" | "contact" | "blog"; }
+interface Props { current?: "home" | "about" | "products" | "contact" | "blog" | "kitchen-guides"; }
 const { current = "home" } = Astro.props;
 const base = import.meta.env.BASE_URL;
 ---
@@ -14,7 +14,7 @@ const base = import.meta.env.BASE_URL;
       <a href={base} aria-current={current === "home" ? "page" : undefined}>Home</a>
       <a href={base+"products/"} aria-current={current === "products" ? "page" : undefined}>The Pantry</a>
       <a href={base+"about/"} aria-current={current === "about" ? "page" : undefined}>Our Story</a>
-      <a href={base+"blog/"} aria-current={current === "blog" ? "page" : undefined}>Kitchen Guides</a>
+      <a href={base+"blog/"} aria-current={current === "blog" || current === "kitchen-guides" ? "page" : undefined}>Kitchen Guides</a>
       <a href={base+"contact/"} aria-current={current === "contact" ? "page" : undefined}>Visit Us</a>
     </nav>
     <a class="header-contact" href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20would%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener noreferrer">WhatsApp Enquiry ↗</a>
