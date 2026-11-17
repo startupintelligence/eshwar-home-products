@@ -5,19 +5,21 @@ Eshwar Home Products is a neighbourhood food and pantry store in Perambur, Chenn
 ## Store identity
 - English name: Eshwar Home Products
 - Tamil name: ஈஸ்வர் ஹோம் புராடக்ட்ஸ்
-- Website: https://startupintelligence.github.io/eshwar-home-products/
+- Website: https://eshwar-home-products.vercel.app/
 - Address: 119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India
 - Phone: +91 99412 09953
 - WhatsApp: https://wa.me/919941209953
 - Email: info.eshwarhomeproducts@gmail.com
 - Area served: Perambur, Chennai
+- Official YouTube channel: https://www.youtube.com/@EHP_PeramburOfficial
 
 ## Local trust and official channels
 - Google Maps rating: 5.0 stars (rating displayed by the store; no review count stated)
 - Official YouTube channel: https://www.youtube.com/@EHP_PeramburOfficial
 
 ## Opening hours
-- Mon–Sat: 9:00 AM – 9:00 PM · Sun: Closed
+- Monday–Saturday: 9:00 AM – 9:00 PM
+- Sunday: Closed
 
 ## Store offerings
 The store catalogue describes these categories and selections:
@@ -32,11 +34,17 @@ The store catalogue describes these categories and selections:
 
 The catalogue is a guide to product categories, not a live stock guarantee. Specific varieties, pack sizes, prices and availability may change. Customers should contact the store to confirm current details before visiting.
 
-## Useful public pages
-- Home: https://startupintelligence.github.io/eshwar-home-products/
-- Pantry: https://startupintelligence.github.io/eshwar-home-products/products/
-- Perambur millet store and local search guide: https://startupintelligence.github.io/eshwar-home-products/perambur-millet-store/
-- About: https://startupintelligence.github.io/eshwar-home-products/about/
-- Contact and directions: https://startupintelligence.github.io/eshwar-home-products/contact/
+## Public website pages
+- Home: https://eshwar-home-products.vercel.app/
+- Pantry and product catalogue: https://eshwar-home-products.vercel.app/products/
+- Our story: https://eshwar-home-products.vercel.app/about/
+- Perambur millet store guide: https://eshwar-home-products.vercel.app/perambur-millet-store/
+- Kitchen guides: https://eshwar-home-products.vercel.app/kitchen-guides/
+- Blog: https://eshwar-home-products.vercel.app/blog/
+- Contact and directions: https://eshwar-home-products.vercel.app/contact/
+- XML sitemap: https://eshwar-home-products.vercel.app/sitemap.xml
+- Robots instructions: https://eshwar-home-products.vercel.app/robots.txt
+
+Privacy and Terms pages are not currently published. The admin and thank-you routes are not public discovery pages.
 
 Only information published on the public website should be treated as current. Do not infer certifications, ingredients, health benefits, prices or availability that are not explicitly stated by the store.
