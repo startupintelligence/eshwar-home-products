@@ -1,0 +1,71 @@
+/* Mobile responsive hardening. Loaded after the shared theme styles. */
+*,*::before,*::after{box-sizing:border-box}
+html,body{max-width:100%;overflow-x:clip}
+img,svg,video,iframe{max-width:100%}
+img,svg,video{height:auto}
+iframe{display:block}
+:where(h1,h2,h3,h4,p,li,dd,dt,address,summary,a){overflow-wrap:anywhere}
+:where(.container,.discovery-container,.market-hero-inner,.ehp-hero-main,.ehp-product-grid,.ehp-story-grid,.ehp-visit-grid,.contact-layout,.contact-hero-grid,.kitchen-guides-hero-grid,.kitchen-guides-grid,.guide-grid,.pantry-hero-grid,.pantry-group,.hero-layout,.local-guide-grid,.faq-layout,.conversion-inner){min-width:0;max-width:100%}
+.mobile-nav-contact,.mobile-action-bar{display:none}
+@media(max-width:768px){
+  .container,.discovery-container,.market-hero-inner{width:calc(100% - 32px);max-width:100%;min-width:0}
+  .ehp-site-header{background:#3B2112;border-bottom:1px solid #D99B26;color:#FFFDF9}
+  .ehp-site-header .header-inner{display:flex;min-height:64px;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 12px;padding-block:8px}
+  .ehp-site-header .wordmark{display:flex;flex:1 1 auto;min-width:0;align-items:center;gap:8px}
+  .ehp-site-header .wordmark-logo{display:block;flex:0 0 38px;width:38px;height:38px;object-fit:contain}
+  .ehp-site-header .wordmark-copy{display:block;min-width:0}
+  .ehp-site-header .wordmark-name{display:block;overflow:hidden;color:#FFFDF9;font-size:1rem;line-height:1.2;letter-spacing:0;text-overflow:ellipsis;white-space:nowrap}
+  .ehp-site-header .wordmark-tamil,.ehp-site-header .wordmark-place,.ehp-site-header .header-contact{display:none}
+  .ehp-site-header .menu-toggle{display:grid;flex:0 0 48px;width:48px;min-width:48px;height:48px;min-height:48px;place-items:center;margin:0;padding:0;border:1px solid #D99B26;border-radius:4px;background:#4E2C18;color:#FFFDF9}
+  .ehp-site-header .menu-toggle-lines,.ehp-site-header .menu-toggle-lines::before,.ehp-site-header .menu-toggle-lines::after{display:block;width:19px;height:2px;background:#FFFDF9;content:""}
+  .ehp-site-header .menu-toggle-lines{position:relative}
+  .ehp-site-header .menu-toggle-lines::before,.ehp-site-header .menu-toggle-lines::after{position:absolute;left:0}
+  .ehp-site-header .menu-toggle-lines::before{top:-6px}.ehp-site-header .menu-toggle-lines::after{top:6px}
+  .ehp-site-header .main-nav{display:none;flex:0 0 100%;flex-direction:column;align-items:stretch;gap:0;width:100%;margin:8px 0 0;padding:4px 0;border:1px solid #D99B26;background:#3B2112}
+  .ehp-site-header .main-nav.is-open{display:flex}
+  .ehp-site-header .main-nav a,.ehp-site-header .main-nav .mobile-nav-contact{display:flex;min-height:48px;align-items:center;padding:0 16px;border:0;border-bottom:1px solid rgba(217,155,38,.28);background:#3B2112;color:#FFFDF9;font-size:.9rem;line-height:1.35;text-decoration:none}
+  .ehp-site-header .main-nav a:last-child{border-bottom:0}
+  .ehp-site-header .main-nav a[aria-current="page"],.ehp-site-header .main-nav .mobile-nav-contact{color:#D99B26}
+  .ehp-site-header .main-nav a:focus-visible,.ehp-site-header .menu-toggle:focus-visible{outline:2px solid #FFFDF9;outline-offset:2px}
+  .ehp-home-hero .ehp-hero-main,.ehp-story-home .ehp-story-grid,.ehp-home-hero .ehp-local-guide-grid,.ehp-visit-section .ehp-visit-grid,.ehp-about-page .ehp-about-hero-inner,.ehp-about-page .ehp-name-story-grid,.ehp-about-page .ehp-visit-cta-inner,.ehp-about-page .ehp-commitment-grid,.contact-hero .contact-hero-grid,.contact-layout,.kitchen-guides-hero .kitchen-guides-hero-grid,.kitchen-guides-grid,.guide-grid,.pantry-hero .pantry-hero-grid,.discovery-hero .hero-layout,.local-guide-grid,.faq-layout,.conversion-inner,.market-hero-inner,.market-section-head,.market-visit,.market-faq-inner,.market-closing-inner,.market-shelf,.market-story-inner,.market-info-inner{grid-template-columns:minmax(0,1fr);gap:20px}
+  .ehp-home-hero .ehp-hero-main{padding-top:32px;padding-bottom:24px}
+  .ehp-home-hero .ehp-hero-copy,.ehp-home-hero .ehp-hero-visual,.contact-hero-grid>*,.kitchen-guides-hero-grid>*,.pantry-hero-grid>*,.hero-layout>*{min-width:0}
+  .ehp-home-hero .ehp-hero-copy h1,.ehp-about-page .ehp-about-hero h1,.page-heading h1,.guide-hero h1,.kitchen-guides-copy h1,.discovery-hero h1,.market-hero h1,.pantry-hero-copy h1,.contact-hero h1{font-size:clamp(1.85rem,7vw,2.5rem);line-height:1.15;letter-spacing:-.03em;overflow-wrap:anywhere}
+  .section,.ehp-home-hero,.ehp-products-section,.ehp-story-home,.ehp-visit-section,.ehp-local-guide,.guide-hero,.page-heading,.pantry-hero,.contact-hero,.kitchen-guides-hero,.discovery-hero{padding-block:32px}
+  .ehp-home-hero .ehp-category-strip{display:flex;gap:10px;width:100%;max-width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;padding-block:12px;scroll-snap-type:x mandatory;overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch}
+  .ehp-home-hero .ehp-category-link{display:flex;flex:0 0 8.75rem;min-width:0;min-height:88px;align-items:center;justify-content:center;scroll-snap-align:start}
+  .ehp-home-hero .ehp-category-icon{width:48px;height:48px;flex:0 0 48px}
+  .ehp-products-section .ehp-product-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:100%;max-width:100%}
+  .ehp-products-section .ehp-product-card{min-width:0}
+  .ehp-products-section .ehp-product-card-copy{min-width:0;gap:8px;padding:9px}
+  .ehp-products-section .ehp-product-card-copy h3{min-width:0;font-size:.82rem;overflow-wrap:anywhere}
+  .ehp-products-section .ehp-product-card-copy>a,.ehp-products-section .ehp-product-enquiry{display:inline-flex;flex:0 0 48px;width:48px;min-width:48px;height:48px;min-height:48px;align-items:center;justify-content:center}
+  .ehp-home-hero .ehp-trust-grid{grid-template-columns:repeat(2,minmax(0,1fr));padding-block:10px}
+  .ehp-home-hero .ehp-trust-grid>*{min-width:0;min-height:76px}
+  .ehp-home-hero .ehp-trust-grid>*+*{border-left:0}
+  .ehp-home-hero .ehp-trust-grid>:nth-child(even){border-left:1px solid rgba(217,155,38,.38)}
+  .ehp-home-hero .ehp-trust-grid>:nth-child(n+3){border-top:1px solid rgba(217,155,38,.25)}
+  .pantry-hero-grid,.pantry-group,.contact-list,.contact-list>div,.social-profile-grid{min-width:0;max-width:100%}
+  .pantry-hero-grid,.pantry-group,.contact-list>div{grid-template-columns:minmax(0,1fr)}
+  .kitchen-guides-list-heading{align-items:flex-start;flex-direction:column;gap:12px}
+  .millet-table-wrap{max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch}
+  .ehp-home-hero .ehp-category-link,.ehp-products-section .ehp-product-enquiry,.ehp-products-section .ehp-product-card-copy>a,.ehp-about-range-link,.ehp-action,.action,.inline-link,.shelf-whatsapp-link,.phone-action,.contact-call-button,.contact-whatsapp-button,.contact-explore-button,.kitchen-guides-browse-link,.kitchen-guides-pantry-button,.kitchen-guide-card-action,.footer-nav a,.footer-bottom a,.footer-social-link,.footer-contact-link,.footer-youtube,.social-profile-action,.youtube-promo-action{min-height:48px}
+  .pantry-faq-list summary,.faq-list summary{display:flex;min-height:48px;align-items:center;padding-block:12px;cursor:pointer}
+  .footer-main{display:grid;grid-template-columns:minmax(0,1fr);gap:22px}
+  .footer-main>*,.footer-brand,.footer-contact,.footer-nav,.footer-bottom,.footer-socials{min-width:0;max-width:100%}
+  .footer-nav{display:flex;flex-wrap:wrap;gap:4px 16px}
+  .footer-nav a,.footer-bottom a,.footer-social-link,.footer-contact-link{display:inline-flex;align-items:center;overflow-wrap:anywhere}
+  .footer-bottom{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+  .contact-list dd,.contact-list address,.footer-bottom>span,.footer-contact a,.ehp-address,.kitchen-guides-store-card address{min-width:0;overflow-wrap:anywhere}
+  .mobile-action-bar{position:fixed;z-index:40;right:0;bottom:0;left:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:100%;padding:8px 12px calc(8px + env(safe-area-inset-bottom));border-top:1px solid #D99B26;background:#3B2112}
+  .mobile-action-bar a{display:flex;min-width:0;min-height:48px;align-items:center;justify-content:center;padding:8px 12px;border-radius:8px;color:#2A1508;font-size:.9rem;font-weight:700;line-height:1.2;text-align:center;text-decoration:none}
+  .mobile-action-call{background:#FFFDF9}.mobile-action-whatsapp{background:#D99B26}
+  .site-footer{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+}
+@media(max-width:350px){
+  .ehp-products-section .ehp-product-grid{grid-template-columns:minmax(0,1fr);max-width:420px;margin-inline:auto}
+  .ehp-site-header .wordmark-name{font-size:.92rem}
+  .ehp-about-page .ehp-about-ranges{grid-template-columns:minmax(0,1fr)}
+  .market-visit-row{grid-template-columns:minmax(0,1fr);gap:5px}
+}
+@media(prefers-reduced-motion:reduce){.ehp-home-hero .ehp-category-strip{scroll-behavior:auto}}
