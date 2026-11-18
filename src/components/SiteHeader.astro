@@ -36,11 +36,19 @@ const base = import.meta.env.BASE_URL;
       toggle.setAttribute("aria-label", "Open navigation menu");
       navigation.classList.remove("is-open");
     };
-    navigation.querySelectorAll("a").forEach((link) => link.addEventListener("click", (event) => {
-      const opensNewContext = link.target === "_blank" || event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0;
-      closeNavigation();
-      if (opensNewContext) toggle.focus();
-    }));
+    navigation.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        const opensNewContext = link.target === "_blank" || event.metaKey || event.ctrlKey || event.shiftKey;
+        closeNavigation();
+        if (opensNewContext) toggle.focus();
+      });
+      link.addEventListener("auxclick", (event) => {
+        if (event.button === 1) {
+          closeNavigation();
+          toggle.focus();
+        }
+      });
+    });
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
         closeNavigation();
