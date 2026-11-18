@@ -38,9 +38,9 @@ const base = import.meta.env.BASE_URL;
     };
     navigation.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", (event) => {
-        const opensNewContext = link.target === "_blank" || event.metaKey || event.ctrlKey || event.shiftKey;
+        const keepsCurrentPageOpen = link.target === "_blank" || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
         closeNavigation();
-        if (opensNewContext) toggle.focus();
+        if (keepsCurrentPageOpen) toggle.focus();
       });
       link.addEventListener("auxclick", (event) => {
         if (event.button === 1) {
