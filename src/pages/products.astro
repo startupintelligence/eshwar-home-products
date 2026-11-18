@@ -1,5 +1,6 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
+import PantryQuickView from "../components/PantryQuickView.astro";
 import catalogue from "../data/catalogue.json";
 import PublishedCatalogue from "../components/PublishedCatalogue";
 import "../styles/mobile-responsive.css";
@@ -89,6 +90,7 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
               <p class="kitchen-cue-label">Kitchen-use guide</p>
               <ul class="kitchen-cues">{(shelf?.cues ?? group.items.map((item) => item.title)).map((cue) => <li>{cue}</li>)}</ul>
               <div class="meal-occasions">{(shelf?.occasions ?? []).map((occasion) => <span>{occasion}</span>)}</div>
+              <button class="pantry-quickview-trigger" type="button" data-quickview-trigger data-quickview-title={categoryName} data-quickview-description={shelf?.intro ?? group.description} data-quickview-items={JSON.stringify(shelf?.cues ?? group.items.map((item) => item.title))} aria-haspopup="dialog">View shelf details →</button>
               <a class="shelf-whatsapp-link" href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`} target="_blank" rel="noopener noreferrer">Check Today's Stock on WhatsApp ↗</a>
               
             </div>
@@ -108,6 +110,7 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
     </section>
     <div class="enquiry-row"><div><p class="eyebrow">A neighbourhood pantry in Perambur</p><h2>Need help choosing a shelf?</h2><p class="store-location-note">Call or message the store. The team can help you check today's options before you visit.</p></div><a class="button pantry-bottom-whatsapp" href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20need%20help%20with%20the%20pantry%20range." target="_blank" rel="noopener noreferrer">Ask on WhatsApp ↗</a></div>
   </section>
+  <PantryQuickView />
 </SiteLayout>
 <script>import "../scripts/catalogue-filter.js";</script>
 <style>

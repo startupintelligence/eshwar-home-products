@@ -1,5 +1,6 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
+import PantryQuickView from "../components/PantryQuickView.astro";
 import reviewData from "../data/reviews.json";
 const reviews = reviewData as Array<{ reviewer: string; text: string; source: "Google Maps" | "Justdial"; rating?: number }>;
 import "../styles/home-editorial.css";
@@ -18,10 +19,10 @@ const categories = [
   { title: "More Pantry", symbol: "▦", item: "other pantry essentials" }
 ];
 const products = [
-  { title: "Traditional Rice", image: "category-traditional-rice.svg", alt: "Illustration of traditional rice varieties", enquiry: "traditional rice varieties" },
-  { title: "Whole Millets", image: "rice-millets.webp", alt: "Illustration of millet grains and rice", enquiry: "whole millets and millet varieties" },
-  { title: "Cold-Pressed Oils", image: "oils-ghee.webp", alt: "Illustration of cold-pressed oils and ghee", enquiry: "cold-pressed oils" },
-  { title: "Pure Ghee & Honey", image: "category-ghee-dairy.svg", alt: "Illustration of ghee and dairy products", enquiry: "ghee and honey" }
+  { title: "Traditional Rice", image: "category-traditional-rice.svg", alt: "Illustration of traditional rice varieties", enquiry: "traditional rice varieties", description: "Explore traditional rice varieties and ask the store about current options.", items: ["Traditional rice varieties"] },
+  { title: "Whole Millets", image: "rice-millets.webp", alt: "Illustration of millet grains and rice", enquiry: "whole millets and millet varieties", description: "Whole millet varieties listed in the store pantry guide.", items: ["Thinai · Foxtail millet", "Varagu · Kodo millet", "Samai · Little millet", "Kuthiraivali · Barnyard millet", "Ragi · Finger millet", "Kambu · Pearl millet"] },
+  { title: "Cold-Pressed Oils", image: "oils-ghee.webp", alt: "Illustration of cold-pressed oils and ghee", enquiry: "cold-pressed oils", description: "Traditional wood-pressed oils listed in the store pantry guide.", items: ["Wood-pressed gingelly oil", "Wood-pressed groundnut oil", "Wood-pressed coconut oil"] },
+  { title: "Pure Ghee & Honey", image: "category-ghee-dairy.svg", alt: "Illustration of ghee and dairy products", enquiry: "ghee and honey", description: "Ghee and wild honey are included in the store pantry guide. Contact the store to confirm current availability.", items: ["Ghee", "Wild honey"] }
 ];
 ---
 <SiteLayout title="Eshwar Home Products | Pantry Store in Perambur" description="Explore traditional rice, Siruthaniyam millets, cold-pressed oils and pantry essentials at Eshwar Home Products, Paddy Field Rd, Chinnaiyan Colony, Perambur, Chennai." current="home">
@@ -79,7 +80,8 @@ const products = [
     <div class="container">
       <header class="ehp-products-heading"><p class="ehp-section-kicker">A THOUGHTFUL PANTRY</p><h2 id="products-title">Our Products</h2><p>Natural. Nutritious. Trusted. <span>119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur</span></p></header>
       <div class="ehp-product-grid">
-        {products.map((product) => <article class="ehp-product-card">
+        {products.map((product) => <article class="ehp-product-card pantry-interactive-card">
+          <button class="ehp-product-card-trigger" type="button" data-quickview-trigger data-quickview-title={product.title} data-quickview-description={product.description} data-quickview-items={JSON.stringify(product.items)} aria-haspopup="dialog" aria-label={`View details for ${product.title}`}><span class="visually-hidden">View details for {product.title}</span></button>
           <figure><img src={base + "images/placeholders/" + product.image} alt={product.alt} width="420" height="420" loading="lazy" decoding="async" /></figure>
           <div class="ehp-product-card-copy"><h3>{product.title}</h3><a class="ehp-product-enquiry" href={ask(product.enquiry)} target="_blank" rel="noopener noreferrer" aria-label={`WhatsApp enquiry about ${product.title}`}><span aria-hidden="true">↗</span></a></div>
         </article>)}
@@ -140,6 +142,7 @@ const products = [
   </section>
 
   <section class="ehp-visit-section" aria-labelledby="visit-title"><div class="container ehp-visit-grid"><div><p class="ehp-gold-eyebrow">VISIT OUR STORE</p><h2 id="visit-title">Good food, close to home.</h2><p>Come by and explore our traditional pantry range in Perambur.</p><a class="ehp-gold-button" href={mapsUrl} target="_blank" rel="noopener noreferrer">Get Directions <span aria-hidden="true">↗</span></a></div><div class="ehp-visit-details"><div><span>ADDRESS</span><p>119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India</p></div><div><span>OPENING HOURS</span><p>Mon–Sat: 9:00 AM – 9:00 PM<br />Sunday: Closed</p></div><div><span>CALL OR WHATSAPP</span><p><a href="tel:+919941209953">+91 99412 09953</a><br /><a href={ask("your pantry requirements")} target="_blank" rel="noopener noreferrer">Send an enquiry ↗</a></p></div></div></div></section>
+  <PantryQuickView />
 </SiteLayout>
 
 <style>
@@ -149,12 +152,15 @@ const products = [
   .ehp-products-heading h2 { margin: 8px 0; color: #2A1508; font: 400 clamp(2rem, 4vw, 3rem)/1.12 Georgia, "Times New Roman", serif; }
   .ehp-products-heading > p:last-child { color: #4A3525; font-size: .88rem; line-height: 1.7; }
   .ehp-product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
-  .ehp-product-card { min-width: 0; overflow: hidden; border: 1px solid #E2D6C5; background: #FFFDF9; }
+  .ehp-product-card { position: relative; min-width: 0; overflow: hidden; border: 1px solid #E2D6C5; background: #FFFDF9; }
+  .ehp-product-card-trigger { position:absolute; inset:0; z-index:1; width:100%; height:100%; border:0; background:transparent; cursor:pointer; }
+  .ehp-product-card-trigger:focus-visible { outline:3px solid #D99B26; outline-offset:-4px; }
+  .visually-hidden { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
   .ehp-product-card figure { position: relative; overflow: hidden; aspect-ratio: 1; margin: 0; background: #F5EDE3; }
   .ehp-product-card figure img { display: block; width: 100%; height: 100%; object-fit: cover; }
   .ehp-product-card-copy { display: flex; min-height: 76px; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px 12px 16px; }
   .ehp-product-card-copy h3 { min-width: 0; margin: 0; color: #2A1508; font: 400 clamp(.98rem, 1.5vw, 1.15rem)/1.3 Georgia, "Times New Roman", serif; }
-  .ehp-product-enquiry { display: inline-flex; flex: 0 0 48px; width: 48px; height: 48px; align-items: center; justify-content: center; border: 1px solid #E2D6C5; border-radius: 50%; background: #FFFDF9; color: #432818; font-size: 1.15rem; text-decoration: none; }
+  .ehp-product-enquiry { position:relative; z-index:2; display: inline-flex; flex: 0 0 48px; width: 48px; height: 48px; align-items: center; justify-content: center; border: 1px solid #E2D6C5; border-radius: 50%; background: #FFFDF9; color: #432818; font-size: 1.15rem; text-decoration: none; }
   .ehp-product-enquiry:hover { border-color: #D99B26; background: #F5EDE3; }
   .ehp-product-enquiry:focus-visible { outline: 3px solid #D99B26; outline-offset: 3px; }
   .ehp-product-note { margin: 18px 0 0; color: #5A4638; font-size: .76rem; line-height: 1.65; text-align: center; }
