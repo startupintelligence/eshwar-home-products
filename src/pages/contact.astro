@@ -50,7 +50,6 @@ import SiteLayout from "../layouts/SiteLayout.astro";
         height="280"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
-        style="border:0; width:100%; height:280px; border-radius:10px;"
         allowfullscreen
       ></iframe>
       <a class="text-link" href="https://www.google.com/maps/place/Eshwar+Home+Products/@13.1118547,80.2468127,17z/data=!3m1!4b1!4m6!3m5!1s0x3a526569af8122ad:0xe485caf4b8adf074!8m2!3d13.1118495!4d80.2493876!16s%2Fg%2F11v4j6lc03?entry=ttu&g_ep=EgoyMDI2MTExNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Open directions in Google Maps ↗</a>
@@ -95,7 +94,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
   .social-profile-action { flex: 0 0 auto; color: #432818; font-size: .76rem; font-weight: 700; }
   .social-profile-card:hover { border-color: #D99B26; background: #FAF3E8; }
   @media (max-width: 600px) { .social-profile-grid { grid-template-columns: 1fr; } }
-  .contact-map-embed { display: block; max-width: 100%; margin: 20px 0 16px; border: 1px solid #E2D6C5 !important; }
+  .contact-map-embed { display: block; width: 100%; max-width: 100%; height: 280px; margin: 20px 0 16px; border: 1px solid #E2D6C5 !important; border-radius: 10px; }
   .contact-hero-grid {
     width: min(1120px, calc(100% - 56px));
     display: grid;
