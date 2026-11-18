@@ -6,7 +6,8 @@ Eshwar Home Products is a neighbourhood food and pantry store in Perambur, Chenn
 - English name: Eshwar Home Products
 - Tamil name: ஈஸ்வர் ஹோம் புராடக்ட்ஸ்
 - Website: https://eshwar-home-products.vercel.app/
-- Address: 119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India
+- Address: 119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India
+- Google Maps: https://www.google.com/maps/place/Eshwar+Home+Products/@13.1118547,80.2468127,17z/data=!3m1!4b1!4m6!3m5!1s0x3a526569af8122ad:0xe485caf4b8adf074!8m2!3d13.1118495!4d80.2493876!16s%2Fg%2F11v4j6lc03?entry=ttu&g_ep=EgoyMDI2MTExNS4wIKXMDSoASAFQAw%3D%3D
 - Phone: +91 99412 09953
 - WhatsApp: https://wa.me/919941209953
 - Email: info.eshwarhomeproducts@gmail.com

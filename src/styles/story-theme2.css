@@ -163,3 +163,14 @@
   .ehp-about-page .ehp-about-hero-inner { grid-template-columns: minmax(0, 1fr); gap: 28px; }
   .ehp-about-hero-proof { max-width: 460px; }
 }
+
+
+/* Accessible, CSS-only five-star reveal; starts when the existing scroll observer marks the badge visible. */
+.five-stars-reveal { display: inline-flex; align-items: center; gap: 3px; color: #D99B26; font-size: 1.15rem; letter-spacing: 2px; line-height: 1; }
+.five-stars-reveal .star-item { display: inline-block; opacity: 1; transform: none; }
+.ehp-trust-grid>*>.five-stars-reveal { font-size: 1.15rem; }
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-item.is-visible .five-stars-reveal .star-item { opacity: 0; transform: translate3d(0, 10px, 0) scale(.9); animation: star-move-up .45s cubic-bezier(.22, 1, .36, 1) forwards; animation-delay: calc(var(--i) * 70ms); }
+}
+@keyframes star-move-up { to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); } }
+@media (prefers-reduced-motion: reduce) { .five-stars-reveal .star-item { opacity: 1 !important; transform: none !important; animation: none !important; } }

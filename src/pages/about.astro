@@ -3,7 +3,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 import "../styles/story-theme2.css";
 
 const base = import.meta.env.BASE_URL;
-const mapsUrl = "https://www.google.com/maps/search/?api=1&query=119%2F1%2C%20Paddy%20Field%20Road%2C%20Perambur%2C%20Chennai%2C%20Tamil%20Nadu%20600%20011";
+const mapsUrl = "https://www.google.com/maps/place/Eshwar+Home+Products/@13.1118547,80.2468127,17z/data=!3m1!4b1!4m6!3m5!1s0x3a526569af8122ad:0xe485caf4b8adf074!8m2!3d13.1118495!4d80.2493876!16s%2Fg%2F11v4j6lc03?entry=ttu&g_ep=EgoyMDI2MTExNS4wIKXMDSoASAFQAw%3D%3D";
 const whatsappUrl = "https://wa.me/919941209953";
 const pantryRanges = ["Traditional rice varieties", "Millets & millet flours", "Flakes, vermicelli & pasta", "Cold-pressed oils", "Ghee & dairy essentials", "Honey, pulses & more"];
 ---
@@ -16,11 +16,11 @@ const pantryRanges = ["Traditional rice varieties", "Millets & millet flours", "
           <p class="ehp-about-eyebrow">Our Story <span aria-hidden="true">·</span> Perambur, Chennai</p>
           <h1 id="about-title">Named after Eshwaran.<br /><em>Built for everyday kitchens in Perambur.</em></h1>
           <p class="ehp-about-intro">A neighbourhood pantry shaped by devotion, familiar foods and the simple value of helping people find what they need.</p>
-          <a class="ehp-about-rating" href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="5.0 star Google Maps rating">5.0 <span aria-hidden="true">★</span> Google Maps rating</a>
+          <a class="ehp-about-rating reveal-item" href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="5.0 star Google Maps rating">5.0 <span class="five-stars-reveal" role="img" aria-label="5 out of 5 stars">{[0, 1, 2, 3, 4].map((i) => <span class="star-item" aria-hidden="true">★</span>)}</span> Google Maps rating</a>
         </div>
         <aside class="ehp-about-hero-proof" aria-label="Neighbourhood store details">
-          <a class="ehp-about-hero-proof-rating" href={mapsUrl} target="_blank" rel="noopener noreferrer"><strong>5.0 <span aria-hidden="true">★</span></strong> Rated Neighbourhood Store on Google Maps</a>
-          <p>119/1, Paddy Field Road, Perambur, Chennai 600 011</p>
+          <a class="ehp-about-hero-proof-rating reveal-item" href={mapsUrl} target="_blank" rel="noopener noreferrer"><strong>5.0 <span class="five-stars-reveal" role="img" aria-label="5 out of 5 stars">{[0, 1, 2, 3, 4].map((i) => <span class="star-item" aria-hidden="true">★</span>)}</span></strong> Rated Neighbourhood Store on Google Maps</a>
+          <p>119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur, Chennai 600011</p>
           <p>Mon–Sat: 9:00 AM – 9:00 PM · Sun: Closed</p>
         </aside>
       </div>
@@ -71,7 +71,7 @@ const pantryRanges = ["Traditional rice varieties", "Millets & millet flours", "
           <article class="ehp-commitment">
             <span class="ehp-commitment-number">03</span>
             <h3>Convenient Neighbourhood Hours</h3>
-            <p>Visit us Monday to Saturday, 9:00 AM–9:00 PM, and Sunday: Closed, at Door No. 119/1, Paddy Field Road, Perambur, Chennai.</p>
+            <p>Visit us Monday to Saturday, 9:00 AM–9:00 PM, and Sunday: Closed, at Door No. 119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur, Chennai.</p>
           </article>
         </div>
       </div>
@@ -83,7 +83,7 @@ const pantryRanges = ["Traditional rice varieties", "Millets & millet flours", "
           <p class="ehp-about-eyebrow">Visit & Enquire</p>
           <h2 id="visit-cta-title">A familiar place for your <em>everyday pantry.</em></h2>
           <p>Looking for a particular variety or pack size? Speak with the store team before you visit.</p>
-          <p class="ehp-address">Door No. 119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India.</p>
+          <p class="ehp-address">Door No. 119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India.</p>
         </div>
         <div class="ehp-visit-actions">
           <a class="ehp-action ehp-action-primary" href={base + "products/"}>Explore the Pantry <span aria-hidden="true">↗</span></a>

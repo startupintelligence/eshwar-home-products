@@ -391,3 +391,18 @@ h1, h2, h3 {
   .footer-socials { display: flex; flex-wrap: wrap; gap: 12px; width: 100%; }
   .footer-socials a { min-height: 44px; }
 }
+
+
+/* Shared accessible Google rating stars. */
+.five-stars-reveal { display: inline-flex; align-items: center; gap: 3px; color: #D99B26; font-size: 1.15rem; letter-spacing: 2px; line-height: 1; }
+.five-stars-reveal .star-item { display: inline-block; opacity: 1; transform: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-item.is-visible .five-stars-reveal .star-item { opacity: 0; transform: translate3d(0, 10px, 0) scale(.9); animation: star-move-up .45s cubic-bezier(.22, 1, .36, 1) forwards; }
+  .reveal-item.is-visible .five-stars-reveal .star-item:nth-child(1) { animation-delay: 0ms; }
+  .reveal-item.is-visible .five-stars-reveal .star-item:nth-child(2) { animation-delay: 70ms; }
+  .reveal-item.is-visible .five-stars-reveal .star-item:nth-child(3) { animation-delay: 140ms; }
+  .reveal-item.is-visible .five-stars-reveal .star-item:nth-child(4) { animation-delay: 210ms; }
+  .reveal-item.is-visible .five-stars-reveal .star-item:nth-child(5) { animation-delay: 280ms; }
+}
+@keyframes star-move-up { to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); } }
+@media (prefers-reduced-motion: reduce) { .five-stars-reveal .star-item { opacity: 1 !important; transform: none !important; animation: none !important; } }

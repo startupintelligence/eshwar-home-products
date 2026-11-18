@@ -5,12 +5,12 @@ import catalogue from "../data/catalogue.json";
 const base = import.meta.env.BASE_URL;
 const siteOrigin = Astro.site ?? new URL("https://startupintelligence.github.io");
 const pageUrl = new URL(base + "perambur-millet-store/", siteOrigin).toString();
-const storeAddress = "119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India";
+const storeAddress = "119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India";
 const phone = "+91 99412 09953";
 const email = "info.eshwarhomeproducts@gmail.com";
 const phoneHref = "tel:+919941209953";
 const whatsappUrl = "https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20would%20like%20to%20check%20current%20stock%20for%3A";
-const mapsUrl = "https://www.google.com/maps/search/?api=1&query=119%2F1%2C%20Paddy%20Field%20Road%2C%20Perambur%2C%20Chennai%2C%20Tamil%20Nadu%20600%20011";
+const mapsUrl = "https://www.google.com/maps/place/Eshwar+Home+Products/@13.1118547,80.2468127,17z/data=!3m1!4b1!4m6!3m5!1s0x3a526569af8122ad:0xe485caf4b8adf074!8m2!3d13.1118495!4d80.2493876!16s%2Fg%2F11v4j6lc03?entry=ttu&g_ep=EgoyMDI2MTExNS4wIKXMDSoASAFQAw%3D%3D";
 const youtubeUrl = "https://www.youtube.com/@EHP_PeramburOfficial";
 
 const faqs = [
@@ -32,7 +32,7 @@ const faqs = [
   },
   {
     question: "Where is the traditional millet and pantry store in Perambur?",
-    answer: "Eshwar Home Products is at 119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India"
+    answer: "Eshwar Home Products is at 119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India"
   },
   {
     question: "Can visitors from Kolathur, Sembium or Korattur plan a visit?",
@@ -62,10 +62,10 @@ const discoverySchema = {
       logo: new URL("images/brand/eshwar-home-products-logo.png", new URL(base, siteOrigin)).toString(),
       address: {
         "@type": "PostalAddress",
-        streetAddress: "119/1, Paddy Field Road, Perambur",
+        streetAddress: "119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur",
         addressLocality: "Chennai",
         addressRegion: "Tamil Nadu",
-        postalCode: "600 011",
+        postalCode: "600011",
         addressCountry: "IN"
       },
       openingHours: ["Mo-Sa 09:00-21:00"], description: "Mon–Sat: 9:00 AM – 9:00 PM · Sun: Closed",
