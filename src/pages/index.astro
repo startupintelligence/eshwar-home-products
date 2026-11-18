@@ -121,6 +121,25 @@ const products = [
 </SiteLayout>
 
 <style>
+  /* Homepage product cards: explicit layout, readable labels and touch-sized enquiry control. */
+  .ehp-products-section { padding: clamp(48px, 7vw, 84px) 0; background: #FAF8F5; }
+  .ehp-products-heading { max-width: 680px; margin: 0 auto 28px; text-align: center; }
+  .ehp-products-heading h2 { margin: 8px 0; color: #2A1508; font: 400 clamp(2rem, 4vw, 3rem)/1.12 Georgia, "Times New Roman", serif; }
+  .ehp-products-heading > p:last-child { color: #4A3525; font-size: .88rem; line-height: 1.7; }
+  .ehp-product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  .ehp-product-card { min-width: 0; overflow: hidden; border: 1px solid #E2D6C5; background: #FFFDF9; }
+  .ehp-product-card figure { position: relative; overflow: hidden; aspect-ratio: 1; margin: 0; background: #F5EDE3; }
+  .ehp-product-card figure img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .ehp-product-card figcaption { position: absolute; inset: auto 0 0; padding: 7px 10px; background: rgb(42 21 8 / 78%); color: #FFFDF9; font-size: .68rem; line-height: 1.35; }
+  .ehp-product-card-copy { display: flex; min-height: 76px; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px 12px 16px; }
+  .ehp-product-card-copy h3 { min-width: 0; margin: 0; color: #2A1508; font: 400 clamp(.98rem, 1.5vw, 1.15rem)/1.3 Georgia, "Times New Roman", serif; }
+  .ehp-product-enquiry { display: inline-flex; flex: 0 0 48px; width: 48px; height: 48px; align-items: center; justify-content: center; border: 1px solid #E2D6C5; border-radius: 50%; background: #FFFDF9; color: #432818; font-size: 1.15rem; text-decoration: none; }
+  .ehp-product-enquiry:hover { border-color: #D99B26; background: #F5EDE3; }
+  .ehp-product-enquiry:focus-visible { outline: 3px solid #D99B26; outline-offset: 3px; }
+  .ehp-product-note { margin: 18px 0 0; color: #5A4638; font-size: .76rem; line-height: 1.65; text-align: center; }
+  @media (max-width: 900px) { .ehp-product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; } }
+  @media (max-width: 420px) { .ehp-product-grid { gap: 10px; } .ehp-product-card-copy { gap: 8px; padding: 10px; } .ehp-product-card-copy h3 { font-size: .94rem; } }
+
   .ehp-reviews-section { padding: clamp(48px, 7vw, 84px) 0; background: #FAF8F5; }
   .ehp-reviews-heading { max-width: 680px; margin: 0 auto 28px; text-align: center; }
   .ehp-reviews-heading h2 { margin: 8px 0; color: #2A1508; font: 400 clamp(2rem, 4vw, 3rem)/1.12 Georgia, "Times New Roman", serif; }
