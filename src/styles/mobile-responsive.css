@@ -27,7 +27,7 @@ iframe{display:block}
   .ehp-site-header .main-nav a:last-child{border-bottom:0}
   .ehp-site-header .main-nav a[aria-current="page"],.ehp-site-header .main-nav .mobile-nav-contact{color:#D99B26}
   .ehp-site-header .main-nav a:focus-visible,.ehp-site-header .menu-toggle:focus-visible{outline:2px solid #FFFDF9;outline-offset:2px}
-  .ehp-home-hero .ehp-hero-main,.ehp-story-home .ehp-story-grid,.ehp-home-hero .ehp-local-guide-grid,.ehp-visit-section .ehp-visit-grid,.ehp-about-page .ehp-about-hero-inner,.ehp-about-page .ehp-name-story-grid,.ehp-about-page .ehp-visit-cta-inner,.ehp-about-page .ehp-commitment-grid,.contact-hero .contact-hero-grid,.contact-layout,.kitchen-guides-hero .kitchen-guides-hero-grid,.kitchen-guides-grid,.guide-grid,.pantry-hero .pantry-hero-grid,.discovery-hero .hero-layout,.local-guide-grid,.faq-layout,.conversion-inner,.market-hero-inner,.market-section-head,.market-visit,.market-faq-inner,.market-closing-inner,.market-shelf,.market-story-inner,.market-info-inner{grid-template-columns:minmax(0,1fr);gap:20px}
+  .ehp-home-hero .ehp-hero-main,.ehp-story-home .ehp-story-grid,.ehp-local-guide .ehp-local-guide-grid,.ehp-visit-section .ehp-visit-grid,.ehp-about-page .ehp-about-hero-inner,.ehp-about-page .ehp-name-story-grid,.ehp-about-page .ehp-visit-cta-inner,.ehp-about-page .ehp-commitment-grid,.contact-hero .contact-hero-grid,.contact-layout,.kitchen-guides-hero .kitchen-guides-hero-grid,.kitchen-guides-grid,.guide-grid,.pantry-hero .pantry-hero-grid,.discovery-hero .hero-layout,.local-guide-grid,.faq-layout,.conversion-inner,.market-hero-inner,.market-section-head,.market-visit,.market-faq-inner,.market-closing-inner,.market-shelf,.market-story-inner,.market-info-inner{grid-template-columns:minmax(0,1fr);gap:20px}
   .ehp-home-hero .ehp-hero-main{padding-top:32px;padding-bottom:24px}
   .ehp-home-hero .ehp-hero-copy,.ehp-home-hero .ehp-hero-visual,.contact-hero-grid>*,.kitchen-guides-hero-grid>*,.pantry-hero-grid>*,.hero-layout>*{min-width:0}
   .ehp-home-hero .ehp-hero-copy h1,.ehp-about-page .ehp-about-hero h1,.page-heading h1,.guide-hero h1,.kitchen-guides-copy h1,.discovery-hero h1,.market-hero h1,.pantry-hero-copy h1,.contact-hero h1{font-size:clamp(1.85rem,7vw,2.5rem);line-height:1.15;letter-spacing:-.03em;overflow-wrap:anywhere}
@@ -40,11 +40,11 @@ iframe{display:block}
   .ehp-products-section .ehp-product-card-copy{min-width:0;gap:8px;padding:9px}
   .ehp-products-section .ehp-product-card-copy h3{min-width:0;font-size:.82rem;overflow-wrap:anywhere}
   .ehp-products-section .ehp-product-card-copy>a,.ehp-products-section .ehp-product-enquiry{display:inline-flex;flex:0 0 48px;width:48px;min-width:48px;height:48px;min-height:48px;align-items:center;justify-content:center}
-  .ehp-home-hero .ehp-trust-grid{grid-template-columns:repeat(2,minmax(0,1fr));padding-block:10px}
-  .ehp-home-hero .ehp-trust-grid>*{min-width:0;min-height:76px}
-  .ehp-home-hero .ehp-trust-grid>*+*{border-left:0}
-  .ehp-home-hero .ehp-trust-grid>:nth-child(even){border-left:1px solid rgba(217,155,38,.38)}
-  .ehp-home-hero .ehp-trust-grid>:nth-child(n+3){border-top:1px solid rgba(217,155,38,.25)}
+  .ehp-trust-band .ehp-trust-grid{grid-template-columns:repeat(2,minmax(0,1fr));padding-block:10px}
+  .ehp-trust-band .ehp-trust-grid>*{min-width:0;min-height:76px}
+  .ehp-trust-band .ehp-trust-grid>*+*{border-left:0}
+  .ehp-trust-band .ehp-trust-grid>:nth-child(even){border-left:1px solid rgba(217,155,38,.38)}
+  .ehp-trust-band .ehp-trust-grid>:nth-child(n+3){border-top:1px solid rgba(217,155,38,.25)}
   .pantry-hero-grid,.pantry-group,.contact-list,.contact-list>div,.social-profile-grid{min-width:0;max-width:100%}
   .pantry-hero-grid,.pantry-group,.contact-list>div{grid-template-columns:minmax(0,1fr)}
   .kitchen-guides-list-heading{align-items:flex-start;flex-direction:column;gap:12px}
