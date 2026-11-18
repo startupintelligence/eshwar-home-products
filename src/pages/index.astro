@@ -5,7 +5,7 @@ const reviews = reviewData as Array<{ reviewer: string; text: string; source: "G
 import "../styles/home-editorial.css";
 import "../styles/story-theme2.css";
 const base = import.meta.env.BASE_URL;
-const mapsUrl = "https://www.google.com/maps/search/?api=1&query=119%2F1%2C%20Paddy%20Field%20Road%2C%20Perambur%2C%20Chennai%2C%20Tamil%20Nadu%20600%20011";
+const mapsUrl = "https://www.google.com/maps/place/Eshwar+Home+Products/@13.1118547,80.2468127,17z/data=!3m1!4b1!4m6!3m5!1s0x3a526569af8122ad:0xe485caf4b8adf074!8m2!3d13.1118495!4d80.2493876!16s%2Fg%2F11v4j6lc03?entry=ttu&g_ep=EgoyMDI2MTExNS4wIKXMDSoASAFQAw%3D%3D";
 const whatsappUrl = "https://wa.me/919941209953";
 const ask = (item: string) => whatsappUrl + "?text=" + encodeURIComponent("Hello Eshwar Home Products, please help me check today's availability and pack sizes for " + item + ".");
 const categories = [
@@ -23,7 +23,7 @@ const products = [
   { title: "Pure Ghee & Honey", image: "category-ghee-dairy.svg", alt: "Representative illustration of ghee and dairy", enquiry: "ghee and honey" }
 ];
 ---
-<SiteLayout title="Eshwar Home Products | Traditional Foods & Millets in Perambur, Chennai" description="Explore traditional rice, Siruthaniyam millets, cold-pressed oils and pantry essentials at Eshwar Home Products, Paddy Field Road, Perambur, Chennai." current="home">
+<SiteLayout title="Eshwar Home Products | Traditional Foods & Millets in Perambur, Chennai" description="Explore traditional rice, Siruthaniyam millets, cold-pressed oils and pantry essentials at Eshwar Home Products, Paddy Field Rd, Chinnaiyan Colony, Perambur, Chennai." current="home">
   <section class="ehp-home-hero" aria-labelledby="home-title">
     <div class="ehp-hero-main container">
       <div class="ehp-hero-copy">
@@ -31,7 +31,7 @@ const products = [
         <h1 id="home-title">Goodness<br /><em>from Nature</em></h1>
         <p class="ehp-hero-lede">Traditional foods, thoughtfully chosen. Explore familiar staples and everyday pantry essentials from your neighbourhood store.</p>
         <a class="ehp-gold-button" href={base + "products/"}>Explore Our Pantry <span aria-hidden="true">→</span></a>
-        <p class="ehp-hero-address">119/1, Paddy Field Road · Perambur, Chennai</p>
+        <p class="ehp-hero-address">119/1, Paddy Field Rd · Chinnaiyan Colony, Perambur, Chennai</p>
       </div>
       <figure class="ehp-hero-visual">
         <img src={base + "images/placeholders/hero-grain-bowl.svg"} alt="Representative illustration of traditional grains in a wooden bowl" width="520" height="460" fetchpriority="high" decoding="async" />
@@ -77,7 +77,7 @@ const products = [
 
   <section class="ehp-products-section" aria-labelledby="products-title">
     <div class="container">
-      <header class="ehp-products-heading"><p class="ehp-section-kicker">A THOUGHTFUL PANTRY</p><h2 id="products-title">Our Products</h2><p>Natural. Nutritious. Trusted. <span>119/1, Paddy Field Road, Perambur</span></p></header>
+      <header class="ehp-products-heading"><p class="ehp-section-kicker">A THOUGHTFUL PANTRY</p><h2 id="products-title">Our Products</h2><p>Natural. Nutritious. Trusted. <span>119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur</span></p></header>
       <div class="ehp-product-grid">
         {products.map((product) => <article class="ehp-product-card">
           <figure><img src={base + "images/placeholders/" + product.image} alt={product.alt} width="420" height="420" loading="lazy" decoding="async" /><figcaption>Representative visual</figcaption></figure>
@@ -114,10 +114,10 @@ const products = [
 
   <section class="ehp-story-home" aria-labelledby="story-title"><div class="container ehp-story-grid">
     <aside class="ehp-story-proof"><div class="ehp-story-proof-inner"><img class="ehp-story-logo ehp-story-logo-cream" src={base + "images/brand/eshwar-home-products-logo.png"} alt="Official Eshwar Home Products emblem with a Rudraksha bead, golden Trishuls, Damrus and lemons" width="320" height="320" loading="lazy" decoding="async" /><p class="ehp-story-tamil" lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</p><p class="ehp-story-english">ESHWAR HOME PRODUCTS</p><p class="ehp-story-origin">Named in devotion to Eshwaran · Perambur, Chennai</p><a class="ehp-google-rating" href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="5.0 star rated on Google Maps in Perambur"><strong>5.0</strong><span aria-hidden="true">★</span> Rated on Google Maps · Perambur</a></div></aside>
-    <div class="ehp-story-copy"><p class="ehp-story-eyebrow">OUR STORY · PERAMBUR, CHENNAI</p><h2 id="story-title">Rooted in devotion, serving everyday kitchens.</h2><p>Eshwar Home Products is named with devotion after our family deity, Eshwaran (Lord Shiva). That connection is reflected in the store’s Rudraksha and Trishul emblem, and in the values we bring to everyday household staples: honesty, gratitude and care.</p><p>At our store on Paddy Field Road, Perambur, explore traditional rice varieties, whole millets (<em>Siruthaniyam</em>), millet flours, cold-pressed oils, ghee and other pantry essentials. Our team is here to offer personal guidance when you need help choosing.</p><a class="ehp-story-link" href={base + "about/"}>Read Our Story <span aria-hidden="true">→</span></a></div>
+    <div class="ehp-story-copy"><p class="ehp-story-eyebrow">OUR STORY · PERAMBUR, CHENNAI</p><h2 id="story-title">Rooted in devotion, serving everyday kitchens.</h2><p>Eshwar Home Products is named with devotion after our family deity, Eshwaran (Lord Shiva). That connection is reflected in the store’s Rudraksha and Trishul emblem, and in the values we bring to everyday household staples: honesty, gratitude and care.</p><p>At our store on Paddy Field Rd, Chinnaiyan Colony, Perambur, explore traditional rice varieties, whole millets (<em>Siruthaniyam</em>), millet flours, cold-pressed oils, ghee and other pantry essentials. Our team is here to offer personal guidance when you need help choosing.</p><a class="ehp-story-link" href={base + "about/"}>Read Our Story <span aria-hidden="true">→</span></a></div>
   </div></section>
 
-  <section class="ehp-visit-section" aria-labelledby="visit-title"><div class="container ehp-visit-grid"><div><p class="ehp-gold-eyebrow">VISIT OUR STORE</p><h2 id="visit-title">Good food, close to home.</h2><p>Come by and explore our traditional pantry range in Perambur.</p><a class="ehp-gold-button" href={mapsUrl} target="_blank" rel="noopener noreferrer">Get Directions <span aria-hidden="true">↗</span></a></div><div class="ehp-visit-details"><div><span>ADDRESS</span><p>119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India</p></div><div><span>OPENING HOURS</span><p>Mon–Sat: 9:00 AM – 9:00 PM<br />Sunday: Closed</p></div><div><span>CALL OR WHATSAPP</span><p><a href="tel:+919941209953">+91 99412 09953</a><br /><a href={ask("your pantry requirements")} target="_blank" rel="noopener noreferrer">Send an enquiry ↗</a></p></div></div></div></section>
+  <section class="ehp-visit-section" aria-labelledby="visit-title"><div class="container ehp-visit-grid"><div><p class="ehp-gold-eyebrow">VISIT OUR STORE</p><h2 id="visit-title">Good food, close to home.</h2><p>Come by and explore our traditional pantry range in Perambur.</p><a class="ehp-gold-button" href={mapsUrl} target="_blank" rel="noopener noreferrer">Get Directions <span aria-hidden="true">↗</span></a></div><div class="ehp-visit-details"><div><span>ADDRESS</span><p>119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India</p></div><div><span>OPENING HOURS</span><p>Mon–Sat: 9:00 AM – 9:00 PM<br />Sunday: Closed</p></div><div><span>CALL OR WHATSAPP</span><p><a href="tel:+919941209953">+91 99412 09953</a><br /><a href={ask("your pantry requirements")} target="_blank" rel="noopener noreferrer">Send an enquiry ↗</a></p></div></div></div></section>
 </SiteLayout>
 
 <style>
