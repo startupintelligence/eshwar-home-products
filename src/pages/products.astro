@@ -2,6 +2,7 @@
 import SiteLayout from "../layouts/SiteLayout.astro";
 import catalogue from "../data/catalogue.json";
 import PublishedCatalogue from "../components/PublishedCatalogue";
+import "../styles/mobile-responsive.css";
 const siteRoot = Astro.site ?? new URL("https://startupintelligence.github.io");
 const pageUrl = new URL(`${import.meta.env.BASE_URL}products/`, siteRoot).toString();
 const storeId = `${new URL(import.meta.env.BASE_URL, siteRoot).toString()}#store`;

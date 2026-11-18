@@ -5,7 +5,6 @@ import "../styles/global.css";
 import "../styles/theme-2.css";
 import "../styles/shared-editorial.css";
 import "../styles/brand-system.css";
-import "../styles/mobile-responsive.css";
 interface Props { title:string; description:string; current?:"home"|"about"|"products"|"contact"|"blog"|"kitchen-guides"; includeStoreSchema?:boolean; canonicalUrl?:string; noindex?:boolean; }
 const { title, description, current="home", includeStoreSchema=true, canonicalUrl, noindex=false } = Astro.props;
 const canonical = canonicalUrl ?? new URL(Astro.url.pathname, Astro.site ?? "https://startupintelligence.github.io").toString();
