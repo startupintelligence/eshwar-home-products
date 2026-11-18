@@ -11,11 +11,11 @@ iframe{display:block}
   .container,.discovery-container,.market-hero-inner{width:calc(100% - 32px);max-width:100%;min-width:0}
   .ehp-site-header{background:#3B2112;border-bottom:1px solid #D99B26;color:#FFFDF9}
   .ehp-site-header .header-inner{display:flex;min-height:64px;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 12px;padding-block:8px}
-  .ehp-site-header .wordmark{display:flex;flex:1 1 auto;min-width:0;align-items:center;gap:8px}
+  .ehp-site-header .wordmark{display:flex;flex:1 1 0;min-width:0;align-items:center;gap:8px}
   .ehp-site-header .wordmark-logo{display:block;flex:0 0 38px;width:38px;height:38px;object-fit:contain}
   .ehp-site-header .wordmark-copy{display:block;min-width:0}
   .ehp-site-header .wordmark-name{display:block;overflow:hidden;color:#FFFDF9;font-size:1rem;line-height:1.2;letter-spacing:0;text-overflow:ellipsis;white-space:nowrap}
-  .ehp-site-header .wordmark-tamil,.ehp-site-header .wordmark-place,.ehp-site-header .header-contact{display:none}
+  .ehp-site-header .wordmark-tamil,.ehp-site-header .wordmark-place,.ehp-site-header .header-contact,.ehp-site-header.is-contact-page .header-contact{display:none}
   .ehp-site-header .menu-toggle{display:grid;flex:0 0 48px;width:48px;min-width:48px;height:48px;min-height:48px;place-items:center;margin:0;padding:0;border:1px solid #D99B26;border-radius:4px;background:#4E2C18;color:#FFFDF9}
   .ehp-site-header .menu-toggle-lines,.ehp-site-header .menu-toggle-lines::before,.ehp-site-header .menu-toggle-lines::after{display:block;width:19px;height:2px;background:#FFFDF9;content:""}
   .ehp-site-header .menu-toggle-lines{position:relative}
