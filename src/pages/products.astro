@@ -78,7 +78,7 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
           const shelf = shelfDetails[group.id as keyof typeof shelfDetails];
           const categoryName = shelf?.label ?? group.title;
           const message = `Hello Eshwar Home Products, please help me check today's stock for ${categoryName}.`;
-          return <section class="pantry-group" id={group.id} data-group={group.id}>
+          return <section class="pantry-group pantry-interactive-card" id={group.id} data-group={group.id}>
             <div class="pantry-group-visual">
               <div class="pantry-image-frame"><img src={`${import.meta.env.BASE_URL}${group.placeholderImage}`} alt={group.placeholderAlt} width="800" height="600" loading="lazy" decoding="async" /></div>
               <p class="representative-caption">Representative visual · Store photos coming soon</p>

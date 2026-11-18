@@ -554,6 +554,8 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--brand-red);outline-
 
 
 /* Lightweight pantry quick views and tactile controls. */
+button { transition:transform .18s cubic-bezier(.22,1,.36,1), background-color .18s ease, border-color .18s ease, color .18s ease; }
+@media (hover:hover) and (prefers-reduced-motion:no-preference) { button:hover { border-color:#D99B26; } }
 .pantry-interactive-card {
   position: relative;
   background: #FFFDF9;
