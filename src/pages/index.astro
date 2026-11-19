@@ -149,60 +149,43 @@ const products = [
       const revealItems = hero ? Array.from(hero.querySelectorAll('[data-ehp-reveal]')) : [];
       if (!hero || !canvas || !revealItems.length) return;
 
+      const root = document.documentElement;
       const motionPreference = window.matchMedia?.('(prefers-reduced-motion: reduce)');
-      if (motionPreference?.matches) return;
+      if (motionPreference?.matches) { canvas.remove(); return; }
 
       let context;
       try { context = canvas.getContext('2d', { alpha: true }); } catch { context = null; }
-      if (!context) return;
+      if (!context) { canvas.remove(); return; }
 
-      const root = document.documentElement;
+      const mobile = window.matchMedia('(max-width: 767px)').matches;
+      const duration = 5000;
+      const count = mobile ? 92 : 168;
       const particles = [];
-      let width = 0;
-      let height = 0;
-      let pixelRatio = 1;
-      let frameId = 0;
-      let resizeObserver = null;
-      let startTime = 0;
-      let lastTime = 0;
-      let finished = false;
-      const duration = 2800;
-      const count = window.matchMedia('(max-width: 767px)').matches ? 36 : 80;
-      const goldTones = ['218,178,108', '235,206,148', '194,152,82'];
+      let width = 1, height = 1, pixelRatio = 1;
+      let frameId = 0, resizeObserver = null, startTime = 0, lastTime = 0, finished = false;
+      const goldTones = ['255,224,171', '239,195,126', '213,164,91', '255,237,203'];
 
       const resizeCanvas = () => {
         const rect = hero.getBoundingClientRect();
-        const nextWidth = Math.max(1, rect.width);
-        const nextHeight = Math.max(1, rect.height);
-        const scaleX = width ? nextWidth / width : 1;
-        const scaleY = height ? nextHeight / height : 1;
-        width = nextWidth;
-        height = nextHeight;
-        pixelRatio = Math.min(window.devicePixelRatio || 1, 1.35);
+        width = Math.max(1, rect.width);
+        height = Math.max(1, rect.height);
+        pixelRatio = Math.min(window.devicePixelRatio || 1, 1.25);
         canvas.width = Math.round(width * pixelRatio);
         canvas.height = Math.round(height * pixelRatio);
-        canvas.style.width = width + 'px';
-        canvas.style.height = height + 'px';
         context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
-        particles.forEach((particle) => {
-          particle.x *= scaleX;
-          particle.y *= scaleY;
-          particle.speed = width * particle.speedRatio / (duration / 1000);
-        });
       };
 
       for (let index = 0; index < count; index += 1) {
-        particles.push({
-          x: 0,
-          y: 0,
-          radius: Math.random() * 2.4 + 1.1,
-          speedRatio: Math.random() * 0.38 + 0.58,
-          speed: 0,
-          drift: -(Math.random() * 54 + 24),
-          phase: Math.random() * Math.PI * 2,
-          tone: goldTones[Math.floor(Math.random() * goldTones.length)]
-        });
+        const large = index % 9 === 0;
+        particles.push({ x: 0, y: 0, radius: large ? Math.random() * 2.2 + 2.8 : Math.random() * 1.8 + 1.15,
+          speed: Math.random() * 0.46 + 0.72, rise: Math.random() * 54 + 34,
+          phase: Math.random() * Math.PI * 2, tone: goldTones[Math.floor(Math.random() * goldTones.length)], large });
       }
+
+      const seedParticles = () => particles.forEach((p) => {
+        p.x = -width * (0.2 + Math.random() * 0.18);
+        p.y = height * (0.48 + Math.random() * 0.58);
+      });
 
       const finish = () => {
         if (finished) return;
@@ -215,23 +198,17 @@ const products = [
           root.classList.remove('ehp-hero-anim-ready');
           revealItems.forEach((item) => item.classList.remove('is-visible'));
           canvas.remove();
-        }, 520);
+        }, 680);
       };
 
       try {
         resizeCanvas();
-        particles.forEach((particle) => {
-          particle.x = Math.random() * width * 0.62 - width * 0.24;
-          particle.y = Math.random() * height * 0.78 + height * 0.18;
-          particle.speed = width * particle.speedRatio / (duration / 1000);
-        });
+        seedParticles();
         root.classList.add('ehp-hero-anim-ready');
         if ('ResizeObserver' in window) {
           resizeObserver = new ResizeObserver(resizeCanvas);
           resizeObserver.observe(hero);
-        } else {
-          window.addEventListener('resize', resizeCanvas, { passive: true });
-        }
+        } else window.addEventListener('resize', resizeCanvas, { passive: true });
 
         const reveal = () => revealItems.forEach((item) => item.classList.add('is-visible'));
         requestAnimationFrame(() => requestAnimationFrame(reveal));
@@ -242,39 +219,40 @@ const products = [
           lastTime = timestamp;
           const elapsed = timestamp - startTime;
           context.clearRect(0, 0, width, height);
-
-          // Fine curved gust lines establish the wind direction before the heavier grains pass.
           context.lineCap = 'round';
-          for (let band = 0; band < 3; band += 1) {
-            const sweep = (elapsed * 0.00034 + band * 0.31) % 1.35;
-            const startX = -width * 0.12 + sweep * width * 0.42;
-            const startY = height * (0.76 - band * 0.13);
+
+          // Broad curved ribbons make the wind direction visible before the sand plume crosses.
+          for (let band = 0; band < (mobile ? 5 : 7); band += 1) {
+            const phase = (elapsed * 0.00019 + band * 0.17) % 1.25;
+            const x = -width * 0.2 + phase * width * 0.34;
+            const y = height * (0.88 - band * 0.075);
             context.beginPath();
-            context.moveTo(startX, startY);
-            context.bezierCurveTo(startX + width * 0.18, startY - height * 0.2, startX + width * 0.34, startY - height * 0.08, startX + width * 0.56, startY - height * 0.31);
-            context.strokeStyle = `rgba(194,152,82,${(0.13 + band * 0.025).toFixed(2)})`;
-            context.lineWidth = 1.2 + band * 0.45;
+            context.moveTo(x, y);
+            context.bezierCurveTo(x + width * 0.2, y - height * 0.28, x + width * 0.48, y - height * 0.04, x + width * 0.82, y - height * 0.4);
+            context.strokeStyle = `rgba(255,218,158,${0.22 + (band % 3) * 0.055})`;
+            context.lineWidth = 1.1 + (band % 3) * 0.8;
             context.stroke();
           }
 
-          particles.forEach((particle) => {
-            particle.x += particle.speed * delta;
-            particle.y += (particle.drift + Math.sin(elapsed * 0.003 + particle.phase) * 18) * delta;
-            const alpha = 0.42 + Math.abs(Math.sin(elapsed * 0.004 + particle.phase)) * 0.42;
-            const tail = particle.radius * (2.2 + particle.speedRatio * 2.4);
+          // A diagonal plume of visible grains rises from the lower-left and sweeps across the hero.
+          particles.forEach((p) => {
+            p.x += width * p.speed / (duration / 1000) * delta;
+            p.y += (-p.rise + Math.sin(elapsed * 0.0026 + p.phase) * 15) * delta;
+            const pulse = 0.5 + Math.abs(Math.sin(elapsed * 0.0032 + p.phase)) * 0.42;
+            const tail = p.radius * (p.large ? 4.8 : 3.6);
             context.beginPath();
-            context.moveTo(particle.x - tail, particle.y + tail * 0.48);
-            context.lineTo(particle.x + particle.radius * 0.4, particle.y - particle.radius * 0.25);
-            context.strokeStyle = `rgba(${particle.tone},${(alpha * 0.72).toFixed(2)})`;
-            context.lineWidth = Math.max(0.8, particle.radius * 0.9);
+            context.moveTo(p.x - tail, p.y + tail * 0.55);
+            context.quadraticCurveTo(p.x - tail * 0.35, p.y + tail * 0.12, p.x + p.radius, p.y - p.radius * 0.35);
+            context.strokeStyle = `rgba(${p.tone},${(pulse * (p.large ? 0.82 : 0.66)).toFixed(2)})`;
+            context.lineWidth = p.large ? 1.8 : 1.15;
             context.stroke();
             context.beginPath();
-            context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-            context.fillStyle = `rgba(${particle.tone},${alpha.toFixed(2)})`;
+            context.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            context.fillStyle = `rgba(${p.tone},${(pulse * (p.large ? 0.94 : 0.78)).toFixed(2)})`;
             context.fill();
-            if (particle.x > width + 12 || particle.y < -12) {
-              particle.x = -Math.random() * width * 0.18;
-              particle.y = height * (0.45 + Math.random() * 0.65);
+            if (p.x > width + 24 || p.y < -24) {
+              p.x = -Math.random() * width * 0.22;
+              p.y = height * (0.5 + Math.random() * 0.58);
             }
           });
 
@@ -282,7 +260,7 @@ const products = [
           else finish();
         };
         frameId = requestAnimationFrame(draw);
-        window.setTimeout(finish, duration + 80);
+        window.setTimeout(finish, duration + 100);
       } catch {
         root.classList.remove('ehp-hero-anim-ready');
         revealItems.forEach((item) => item.classList.remove('is-visible'));
@@ -344,8 +322,10 @@ const products = [
   @media (max-width: 760px) { .ehp-reviews-grid { grid-template-columns: 1fr; } }
 
   /* Hero entrance: content remains visible unless the inline script arms the sequence. */
-  .ehp-home-hero { position: relative; }
-  .ehp-home-hero .ehp-wind-canvas { position: absolute; inset: 0; z-index: 4; display: block; width: 100%; height: 100%; pointer-events: none; opacity: 1; transition: opacity .5s ease-out; }
+  .ehp-home-hero { position: relative; isolation: isolate; overflow: hidden; }
+  .ehp-home-hero .ehp-wind-canvas { position: absolute; inset: 0; z-index: 2; display: block; width: 100%; height: 100%; pointer-events: none; opacity: 1; transition: opacity .65s ease-out; }
+  .ehp-home-hero .ehp-hero-main,
+  .ehp-home-hero .ehp-category-band { position: relative; z-index: 3; }
   .ehp-home-hero .ehp-wind-canvas.is-fading { opacity: 0; }
   .ehp-home-hero .ehp-hero-emblem { display: block; width: 68px; height: 56px; margin: 0 0 14px; object-fit: contain; }
   :global(html.ehp-hero-anim-ready) .ehp-home-hero [data-ehp-reveal] { opacity: 0; transform: translate3d(-12px, 7px, 0); will-change: opacity, transform; }
