@@ -191,15 +191,20 @@ const products = [
         canvas.style.width = width + 'px';
         canvas.style.height = height + 'px';
         context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
-        particles.forEach((particle) => { particle.x *= scaleX; particle.y *= scaleY; });
+        particles.forEach((particle) => {
+          particle.x *= scaleX;
+          particle.y *= scaleY;
+          particle.speed = width * particle.speedRatio / (duration / 1000);
+        });
       };
 
       for (let index = 0; index < count; index += 1) {
         particles.push({
-          x: Math.random() * 0.42 - 0.16,
-          y: Math.random() * 0.84 + 0.06,
+          x: 0,
+          y: 0,
           radius: Math.random() * 1.25 + 0.65,
-          speed: Math.random() * 180 + 300,
+          speedRatio: Math.random() * 0.5 + 0.65,
+          speed: 0,
           drift: (Math.random() - 0.5) * 34,
           phase: Math.random() * Math.PI * 2,
           tone: goldTones[Math.floor(Math.random() * goldTones.length)]
@@ -222,6 +227,11 @@ const products = [
 
       try {
         resizeCanvas();
+        particles.forEach((particle) => {
+          particle.x = Math.random() * width * 0.42 - width * 0.16;
+          particle.y = Math.random() * height * 0.84 + height * 0.06;
+          particle.speed = width * particle.speedRatio / (duration / 1000);
+        });
         root.classList.add('ehp-hero-anim-ready');
         if ('ResizeObserver' in window) {
           resizeObserver = new ResizeObserver(resizeCanvas);
