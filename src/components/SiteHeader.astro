@@ -40,7 +40,7 @@ const base = import.meta.env.BASE_URL;
       link.addEventListener("click", (event) => {
         const keepsCurrentPageOpen = link.target === "_blank" || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
         closeNavigation();
-        if (keepsCurrentPageOpen) toggle.focus();
+        if (keepsCurrentPageOpen || link.hasAttribute("data-ehp-dialog")) toggle.focus();
       });
       link.addEventListener("auxclick", (event) => {
         if (event.button === 1) {

@@ -100,7 +100,7 @@ const schema = {
 
     <div class="kitchen-guides-grid">
       {guides.map((guide) => (
-        <button class="kitchen-guide-card" type="button" data-ehp-dialog="guide" data-ehp-title={guide.title} data-ehp-description={guide.description} data-ehp-items={JSON.stringify(guide.number === "01" ? ["Millets", "Rice"] : guide.number === "02" ? ["Rice", "Millets"] : guide.number === "03" ? ["Cold-Pressed Oil", "Ghee"] : ["Millets", "Sathumaavu"])} aria-haspopup="dialog">
+        <button class="kitchen-guide-card" type="button" data-ehp-dialog="guide" data-ehp-title={guide.title} data-ehp-description={guide.description} data-ehp-href={guide.href} data-ehp-action={guide.action} data-ehp-items={JSON.stringify(guide.number === "01" ? ["Millets", "Rice"] : guide.number === "02" ? ["Rice", "Millets"] : guide.number === "03" ? ["Cold-Pressed Oil", "Ghee"] : ["Millets", "Sathumaavu"])} aria-haspopup="dialog">
           <span class="eyebrow">{guide.number} · {guide.eyebrow}</span><h3>{guide.title}</h3><p>{guide.description}</p>
           <span class="kitchen-guide-card-action">{guide.action} <span aria-hidden="true">↗</span></span>
         </button>
@@ -214,9 +214,11 @@ const schema = {
     transition: background-color .18s ease, border-color .18s ease;
   }
 
-  .kitchen-guides-pantry-button:hover {
-    border-color: #B77D16;
-    background: #E7B64E;
+  @media (hover: hover) and (pointer: fine) {
+    .kitchen-guides-pantry-button:hover {
+      border-color: #B77D16;
+      background: #E7B64E;
+    }
   }
 
   .kitchen-guides-list {
@@ -271,11 +273,13 @@ const schema = {
     transition: transform .18s ease, border-color .18s ease, background-color .18s ease;
   }
 
-  .kitchen-guide-card:hover {
-    z-index: 1;
-    transform: translateY(-3px);
-    border-color: #D99B26;
-    background: #FFFDF9;
+  @media (hover: hover) and (pointer: fine) {
+    .kitchen-guide-card:hover {
+      z-index: 1;
+      transform: translateY(-3px);
+      border-color: #D99B26;
+      background: #FFFDF9;
+    }
   }
 
   .kitchen-guide-card:focus-visible {
@@ -307,7 +311,7 @@ const schema = {
     line-height: 1.7;
   }
 
-  .kitchen-guide-card:focus-visible { outline:2px solid #7A4B16; outline-offset:3px; }\n  .kitchen-guide-card-action {
+  .kitchen-guide-card-action {
     display: inline-flex;
     min-height: 48px;
     align-items: center;
