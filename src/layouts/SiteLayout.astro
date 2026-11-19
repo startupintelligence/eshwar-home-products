@@ -1,6 +1,7 @@
 ---
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
+import FloatingActionCards from "../components/FloatingActionCards.astro";
 import "../styles/global.css";
 import "../styles/theme-2.css";
 import "../styles/shared-editorial.css";
@@ -10,7 +11,7 @@ const { title, description, current="home", includeStoreSchema=true, canonicalUr
 const canonical = canonicalUrl ?? new URL(Astro.url.pathname, Astro.site ?? "https://startupintelligence.github.io").toString();
 const siteUrl = new URL(import.meta.env.BASE_URL, Astro.site ?? "https://startupintelligence.github.io").toString();
 const ogImage = new URL("images/og-eshwar-home-products.png", siteUrl).toString();
-const storeSchema = { "@context":"https://schema.org", "@type":"GroceryStore", "@id":siteUrl+"#store", name:"Eshwar Home Products", alternateName:"ஈஸ்வர் ஹோம் புராடக்ட்ஸ்", url:siteUrl, logo:new URL("images/brand/eshwar-home-products-logo.png", siteUrl).toString(), telephone:"+91 99412 09953", email:"info.eshwarhomeproducts@gmail.com", address:{ "@type":"PostalAddress", streetAddress:"119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur", addressLocality:"Chennai", addressRegion:"Tamil Nadu", postalCode:"600011", addressCountry:"IN" }, openingHours:["Mo-Sa 09:00-21:00"], description:"Mon–Sat: 9:00 AM – 9:00 PM · Sun: Closed", areaServed:"Perambur, Chennai", sameAs:["https://www.youtube.com/@EHP_PeramburOfficial","https://www.instagram.com/eshwar_home_products/"] };
+const storeSchema = { "@context":"https://schema.org", "@type":"GroceryStore", "@id":siteUrl+"#store", name:"Eshwar Home Products", alternateName:"ஈஸ்வர் ஹோம் புராடக்ட்ஸ்", url:siteUrl, logo:new URL("images/brand/eshwar-home-products-logo.png", siteUrl).toString(), telephone:"+91 99412 09953", email:"info.eshwarhomeproducts@gmail.com", address:{ "@type":"PostalAddress", streetAddress:"119/1, Paddy Field Road, Chinnaiyan Colony, Perambur", addressLocality:"Chennai", addressRegion:"Tamil Nadu", postalCode:"600011", addressCountry:"IN" }, openingHours:["Mo-Sa 09:00-21:00"], description:"Mon–Sat: 9:00 AM – 9:00 PM · Sunday: Closed", areaServed:"Perambur, Chennai", sameAs:["https://www.youtube.com/@EHP_PeramburOfficial","https://www.instagram.com/eshwar_home_products/"] };
 ---
 <!doctype html>
 <html lang="en">
@@ -23,10 +24,10 @@ const storeSchema = { "@context":"https://schema.org", "@type":"GroceryStore", "
 <script src="https://analytics.ahrefs.com/analytics.js" data-key="T8+LOj2/EakoZK7/pjg3rg" async></script>
 {includeStoreSchema && <script type="application/ld+json" set:html={JSON.stringify(storeSchema)} />}
 </head>
-<body><div class="reading-progress" aria-hidden="true"></div><a class="skip-link" href="#main-content">Skip to content</a><SiteHeader current={current} /><main id="main-content"><slot /></main><SiteFooter />
+<body><div class="reading-progress" aria-hidden="true"></div><a class="skip-link" href="#main-content">Skip to content</a><SiteHeader current={current} /><main id="main-content"><slot /></main><SiteFooter /><FloatingActionCards />
 <nav class="mobile-action-bar" aria-label="Quick store actions">
   <a class="mobile-action-call" href="tel:+919941209953">Call Store</a>
-  <a class="mobile-action-whatsapp" href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20would%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
+  <button class="mobile-action-whatsapp" type="button" data-ehp-dialog="enquiry" aria-haspopup="dialog">WhatsApp Enquiry ↗</button>
 </nav>
 <script is:inline>
   (() => {

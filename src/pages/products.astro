@@ -56,7 +56,7 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
     </div>
     <aside class="pantry-store-card" aria-label="Store details">
       <p class="eyebrow">Visit our neighbourhood store</p>
-      <div class="pantry-store-detail"><span>Store location</span><address>119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011</address></div>
+      <div class="pantry-store-detail"><span>Store location</span><address>119/1, Paddy Field Road, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011</address></div>
       <div class="pantry-store-detail"><span>Opening hours</span><p>Mon–Sat: 9:00 AM – 9:00 PM · Sun: Closed</p></div>
       <div class="pantry-store-detail"><span>Direct contact</span><a href="tel:+919941209953">+91 99412 09953</a></div>
     </aside>
@@ -77,7 +77,7 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
           const shelf = shelfDetails[group.id as keyof typeof shelfDetails];
           const categoryName = shelf?.label ?? group.title;
           const message = `Hello Eshwar Home Products, please help me check today's stock for ${categoryName}.`;
-          return <section class="pantry-group" id={group.id} data-group={group.id}>
+          return <section class="pantry-group pantry-interactive-card" id={group.id} data-group={group.id}>
             <div class="pantry-group-visual">
               <div class="pantry-image-frame"><img src={`${import.meta.env.BASE_URL}${group.placeholderImage}`} alt={group.placeholderAlt} width="800" height="600" loading="lazy" decoding="async" /></div>
               <p class="representative-caption">Representative visual · Store photos coming soon</p>
@@ -87,8 +87,9 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
                 <p class="eyebrow">{group.eyebrow}</p><h2>{categoryName}</h2><p>{shelf?.intro ?? group.description}</p>
               </div></div>
               <p class="kitchen-cue-label">Kitchen-use guide</p>
-              <ul class="kitchen-cues">{(shelf?.cues ?? group.items.map((item) => item.title)).map((cue) => <li>{cue}</li>)}</ul>
+              <ul class="kitchen-cues">{(shelf?.cues ?? group.items.map((item) => item.title)).map((cue) => <li><button class="pantry-item-trigger" type="button" data-ehp-dialog="product" data-ehp-title={cue} data-ehp-description={"Ask the store about current options for " + cue + "."} data-ehp-items={JSON.stringify([cue])} aria-haspopup="dialog">{cue}</button></li>)}</ul>
               <div class="meal-occasions">{(shelf?.occasions ?? []).map((occasion) => <span>{occasion}</span>)}</div>
+              <button class="pantry-quickview-trigger" type="button" data-ehp-dialog="product" data-ehp-title={categoryName} data-ehp-description={shelf?.intro ?? group.description} data-ehp-items={JSON.stringify(shelf?.cues ?? group.items.map((item) => item.title))} aria-haspopup="dialog">View shelf details →</button>
               <a class="shelf-whatsapp-link" href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`} target="_blank" rel="noopener noreferrer">Check Today's Stock on WhatsApp ↗</a>
               
             </div>
@@ -102,7 +103,7 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
       <div class="pantry-faq-list">
         <details><summary>Can I ask about a Tamil millet name?</summary><p>Yes. Use the Tamil–English millet reference in our <a href={`${import.meta.env.BASE_URL}perambur-millet-store/#millet-reference`}>Perambur store guide</a>, then message the team about the variety you have in mind.</p></details>
         <details><summary>Can I check pack sizes before visiting?</summary><p>Yes. Send the product or variety name through WhatsApp and ask the team about current options.</p></details>
-        <details><summary>Where is the store?</summary><p>119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India.</p></details>
+        <details><summary>Where is the store?</summary><p>119/1, Paddy Field Road, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India.</p></details>
         <details><summary>What are the store hours?</summary><p>Monday – Saturday: 9:00 AM – 9:00 PM · Sunday: Closed</p></details>
       </div>
     </section>
