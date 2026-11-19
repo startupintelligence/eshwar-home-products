@@ -89,7 +89,7 @@ export default function PublishedCatalogue() {
             </div>
             <div className="live-product-content">
               <span className="category-badge">{categoryLabels[categoryId]}</span>
-              <h2>{product.name}</h2>
+              <h2><button className="live-product-title-trigger" type="button" data-ehp-dialog="product" data-ehp-title={product.name} data-ehp-description={product.description || "Ask the store about current availability and pack sizes."} data-ehp-items={JSON.stringify([product.name])} aria-haspopup="dialog">{product.name}</button></h2>
               {product.description && <p>{product.description}</p>}
               <div className="live-product-meta">
                 {typeof product.price === "number" && <strong>₹{product.price.toLocaleString("en-IN")}</strong>}

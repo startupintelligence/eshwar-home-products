@@ -1,6 +1,5 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
-import PantryQuickView from "../components/PantryQuickView.astro";
 import reviewData from "../data/reviews.json";
 const reviews = reviewData as Array<{ reviewer: string; text: string; source: "Google Maps" | "Justdial"; rating?: number }>;
 import "../styles/home-editorial.css";
@@ -33,7 +32,7 @@ const products = [
         <h1 id="home-title">Traditional Foods<br /><em>for Everyday Kitchens</em></h1>
         <p class="ehp-hero-lede">Traditional foods for everyday kitchens, thoughtfully chosen. Explore familiar staples and pantry essentials at your neighbourhood store in Perambur.</p>
         <a class="ehp-gold-button" href={base + "products/"}>Explore Our Pantry <span aria-hidden="true">→</span></a>
-        <p class="ehp-hero-address">119/1, Paddy Field Road · Chinnaiyan Colony, Perambur, Chennai</p>
+        <button class="ehp-hero-address ehp-store-trigger" type="button" data-ehp-dialog="store" aria-haspopup="dialog">119/1, Paddy Field Road · Chinnaiyan Colony, Perambur, Chennai</button>
       </div>
       <figure class="ehp-hero-visual">
         <img src={base + "images/placeholders/hero-grain-bowl.svg"} alt="Illustration of traditional grains arranged in a wooden bowl" width="520" height="460" fetchpriority="high" decoding="async" />
@@ -41,7 +40,7 @@ const products = [
     </div>
     <div class="ehp-category-band">
       <nav class="ehp-category-strip container" aria-label="Explore pantry categories">
-        {categories.map((category) => <a class="ehp-category-link" href={ask(category.item)} target="_blank" rel="noopener noreferrer"><span class="ehp-category-icon" aria-hidden="true">{category.symbol}</span><span>{category.title}</span></a>)}
+        {categories.map((category) => <a class="ehp-category-link" href={ask(category.item)} data-ehp-dialog="product" data-ehp-title={category.title} data-ehp-description={category.item + " · Ask the store about current options and pack sizes."} data-ehp-items={JSON.stringify([category.item])} aria-haspopup="dialog"><span class="ehp-category-icon" aria-hidden="true">{category.symbol}</span><span>{category.title}</span></a>)}
       </nav>
     </div>
     <svg class="ehp-cream-arch" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0H1440V22C1180 112 260 112 0 22Z" fill="#F5EDE3" /></svg>
@@ -93,7 +92,7 @@ const products = [
   <section class="ehp-trust-band" aria-label="Store highlights"><div class="container ehp-trust-grid">
     <div><span aria-hidden="true">✧</span><p>Traditional<br />Staples</p></div>
     <a class="reveal-item" href={mapsUrl} target="_blank" rel="noopener noreferrer"><span class="five-stars-reveal" role="img" aria-label="5 out of 5 stars">{[0, 1, 2, 3, 4].map((i) => <span class="star-item" aria-hidden="true">★</span>)}</span><p>5.0 Rated on<br />Google Maps · Perambur</p></a>
-    <div><span aria-hidden="true">◷</span><p>Mon–Sat<br />9:00 AM – 9:00 PM · Sun: Closed</p></div>
+    <button class="ehp-trust-store-trigger" type="button" data-ehp-dialog="store" aria-haspopup="dialog"><span aria-hidden="true">◷</span><p>Mon–Sat<br />9:00 AM – 9:00 PM · Sun: Closed</p></button>
     <a href={ask("your pantry requirements")} target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span><p>Direct WhatsApp<br />Support</p></a>
   </div></section>
 
@@ -115,8 +114,8 @@ const products = [
   </section>}
 
   <section class="ehp-story-home" aria-labelledby="story-title"><div class="container ehp-story-grid">
-    <aside class="ehp-story-proof"><div class="ehp-story-proof-inner"><img class="ehp-story-logo ehp-story-logo-cream" src={base + "images/brand/eshwar-home-products-logo.png"} alt="Official Eshwar Home Products emblem with a Rudraksha bead, golden Trishuls, Damrus and lemons" width="320" height="320" loading="lazy" decoding="async" /><p class="ehp-story-tamil" lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</p><p class="ehp-story-english">ESHWAR HOME PRODUCTS</p><p class="ehp-story-origin">Named in devotion to Eshwaran · Perambur, Chennai</p><a class="ehp-google-rating reveal-item" href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="5.0 star rated on Google Maps in Perambur"><strong>5.0</strong><span class="five-stars-reveal" role="img" aria-label="5 out of 5 stars">{[0, 1, 2, 3, 4].map((i) => <span class="star-item" aria-hidden="true">★</span>)}</span> Rated on Google Maps · Perambur</a></div></aside>
-    <div class="ehp-story-copy"><p class="ehp-story-eyebrow">OUR STORY · PERAMBUR, CHENNAI</p><h2 id="story-title">Rooted in devotion, serving everyday kitchens.</h2><p>Eshwar Home Products is named with devotion after our family deity, Eshwaran (Lord Shiva). That connection is reflected in the store’s Rudraksha and Trishul emblem, and in the values we bring to everyday household staples: honesty, gratitude and care.</p><p>At our store on Paddy Field Road, Chinnaiyan Colony, Perambur, explore traditional rice varieties, whole millets (<em>Siruthaniyam</em>), millet flours, cold-pressed oils, ghee and other pantry essentials. Our team is here to offer personal guidance when you need help choosing.</p><a class="ehp-story-link" href={base + "about/"}>Read Our Story <span aria-hidden="true">→</span></a></div>
+    <aside class="ehp-story-proof"><div class="ehp-story-proof-inner"><button class="ehp-emblem-trigger" type="button" data-ehp-dialog="story" aria-label="Read the Eshwar Home Products brand story" aria-haspopup="dialog"><img class="ehp-story-logo ehp-story-logo-cream" src={base + "images/brand/eshwar-home-products-logo.png"} alt="Official Eshwar Home Products emblem with a Rudraksha bead, golden Trishuls, Damrus and lemons" width="320" height="320" loading="lazy" decoding="async" /></button><p class="ehp-story-tamil" lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</p><p class="ehp-story-english">ESHWAR HOME PRODUCTS</p><p class="ehp-story-origin">Named in devotion to Eshwaran · Perambur, Chennai</p><a class="ehp-google-rating reveal-item" href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="5.0 star rated on Google Maps in Perambur"><strong>5.0</strong><span class="five-stars-reveal" role="img" aria-label="5 out of 5 stars">{[0, 1, 2, 3, 4].map((i) => <span class="star-item" aria-hidden="true">★</span>)}</span> Rated on Google Maps · Perambur</a></div></aside>
+    <div class="ehp-story-copy"><p class="ehp-story-eyebrow">OUR STORY · PERAMBUR, CHENNAI</p><h2 id="story-title">Rooted in devotion, serving everyday kitchens.</h2><p>Eshwar Home Products is named with devotion after our family deity, Eshwaran (Lord Shiva). That connection is reflected in the store’s Rudraksha and Trishul emblem, and in the values we bring to everyday household staples: honesty, gratitude and care.</p><p>At our store on Paddy Field Road, Chinnaiyan Colony, Perambur, explore traditional rice varieties, whole millets (<em>Siruthaniyam</em>), millet flours, cold-pressed oils, ghee and other pantry essentials. Our team is here to offer personal guidance when you need help choosing.</p><a class="ehp-story-link" href={base + "about/"} data-ehp-dialog="story" aria-haspopup="dialog">Read Our Story <span aria-hidden="true">→</span></a></div>
   </div></section>
 
 
@@ -139,8 +138,7 @@ const products = [
     </div>
   </section>
 
-  <section class="ehp-visit-section" aria-labelledby="visit-title"><div class="container ehp-visit-grid"><div><p class="ehp-gold-eyebrow">VISIT OUR STORE</p><h2 id="visit-title">Good food, close to home.</h2><p>Come by and explore our traditional pantry range in Perambur.</p><a class="ehp-gold-button" href={mapsUrl} target="_blank" rel="noopener noreferrer">Get Directions <span aria-hidden="true">↗</span></a></div><div class="ehp-visit-details"><div><span>ADDRESS</span><p>119/1, Paddy Field Road, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India</p></div><div><span>OPENING HOURS</span><p>Mon–Sat: 9:00 AM – 9:00 PM<br />Sunday: Closed</p></div><div><span>CALL OR WHATSAPP</span><p><a href="tel:+919941209953">+91 99412 09953</a><br /><a href={ask("your pantry requirements")} target="_blank" rel="noopener noreferrer">Send an enquiry ↗</a></p></div></div></div></section>
-  <PantryQuickView />
+  <section class="ehp-visit-section" aria-labelledby="visit-title"><div class="container ehp-visit-grid"><div><p class="ehp-gold-eyebrow">VISIT OUR STORE</p><h2 id="visit-title">Good food, close to home.</h2><p>Come by and explore our traditional pantry range in Perambur.</p><button class="ehp-gold-button" type="button" data-ehp-dialog="store" aria-haspopup="dialog">Visit Us <span aria-hidden="true">↗</span></button></div><div class="ehp-visit-details"><div><span>ADDRESS</span><p>119/1, Paddy Field Road, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India</p></div><div><span>OPENING HOURS</span><p>Mon–Sat: 9:00 AM – 9:00 PM<br />Sunday: Closed</p></div><div><span>CALL OR WHATSAPP</span><p><a href="tel:+919941209953">+91 99412 09953</a><br /><a href={ask("your pantry requirements")} target="_blank" rel="noopener noreferrer">Send an enquiry ↗</a></p></div></div></div></section>
 </SiteLayout>
 
 <style>
@@ -150,6 +148,10 @@ const products = [
   .ehp-products-heading h2 { margin: 8px 0; color: #2A1508; font: 400 clamp(2rem, 4vw, 3rem)/1.12 Georgia, "Times New Roman", serif; }
   .ehp-products-heading > p:last-child { color: #4A3525; font-size: .88rem; line-height: 1.7; }
   .ehp-product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  .ehp-emblem-trigger { display:block;width:100%;padding:0;border:0;background:transparent;cursor:pointer; }
+  .ehp-store-trigger { border:0;background:transparent;color:inherit;font:inherit;text-align:left;text-decoration:underline;text-underline-offset:3px;cursor:pointer; }
+  .ehp-trust-store-trigger { display:flex;align-items:center;justify-content:center;gap:10px;min-width:0;border:0;border-left:1px solid rgba(217,155,38,.38);background:transparent;color:inherit;font:inherit;text-align:center;cursor:pointer; }
+  .ehp-trust-store-trigger p { margin:0; }
   .ehp-product-card { position: relative; min-width: 0; overflow: hidden; border: 1px solid #E2D6C5; background: #FFFDF9; }
   .ehp-product-card-trigger { position:absolute; inset:0; z-index:1; width:100%; height:100%; border:0; background:transparent; cursor:pointer; }
   .ehp-product-card-trigger:focus-visible { outline:3px solid #D99B26; outline-offset:-4px; }

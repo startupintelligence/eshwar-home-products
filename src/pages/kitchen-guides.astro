@@ -100,12 +100,10 @@ const schema = {
 
     <div class="kitchen-guides-grid">
       {guides.map((guide) => (
-        <a class="kitchen-guide-card" href={guide.href}>
-          <span class="eyebrow">{guide.number} · {guide.eyebrow}</span>
-          <h3>{guide.title}</h3>
-          <p>{guide.description}</p>
+        <button class="kitchen-guide-card" type="button" data-ehp-dialog="guide" data-ehp-title={guide.title} data-ehp-description={guide.description} data-ehp-items={JSON.stringify(guide.number === "01" ? ["Millets", "Rice"] : guide.number === "02" ? ["Rice", "Millets"] : guide.number === "03" ? ["Cold-Pressed Oil", "Ghee"] : ["Millets", "Sathumaavu"])} aria-haspopup="dialog">
+          <span class="eyebrow">{guide.number} · {guide.eyebrow}</span><h3>{guide.title}</h3><p>{guide.description}</p>
           <span class="kitchen-guide-card-action">{guide.action} <span aria-hidden="true">↗</span></span>
-        </a>
+        </button>
       ))}
     </div>
 
@@ -309,7 +307,7 @@ const schema = {
     line-height: 1.7;
   }
 
-  .kitchen-guide-card-action {
+  .kitchen-guide-card:focus-visible { outline:2px solid #7A4B16; outline-offset:3px; }\n  .kitchen-guide-card-action {
     display: inline-flex;
     min-height: 48px;
     align-items: center;
