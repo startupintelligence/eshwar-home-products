@@ -138,6 +138,34 @@ const products = [
     </div>
   </section>
 
+  <section class="ehp-store-gallery" aria-labelledby="store-gallery-title">
+    <div class="container">
+      <div class="ehp-store-gallery-heading">
+        <p class="ehp-gold-eyebrow">A LOOK AROUND OUR STORE</p>
+        <h2 id="store-gallery-title">A little closer to Eshwar Home Products.</h2>
+        <p>See the store, browse a glimpse of the product range and find us in Perambur.</p>
+      </div>
+      <div class="ehp-store-gallery-grid">
+        <figure class="ehp-store-gallery-card ehp-store-gallery-front">
+          <img src={base + "images/business/EHP_Shop_Front_View.jpeg"} alt="Front view of Eshwar Home Products in Perambur" width="1200" height="900" loading="lazy" decoding="async" />
+          <figcaption>Our neighbourhood store</figcaption>
+        </figure>
+        <figure class="ehp-store-gallery-card">
+          <img src={base + "images/business/EHP_Products1.jpeg"} alt="Products at Eshwar Home Products, photograph one" width="1200" height="900" loading="lazy" decoding="async" />
+          <figcaption>A glimpse of our product range</figcaption>
+        </figure>
+        <figure class="ehp-store-gallery-card">
+          <img src={base + "images/business/EHP_Products2.jpeg"} alt="Products at Eshwar Home Products, photograph two" width="1200" height="900" loading="lazy" decoding="async" />
+          <figcaption>More from the store</figcaption>
+        </figure>
+        <a class="ehp-store-gallery-card ehp-store-map-card" href="https://www.google.com/maps/search/?api=1&query=Eshwar+Home+Products%2C+119%2F1+Paddy+Field+Road%2C+Perambur%2C+Chennai" target="_blank" rel="noopener noreferrer" aria-label="Open Eshwar Home Products location in Google Maps">
+          <img src={base + "images/business/EHP_Map_Small.jpeg"} alt="Map reference for the Eshwar Home Products store location" width="900" height="900" loading="lazy" decoding="async" />
+          <span class="ehp-store-map-caption">Find our store <span aria-hidden="true">↗</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section class="ehp-visit-section" aria-labelledby="visit-title"><div class="container ehp-visit-grid"><div><p class="ehp-gold-eyebrow">VISIT OUR STORE</p><h2 id="visit-title">Good food, close to home.</h2><p>Come by and explore our traditional pantry range in Perambur.</p><button class="ehp-gold-button" type="button" data-ehp-dialog="store" aria-haspopup="dialog">Visit Us <span aria-hidden="true">↗</span></button></div><div class="ehp-visit-details"><div><span>ADDRESS</span><p>119/1, Paddy Field Road, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India</p></div><div><span>OPENING HOURS</span><p>Mon–Sat: 9:00 AM – 9:00 PM<br />Sunday: Closed</p></div><div><span>CALL OR WHATSAPP</span><p><a href="tel:+919941209953">+91 99412 09953</a><br /><a href={ask("your pantry requirements")} target="_blank" rel="noopener noreferrer">Send an enquiry ↗</a></p></div></div></div></section>
 </SiteLayout>
 
@@ -190,4 +218,20 @@ const products = [
   .ehp-review-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 24px; margin-top: 22px; }
   .ehp-review-links a { display: inline-flex; min-height: 48px; align-items: center; color: #432818; font-size: .78rem; font-weight: 700; text-underline-offset: 4px; }
   @media (max-width: 760px) { .ehp-reviews-grid { grid-template-columns: 1fr; } }
+
+  .ehp-store-gallery { padding: clamp(48px, 7vw, 84px) 0; background: #FFFDF9; }
+  .ehp-store-gallery-heading { max-width: 680px; margin: 0 0 28px; }
+  .ehp-store-gallery-heading h2 { margin: 8px 0; color: #2A1508; font: 400 clamp(1.9rem, 3.8vw, 2.8rem)/1.12 Georgia, "Times New Roman", serif; }
+  .ehp-store-gallery-heading > p:last-child { max-width: 560px; color: #4A3525; font-size: .88rem; line-height: 1.7; }
+  .ehp-store-gallery-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+  .ehp-store-gallery-card { display: flex; min-width: 0; flex-direction: column; overflow: hidden; margin: 0; border: 1px solid #E2D6C5; background: #F5EDE3; color: #2A1508; text-decoration: none; }
+  .ehp-store-gallery-card img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  .ehp-store-gallery-card figcaption, .ehp-store-map-caption { display: flex; min-height: 44px; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px; color: #4A3525; font-size: .72rem; line-height: 1.4; }
+  .ehp-store-map-card img { aspect-ratio: 4 / 3; object-fit: contain; background: #FFFDF9; }
+  .ehp-store-map-caption { font-weight: 700; }
+  .ehp-store-map-card:hover .ehp-store-map-caption { text-decoration: underline; text-underline-offset: 3px; }
+  .ehp-store-gallery-card:focus-visible { outline: 3px solid #D99B26; outline-offset: 3px; }
+  @media (max-width: 900px) { .ehp-store-gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 420px) { .ehp-store-gallery-grid { gap: 10px; } .ehp-store-gallery-card figcaption, .ehp-store-map-caption { min-height: 42px; padding: 9px; font-size: .67rem; } }
+
 </style>
