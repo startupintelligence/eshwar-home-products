@@ -10,7 +10,6 @@ interface Props { title:string; description:string; current?:"home"|"about"|"pro
 const { title, description, current="home", includeStoreSchema=true, canonicalUrl, noindex=false, preloadHomeHero=false } = Astro.props;
 const canonical = canonicalUrl ?? new URL(Astro.url.pathname, Astro.site ?? "https://startupintelligence.github.io").toString();
 const siteUrl = new URL(import.meta.env.BASE_URL, Astro.site ?? "https://startupintelligence.github.io").toString();
-const ga4Id = import.meta.env.PUBLIC_GA4_ID?.trim();
 const ogImage = new URL("images/og-eshwar-home-products.png", siteUrl).toString();
 const storeSchema = { "@context":"https://schema.org", "@type":"GroceryStore", "@id":siteUrl+"#store", name:"Eshwar Home Products", alternateName:"ஈஸ்வர் ஹோம் புராடக்ட்ஸ்", url:siteUrl, logo:new URL("images/brand/eshwar-home-products-logo.png", siteUrl).toString(), telephone:"+91 99412 09953", address:{ "@type":"PostalAddress", streetAddress:"119/1, Paddy Field Road, Chinnaiyan Colony, Perambur", addressLocality:"Chennai", addressRegion:"Tamil Nadu", postalCode:"600011", addressCountry:"IN" }, openingHours:["Mo-Sa 09:00-21:00"], description:"Mon–Sat: 9:00 AM – 9:00 PM · Sunday: Closed", areaServed:"Perambur, Chennai", sameAs:["https://www.youtube.com/@EHP_PeramburOfficial","https://www.instagram.com/eshwar_home_products/"] };
 ---
@@ -23,7 +22,7 @@ const storeSchema = { "@context":"https://schema.org", "@type":"GroceryStore", "
 <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={ogImage} />
 <link rel="icon" type="image/png" href={new URL("images/brand/eshwar-home-products-logo.png", siteUrl).toString()} /><link rel="apple-touch-icon" href={new URL("images/brand/eshwar-home-products-logo.png", siteUrl).toString()} /><link rel="canonical" href={canonical} />{preloadHomeHero && <link rel="preload" as="image" href={new URL("images/business/EHP_Shop_Front_View-1280.webp", siteUrl).toString()} imagesrcset={`${new URL("images/business/EHP_Shop_Front_View-480.webp", siteUrl).toString()} 480w, ${new URL("images/business/EHP_Shop_Front_View-768.webp", siteUrl).toString()} 768w, ${new URL("images/business/EHP_Shop_Front_View-1280.webp", siteUrl).toString()} 1280w`} imagesizes="(max-width: 900px) 100vw, 50vw" fetchpriority="high" />}<title>{title}</title>
 <script src="https://analytics.ahrefs.com/analytics.js" data-key="T8+LOj2/EakoZK7/pjg3rg" async></script>
-{ga4Id && <><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin /><script async src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(ga4Id)}`}></script><script define:vars={{ ga4Id }}>window.dataLayer = window.dataLayer || []; function gtag(){window.dataLayer.push(arguments);} window.gtag = gtag; gtag('js', new Date()); gtag('config', ga4Id, { anonymize_ip: true });</script></>}
+{import.meta.env.PUBLIC_GA4_ID && <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />}
 {includeStoreSchema && <script type="application/ld+json" set:html={JSON.stringify(storeSchema)} />}
 </head>
 <body><div class="reading-progress" aria-hidden="true"></div><a class="skip-link" href="#main-content">Skip to content</a><SiteHeader current={current} /><main id="main-content"><slot /></main><SiteFooter /><FloatingActionCards />
@@ -54,6 +53,20 @@ const storeSchema = { "@context":"https://schema.org", "@type":"GroceryStore", "
     }, { rootMargin: '0px 0px -36px 0px', threshold: 0.08 });
     items.forEach((item) => observer.observe(item));
   })();
+</script>
+<script>
+  const measurementId = import.meta.env.PUBLIC_GA4_ID?.trim();
+  if (measurementId) {
+    const analyticsWindow = window as Window & { dataLayer?: IArguments[]; gtag?: (...args: unknown[]) => void };
+    analyticsWindow.dataLayer = analyticsWindow.dataLayer || [];
+    analyticsWindow.gtag = function () { analyticsWindow.dataLayer?.push(arguments); };
+    analyticsWindow.gtag("js", new Date());
+    analyticsWindow.gtag("config", measurementId, { anonymize_ip: true });
+    const analyticsScript = document.createElement("script");
+    analyticsScript.async = true;
+    analyticsScript.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
+    document.head.appendChild(analyticsScript);
+  }
 </script>
 </body>
 </html>
