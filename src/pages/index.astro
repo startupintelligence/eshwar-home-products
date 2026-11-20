@@ -35,7 +35,9 @@ const products = [
         <button class="ehp-hero-address ehp-store-trigger" type="button" data-ehp-dialog="store" aria-haspopup="dialog">119/1, Paddy Field Road · Chinnaiyan Colony, Perambur, Chennai</button>
       </div>
       <figure class="ehp-hero-visual">
-        <img src={base + "images/business/EHP_Shop_Front_View.jpeg"} alt="Eshwar Home Products storefront in Perambur, Chennai" width="1200" height="900" fetchpriority="high" decoding="async" />
+        <a class="ehp-hero-image-link" href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Open Eshwar Home Products in Google Maps">
+          <img src={base + "images/business/EHP_Shop_Front_View.jpeg"} alt="Eshwar Home Products storefront in Perambur, Chennai. Open the store location in Google Maps." width="1200" height="900" fetchpriority="high" decoding="async" />
+        </a>
       </figure>
     </div>
     <div class="ehp-category-band">
@@ -146,18 +148,18 @@ const products = [
         <p>See the store, browse a glimpse of the product range and find us in Perambur.</p>
       </div>
       <div class="ehp-store-gallery-grid">
-        <figure class="ehp-store-gallery-card ehp-store-gallery-front">
-          <img src={base + "images/business/EHP_Shop_Front_View.jpeg"} alt="Front view of Eshwar Home Products in Perambur" width="1200" height="900" loading="lazy" decoding="async" />
-          <figcaption>Eshwar Home Products, Perambur</figcaption>
-        </figure>
-        <figure class="ehp-store-gallery-card">
-          <img src={base + "images/business/EHP_Products1.jpeg"} alt="Products at Eshwar Home Products, photograph one" width="1200" height="900" loading="lazy" decoding="async" />
-          <figcaption>A glimpse of our product range</figcaption>
-        </figure>
-        <figure class="ehp-store-gallery-card">
-          <img src={base + "images/business/EHP_Products2.jpeg"} alt="Products at Eshwar Home Products, photograph two" width="1200" height="900" loading="lazy" decoding="async" />
-          <figcaption>More from the store</figcaption>
-        </figure>
+        <a class="ehp-store-gallery-card ehp-store-gallery-front" href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Open Eshwar Home Products in Google Maps">
+          <img src={base + "images/business/EHP_Shop_Front_View.jpeg"} alt="Front view of Eshwar Home Products in Perambur. Open store location in Google Maps." width="1200" height="900" loading="lazy" decoding="async" />
+          <span class="ehp-store-map-caption">Eshwar Home Products · Find our store ↗</span>
+        </a>
+        <a class="ehp-store-gallery-card" href={base + "products/#pantry-shelves"} aria-label="Browse the Eshwar Home Products pantry catalogue">
+          <img src={base + "images/business/EHP_Products1.jpeg"} alt="Products photographed at Eshwar Home Products, Perambur" width="1200" height="900" loading="lazy" decoding="async" />
+          <span class="ehp-store-map-caption">Browse our product range →</span>
+        </a>
+        <a class="ehp-store-gallery-card" href={base + "products/#pantry-shelves"} aria-label="Explore products at Eshwar Home Products">
+          <img src={base + "images/business/EHP_Products2.jpeg"} alt="More products photographed at Eshwar Home Products, Perambur" width="1200" height="900" loading="lazy" decoding="async" />
+          <span class="ehp-store-map-caption">Explore pantry categories →</span>
+        </a>
         <a class="ehp-store-gallery-card ehp-store-map-card" href="https://www.google.com/maps/search/?api=1&query=Eshwar+Home+Products%2C+119%2F1+Paddy+Field+Road%2C+Perambur%2C+Chennai" target="_blank" rel="noopener noreferrer" aria-label="Open Eshwar Home Products location in Google Maps">
           <img src={base + "images/business/EHP_Map_Small.jpeg"} alt="Map reference for the Eshwar Home Products store location" width="900" height="900" loading="lazy" decoding="async" />
           <span class="ehp-store-map-caption">Find our store <span aria-hidden="true">↗</span></span>

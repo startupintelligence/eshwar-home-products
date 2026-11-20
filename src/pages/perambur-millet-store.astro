@@ -142,6 +142,13 @@ const discoverySchema = {
     </div>
   </section>
 
+  <section class="store-real-photo-section" aria-label="Photos of Eshwar Home Products and its location">
+    <div class="discovery-container store-real-photo-grid">
+      <a href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Open Eshwar Home Products in Google Maps"><img src={base + "images/business/EHP_Shop_Front_View.jpeg"} alt="Eshwar Home Products own storefront in Perambur, Chennai" width="1200" height="900" loading="lazy" decoding="async" /><span>Our store · Open directions ↗</span></a>
+      <a href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Open store map in Google Maps"><img src={base + "images/business/EHP_Map_Small.jpeg"} alt="Map image showing the Eshwar Home Products store location" width="900" height="900" loading="lazy" decoding="async" /><span>Store location · Google Maps ↗</span></a>
+    </div>
+  </section>
+
   <section class="category-section" aria-labelledby="category-title">
     <div class="discovery-container">
       <div class="section-heading">
@@ -244,6 +251,15 @@ const discoverySchema = {
     </div>
   </section>
 </SiteLayout>
+<style>
+  .store-real-photo-section { padding:28px 0; }
+  .store-real-photo-grid { display:grid; grid-template-columns:1.4fr 1fr; gap:16px; }
+  .store-real-photo-grid a { display:flex; min-width:0; flex-direction:column; overflow:hidden; border:1px solid var(--border-light,#E2DFD7); color:var(--text-main,#1A1A1A); text-decoration:none; }
+  .store-real-photo-grid img { display:block; width:100%; aspect-ratio:16/9; object-fit:cover; }
+  .store-real-photo-grid span { padding:11px 13px; font-size:.78rem; }
+  .store-real-photo-grid a:focus-visible { outline:3px solid var(--accent-gold,#B68A3A); outline-offset:3px; }
+  @media(max-width:640px) { .store-real-photo-grid { grid-template-columns:1fr; } }
+</style>
 
 <style>
   :global(:root) {
