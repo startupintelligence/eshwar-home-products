@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { after, before, test } from "node:test";
 import { assertFails, assertSucceeds, initializeTestEnvironment } from "@firebase/rules-unit-testing";
-import { collection, deleteDoc, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where, writeBatch } from "firebase/firestore";
 
 const projectId = "demo-eshwar-home-products";
 let testEnv;
@@ -53,12 +53,26 @@ test("public visitors cannot list the mixed products collection", async () => {
   await assertFails(getDocs(collection(db, "products")));
 });
 
-test("an active products-contact editor can update a valid published product", async () => {
+test("an editor must atomically publish a matching draft to change a published product", async () => {
   const db = testEnv.authenticatedContext("editor-1").firestore();
-  await assertSucceeds(setDoc(doc(db, "products", "published-1"), {
-    ...productData("published-1"),
-    name: "Updated rice",
-  }));
+  const publishedRef = doc(db, "products", "published-1");
+  const draftRef = doc(db, "product_drafts", "published-1");
+
+  await assertFails(updateDoc(publishedRef, { name: "Direct update bypass" }));
+  await assertSucceeds(setDoc(draftRef, { ...productData("published-1", "draft"), name: "Updated rice" }));
+
+  const batch = writeBatch(db);
+  batch.set(publishedRef, { ...productData("published-1"), name: "Updated rice" });
+  batch.delete(draftRef);
+  batch.set(doc(collection(db, "change_history")), {
+    actorUid: "editor-1",
+    action: "publish",
+    entityType: "product",
+    entityId: "published-1",
+    summary: "Published Updated rice",
+    createdAt: serverTimestamp(),
+  });
+  await assertSucceeds(batch.commit());
 });
 
 test("product writes reject unknown fields and invalid values", async () => {

@@ -54,10 +54,18 @@ service cloud.firestore {
       allow read: if signedIn() && request.auth.uid == userId;
       allow write: if false;
     }
+    function validPublishedProductWrite(productId) {
+      let draftPath = /databases/$(database)/documents/product_drafts/$(productId);
+      return exists(draftPath)
+        && !existsAfter(draftPath)
+        && validProductData(productId, 'published')
+        && request.resource.data.diff(get(draftPath).data).affectedKeys().hasOnly(['status', 'updatedAt']);
+    }
+
     match /products/{productId} {
       allow read: if resource.data.status == 'published' || isClientEditor();
-      allow create, update: if isClientEditor() && validProductData(productId, 'published');
-      // Published products must be changed through the reviewed draft workflow.
+      // Publishing must atomically promote the matching draft and remove it.
+      allow create, update: if isClientEditor() && validPublishedProductWrite(productId);
       allow delete: if false;
     }
     match /product_drafts/{draftId} {
