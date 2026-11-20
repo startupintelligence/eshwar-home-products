@@ -57,7 +57,8 @@ service cloud.firestore {
     match /products/{productId} {
       allow read: if resource.data.status == 'published' || isClientEditor();
       allow create, update: if isClientEditor() && validProductData(productId, 'published');
-      allow delete: if isClientEditor();
+      // Published products must be changed through the reviewed draft workflow.
+      allow delete: if false;
     }
     match /product_drafts/{draftId} {
       allow read: if isClientEditor();
