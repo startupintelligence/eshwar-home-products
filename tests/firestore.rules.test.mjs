@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { after, before, test } from "node:test";
 import { assertFails, assertSucceeds, initializeTestEnvironment } from "@firebase/rules-unit-testing";
-import { collection, deleteDoc, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where, writeBatch } from "firebase/firestore";
 
 const projectId = "demo-eshwar-home-products";
 let testEnv;
@@ -27,7 +27,7 @@ before(async () => {
     await setDoc(doc(db, "admin_users", "editor-1"), { active: true, role: "products-contact" });
     await setDoc(doc(db, "admin_users", "inactive-1"), { active: false, role: "products-contact" });
     await setDoc(doc(db, "products", "published-1"), productData("published-1"));
-    await setDoc(doc(db, "products", "draft-1"), productData("draft-1", "draft"));
+    await setDoc(doc(db, "product_drafts", "draft-1"), productData("draft-1", "draft"));
   });
 });
 
@@ -36,7 +36,7 @@ after(async () => { await testEnv?.cleanup(); });
 test("public visitors can read published products but not drafts", async () => {
   const db = testEnv.unauthenticatedContext().firestore();
   await assertSucceeds(getDoc(doc(db, "products", "published-1")));
-  await assertFails(getDoc(doc(db, "products", "draft-1")));
+  await assertFails(getDoc(doc(db, "product_drafts", "draft-1")));
 });
 
 test("public visitors can query only published products", async () => {
@@ -53,35 +53,54 @@ test("public visitors cannot list the mixed products collection", async () => {
   await assertFails(getDocs(collection(db, "products")));
 });
 
-test("an active products-contact editor can update a valid published product", async () => {
+test("an editor must atomically publish a matching draft to change a published product", async () => {
   const db = testEnv.authenticatedContext("editor-1").firestore();
-  await assertSucceeds(setDoc(doc(db, "products", "published-1"), {
-    ...productData("published-1"),
-    name: "Updated rice",
-  }));
+  const publishedRef = doc(db, "products", "published-1");
+  const draftRef = doc(db, "product_drafts", "published-1");
+
+  await assertFails(updateDoc(publishedRef, { name: "Direct update bypass" }));
+  await assertSucceeds(setDoc(draftRef, { ...productData("published-1", "draft"), name: "Updated rice" }));
+
+  const batch = writeBatch(db);
+  batch.set(publishedRef, { ...productData("published-1"), name: "Updated rice" });
+  batch.delete(draftRef);
+  batch.set(doc(collection(db, "change_history")), {
+    actorUid: "editor-1",
+    action: "publish",
+    entityType: "product",
+    entityId: "published-1",
+    summary: "Published Updated rice",
+    createdAt: serverTimestamp(),
+  });
+  await assertSucceeds(batch.commit());
 });
 
 test("product writes reject unknown fields and invalid values", async () => {
   const db = testEnv.authenticatedContext("editor-1").firestore();
 
-  await assertSucceeds(setDoc(doc(db, "products", "valid-new"), productData("valid-new")));
+  const validDraftRef = doc(db, "product_drafts", "valid-new");
+  await assertSucceeds(setDoc(validDraftRef, productData("valid-new", "draft")));
+  const publishBatch = writeBatch(db);
+  publishBatch.set(doc(db, "products", "valid-new"), productData("valid-new"));
+  publishBatch.delete(validDraftRef);
+  await assertSucceeds(publishBatch.commit());
 
-  await assertFails(setDoc(doc(db, "products", "extra-field"), {
-    ...productData("extra-field"),
+  await assertFails(setDoc(doc(db, "product_drafts", "extra-field"), {
+    ...productData("extra-field", "draft"),
     administrator: true,
   }));
 
-  await assertFails(setDoc(doc(db, "products", "bad-category"), {
-    ...productData("bad-category"),
+  await assertFails(setDoc(doc(db, "product_drafts", "bad-category"), {
+    ...productData("bad-category", "draft"),
     categoryId: "not-a-store-category",
   }));
 
-  await assertFails(setDoc(doc(db, "products", "negative-price"), {
-    ...productData("negative-price"),
+  await assertFails(setDoc(doc(db, "product_drafts", "negative-price"), {
+    ...productData("negative-price", "draft"),
     price: -1,
   }));
 
-  await assertFails(setDoc(doc(db, "products", "wrong-id"), productData("different-id")));
+  await assertFails(setDoc(doc(db, "product_drafts", "wrong-id"), productData("different-id", "draft")));
 });
 
 test("draft writes require the draft status and the same product schema", async () => {
@@ -116,4 +135,17 @@ test("audit history is immutable after creation", async () => {
   await assertSucceeds(setDoc(entry, { actorUid: "editor-1", action: "update", entityType: "product", entityId: "published-1", summary: "Updated a product", createdAt: serverTimestamp() }));
   await assertFails(updateDoc(entry, { summary: "Changed" }));
   await assertFails(deleteDoc(entry));
+});
+
+test("client editors cannot delete published products but can delete drafts", async () => {
+  const db = testEnv.authenticatedContext("editor-1").firestore();
+  const draftRef = doc(db, "product_drafts", "draft-1");
+  if (!(await getDoc(draftRef)).exists()) {
+    throw new Error("The draft fixture was not created.");
+  }
+  await assertFails(deleteDoc(doc(db, "products", "published-1")));
+  await assertSucceeds(deleteDoc(draftRef));
+  if ((await getDoc(draftRef)).exists()) {
+    throw new Error("The draft was not deleted.");
+  }
 });

@@ -8,6 +8,7 @@ const pageUrl = new URL(`${import.meta.env.BASE_URL}products/`, siteRoot).toStri
 const storeId = `${new URL(import.meta.env.BASE_URL, siteRoot).toString()}#store`;
 const homeUrl = new URL(import.meta.env.BASE_URL, siteRoot).toString();
 const whatsappNumber = "919941209953";
+const mapsUrl = "https://www.google.com/maps/place/Eshwar+Home+Products/@13.1118547,80.2468127,17z/data=!3m1!4b1!4m6!3m5!1s0x3a526569af8122ad:0xe485caf4b8adf074!8m2!3d13.1118495!4d80.2493876!16s%2Fg%2F11v4j6lc03?entry=ttu&g_ep=EgoyMDI2MTExNS4wIKXMDSoASAFQAw%3D%3D";
 const shelfDetails = {
   grains: {
     label: "Rice & Millets (Siruthaniyam)",
@@ -61,6 +62,17 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
       <div class="pantry-store-detail"><span>Direct contact</span><a href="tel:+919941209953">+91 99412 09953</a></div>
     </aside>
   </div></section>
+  <section class="pantry-real-photos" aria-labelledby="pantry-real-photos-title">
+    <div class="container">
+      <div class="pantry-real-photos-heading"><p class="eyebrow">PHOTOS FROM OUR STORE</p><h2 id="pantry-real-photos-title">A closer look at Eshwar Home Products.</h2><p>These are photographs of our Perambur store and product range. Select a photo to find us or browse the pantry catalogue.</p></div>
+      <div class="pantry-real-photo-grid">
+        <a href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Find Eshwar Home Products in Google Maps"><picture><source type="image/webp" srcset={`${import.meta.env.BASE_URL}images/business/EHP_Shop_Front_View-480.webp 480w, ${import.meta.env.BASE_URL}images/business/EHP_Shop_Front_View-768.webp 768w, ${import.meta.env.BASE_URL}images/business/EHP_Shop_Front_View-1280.webp 1280w`} sizes="(max-width: 700px) 100vw, 40vw" /><img src={`${import.meta.env.BASE_URL}images/business/EHP_Shop_Front_View.jpeg`} alt="Eshwar Home Products storefront in Perambur, Chennai" width="1288" height="966" loading="lazy" decoding="async" /></picture><span>Find our store on Maps ↗</span></a>
+        <a href="#pantry-shelves" aria-label="Browse pantry categories"><picture><source type="image/webp" srcset={`${import.meta.env.BASE_URL}images/business/EHP_Products1-480.webp 480w, ${import.meta.env.BASE_URL}images/business/EHP_Products1-767.webp 767w`} sizes="(max-width: 700px) 100vw, 25vw" /><img src={`${import.meta.env.BASE_URL}images/business/EHP_Products1.jpeg`} alt="Product range photographed inside Eshwar Home Products" width="767" height="1280" loading="lazy" decoding="async" /></picture><span>Browse the product catalogue →</span></a>
+        <a href="#pantry-shelves" aria-label="Explore the pantry catalogue"><picture><source type="image/webp" srcset={`${import.meta.env.BASE_URL}images/business/EHP_Products2-480.webp 480w, ${import.meta.env.BASE_URL}images/business/EHP_Products2-768.webp 768w, ${import.meta.env.BASE_URL}images/business/EHP_Products2-960.webp 960w`} sizes="(max-width: 700px) 100vw, 25vw" /><img src={`${import.meta.env.BASE_URL}images/business/EHP_Products2.jpeg`} alt="More products photographed at Eshwar Home Products" width="960" height="1600" loading="lazy" decoding="async" /></picture><span>Explore pantry categories →</span></a>
+        <a href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Open the store map in Google Maps"><picture><source type="image/webp" srcset={`${import.meta.env.BASE_URL}images/business/EHP_Map_Small-480.webp 480w, ${import.meta.env.BASE_URL}images/business/EHP_Map_Small-768.webp 768w`} sizes="(max-width: 700px) 100vw, 25vw" /><img src={`${import.meta.env.BASE_URL}images/business/EHP_Map_Small.jpeg`} alt="Map image for Eshwar Home Products in Perambur" width="1088" height="638" loading="lazy" decoding="async" /></picture><span>Open store location ↗</span></a>
+      </div>
+    </div>
+  </section>
   <section class="section container pantry-page">
     <div class="pantry-intro-row">
       <div><p class="eyebrow">Three familiar shelves</p><h2>Find a place to start.</h2></div>
@@ -113,6 +125,16 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
 <script>import "../scripts/catalogue-filter.js";</script>
 <style>
   .pantry-page h2,.pantry-page h3 { text-wrap: balance; }
+  .pantry-real-photos { padding:32px 0 12px; }
+  .pantry-real-photos-heading { max-width:650px; margin-bottom:18px; }
+  .pantry-real-photos-heading h2 { margin:6px 0; font:400 clamp(1.7rem,3vw,2.35rem)/1.15 Georgia,"Times New Roman",serif; }
+  .pantry-real-photos-heading > p:last-child { color:var(--text-muted); font-size:.84rem; line-height:1.65; }
+  .pantry-real-photo-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+  .pantry-real-photo-grid a { display:flex; min-width:0; flex-direction:column; overflow:hidden; border:1px solid var(--border-light); color:var(--text-main); text-decoration:none; }
+  .pantry-real-photo-grid img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; }
+  .pantry-real-photo-grid span { display:flex; min-height:42px; align-items:center; padding:9px 11px; font-size:.72rem; }
+  .pantry-real-photo-grid a:focus-visible { outline:3px solid var(--accent-gold); outline-offset:3px; }
+  @media(max-width:760px) { .pantry-real-photo-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; } }
   .pantry-intro-row { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:32px; align-items:end; margin-bottom:28px; }
   .pantry-intro-row h2,.catalogue-live-intro h2 { margin:8px 0 0; font:400 clamp(2rem,4vw,3rem)/1.1 Georgia,"Times New Roman",serif; }
   .pantry-intro-row > p,.catalogue-live-intro > p:last-child { margin:0; color:var(--text-muted,#5A534C); font-size:.88rem; line-height:1.75; }
