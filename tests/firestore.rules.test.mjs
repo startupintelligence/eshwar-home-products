@@ -27,7 +27,7 @@ before(async () => {
     await setDoc(doc(db, "admin_users", "editor-1"), { active: true, role: "products-contact" });
     await setDoc(doc(db, "admin_users", "inactive-1"), { active: false, role: "products-contact" });
     await setDoc(doc(db, "products", "published-1"), productData("published-1"));
-    await setDoc(doc(db, "products", "draft-1"), productData("draft-1", "draft"));
+    await setDoc(doc(db, "product_drafts", "draft-1"), productData("draft-1", "draft"));
   });
 });
 
@@ -36,7 +36,7 @@ after(async () => { await testEnv?.cleanup(); });
 test("public visitors can read published products but not drafts", async () => {
   const db = testEnv.unauthenticatedContext().firestore();
   await assertSucceeds(getDoc(doc(db, "products", "published-1")));
-  await assertFails(getDoc(doc(db, "products", "draft-1")));
+  await assertFails(getDoc(doc(db, "product_drafts", "draft-1")));
 });
 
 test("public visitors can query only published products", async () => {
