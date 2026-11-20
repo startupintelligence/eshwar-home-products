@@ -139,6 +139,13 @@ test("audit history is immutable after creation", async () => {
 
 test("client editors cannot delete published products but can delete drafts", async () => {
   const db = testEnv.authenticatedContext("editor-1").firestore();
+  const draftRef = doc(db, "product_drafts", "draft-1");
+  if (!(await getDoc(draftRef)).exists()) {
+    throw new Error("The draft fixture was not created.");
+  }
   await assertFails(deleteDoc(doc(db, "products", "published-1")));
-  await assertSucceeds(deleteDoc(doc(db, "product_drafts", "draft-1")));
+  await assertSucceeds(deleteDoc(draftRef));
+  if ((await getDoc(draftRef)).exists()) {
+    throw new Error("The draft was not deleted.");
+  }
 });
