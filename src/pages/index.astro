@@ -24,19 +24,22 @@ const products = [
   { title: "Pure Ghee & Honey", image: "category-ghee-dairy.svg", alt: "Illustration of ghee and dairy products", enquiry: "ghee and honey", description: "Ghee and wild honey are included in the store pantry guide. Contact the store to confirm current availability.", items: ["Ghee", "Wild honey"] }
 ];
 ---
-<SiteLayout title="Eshwar Home Products | Pantry Store in Perambur" description="Explore traditional rice, Siruthaniyam millets, cold-pressed oils and pantry essentials at Eshwar Home Products, Paddy Field Road, Chinnaiyan Colony, Perambur, Chennai." current="home">
+<SiteLayout title="Eshwar Home Products | Millets & Pantry Store in Perambur" description="Shop traditional rice, Siruthaniyam millets, millet flours & cold-pressed oils at Eshwar Home Products in Perambur, Chennai." current="home" preloadHomeHero>
   <section class="ehp-home-hero" aria-labelledby="home-title">
     <div class="ehp-hero-main container">
       <div class="ehp-hero-copy">
         <p class="ehp-gold-eyebrow">PURE · NATURAL · TRADITIONAL · PERAMBUR</p>
-        <h1 id="home-title">Traditional Foods<br /><em>for Everyday Kitchens</em></h1>
+        <h1 id="home-title">Traditional Rice, Millets &amp;<br /><em>Pantry Essentials</em></h1>
         <p class="ehp-hero-lede">Traditional foods for everyday kitchens, thoughtfully chosen. Explore familiar staples and pantry essentials at your neighbourhood store in Perambur.</p>
         <a class="ehp-gold-button" href={base + "products/"}>Explore Our Pantry <span aria-hidden="true">→</span></a>
         <button class="ehp-hero-address ehp-store-trigger" type="button" data-ehp-dialog="store" aria-haspopup="dialog">119/1, Paddy Field Road · Chinnaiyan Colony, Perambur, Chennai</button>
       </div>
       <figure class="ehp-hero-visual">
         <a class="ehp-hero-image-link" href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Open Eshwar Home Products in Google Maps">
-          <img src={base + "images/business/EHP_Shop_Front_View.jpeg"} alt="Eshwar Home Products storefront in Perambur, Chennai. Open the store location in Google Maps." width="1200" height="900" fetchpriority="high" decoding="async" />
+          <picture>
+            <source type="image/webp" srcset={`${base}images/business/EHP_Shop_Front_View-480.webp 480w, ${base}images/business/EHP_Shop_Front_View-768.webp 768w, ${base}images/business/EHP_Shop_Front_View-1280.webp 1280w`} sizes="(max-width: 900px) 100vw, 50vw" />
+            <img src={base + "images/business/EHP_Shop_Front_View.jpeg"} alt="Eshwar Home Products storefront in Perambur, Chennai. Open the store location in Google Maps." width="1288" height="966" fetchpriority="high" loading="eager" decoding="async" />
+          </picture>
         </a>
       </figure>
     </div>
@@ -140,6 +143,22 @@ const products = [
     </div>
   </section>
 
+
+  <section class="ehp-category-details" aria-labelledby="ehp-category-details-title">
+    <div class="container">
+      <p class="ehp-section-kicker">EXPLORE THE EVERYDAY PANTRY</p>
+      <h2 id="ehp-category-details-title">Traditional rice, millet flours &amp; cold-pressed oils</h2>
+      <p class="ehp-category-details-intro">A good pantry starts with ingredients that suit the way your household cooks. At Eshwar Home Products in Perambur, you can ask about familiar grains, Siruthaniyam varieties and other everyday kitchen essentials in one neighbourhood store. Our catalogue is a starting point; contact us to confirm the exact varieties and packs available on the day.</p>
+      <div class="ehp-category-details-grid">
+        <article><h3>Traditional rice for familiar meals</h3><p>Explore traditional rice varieties used in everyday meals, rice-based dishes and home cooking. If you have a particular variety in mind, ask the team before visiting. We can help you check the name and current availability, so you can make a more informed choice at the store.</p></article>
+        <article><h3>Siruthaniyam millets and millet flours</h3><p>Our pantry range includes whole millets and millet-based products. Ask about Siruthaniyam options and millet flours for the recipes you prepare at home. Names, varieties and pack sizes can differ, so a quick call or WhatsApp message is the easiest way to check what is currently stocked.</p></article>
+        <article><h3>Cold-pressed oils and everyday cooking</h3><p>Browse the cold-pressed oils listed in our pantry range alongside ghee and other cooking essentials. If you are comparing oil varieties or looking for a particular pack size, contact the store for current product details. We do not display live inventory or make a promise that every listed item is in stock.</p></article>
+        <article><h3>Seeds, nuts and pantry additions</h3><p>Find out about seeds, nuts, pulses, honey and other pantry additions listed in the store catalogue. These ingredients can serve different uses in home kitchens. Ask the team about the product name, pack size and availability before making a special trip for a specific item.</p></article>
+      </div>
+      <div class="ehp-category-details-visit"><div><h3>Planning a visit to our Perambur store?</h3><p>We are at 119/1, Paddy Field Road, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011. The store is open Monday to Saturday, 9:00 AM to 9:00 PM, and closed on Sunday. Call or message us to check a product before travelling.</p></div><a href={mapsUrl} target="_blank" rel="noopener noreferrer">Get directions to our store ↗</a></div>
+    </div>
+  </section>
+
   <section class="ehp-store-gallery" aria-labelledby="store-gallery-title">
     <div class="container">
       <div class="ehp-store-gallery-heading">
@@ -149,19 +168,19 @@ const products = [
       </div>
       <div class="ehp-store-gallery-grid">
         <a class="ehp-store-gallery-card ehp-store-gallery-front" href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Open Eshwar Home Products in Google Maps">
-          <img src={base + "images/business/EHP_Shop_Front_View.jpeg"} alt="Front view of Eshwar Home Products in Perambur. Open store location in Google Maps." width="1200" height="900" loading="lazy" decoding="async" />
+          <picture><source type="image/webp" srcset={`${base}images/business/EHP_Shop_Front_View-480.webp 480w, ${base}images/business/EHP_Shop_Front_View-768.webp 768w, ${base}images/business/EHP_Shop_Front_View-1280.webp 1280w`} sizes="(max-width: 700px) 100vw, 50vw" /><img src={base + "images/business/EHP_Shop_Front_View.jpeg"} alt="Front view of Eshwar Home Products in Perambur. Open store location in Google Maps." width="1288" height="966" loading="lazy" decoding="async" /></picture>
           <span class="ehp-store-map-caption">Eshwar Home Products · Find our store ↗</span>
         </a>
         <a class="ehp-store-gallery-card" href={base + "products/#pantry-shelves"} aria-label="Browse the Eshwar Home Products pantry catalogue">
-          <img src={base + "images/business/EHP_Products1.jpeg"} alt="Products photographed at Eshwar Home Products, Perambur" width="1200" height="900" loading="lazy" decoding="async" />
+          <picture><source type="image/webp" srcset={`${base}images/business/EHP_Products1-480.webp 480w, ${base}images/business/EHP_Products1-767.webp 767w`} sizes="(max-width: 700px) 100vw, 33vw" /><img src={base + "images/business/EHP_Products1.jpeg"} alt="Products photographed at Eshwar Home Products, Perambur" width="767" height="1280" loading="lazy" decoding="async" /></picture>
           <span class="ehp-store-map-caption">Browse our product range →</span>
         </a>
         <a class="ehp-store-gallery-card" href={base + "products/#pantry-shelves"} aria-label="Explore products at Eshwar Home Products">
-          <img src={base + "images/business/EHP_Products2.jpeg"} alt="More products photographed at Eshwar Home Products, Perambur" width="1200" height="900" loading="lazy" decoding="async" />
+          <picture><source type="image/webp" srcset={`${base}images/business/EHP_Products2-480.webp 480w, ${base}images/business/EHP_Products2-768.webp 768w, ${base}images/business/EHP_Products2-960.webp 960w`} sizes="(max-width: 700px) 100vw, 33vw" /><img src={base + "images/business/EHP_Products2.jpeg"} alt="More products photographed at Eshwar Home Products, Perambur" width="960" height="1600" loading="lazy" decoding="async" /></picture>
           <span class="ehp-store-map-caption">Explore pantry categories →</span>
         </a>
         <a class="ehp-store-gallery-card ehp-store-map-card" href="https://www.google.com/maps/search/?api=1&query=Eshwar+Home+Products%2C+119%2F1+Paddy+Field+Road%2C+Perambur%2C+Chennai" target="_blank" rel="noopener noreferrer" aria-label="Open Eshwar Home Products location in Google Maps">
-          <img src={base + "images/business/EHP_Map_Small.jpeg"} alt="Map reference for the Eshwar Home Products store location" width="900" height="900" loading="lazy" decoding="async" />
+          <picture><source type="image/webp" srcset={`${base}images/business/EHP_Map_Small-480.webp 480w, ${base}images/business/EHP_Map_Small-768.webp 768w`} sizes="(max-width: 700px) 100vw, 33vw" /><img src={base + "images/business/EHP_Map_Small.jpeg"} alt="Map reference for the Eshwar Home Products store location" width="1088" height="638" loading="lazy" decoding="async" /></picture>
           <span class="ehp-store-map-caption">Find our store <span aria-hidden="true">↗</span></span>
         </a>
       </div>
@@ -172,6 +191,18 @@ const products = [
 </SiteLayout>
 
 <style>
+  .ehp-category-details { padding: clamp(42px, 6vw, 76px) 0; background: #F5EDE3; }
+  .ehp-category-details > .container { max-width: 1120px; }
+  .ehp-category-details > .container > h2 { max-width: 760px; margin: 8px 0 12px; color: #432818; font: 400 clamp(1.65rem, 3vw, 2.35rem)/1.2 Georgia, "Times New Roman", serif; }
+  .ehp-category-details-intro { max-width: 780px; color: #5D4A3A; font-size: .92rem; line-height: 1.8; }
+  .ehp-category-details-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 22px 34px; margin-top: 28px; }
+  .ehp-category-details-grid article { padding-top: 15px; border-top: 1px solid #D9CBBB; }
+  .ehp-category-details-grid h3, .ehp-category-details-visit h3 { margin: 0 0 8px; color: #432818; font: 600 1rem/1.4 Georgia, "Times New Roman", serif; }
+  .ehp-category-details-grid p, .ehp-category-details-visit p { margin: 0; color: #5D4A3A; font-size: .84rem; line-height: 1.75; }
+  .ehp-category-details-visit { display: flex; align-items: center; justify-content: space-between; gap: 22px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #D9CBBB; }
+  .ehp-category-details-visit > div { max-width: 720px; }
+  .ehp-category-details-visit > a { flex: 0 0 auto; color: #432818; font-size: .82rem; font-weight: 700; text-underline-offset: 4px; }
+  @media(max-width:640px) { .ehp-category-details-grid { grid-template-columns: 1fr; gap: 16px; } .ehp-category-details-visit { align-items: flex-start; flex-direction: column; } }
   /* Homepage product cards: explicit layout, readable labels and touch-sized enquiry control. */
   .ehp-products-section { padding: clamp(48px, 7vw, 84px) 0; background: #FAF8F5; }
   .ehp-products-heading { max-width: 680px; margin: 0 auto 28px; text-align: center; }

@@ -6,12 +6,13 @@ import "../styles/global.css";
 import "../styles/theme-2.css";
 import "../styles/shared-editorial.css";
 import "../styles/brand-system.css";
-interface Props { title:string; description:string; current?:"home"|"about"|"products"|"contact"|"blog"|"kitchen-guides"; includeStoreSchema?:boolean; canonicalUrl?:string; noindex?:boolean; }
-const { title, description, current="home", includeStoreSchema=true, canonicalUrl, noindex=false } = Astro.props;
+interface Props { title:string; description:string; current?:"home"|"about"|"products"|"contact"|"blog"|"kitchen-guides"; includeStoreSchema?:boolean; canonicalUrl?:string; noindex?:boolean; preloadHomeHero?:boolean; }
+const { title, description, current="home", includeStoreSchema=true, canonicalUrl, noindex=false, preloadHomeHero=false } = Astro.props;
 const canonical = canonicalUrl ?? new URL(Astro.url.pathname, Astro.site ?? "https://startupintelligence.github.io").toString();
 const siteUrl = new URL(import.meta.env.BASE_URL, Astro.site ?? "https://startupintelligence.github.io").toString();
+const ga4Id = import.meta.env.PUBLIC_GA4_ID?.trim();
 const ogImage = new URL("images/og-eshwar-home-products.png", siteUrl).toString();
-const storeSchema = { "@context":"https://schema.org", "@type":"GroceryStore", "@id":siteUrl+"#store", name:"Eshwar Home Products", alternateName:"ஈஸ்வர் ஹோம் புராடக்ட்ஸ்", url:siteUrl, logo:new URL("images/brand/eshwar-home-products-logo.png", siteUrl).toString(), telephone:"+91 99412 09953", email:"info.eshwarhomeproducts@gmail.com", address:{ "@type":"PostalAddress", streetAddress:"119/1, Paddy Field Road, Chinnaiyan Colony, Perambur", addressLocality:"Chennai", addressRegion:"Tamil Nadu", postalCode:"600011", addressCountry:"IN" }, openingHours:["Mo-Sa 09:00-21:00"], description:"Mon–Sat: 9:00 AM – 9:00 PM · Sunday: Closed", areaServed:"Perambur, Chennai", sameAs:["https://www.youtube.com/@EHP_PeramburOfficial","https://www.instagram.com/eshwar_home_products/"] };
+const storeSchema = { "@context":"https://schema.org", "@type":"GroceryStore", "@id":siteUrl+"#store", name:"Eshwar Home Products", alternateName:"ஈஸ்வர் ஹோம் புராடக்ட்ஸ்", url:siteUrl, logo:new URL("images/brand/eshwar-home-products-logo.png", siteUrl).toString(), telephone:"+91 99412 09953", address:{ "@type":"PostalAddress", streetAddress:"119/1, Paddy Field Road, Chinnaiyan Colony, Perambur", addressLocality:"Chennai", addressRegion:"Tamil Nadu", postalCode:"600011", addressCountry:"IN" }, openingHours:["Mo-Sa 09:00-21:00"], description:"Mon–Sat: 9:00 AM – 9:00 PM · Sunday: Closed", areaServed:"Perambur, Chennai", sameAs:["https://www.youtube.com/@EHP_PeramburOfficial","https://www.instagram.com/eshwar_home_products/"] };
 ---
 <!doctype html>
 <html lang="en">
@@ -20,8 +21,9 @@ const storeSchema = { "@context":"https://schema.org", "@type":"GroceryStore", "
 <meta name="description" content={description} />{noindex && <meta name="robots" content="noindex, nofollow" />}
 <meta property="og:type" content="website" /><meta property="og:site_name" content="Eshwar Home Products" /><meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:locale" content="en_IN" /><meta property="og:url" content={canonical} /><meta property="og:image" content={ogImage} /><meta property="og:image:secure_url" content={ogImage} /><meta property="og:image:type" content="image/png" /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta property="og:image:alt" content="Eshwar Home Products, Perambur, Chennai" />
 <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={ogImage} />
-<link rel="icon" type="image/png" href={new URL("images/brand/eshwar-home-products-logo.png", siteUrl).toString()} /><link rel="apple-touch-icon" href={new URL("images/brand/eshwar-home-products-logo.png", siteUrl).toString()} /><link rel="canonical" href={canonical} /><title>{title}</title>
+<link rel="icon" type="image/png" href={new URL("images/brand/eshwar-home-products-logo.png", siteUrl).toString()} /><link rel="apple-touch-icon" href={new URL("images/brand/eshwar-home-products-logo.png", siteUrl).toString()} /><link rel="canonical" href={canonical} />{preloadHomeHero && <link rel="preload" as="image" href={new URL("images/business/EHP_Shop_Front_View-1280.webp", siteUrl).toString()} imagesrcset={`${new URL("images/business/EHP_Shop_Front_View-480.webp", siteUrl).toString()} 480w, ${new URL("images/business/EHP_Shop_Front_View-768.webp", siteUrl).toString()} 768w, ${new URL("images/business/EHP_Shop_Front_View-1280.webp", siteUrl).toString()} 1280w`} imagesizes="(max-width: 900px) 100vw, 50vw" fetchpriority="high" />}<title>{title}</title>
 <script src="https://analytics.ahrefs.com/analytics.js" data-key="T8+LOj2/EakoZK7/pjg3rg" async></script>
+{ga4Id && <><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin /><script async src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(ga4Id)}`}></script><script define:vars={{ ga4Id }}>window.dataLayer = window.dataLayer || []; function gtag(){window.dataLayer.push(arguments);} window.gtag = gtag; gtag('js', new Date()); gtag('config', ga4Id, { anonymize_ip: true });</script></>}
 {includeStoreSchema && <script type="application/ld+json" set:html={JSON.stringify(storeSchema)} />}
 </head>
 <body><div class="reading-progress" aria-hidden="true"></div><a class="skip-link" href="#main-content">Skip to content</a><SiteHeader current={current} /><main id="main-content"><slot /></main><SiteFooter /><FloatingActionCards />
@@ -31,6 +33,11 @@ const storeSchema = { "@context":"https://schema.org", "@type":"GroceryStore", "
 </nav>
 <script is:inline>
   (() => {
+    const emailAddress = [105,110,102,111,46,101,115,104,119,97,114,104,111,109,101,112,114,111,100,117,99,116,115,64,103,109,97,105,108,46,99,111,109].map((code) => String.fromCharCode(code)).join('');
+    document.querySelectorAll('[data-email-contact]').forEach((node) => {
+      node.setAttribute('href', `mailto:${emailAddress}`);
+      node.textContent = emailAddress;
+    });
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const lowMemoryDevice = 'deviceMemory' in navigator && navigator.deviceMemory <= 4;
     if (reduceMotion || lowMemoryDevice || !('IntersectionObserver' in window)) return;

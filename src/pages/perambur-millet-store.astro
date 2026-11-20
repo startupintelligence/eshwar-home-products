@@ -8,7 +8,6 @@ const siteOrigin = Astro.site ?? new URL("https://startupintelligence.github.io"
 const pageUrl = new URL(base + "perambur-millet-store/", siteOrigin).toString();
 const storeAddress = "119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India";
 const phone = "+91 99412 09953";
-const email = "info.eshwarhomeproducts@gmail.com";
 const phoneHref = "tel:+919941209953";
 const whatsappUrl = "https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20would%20like%20to%20check%20current%20stock%20for%3A";
 const mapsUrl = "https://www.google.com/maps/place/Eshwar+Home+Products/@13.1118547,80.2468127,17z/data=!3m1!4b1!4m6!3m5!1s0x3a526569af8122ad:0xe485caf4b8adf074!8m2!3d13.1118495!4d80.2493876!16s%2Fg%2F11v4j6lc03?entry=ttu&g_ep=EgoyMDI2MTExNS4wIKXMDSoASAFQAw%3D%3D";
@@ -59,7 +58,6 @@ const discoverySchema = {
       alternateName: "ஈஸ்வர் ஹோம் புராடக்ட்ஸ்",
       url: pageUrl,
       telephone: "+91 99412 09953",
-      email,
       logo: new URL("images/brand/eshwar-home-products-logo.png", new URL(base, siteOrigin)).toString(),
       address: {
         "@type": "PostalAddress",
@@ -130,7 +128,7 @@ const discoverySchema = {
           </div>
           <div>
             <dt>Email</dt>
-            <dd><a href={"mailto:" + email}>{email}</a></dd>
+            <dd><a data-email-contact href={base + "contact/"}>Send an email</a></dd>
           </div>
           <div>
             <dt>Official YouTube</dt>
@@ -144,8 +142,8 @@ const discoverySchema = {
 
   <section class="store-real-photo-section" aria-label="Photos of Eshwar Home Products and its location">
     <div class="discovery-container store-real-photo-grid">
-      <a href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Open Eshwar Home Products in Google Maps"><img src={base + "images/business/EHP_Shop_Front_View.jpeg"} alt="Eshwar Home Products own storefront in Perambur, Chennai" width="1200" height="900" loading="lazy" decoding="async" /><span>Our store · Open directions ↗</span></a>
-      <a href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Open store map in Google Maps"><img src={base + "images/business/EHP_Map_Small.jpeg"} alt="Map image showing the Eshwar Home Products store location" width="900" height="900" loading="lazy" decoding="async" /><span>Store location · Google Maps ↗</span></a>
+      <a href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Open Eshwar Home Products in Google Maps"><picture><source type="image/webp" srcset={`${base}images/business/EHP_Shop_Front_View-480.webp 480w, ${base}images/business/EHP_Shop_Front_View-768.webp 768w, ${base}images/business/EHP_Shop_Front_View-1280.webp 1280w`} sizes="(max-width: 640px) 100vw, 60vw" /><img src={base + "images/business/EHP_Shop_Front_View.jpeg"} alt="Eshwar Home Products own storefront in Perambur, Chennai" width="1288" height="966" loading="lazy" decoding="async" /></picture><span>Our store · Open directions ↗</span></a>
+      <a href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Open store map in Google Maps"><picture><source type="image/webp" srcset={`${base}images/business/EHP_Map_Small-480.webp 480w, ${base}images/business/EHP_Map_Small-768.webp 768w`} sizes="(max-width: 640px) 100vw, 40vw" /><img src={base + "images/business/EHP_Map_Small.jpeg"} alt="Map image showing the Eshwar Home Products store location" width="1088" height="638" loading="lazy" decoding="async" /></picture><span>Store location · Google Maps ↗</span></a>
     </div>
   </section>
 
