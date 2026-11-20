@@ -78,24 +78,29 @@ test("an editor must atomically publish a matching draft to change a published p
 test("product writes reject unknown fields and invalid values", async () => {
   const db = testEnv.authenticatedContext("editor-1").firestore();
 
-  await assertSucceeds(setDoc(doc(db, "products", "valid-new"), productData("valid-new")));
+  const validDraftRef = doc(db, "product_drafts", "valid-new");
+  await assertSucceeds(setDoc(validDraftRef, productData("valid-new", "draft")));
+  const publishBatch = writeBatch(db);
+  publishBatch.set(doc(db, "products", "valid-new"), productData("valid-new"));
+  publishBatch.delete(validDraftRef);
+  await assertSucceeds(publishBatch.commit());
 
-  await assertFails(setDoc(doc(db, "products", "extra-field"), {
-    ...productData("extra-field"),
+  await assertFails(setDoc(doc(db, "product_drafts", "extra-field"), {
+    ...productData("extra-field", "draft"),
     administrator: true,
   }));
 
-  await assertFails(setDoc(doc(db, "products", "bad-category"), {
-    ...productData("bad-category"),
+  await assertFails(setDoc(doc(db, "product_drafts", "bad-category"), {
+    ...productData("bad-category", "draft"),
     categoryId: "not-a-store-category",
   }));
 
-  await assertFails(setDoc(doc(db, "products", "negative-price"), {
-    ...productData("negative-price"),
+  await assertFails(setDoc(doc(db, "product_drafts", "negative-price"), {
+    ...productData("negative-price", "draft"),
     price: -1,
   }));
 
-  await assertFails(setDoc(doc(db, "products", "wrong-id"), productData("different-id")));
+  await assertFails(setDoc(doc(db, "product_drafts", "wrong-id"), productData("different-id", "draft")));
 });
 
 test("draft writes require the draft status and the same product schema", async () => {
