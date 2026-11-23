@@ -1,0 +1,24 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+---
+<SiteLayout title="Profile | Eshwar Home Products" description="Explore the Eshwar Home Products profile, our story, public customer review profiles and store location in Perambur, Chennai." current="profile">
+  <section class="profile-page-hero">
+    <div class="container">
+      <p class="eyebrow">ESHWAR HOME PRODUCTS · PERAMBUR</p>
+      <h1>Your neighbourhood pantry, <em>at a glance.</em></h1>
+      <p>Find our story, public customer feedback and store location from one place.</p>
+    </div>
+  </section>
+  <section class="profile-page-content container" aria-label="Eshwar Home Products profile links">
+    <a class="profile-feature-card" href={import.meta.env.BASE_URL + "about/"}>
+      <span class="profile-card-index">01</span><span class="profile-card-kicker">THE PEOPLE & THE STORY</span><h2>About Us</h2><p>Learn about the name, emblem and the store's focus on traditional pantry products.</p><span class="profile-card-link">Read Our Story ↗</span>
+    </a>
+    <section class="profile-feature-card" aria-labelledby="profile-reviews-title">
+      <span class="profile-card-index">02</span><span class="profile-card-kicker">PUBLIC CUSTOMER FEEDBACK</span><h2 id="profile-reviews-title">Reviews</h2><p>We do not publish unverified testimonials on this website. Visit our public profiles to read customer feedback at its source.</p><div class="profile-card-actions"><a href="https://www.google.com/maps/place/Eshwar+Home+Products/@13.1118547,80.2468127,17z/data=!3m1!4b1!4m6!3m5!1s0x3a526569af8122ad:0xe485caf4b8adf074!8m2!3d13.1118495!4d80.2493876!16s%2Fg%2F11v4j6lc03?entry=ttu&g_ep=EgoyMDI2MTExNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Google Maps reviews ↗</a><a href="https://www.justdial.com/Chennai/Eshwar-Home-Products-Perambur/044PXX44-XX44-230926121128-L4A9_BZDET" target="_blank" rel="noopener noreferrer">Justdial profile ↗</a></div>
+    </section>
+    <a class="profile-map-card" href={import.meta.env.BASE_URL + "contact/"} aria-label="Open Contact Us for the Eshwar Home Products store map and directions">
+      <span class="profile-card-index">03</span><span class="profile-card-kicker">FIND OUR STORE</span><h2>A tiny map to Perambur.</h2><img src={import.meta.env.BASE_URL + "images/business/EHP_Map_Small-480.webp"} alt="Map reference for Eshwar Home Products in Perambur" width="480" height="282" loading="lazy" decoding="async" /><span class="profile-card-link">Open Contact Us for directions →</span>
+    </a>
+  </section>
+  <section class="profile-contact-strip"><div class="container"><div><p class="eyebrow">NEED HELP?</p><h2>Talk to the store.</h2><p>119/1, Paddy Field Road, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India.</p></div><div class="profile-contact-actions"><a href="tel:+919941209953">Call +91 99412 09953</a><a href="https://wa.me/919941209953" target="_blank" rel="noopener noreferrer">WhatsApp Enquiry ↗</a><a href={import.meta.env.BASE_URL + "contact/"}>Contact & Directions</a></div></div></section>
+</SiteLayout>

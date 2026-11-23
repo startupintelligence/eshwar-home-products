@@ -1,0 +1,95 @@
+/* Eshwar Home Products warm pantry refresh. Loaded last to keep one coherent palette. */
+:root{
+  --brand-red:#382719;--brand-red-dark:#291C13;--brand-green:#60452E;--brand-gold:#C49A52;
+  --brand-cream:#FAF7F0;--brand-paper:#FAF7F0;--brand-ink:#29231D;
+  --paper:#FAF7F0;--surface:#FFFFFF;--ink:#29231D;--muted:#74695D;--line:#EAE2D5;
+  --pantry-paper:#FAF7F0;--pantry-cream:#FAF7F0;--pantry-ink:#29231D;--pantry-muted:#74695D;
+  --pantry-green:#382719;--pantry-green-deep:#382719;--pantry-red:#60452E;--pantry-gold:#C49A52;--pantry-line:#EAE2D5;
+}
+html{scroll-padding-top:6rem;scroll-behavior:smooth}
+body{background:#FAF7F0;color:#29231D}
+::selection{background:#C49A52;color:#29231D}
+.site-header,.ehp-site-header{background:#FAF7F0;border-bottom:1px solid #EAE2D5}
+.wordmark-name,.main-nav a{color:#29231D}
+.wordmark-tamil,.main-nav a[aria-current=page]{color:#60452E}
+.header-contact{background:#382719;border-color:#382719;color:#FAF7F0}
+.header-contact:hover{background:#60452E;border-color:#60452E;color:#FFFFFF}
+.menu-toggle{border-color:#60452E;color:#382719}
+.site-footer{background:#382719;border-top:4px solid #C49A52;color:#FAF7F0}
+.footer-brand>p:first-of-type,.footer-contact>span:first-child,.footer-bottom a{color:#D7B77A}
+.footer-name,.footer-nav a,.footer-contact a,.footer-bottom{color:#FAF7F0}
+.page-heading,.visit-note,.pantry-hero,.ehp-home-hero{background:#FAF7F0;border-color:#EAE2D5}
+.eyebrow,.ehp-gold-eyebrow,.ehp-section-kicker,.ehp-story-eyebrow{color:#60452E}
+.button-dark,.ehp-gold-button,.pantry-button-green{background:#382719;border-color:#382719;color:#FAF7F0}
+.button-dark:hover,.ehp-gold-button:hover,.pantry-button-green:hover{background:#60452E;border-color:#60452E;color:#FFFFFF}
+.ehp-category-band,.ehp-trust-band{background:#382719;color:#FAF7F0}
+.ehp-category-link,.ehp-trust-band a,.ehp-trust-band button,.ehp-trust-band p{color:#FAF7F0}
+.ehp-category-link:focus-visible,.ehp-store-gallery-card:focus-visible,.ehp-product-card:focus-within{outline:3px solid #C49A52;outline-offset:3px}
+.ehp-products-section,.ehp-local-guide,.ehp-store-gallery{background:#FAF7F0}
+.ehp-product-card,.ehp-review-card,.ehp-store-gallery-card,.ehp-local-faq details,.ehp-guides-teaser{background:#FFFFFF;border-color:#EAE2D5}
+.ehp-product-card-copy h3,.ehp-local-guide-inner>h2,.ehp-local-faq>h2,.ehp-reviews-heading h2,.ehp-store-gallery-heading h2{color:#29231D}
+.ehp-product-note,.ehp-local-guide-grid p,.ehp-local-faq p,.ehp-reviews-heading>p:last-child,.ehp-store-gallery-heading>p:last-child{color:#74695D}
+.ehp-product-enquiry,.ehp-review-links a,.ehp-story-link,.ehp-guides-teaser-link{color:#382719}
+.ehp-story-home,.ehp-visit-section{background:#382719;color:#FAF7F0}
+.ehp-story-copy h2,.ehp-visit-section h2,.ehp-visit-details p{color:#FAF7F0}
+.ehp-story-copy a,.ehp-visit-section a{color:#E4C78F}
+.ehp-reviews-section{background:#EAE2D5}
+.ehp-review-card{border-top:3px solid #C49A52}
+.ehp-reviews-empty{padding:22px;border:1px solid #D8CDBD;background:#FAF7F0;color:#74695D;text-align:center}
+.ehp-reviews-empty p{margin:5px 0;line-height:1.65}
+.ehp-local-faq details{border:1px solid #EAE2D5;border-radius:0;padding:0 18px;margin:10px 0}
+.ehp-local-faq details summary,.pantry-faq details summary{display:flex;min-height:56px;align-items:center;justify-content:space-between;gap:16px;color:#29231D;font-weight:650;cursor:pointer;list-style:none}
+.ehp-local-faq details summary::-webkit-details-marker,.pantry-faq details summary::-webkit-details-marker{display:none}
+.ehp-local-faq details summary::after,.pantry-faq details summary::after{content:"+";color:#60452E;font-size:1.35rem;font-weight:400}
+.ehp-local-faq details[open] summary::after,.pantry-faq details[open] summary::after{content:"−"}
+.ehp-local-faq details p,.pantry-faq details p{padding:0 0 16px;margin:0;color:#74695D;line-height:1.75}
+.ehp-guides-teaser{padding:clamp(38px,6vw,72px) 0;border-block:1px solid #EAE2D5}
+.ehp-guides-teaser-inner{display:flex;align-items:center;justify-content:space-between;gap:28px}
+.ehp-guides-teaser h2{max-width:640px;margin:8px 0;color:#29231D;font:400 clamp(1.9rem,4vw,3.1rem)/1.12 Georgia,"Times New Roman",serif}
+.ehp-guides-teaser p:not(.ehp-section-kicker){max-width:560px;color:#74695D;line-height:1.75}
+.ehp-guides-teaser-link{display:inline-flex;min-height:48px;align-items:center;gap:14px;padding:0 16px;border:1px solid #382719;text-decoration:none;font-weight:700;white-space:nowrap}
+.ehp-guides-teaser-link:hover{background:#382719;color:#FAF7F0}
+/* Four-tab mobile navigation requested for the small-screen storefront. */
+.mobile-bottom-nav{display:none}
+@media(max-width:768px){
+ .ehp-site-header{background:#FAF7F0;border-bottom:1px solid #EAE2D5;color:#29231D}
+ .ehp-site-header .wordmark-name{color:#29231D}
+ .ehp-site-header .menu-toggle{border-color:#60452E;background:#FFFFFF;color:#382719}
+ .ehp-site-header .menu-toggle-lines,.ehp-site-header .menu-toggle-lines::before,.ehp-site-header .menu-toggle-lines::after{background:#382719}
+ .ehp-site-header .main-nav{background:#FAF7F0;border-color:#EAE2D5}
+ .ehp-site-header .main-nav a,.ehp-site-header .main-nav .mobile-nav-contact{background:#FAF7F0;color:#29231D;border-bottom-color:#EAE2D5}
+ .ehp-site-header .main-nav a[aria-current="page"]{color:#60452E}
+ .mobile-bottom-nav{position:fixed;z-index:60;right:0;bottom:0;left:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;padding:7px 8px calc(7px + env(safe-area-inset-bottom));border-top:1px solid #EAE2D5;background:#FAF7F0;box-shadow:0 -3px 14px rgba(56,39,25,.06)}
+ .mobile-bottom-nav a{display:flex;min-width:0;min-height:52px;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#74695D;text-decoration:none;font-size:.68rem;font-weight:650;line-height:1.2}
+ .mobile-bottom-nav svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+ .mobile-bottom-nav a[aria-current="page"]{color:#382719}
+ .mobile-bottom-nav a[aria-current="page"]::before{position:absolute;top:4px;width:34px;height:2px;background:#C49A52;content:""}
+ .site-footer{padding-bottom:calc(82px + env(safe-area-inset-bottom))}
+ .ehp-guides-teaser-inner{align-items:flex-start;flex-direction:column}
+ .ehp-guides-teaser-link{white-space:normal}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ehp-guides-teaser-link{transition:none}}
+/* Profile page */
+.profile-page-hero{padding:clamp(48px,7vw,84px) 0;background:#EAE2D5;border-bottom:1px solid #D8CDBD}
+.profile-page-hero h1{max-width:780px;margin:12px 0;color:#29231D;font:400 clamp(2.5rem,6vw,5rem)/1.02 Georgia,"Times New Roman",serif;letter-spacing:-.045em}
+.profile-page-hero h1 em{color:#60452E;font-weight:400}
+.profile-page-hero p:last-child{max-width:580px;color:#74695D;line-height:1.75}
+.profile-page-content{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;padding-block:clamp(36px,6vw,72px)}
+.profile-feature-card,.profile-map-card{position:relative;display:flex;min-width:0;flex-direction:column;align-items:flex-start;padding:22px;border:1px solid #EAE2D5;background:#FFFFFF;color:#29231D;text-decoration:none}
+.profile-card-index{display:inline-grid;width:34px;height:34px;place-items:center;border:1px solid #C49A52;color:#60452E;font-size:.72rem}
+.profile-card-kicker{margin-top:22px;color:#74695D;font-size:.65rem;font-weight:750;letter-spacing:.12em}
+.profile-feature-card h2,.profile-map-card h2{margin:8px 0;color:#29231D;font:400 clamp(1.6rem,2.6vw,2.1rem)/1.15 Georgia,"Times New Roman",serif}
+.profile-feature-card p{color:#74695D;font-size:.88rem;line-height:1.75}
+.profile-card-link{display:inline-flex;min-height:48px;align-items:center;margin-top:auto;padding-top:12px;color:#382719;font-size:.8rem;font-weight:750;text-decoration:underline;text-underline-offset:4px}
+.profile-card-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:12px}
+.profile-card-actions a,.profile-contact-actions a{display:inline-flex;min-height:44px;align-items:center;padding:8px 12px;border:1px solid #D8CDBD;color:#382719;font-size:.78rem;font-weight:700;text-decoration:none}
+.profile-map-card img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;margin:12px 0;border:1px solid #EAE2D5}
+.profile-feature-card:hover,.profile-map-card:hover{border-color:#C49A52}
+.profile-contact-strip{padding:36px 0;background:#382719;color:#FAF7F0}
+.profile-contact-strip>.container{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.profile-contact-strip h2{margin:6px 0;color:#FAF7F0;font:400 2rem Georgia,"Times New Roman",serif}
+.profile-contact-strip p:not(.eyebrow){max-width:540px;color:#EAE2D5;line-height:1.6}
+.profile-contact-actions{display:flex;flex-wrap:wrap;gap:8px}
+.profile-contact-actions a{border-color:#8E7359;color:#FAF7F0}
+.profile-contact-actions a:hover{background:#C49A52;color:#29231D}
+@media(max-width:800px){.profile-page-content{grid-template-columns:1fr}.profile-contact-strip>.container{align-items:flex-start;flex-direction:column}}
