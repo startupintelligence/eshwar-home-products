@@ -11,14 +11,14 @@ const mapsUrl = "https://www.google.com/maps/place/Eshwar+Home+Products/@13.1118
 const whatsappUrl = "https://wa.me/919941209953";
 const ask = (item: string) => whatsappUrl + "?text=" + encodeURIComponent("Hello Eshwar Home Products, please help me check today's availability and pack sizes for " + item + ".");
 const categories = [
-  { title: "Traditional Rice", symbol: "◌", target: "grains" },
-  { title: "Whole Millets", symbol: "✳", target: "grains" },
-  { title: "Millet Flours", symbol: "▤", target: "grains" },
-  { title: "Cold-Pressed Oils", symbol: "◒", target: "oils" },
-  { title: "Ghee & Dairy", symbol: "◇", target: "oils" },
-  { title: "Pulses & Dals", symbol: "❋", target: "pantry" },
-  { title: "Dry Fruits & Nuts", symbol: "❖", target: "pantry" },
-  { title: "Millet Snacks", symbol: "✦", target: "pantry" }
+  { title: "Traditional Rice", symbol: "◌", target: "grains", image: "category-traditional-rice.svg", alt: "Illustration of traditional rice grains" },
+  { title: "Whole Millets", symbol: "✳", target: "grains", image: "rice-millets.webp", alt: "Illustration of rice and millet grains" },
+  { title: "Millet Flours", symbol: "▤", target: "grains", image: "category-millets-flours.svg", alt: "Illustration of millet flours" },
+  { title: "Cold-Pressed Oils", symbol: "◒", target: "oils", image: "category-cold-pressed-oils.svg", alt: "Illustration of cold-pressed oils" },
+  { title: "Ghee & Dairy", symbol: "◇", target: "oils", image: "category-ghee-dairy.svg", alt: "Illustration of ghee and dairy products" },
+  { title: "Pulses & Dals", symbol: "❋", target: "pantry", image: "category-honey-pulses.svg", alt: "Illustration of pulses and pantry ingredients" },
+  { title: "Dry Fruits & Nuts", symbol: "❖", target: "pantry", image: "pantry-essentials.webp", alt: "Illustration of pantry essentials" },
+  { title: "Millet Snacks", symbol: "✦", target: "pantry", image: "category-flakes-vermicelli-pasta.svg", alt: "Illustration of millet snacks and pantry foods" }
 ];
 const products = [
   { title: "Traditional Rice", image: "category-traditional-rice.svg", alt: "Illustration of traditional rice varieties", enquiry: "traditional rice varieties", description: "Explore traditional rice varieties and ask the store about current options.", items: ["Traditional rice varieties"] },
@@ -32,9 +32,10 @@ const products = [
     <div class="ehp-hero-main container">
       <div class="ehp-hero-copy">
         <p class="ehp-gold-eyebrow">PURE · NATURAL · TRADITIONAL · PERAMBUR</p>
-        <h1 id="home-title">Traditional Rice, Millets &amp;<br /><em>Pantry Essentials</em></h1>
+        <h1 id="home-title">Bringing Traditional Goodness to Your <em>Everyday Kitchen.</em></h1>
         <p class="ehp-hero-lede">Traditional foods for everyday kitchens, thoughtfully chosen. Explore familiar staples and pantry essentials at your neighbourhood store in Perambur.</p>
         <a class="ehp-gold-button" href={base + "products/"}>Explore Our Pantry <span aria-hidden="true">→</span></a>
+        <button class="ehp-secondary-button" type="button" data-ehp-dialog="enquiry" aria-haspopup="dialog">Enquire on WhatsApp ↗</button>
         <button class="ehp-hero-address ehp-store-trigger" type="button" data-ehp-dialog="store" aria-haspopup="dialog">119/1, Paddy Field Road · Chinnaiyan Colony, Perambur, Chennai</button>
       </div>
       <figure class="ehp-hero-visual">
@@ -87,6 +88,19 @@ const products = [
         <li class="pantry-ticker-item">Health mix (Sathumaavu) <span class="pantry-ticker-dot">·</span></li>
         <li class="pantry-ticker-item">Mudavattukal Kilangu</li>
       </ul>
+    </div>
+  </section>
+
+  <section class="ehp-category-discovery" aria-labelledby="ehp-category-discovery-title">
+    <div class="container">
+      <header class="ehp-category-discovery-heading"><p class="ehp-section-kicker">SHOP BY CATEGORY</p><h2 id="ehp-category-discovery-title">Find your everyday pantry staples.</h2><p>Browse the store's existing catalogue shelves. Product options and pack sizes can change, so please check with the store before visiting.</p></header>
+      <div class="ehp-category-card-grid">
+        {categories.map((category) => <a class="ehp-category-card" href={base + "products/#" + category.target}>
+          <img src={base + "images/placeholders/" + category.image} alt={category.alt} width="480" height="360" loading="lazy" decoding="async" />
+          <span>{category.title}</span><span class="ehp-category-card-arrow" aria-hidden="true">↗</span>
+        </a>)}
+      </div>
+      <p class="ehp-category-discovery-note">Category illustrations are representative. They are not photographs of exact products or packaging.</p>
     </div>
   </section>
 
