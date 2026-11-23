@@ -1,24 +1,25 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
+import "../styles/company-profile.css";
+import { siteConfig, sitePath } from "../app/config/site";
+const sections = [
+  { number: "01", title: "About Us", description: "What we do, the pantry ranges we offer and the values behind our neighbourhood store.", href: sitePath("profile/about/"), label: "Company overview", icon: "M4 21h16M6 21V7l6-4 6 4v14M9 10h.01M15 10h.01M9 14h.01M15 14h.01M10 21v-4h4v4" },
+  { number: "02", title: "Our Story", description: "The thought that began in 2023, our family deity and the meaning behind our emblem.", href: sitePath("profile/our-story/"), label: "Our beginnings", icon: "M5 4.5A2.5 2.5 0 0 1 7.5 2H20v17H7.5A2.5 2.5 0 0 0 5 21.5zM5 4.5v17M9 7h7M9 11h7" },
+  { number: "03", title: "Ratings & Reviews", description: "Read customer feedback published after review, or share your own experience.", href: sitePath("profile/reviews/"), label: "Customer feedback", icon: "m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" },
+  { number: "04", title: "Comments", description: "Send a suggestion, ask a question or leave a general message for our team.", href: sitePath("profile/comments/"), label: "Share feedback", icon: "M20 11.5a7.5 7.5 0 0 1-7.5 7.5H8l-4 2v-5.1A7.5 7.5 0 1 1 20 11.5Z M8 11h8M8 14h5" },
+];
 ---
-<SiteLayout title="Profile | Eshwar Home Products" description="Explore the Eshwar Home Products profile, our story, public customer review profiles and store location in Perambur, Chennai." current="profile">
-  <section class="profile-page-hero">
-    <div class="container">
-      <p class="eyebrow">ESHWAR HOME PRODUCTS · PERAMBUR</p>
-      <h1>Your neighbourhood pantry, <em>at a glance.</em></h1>
-      <p>Find our story, public customer feedback and store location from one place.</p>
-    </div>
-  </section>
-  <section class="profile-page-content container" aria-label="Eshwar Home Products profile links">
-    <a class="profile-feature-card" href={import.meta.env.BASE_URL + "about/"}>
-      <span class="profile-card-index">01</span><span class="profile-card-kicker">THE PEOPLE & THE STORY</span><h2>About Us</h2><p>Learn about the name, emblem and the store's focus on traditional pantry products.</p><span class="profile-card-link">Read Our Story ↗</span>
-    </a>
-    <section class="profile-feature-card" aria-labelledby="profile-reviews-title">
-      <span class="profile-card-index">02</span><span class="profile-card-kicker">PUBLIC CUSTOMER FEEDBACK</span><h2 id="profile-reviews-title">Reviews</h2><p>We do not publish unverified testimonials on this website. Visit our public profiles to read customer feedback at its source.</p><div class="profile-card-actions"><a href="https://www.google.com/maps/place/Eshwar+Home+Products/@13.1118547,80.2468127,17z/data=!3m1!4b1!4m6!3m5!1s0x3a526569af8122ad:0xe485caf4b8adf074!8m2!3d13.1118495!4d80.2493876!16s%2Fg%2F11v4j6lc03?entry=ttu&g_ep=EgoyMDI2MTExNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Google Maps reviews ↗</a><a href="https://www.justdial.com/Chennai/Eshwar-Home-Products-Perambur/044PXX44-XX44-230926121128-L4A9_BZDET" target="_blank" rel="noopener noreferrer">Justdial profile ↗</a></div>
-    </section>
-    <a class="profile-map-card" href={import.meta.env.BASE_URL + "contact/"} aria-label="Open Contact Us for the Eshwar Home Products store map and directions">
-      <span class="profile-card-index">03</span><span class="profile-card-kicker">FIND OUR STORE</span><h2>A tiny map to Perambur.</h2><img src={import.meta.env.BASE_URL + "images/business/EHP_Map_Small-480.webp"} alt="Map reference for Eshwar Home Products in Perambur" width="480" height="282" loading="lazy" decoding="async" /><span class="profile-card-link">Open Contact Us for directions →</span>
-    </a>
-  </section>
-  <section class="profile-contact-strip"><div class="container"><div><p class="eyebrow">NEED HELP?</p><h2>Talk to the store.</h2><p>119/1, Paddy Field Road, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India.</p></div><div class="profile-contact-actions"><a href="tel:+919941209953">Call +91 99412 09953</a><a href="https://wa.me/919941209953" target="_blank" rel="noopener noreferrer">WhatsApp Enquiry ↗</a><a href={import.meta.env.BASE_URL + "contact/"}>Contact & Directions</a></div></div></section>
+<SiteLayout title="Company Profile | Eshwar Home Products" description="Learn about Eshwar Home Products, our story, customer reviews and ways to share feedback with our Perambur store team." current="profile">
+  <main class="company-profile profile-home">
+    <section class="cp-hero"><div class="cp-hero-decoration" aria-hidden="true"></div><div class="container cp-hero-inner">
+      <a class="cp-back-link cp-back-light" href={sitePath()}>← <span>Back to website</span></a>
+      <div class="cp-brand-lockup"><div class="cp-logo-frame"><img src={sitePath("images/brand/eshwar-home-products-logo.png")} alt="Eshwar Home Products official Rudraksha and Trishul emblem" width="320" height="183" /></div><div><p class="cp-kicker">THE COMPANY PROFILE</p><h1>Eshwar Home Products</h1><p lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</p></div></div>
+      <p class="cp-hero-intro">A neighbourhood pantry shaped by devotion, traditional food and care for everyday kitchens.</p><div class="cp-hero-meta"><span>Perambur, Chennai</span><span aria-hidden="true">·</span><span>Traditional pantry essentials</span></div>
+    </div></section>
+    <section class="cp-section container" aria-labelledby="cp-menu-title"><div class="cp-section-heading"><p class="cp-eyebrow">EXPLORE THE PROFILE</p><h2 id="cp-menu-title">Get to know us.</h2><p>Choose a section to learn more about the store or connect with our team.</p></div><div class="cp-menu-grid">
+      {sections.map((item) => <a class="cp-menu-card" href={item.href}><span class="cp-card-top"><span class="cp-number">{item.number}</span><span class="cp-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d={item.icon}/></svg></span></span><span class="cp-card-label">{item.label}</span><h3>{item.title}</h3><p>{item.description}</p><span class="cp-card-link">Explore section <span aria-hidden="true">↗</span></span></a>)}
+    </div></section>
+    <section class="cp-grievance-wrap"><div class="container cp-grievance"><div><p class="cp-eyebrow">CUSTOMER SUPPORT</p><h2>Grievance & customer care</h2><p>For a concern, complaint or service-related question, contact the Eshwar Home Products team through the verified store channels below. Please include your contact details and a clear description of the issue so the team can respond.</p><p class="cp-disclosure">A named Grievance Officer and separate grievance contact have not been provided for publication.</p></div><div class="cp-contact-details"><a href={"mailto:" + siteConfig.email}><span>Email</span><strong>{siteConfig.email}</strong></a><a href={"tel:" + siteConfig.phoneLink}><span>Phone</span><strong>{siteConfig.phoneDisplay}</strong></a><a href={sitePath("contact/")}><span>Store information</span><strong>Address, hours & directions ↗</strong></a></div></div></section>
+    <section class="container cp-bottom-cta"><div><p class="cp-eyebrow">WE’RE HERE TO HELP</p><h2>Looking for something for your pantry?</h2><p>Browse the catalogue or speak with the store team about product availability.</p></div><div><a class="cp-button cp-button-dark" href={sitePath("products/")}>Explore products ↗</a><a class="cp-button cp-button-outline" href={siteConfig.whatsappUrl} target="_blank" rel="noopener noreferrer">WhatsApp the store ↗</a></div></section>
+  </main>
 </SiteLayout>

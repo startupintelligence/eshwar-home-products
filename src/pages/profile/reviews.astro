@@ -1,0 +1,7 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { ProfileFeedback } from "../../components/profile/ProfileFeedback";
+import "../../styles/company-profile.css";
+import { sitePath } from "../../app/config/site";
+---
+<SiteLayout title="Customer Ratings & Reviews | Eshwar Home Products" description="Read approved customer reviews or share your experience with Eshwar Home Products in Perambur, Chennai." current="profile"><main class="company-profile cp-subpage"><section class="cp-subhero"><div class="container"><a class="cp-back-link cp-back-light" href={sitePath("profile/")}>← Company Profile</a><p class="cp-eyebrow">03 · CUSTOMER FEEDBACK</p><h1>Ratings & <em>Reviews.</em></h1><p>Customer experiences help others make informed decisions. New submissions are reviewed before publication.</p></div></section><section class="container cp-feedback-content"><ProfileFeedback mode="reviews" client:load /></section></main></SiteLayout>
