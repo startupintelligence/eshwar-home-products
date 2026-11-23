@@ -15,7 +15,7 @@ const base = import.meta.env.BASE_URL;
       <a href={base+"products/"} aria-current={current === "products" ? "page" : undefined}>The Pantry</a>
       <a href={base+"about/"} aria-current={current === "about" ? "page" : undefined}>Our Story</a>
       <a href={base+"kitchen-guides/"} aria-current={current === "blog" || current === "kitchen-guides" ? "page" : undefined}>Kitchen Guides</a>
-      <a href={base+"profile/"} aria-current={current === "profile" ? "page" : undefined}>Profile</a>
+      <a class="profile-nav-link" href={base+"profile/"} aria-label="Company Profile" aria-current={current === "profile" ? "page" : undefined}><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg><span>Profile</span></a>
       <a href={base+"contact/"} data-ehp-dialog="store" aria-haspopup="dialog" aria-current={current === "contact" ? "page" : undefined}>Visit Us</a>
       <a class="header-contact" href="https://wa.me/919941209953" data-ehp-dialog="enquiry" aria-haspopup="dialog">WhatsApp Enquiry ↗</a>
       <a class="mobile-nav-contact" href="https://wa.me/919941209953" data-ehp-dialog="enquiry" aria-haspopup="dialog">WhatsApp Enquiry ↗</a>

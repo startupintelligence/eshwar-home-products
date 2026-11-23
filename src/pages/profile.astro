@@ -10,7 +10,7 @@ const sections = [
 ];
 ---
 <SiteLayout title="Company Profile | Eshwar Home Products" description="Learn about Eshwar Home Products, our story, customer reviews and ways to share feedback with our Perambur store team." current="profile">
-  <main class="company-profile profile-home">
+  <div class="company-profile profile-home">
     <section class="cp-hero"><div class="cp-hero-decoration" aria-hidden="true"></div><div class="container cp-hero-inner">
       <a class="cp-back-link cp-back-light" href={sitePath()}>← <span>Back to website</span></a>
       <div class="cp-brand-lockup"><div class="cp-logo-frame"><img src={sitePath("images/brand/eshwar-home-products-logo.png")} alt="Eshwar Home Products official Rudraksha and Trishul emblem" width="320" height="183" /></div><div><p class="cp-kicker">THE COMPANY PROFILE</p><h1>Eshwar Home Products</h1><p lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</p></div></div>
@@ -21,5 +21,5 @@ const sections = [
     </div></section>
     <section class="cp-grievance-wrap"><div class="container cp-grievance"><div><p class="cp-eyebrow">CUSTOMER SUPPORT</p><h2>Grievance & customer care</h2><p>For a concern, complaint or service-related question, contact the Eshwar Home Products team through the verified store channels below. Please include your contact details and a clear description of the issue so the team can respond.</p><p class="cp-disclosure">A named Grievance Officer and separate grievance contact have not been provided for publication.</p></div><div class="cp-contact-details"><a href={"mailto:" + siteConfig.email}><span>Email</span><strong>{siteConfig.email}</strong></a><a href={"tel:" + siteConfig.phoneLink}><span>Phone</span><strong>{siteConfig.phoneDisplay}</strong></a><a href={sitePath("contact/")}><span>Store information</span><strong>Address, hours & directions ↗</strong></a></div></div></section>
     <section class="container cp-bottom-cta"><div><p class="cp-eyebrow">WE’RE HERE TO HELP</p><h2>Looking for something for your pantry?</h2><p>Browse the catalogue or speak with the store team about product availability.</p></div><div><a class="cp-button cp-button-dark" href={sitePath("products/")}>Explore products ↗</a><a class="cp-button cp-button-outline" href={siteConfig.whatsappUrl} target="_blank" rel="noopener noreferrer">WhatsApp the store ↗</a></div></section>
-  </main>
+  </div>
 </SiteLayout>
