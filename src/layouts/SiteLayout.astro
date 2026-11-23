@@ -2,11 +2,12 @@
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import FloatingActionCards from "../components/FloatingActionCards.astro";
+import MobileTabBar from "../components/navigation/MobileTabBar.astro";
 import "../styles/global.css";
 import "../styles/theme-2.css";
 import "../styles/shared-editorial.css";
 import "../styles/brand-system.css";
-interface Props { title:string; description:string; current?:"home"|"about"|"products"|"contact"|"blog"|"kitchen-guides"; includeStoreSchema?:boolean; canonicalUrl?:string; noindex?:boolean; preloadHomeHero?:boolean; }
+interface Props { title:string; description:string; current?:"home"|"about"|"products"|"contact"|"blog"|"kitchen-guides"|"profile"; includeStoreSchema?:boolean; canonicalUrl?:string; noindex?:boolean; preloadHomeHero?:boolean; }
 const { title, description, current="home", includeStoreSchema=true, canonicalUrl, noindex=false, preloadHomeHero=false } = Astro.props;
 const canonical = canonicalUrl ?? new URL(Astro.url.pathname, Astro.site ?? "https://startupintelligence.github.io").toString();
 const siteUrl = new URL(import.meta.env.BASE_URL, Astro.site ?? "https://startupintelligence.github.io").toString();
@@ -16,7 +17,7 @@ const storeSchema = { "@context":"https://schema.org", "@type":"GroceryStore", "
 <!doctype html>
 <html lang="en-IN">
 <head>
-<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="theme-color" content="#432818" />
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="theme-color" content="#3B2112" />
 <meta name="description" content={description} />{noindex && <meta name="robots" content="noindex, nofollow" />}
 <meta property="og:type" content="website" /><meta property="og:site_name" content="Eshwar Home Products" /><meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:locale" content="en_IN" /><meta property="og:url" content={canonical} /><meta property="og:image" content={ogImage} /><meta property="og:image:secure_url" content={ogImage} /><meta property="og:image:type" content="image/png" /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta property="og:image:alt" content="Eshwar Home Products, Perambur, Chennai" />
 <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={ogImage} />
@@ -25,11 +26,7 @@ const storeSchema = { "@context":"https://schema.org", "@type":"GroceryStore", "
 {import.meta.env.PUBLIC_GA4_ID && <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />}
 {includeStoreSchema && <script type="application/ld+json" set:html={JSON.stringify(storeSchema)} />}
 </head>
-<body><div class="reading-progress" aria-hidden="true"></div><a class="skip-link" href="#main-content">Skip to content</a><SiteHeader current={current} /><main id="main-content"><slot /></main><SiteFooter /><FloatingActionCards />
-<nav class="mobile-action-bar" aria-label="Quick store actions">
-  <a class="mobile-action-call" href="tel:+919941209953">Call Store</a>
-  <button class="mobile-action-whatsapp" type="button" data-ehp-dialog="enquiry" aria-haspopup="dialog">WhatsApp Enquiry ↗</button>
-</nav>
+<body><div class="reading-progress" aria-hidden="true"></div><a class="skip-link" href="#main-content">Skip to content</a><SiteHeader current={current} /><main id="main-content"><slot /></main><SiteFooter /><FloatingActionCards /><MobileTabBar />
 <script is:inline>
   (() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
