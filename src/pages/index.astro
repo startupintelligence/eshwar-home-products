@@ -15,10 +15,10 @@ const categories = [
   { title: "Whole Millets", symbol: "✳", target: "grains", image: "rice-millets.webp", alt: "Illustration of rice and millet grains" },
   { title: "Millet Flours", symbol: "▤", target: "grains", image: "category-millets-flours.svg", alt: "Illustration of millet flours" },
   { title: "Cold-Pressed Oils", symbol: "◒", target: "oils", image: "category-cold-pressed-oils.svg", alt: "Illustration of cold-pressed oils" },
-  { title: "Ghee & Dairy", symbol: "◇", target: "oils", image: "category-ghee-dairy.svg", alt: "Illustration of ghee and dairy products" },
+  { title: "Ghee & Honey", symbol: "◇", target: "", image: "category-ghee-dairy.svg", alt: "Representative category illustration for ghee and honey" },
   { title: "Pulses & Dals", symbol: "❋", target: "pantry", image: "category-honey-pulses.svg", alt: "Illustration of pulses and pantry ingredients" },
   { title: "Dry Fruits & Nuts", symbol: "❖", target: "pantry", image: "pantry-essentials.webp", alt: "Illustration of pantry essentials" },
-  { title: "Millet Snacks", symbol: "✦", target: "pantry", image: "category-flakes-vermicelli-pasta.svg", alt: "Illustration of millet snacks and pantry foods" }
+  { title: "Millet Snacks", symbol: "✦", target: "grains", image: "category-flakes-vermicelli-pasta.svg", alt: "Illustration of millet snacks and pantry foods" }
 ];
 const products = [
   { title: "Traditional Rice", image: "category-traditional-rice.svg", alt: "Illustration of traditional rice varieties", enquiry: "traditional rice varieties", description: "Explore traditional rice varieties and ask the store about current options.", items: ["Traditional rice varieties"] },
@@ -49,7 +49,7 @@ const products = [
     </div>
     <div class="ehp-category-band">
       <nav class="ehp-category-strip container" aria-label="Explore pantry categories">
-        {categories.map((category) => <a class="ehp-category-link" href={base + "products/#" + category.target}><span class="ehp-category-icon" aria-hidden="true">{category.symbol}</span><span>{category.title}</span></a>)}
+        {categories.map((category) => <a class="ehp-category-link" href={base + "products/" + (category.target ? "#" + category.target : "")}><span class="ehp-category-icon" aria-hidden="true">{category.symbol}</span><span>{category.title}</span></a>)}
       </nav>
     </div>
     <svg class="ehp-cream-arch" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0H1440V22C1180 112 260 112 0 22Z" fill="#F3F5F3" /></svg>
@@ -95,7 +95,7 @@ const products = [
     <div class="container">
       <header class="ehp-category-discovery-heading"><p class="ehp-section-kicker">SHOP BY CATEGORY</p><h2 id="ehp-category-discovery-title">Find your everyday pantry staples.</h2><p>Browse the store's existing catalogue shelves. Product options and pack sizes can change, so please check with the store before visiting.</p></header>
       <div class="ehp-category-card-grid">
-        {categories.map((category) => <a class="ehp-category-card" href={base + "products/#" + category.target}>
+        {categories.map((category) => <a class="ehp-category-card" href={base + "products/" + (category.target ? "#" + category.target : "")}>
           <img src={base + "images/placeholders/" + category.image} alt={category.alt} width="480" height="360" loading="lazy" decoding="async" />
           <span>{category.title}</span><span class="ehp-category-card-arrow" aria-hidden="true">↗</span>
         </a>)}
