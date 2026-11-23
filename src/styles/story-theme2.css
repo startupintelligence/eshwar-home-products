@@ -174,3 +174,69 @@
 }
 @keyframes star-move-up { to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); } }
 @media (prefers-reduced-motion: reduce) { .five-stars-reveal .star-item { opacity: 1 !important; transform: none !important; animation: none !important; } }
+
+
+/* About page contrast correction: use the warm palette with dark, readable copy. */
+.ehp-about-page {
+  background: #FAF7F0;
+  color: #29231D;
+}
+.ehp-about-page .ehp-about-hero,
+.ehp-about-page .ehp-name-story,
+.ehp-about-page .ehp-about-pantry,
+.ehp-about-page .ehp-commitments,
+.ehp-about-page .ehp-visit-cta {
+  color: #29231D;
+}
+.ehp-about-page h1,
+.ehp-about-page h2,
+.ehp-about-page h3,
+.ehp-about-page .ehp-about-prose strong,
+.ehp-about-page .ehp-commitment h3 {
+  color: #29231D;
+}
+.ehp-about-page p:not(.ehp-about-eyebrow),
+.ehp-about-page .ehp-about-intro,
+.ehp-about-page .ehp-about-prose > p:not(.ehp-about-eyebrow),
+.ehp-about-page .ehp-commitment p,
+.ehp-about-page .ehp-visit-cta-inner > div > p:not(.ehp-about-eyebrow) {
+  color: #4A3525;
+}
+.ehp-about-page .ehp-about-eyebrow,
+.ehp-about-page .ehp-commitment-number,
+.ehp-about-page .ehp-about-range-link > span:first-child {
+  color: #60452E;
+}
+.ehp-about-page a:not(.ehp-action) {
+  color: #382719;
+}
+.ehp-about-page .ehp-about-range-link > span:last-child {
+  color: #60452E;
+}
+.ehp-about-page .ehp-about-hero-proof,
+.ehp-about-page .ehp-name-mark {
+  color: #29231D;
+  background: #FFFFFF;
+}
+.ehp-about-page .ehp-about-hero-proof-rating,
+.ehp-about-page .ehp-about-hero-proof p {
+  color: #4A3525;
+}
+.ehp-about-page .ehp-about-hero-proof-rating strong {
+  color: #29231D;
+}
+.ehp-about-page .ehp-action-primary {
+  background: #D99B26;
+  border-color: #D99B26;
+  color: #2A1508;
+}
+.ehp-about-page .ehp-action-secondary {
+  background: #382719;
+  border-color: #382719;
+  color: #FAF7F0;
+}
+.ehp-about-page .ehp-action-outline {
+  background: #FAF7F0;
+  border-color: #60452E;
+  color: #382719;
+}
