@@ -3,11 +3,12 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 import "../styles/mobile-responsive.css";
 const base = import.meta.env.BASE_URL;
 const reviewsUrl = "https://www.google.com/search?q=Eshwar+Home+Products+Perambur+reviews";
+const mapEmbedUrl = "https://www.google.com/maps?q=119%2F1%2C%20Paddy%20Field%20Road%2C%20Chinnaiyan%20Colony%2C%20Perambur%2C%20Chennai%20600011&output=embed";
 ---
 <SiteLayout title="Profile | Eshwar Home Products" description="Find the Eshwar Home Products story, customer review links and store location in Perambur, Chennai." current="profile">
   <section class="profile-page">
     <div class="profile-shell">
-      <p class="profile-eyebrow">ESH​WAR HOME PRODUCTS · PERAMBUR</p>
+      <p class="profile-eyebrow">ESHWAR HOME PRODUCTS · PERAMBUR</p>
       <h1>Your store profile</h1>
       <p class="profile-intro">A quick place to learn about our store, find customer reviews and reach us.</p>
       <div class="profile-links">
@@ -26,8 +27,7 @@ const reviewsUrl = "https://www.google.com/search?q=Eshwar+Home+Products+Perambu
       </div>
       <a class="profile-map-card" href={base + "contact/"} aria-label="Open Contact Us for store location and directions">
         <span class="profile-map-art" aria-hidden="true">
-          <span class="map-road map-road-one"></span><span class="map-road map-road-two"></span><span class="map-road map-road-three"></span>
-          <span class="map-block map-block-one"></span><span class="map-block map-block-two"></span><span class="map-block map-block-three"></span>
+          <iframe src={mapEmbedUrl} title="Map preview of Eshwar Home Products in Perambur" loading="lazy" referrerpolicy="no-referrer-when-downgrade" tabindex="-1"></iframe>
           <span class="map-pin"><span></span></span>
           <span class="map-label">PERAMBUR</span>
         </span>
@@ -54,20 +54,13 @@ const reviewsUrl = "https://www.google.com/search?q=Eshwar+Home+Products+Perambu
   .profile-card-copy{color:#5E4635;font-size:.92rem;line-height:1.55}
   .profile-card-arrow{position:absolute;right:18px;top:17px;color:#8A5A20;font-size:1.1rem}
   .profile-map-card{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:20px;margin-top:14px;padding:14px}
-  .profile-map-art{position:relative;display:block;min-height:170px;overflow:hidden;background-color:#E8E0D4;background-image:linear-gradient(30deg,transparent 46%,#D0C2AF 47%,#D0C2AF 51%,transparent 52%),linear-gradient(112deg,transparent 42%,#D0C2AF 43%,#D0C2AF 47%,transparent 48%),linear-gradient(0deg,transparent 48%,#D8CBB9 49%,#D8CBB9 53%,transparent 54%)}
-  .map-road{position:absolute;display:block;background:#F8F3EB;border:1px solid #D2C2AE}
-  .map-road-one{left:-8%;top:45%;width:120%;height:18px;transform:rotate(-16deg)}
-  .map-road-two{left:43%;top:-20%;width:16px;height:150%;transform:rotate(17deg)}
-  .map-road-three{left:8%;top:18%;width:85%;height:12px;transform:rotate(38deg)}
-  .map-block{position:absolute;display:block;background:#D5DDC8;border:1px solid #BEC9B0}
-  .map-block-one{left:8%;top:8%;width:25%;height:22%}
-  .map-block-two{right:8%;top:12%;width:23%;height:27%}
-  .map-block-three{left:10%;bottom:8%;width:25%;height:20%}
-  .map-pin{position:absolute;left:57%;top:36%;display:grid;width:28px;height:28px;place-items:center;border:3px solid #F5EDE3;border-radius:50% 50% 50% 0;background:#8A3B24;transform:rotate(-45deg);box-shadow:0 0 0 1px #8A3B24}
+  .profile-map-art{position:relative;display:block;min-height:170px;overflow:hidden;background:#E8E0D4}
+  .profile-map-art iframe{display:block;width:100%;height:170px;border:0;pointer-events:none;filter:saturate(.7) sepia(.08)}
+  .map-pin{position:absolute;left:57%;top:36%;display:grid;width:28px;height:28px;place-items:center;border:3px solid #F5EDE3;border-radius:50% 50% 50% 0;background:#8A3B24;transform:rotate(-45deg);box-shadow:0 0 0 1px #8A3B24;pointer-events:none}
   .map-pin span{width:8px;height:8px;border-radius:50%;background:#F5EDE3}
-  .map-label{position:absolute;right:9px;bottom:8px;padding:4px 6px;background:#3B2112;color:#F5EDE3;font-size:.62rem;font-weight:700;letter-spacing:.1em}
+  .map-label{position:absolute;right:9px;bottom:8px;padding:4px 6px;background:#3B2112;color:#F5EDE3;font-size:.62rem;font-weight:700;letter-spacing:.1em;pointer-events:none}
   .profile-map-copy{display:flex;flex-direction:column;justify-content:center;gap:9px}
   .profile-map-cta{margin-top:4px;color:#75470F;font-size:.88rem;font-weight:800}
   .profile-card:focus-visible,.profile-map-card:focus-visible{outline:3px solid #8A5A20;outline-offset:3px}
-  @media(max-width:560px){.profile-links{grid-template-columns:1fr}.profile-card{min-height:140px}.profile-map-card{grid-template-columns:1fr}.profile-map-art{min-height:150px}.profile-page{padding-inline:16px}}
+  @media(max-width:560px){.profile-links{grid-template-columns:1fr}.profile-card{min-height:140px}.profile-map-card{grid-template-columns:1fr}.profile-map-art,.profile-map-art iframe{min-height:150px;height:150px}.profile-page{padding-inline:16px}}
 </style>
