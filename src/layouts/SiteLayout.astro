@@ -11,7 +11,62 @@ const { title, description, current="home", includeStoreSchema=true, canonicalUr
 const canonical = canonicalUrl ?? new URL(Astro.url.pathname, Astro.site ?? "https://startupintelligence.github.io").toString();
 const siteUrl = new URL(import.meta.env.BASE_URL, Astro.site ?? "https://startupintelligence.github.io").toString();
 const ogImage = new URL("images/og-eshwar-home-products.png", siteUrl).toString();
-const storeSchema = { "@context":"https://schema.org", "@type":"GroceryStore", "@id":siteUrl+"#store", name:"Eshwar Home Products", alternateName:"ஈஸ்வர் ஹோம் புராடக்ட்ஸ்", url:siteUrl, logo:new URL("images/brand/eshwar-home-products-logo.png", siteUrl).toString(), telephone:"+91 99412 09953", address:{ "@type":"PostalAddress", streetAddress:"119/1, Paddy Field Road, Chinnaiyan Colony, Perambur", addressLocality:"Chennai", addressRegion:"Tamil Nadu", postalCode:"600011", addressCountry:"IN" }, openingHours:["Mo-Sa 09:00-21:00"], description:"Mon–Sat: 9:00 AM – 9:00 PM · Sunday: Closed", areaServed:"Perambur, Chennai", sameAs:["https://www.youtube.com/@EHP_PeramburOfficial","https://www.instagram.com/eshwar_home_products/"] };
+const entityId = siteUrl + "#organization";
+const storeId = siteUrl + "#store";
+const addressId = siteUrl + "#address";
+const logoUrl = new URL("images/brand/eshwar-home-products-logo.png", siteUrl).toString();
+const mapsUrl = "https://www.google.com/maps/place/Eshwar+Home+Products/@13.1118547,80.2468127,17z/data=!3m1!4b1!4m6!3m5!1s0x3a526569af8122ad:0xe485caf4b8adf074!8m2!3d13.1118495!4d80.2493876!16s%2Fg%2F11v4j6lc03?entry=ttu";
+const schemaGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization", "@id": entityId,
+      name: "Eshwar Home Products", alternateName: "ஈஸ்வர் ஹோம் புராடக்ட்ஸ்",
+      url: siteUrl, logo: { "@type": "ImageObject", url: logoUrl },
+      description: "A neighbourhood food and pantry store in Perambur, Chennai, Tamil Nadu, India.",
+      telephone: "+91 99412 09953", email: "info.eshwarhomeproducts@gmail.com",
+      sameAs: ["https://www.youtube.com/@EHP_PeramburOfficial", "https://www.instagram.com/eshwar_home_products/"],
+      subOrganization: { "@id": storeId }
+    },
+    {
+      "@type": "WebSite", "@id": siteUrl + "#website",
+      url: siteUrl, name: "Eshwar Home Products", inLanguage: "en-IN",
+      publisher: { "@id": entityId }, about: { "@id": storeId }
+    },
+    {
+      "@type": ["GroceryStore", "LocalBusiness"], "@id": storeId,
+      name: "Eshwar Home Products", alternateName: "ஈஸ்வர் ஹோம் புராடக்ட்ஸ்",
+      url: siteUrl, mainEntityOfPage: { "@id": siteUrl + "#website" },
+      parentOrganization: { "@id": entityId },
+      logo: logoUrl, image: logoUrl, telephone: "+91 99412 09953",
+      email: "info.eshwarhomeproducts@gmail.com",
+      address: { "@id": addressId },
+      openingHours: ["Mo-Sa 09:00-21:00"],
+      openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "09:00", closes: "21:00" }],
+      areaServed: { "@type": "City", name: "Chennai" },
+      hasMap: mapsUrl,
+      geo: { "@type": "GeoCoordinates", latitude: 13.1118495, longitude: 80.2493876 },
+      sameAs: [mapsUrl, "https://www.youtube.com/@EHP_PeramburOfficial", "https://www.instagram.com/eshwar_home_products/"],
+      knowsAbout: ["Traditional rice varieties", "Millets and millet flours", "Cold-pressed gingelly, groundnut and coconut oils", "Ghee and dairy essentials", "Honey, pulses, dry fruits and nuts", "Sathumaavu", "Millet snacks and pantry essentials"],
+      hasOfferCatalog: { "@id": siteUrl + "#pantry-catalog" }
+    },
+    {
+      "@type": "PostalAddress", "@id": addressId,
+      streetAddress: "119/1, Paddy Field Road, Chinnaiyan Colony, Perambur",
+      addressLocality: "Chennai", addressRegion: "Tamil Nadu",
+      postalCode: "600011", addressCountry: "IN"
+    },
+    {
+      "@type": "OfferCatalog", "@id": siteUrl + "#pantry-catalog",
+      name: "Eshwar Home Products pantry categories",
+      itemListElement: [
+        { "@type": "OfferCatalog", name: "Rice & millets", description: "Traditional rice varieties, millet grains and millet flours." },
+        { "@type": "OfferCatalog", name: "Oils, ghee & dairy", description: "Cold-pressed gingelly, groundnut and coconut oils, ghee and dairy essentials." },
+        { "@type": "OfferCatalog", name: "Pantry essentials", description: "Honey, pulses, dry fruits, nuts, Sathumaavu, millet snacks and other pantry selections." }
+      ]
+    }
+  ]
+};
 ---
 <!doctype html>
 <html lang="en-IN">
@@ -23,7 +78,7 @@ const storeSchema = { "@context":"https://schema.org", "@type":"GroceryStore", "
 <link rel="icon" type="image/png" href={new URL("images/brand/eshwar-home-products-logo.png", siteUrl).toString()} /><link rel="apple-touch-icon" href={new URL("images/brand/eshwar-home-products-logo.png", siteUrl).toString()} /><link rel="canonical" href={canonical} />{preloadHomeHero && <link rel="preload" as="image" href={new URL("images/business/EHP_Shop_Front_View-1280.webp", siteUrl).toString()} imagesrcset={`${new URL("images/business/EHP_Shop_Front_View-480.webp", siteUrl).toString()} 480w, ${new URL("images/business/EHP_Shop_Front_View-768.webp", siteUrl).toString()} 768w, ${new URL("images/business/EHP_Shop_Front_View-1280.webp", siteUrl).toString()} 1280w`} imagesizes="(max-width: 900px) 100vw, 50vw" fetchpriority="high" />}<title>{title}</title>
 <script src="https://analytics.ahrefs.com/analytics.js" data-key="T8+LOj2/EakoZK7/pjg3rg" async></script>
 {import.meta.env.PUBLIC_GA4_ID && <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />}
-{includeStoreSchema && <script type="application/ld+json" set:html={JSON.stringify(storeSchema)} />}
+{includeStoreSchema && <script type="application/ld+json" set:html={JSON.stringify(schemaGraph)} />}
 </head>
 <body><div class="reading-progress" aria-hidden="true"></div><a class="skip-link" href="#main-content">Skip to content</a><SiteHeader current={current} /><main id="main-content"><slot /></main><SiteFooter /><FloatingActionCards />
 <nav class="mobile-action-bar" aria-label="Quick store actions">

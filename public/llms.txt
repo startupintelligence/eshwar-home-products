@@ -37,6 +37,10 @@ The store catalogue describes these categories and selections:
 
 The catalogue is a guide to product categories, not a live stock guarantee. Specific varieties, pack sizes, prices and availability may change. Customers should contact the store to confirm current details before visiting.
 
+## Machine-readable resources
+- AI dataset (JSON): https://eshwar-home-products.vercel.app/ai-dataset.json
+- This dataset describes the public business entity, published catalogue categories, canonical pages and source limitations.
+
 ## Public website pages
 - Home: https://eshwar-home-products.vercel.app/
 - Pantry and product catalogue: https://eshwar-home-products.vercel.app/products/

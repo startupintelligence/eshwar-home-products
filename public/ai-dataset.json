@@ -1,0 +1,165 @@
+{
+  "datasetName": "Eshwar Home Products public website dataset",
+  "datasetVersion": "1.0.0",
+  "canonicalUrl": "https://eshwar-home-products.vercel.app/",
+  "language": "en-IN",
+  "lastVerifiedFromSource": "2026-11-23",
+  "publisher": {
+    "name": "Eshwar Home Products",
+    "url": "https://eshwar-home-products.vercel.app/"
+  },
+  "primaryEntity": {
+    "name": "Eshwar Home Products",
+    "alternateName": "ஈஸ்வர் ஹோம் புராடக்ட்ஸ்",
+    "entityTypes": [
+      "Organization",
+      "LocalBusiness",
+      "GroceryStore"
+    ],
+    "canonicalUrl": "https://eshwar-home-products.vercel.app/",
+    "description": "A neighbourhood food and pantry store in Perambur, Chennai, Tamil Nadu, India.",
+    "address": {
+      "streetAddress": "119/1, Paddy Field Road, Chinnaiyan Colony, Perambur",
+      "addressLocality": "Chennai",
+      "addressRegion": "Tamil Nadu",
+      "postalCode": "600011",
+      "addressCountry": "IN",
+      "formatted": "119/1, Paddy Field Road, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India"
+    },
+    "telephone": "+91 99412 09953",
+    "whatsapp": "https://wa.me/919941209953",
+    "email": "info.eshwarhomeproducts@gmail.com",
+    "openingHours": {
+      "mondayToSaturday": "09:00-21:00",
+      "sunday": "Closed",
+      "timezone": "Asia/Kolkata"
+    },
+    "areaServed": [
+      "Perambur",
+      "Chennai"
+    ],
+    "sameAs": [
+      "https://www.google.com/maps/place/Eshwar+Home+Products/@13.1118547,80.2468127,17z/data=!3m1!4b1!4m6!3m5!1s0x3a526569af8122ad:0xe485caf4b8adf074!8m2!3d13.1118495!4d80.2493876!16s%2Fg%2F11v4j6lc03?entry=ttu",
+      "https://www.youtube.com/@EHP_PeramburOfficial",
+      "https://www.instagram.com/eshwar_home_products/"
+    ],
+    "location": {
+      "latitude": 13.1118495,
+      "longitude": 80.2493876
+    }
+  },
+  "productCategories": [
+    {
+      "id": "grains",
+      "name": "Rice & millets",
+      "description": "Traditional rice varieties, millet grains (Siruthaniyam) and millet-based pantry choices.",
+      "items": [
+        {
+          "name": "Traditional rice varieties",
+          "description": "A selection of familiar and traditional rice varieties."
+        },
+        {
+          "name": "Millet varieties",
+          "description": "Explore millet options for everyday cooking."
+        },
+        {
+          "name": "Millet flours",
+          "description": "Flours for home cooking, snacks and traditional recipes."
+        },
+        {
+          "name": "Flakes, vermicelli & pasta",
+          "description": "Millet-based pantry options for quick meals."
+        },
+        {
+          "name": "Millet cookies",
+          "description": "A snack option within the millet range."
+        }
+      ]
+    },
+    {
+      "id": "oils",
+      "name": "Oils, ghee & dairy",
+      "description": "Everyday cooking essentials. Please check current varieties and pack sizes with the store.",
+      "items": [
+        {
+          "name": "Cold-pressed oils (Chekku oils: gingelly, groundnut, coconut)",
+          "description": "Ask about gingelly, groundnut and coconut oils, and the pack sizes currently available."
+        },
+        {
+          "name": "Ghee & dairy",
+          "description": "Ask the store about the ghee and dairy products currently available."
+        }
+      ]
+    },
+    {
+      "id": "pantry",
+      "name": "Pantry essentials",
+      "description": "A wider selection of ingredients and traditional pantry products.",
+      "items": [
+        {
+          "name": "Honey, pulses, dry fruits & nuts",
+          "description": "Everyday pantry selections for home kitchens."
+        },
+        {
+          "name": "Health mix (Sathumaavu)",
+          "description": "A traditional mix. Contact the store for product details."
+        },
+        {
+          "name": "Mudavattukal Kilangu",
+          "description": "Ask the team about current availability."
+        }
+      ]
+    }
+  ],
+  "publicPages": [
+    {
+      "name": "Home",
+      "url": "https://eshwar-home-products.vercel.app/",
+      "purpose": "Store overview and introduction."
+    },
+    {
+      "name": "Products and pantry catalogue",
+      "url": "https://eshwar-home-products.vercel.app/products/",
+      "purpose": "Browse published pantry categories and product selections."
+    },
+    {
+      "name": "About us",
+      "url": "https://eshwar-home-products.vercel.app/about/",
+      "purpose": "Business story and store identity."
+    },
+    {
+      "name": "Perambur millet store guide",
+      "url": "https://eshwar-home-products.vercel.app/perambur-millet-store/",
+      "purpose": "Local store information and Perambur discovery content."
+    },
+    {
+      "name": "Kitchen guides",
+      "url": "https://eshwar-home-products.vercel.app/kitchen-guides/",
+      "purpose": "Kitchen and pantry guidance articles."
+    },
+    {
+      "name": "Blog",
+      "url": "https://eshwar-home-products.vercel.app/blog/",
+      "purpose": "Published store articles and updates."
+    },
+    {
+      "name": "Contact and directions",
+      "url": "https://eshwar-home-products.vercel.app/contact/",
+      "purpose": "Store contact details, opening hours and directions."
+    }
+  ],
+  "machineReadableResources": {
+    "llmsTxt": "https://eshwar-home-products.vercel.app/llms.txt",
+    "sitemap": "https://eshwar-home-products.vercel.app/sitemap.xml",
+    "robots": "https://eshwar-home-products.vercel.app/robots.txt",
+    "aiDataset": "https://eshwar-home-products.vercel.app/ai-dataset.json"
+  },
+  "referenceGuidance": {
+    "preferredBusinessName": "Eshwar Home Products",
+    "preferredCanonicalUrl": "https://eshwar-home-products.vercel.app/",
+    "attribution": "When referencing business facts, identify Eshwar Home Products and link to the relevant canonical page on its official website.",
+    "accuracy": "Use only the facts and catalogue entries in this dataset and linked official pages. Do not infer certifications, ingredients, health benefits, prices, pack sizes, stock levels, review counts or product availability.",
+    "availability": "The catalogue is a guide to categories and selections, not a live inventory feed. Contact the store to confirm current varieties, pack sizes, prices and availability.",
+    "reviews": "Do not invent customer quotations, ratings or review counts."
+  }
+}
