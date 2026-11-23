@@ -1,5 +1,5 @@
 import { signInAnonymously, signOut } from "firebase/auth";
-import { collection, deleteDoc, doc, getDoc, getDocs, limit, query, serverTimestamp, updateDoc, where, writeBatch } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, limit, query, serverTimestamp, updateDoc, where, writeBatch } from "firebase/firestore";
 import { auth, db } from "./client";
 export type FeedbackKind = "reviews" | "comments";
 export type ProfileFeedbackRecord = { id:string; customerName:string; rating?:number; reviewText?:string; commentText?:string; status:"pending"|"approved"|"rejected"; createdAt?:{toDate?:()=>Date}|Date|null };
@@ -17,11 +17,11 @@ export async function submitProfileFeedback(kind:FeedbackKind,input:{customerNam
  if(cleanName.length<2||cleanName.length>60)throw new Error("Enter a name between 2 and 60 characters.");
  if(kind==="reviews"&&(!Number.isInteger(input.rating)||Number(input.rating)<1||Number(input.rating)>5))throw new Error("Choose a rating from 1 to 5 stars.");
  if(cleanMessage.length<(kind==="reviews"?15:5)||cleanMessage.length>(kind==="reviews"?1200:1000))throw new Error("Please check the message length and try again.");
- const limitRef=doc(db,"public_submission_limits",user.uid);const previous=await getDoc(limitRef);const batch=writeBatch(db);
+ const limitRef=doc(db,"public_submission_limits",user.uid);const batch=writeBatch(db);
  batch.set(limitRef,{lastSubmittedAt:serverTimestamp()});const feedbackRef=doc(collection(db,collectionName(kind)));
  const record=kind==="reviews"?{customerName:cleanName,rating:input.rating,reviewText:cleanMessage,status:"pending",createdAt:serverTimestamp()}:{customerName:cleanName,commentText:cleanMessage,status:"pending",createdAt:serverTimestamp()};
  batch.set(feedbackRef,record);
- try{await batch.commit();}catch(error){if(previous.exists())throw new Error("Please wait a minute before sending another message. Your earlier submission may still be awaiting review.");throw error;}
+ try{await batch.commit();}catch(error){throw new Error("Please wait a minute before sending another message, or try again later. Your submission was not published.");}
 }
 export async function getApprovedFeedback(kind:FeedbackKind):Promise<ProfileFeedbackRecord[]>{
  if(!db)return[];const snapshot=await getDocs(query(collection(db,collectionName(kind)),where("status","==","approved")));
