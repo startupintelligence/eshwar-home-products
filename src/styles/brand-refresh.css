@@ -19,6 +19,11 @@ body{background:#FAF7F0;color:#29231D}
 .footer-brand>p:first-of-type,.footer-contact>span:first-child,.footer-bottom a{color:#D7B77A}
 .footer-name,.footer-nav a,.footer-contact a,.footer-bottom{color:#FAF7F0}
 .page-heading,.visit-note,.pantry-hero,.ehp-home-hero{background:#FAF7F0;border-color:#EAE2D5}
+.ehp-home-hero{color:#29231D}
+.ehp-hero-copy h1{color:#29231D}
+.ehp-hero-copy h1 em{color:#60452E}
+.ehp-hero-lede,.ehp-hero-address{color:#74695D}
+.ehp-hero-visual figcaption{color:#FAF7F0}
 .eyebrow,.ehp-gold-eyebrow,.ehp-section-kicker,.ehp-story-eyebrow{color:#60452E}
 .button-dark,.ehp-gold-button,.pantry-button-green{background:#382719;border-color:#382719;color:#FAF7F0}
 .button-dark:hover,.ehp-gold-button:hover,.pantry-button-green:hover{background:#60452E;border-color:#60452E;color:#FFFFFF}
