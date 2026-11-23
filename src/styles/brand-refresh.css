@@ -30,9 +30,12 @@ body{background:#FAF7F0;color:#29231D}
 .ehp-product-card-copy h3,.ehp-local-guide-inner>h2,.ehp-local-faq>h2,.ehp-reviews-heading h2,.ehp-store-gallery-heading h2{color:#29231D}
 .ehp-product-note,.ehp-local-guide-grid p,.ehp-local-faq p,.ehp-reviews-heading>p:last-child,.ehp-store-gallery-heading>p:last-child{color:#74695D}
 .ehp-product-enquiry,.ehp-review-links a,.ehp-story-link,.ehp-guides-teaser-link{color:#382719}
-.ehp-story-home,.ehp-visit-section{background:#382719;color:#FAF7F0}
-.ehp-story-copy h2,.ehp-visit-section h2,.ehp-visit-details p{color:#FAF7F0}
-.ehp-story-copy a,.ehp-visit-section a{color:#E4C78F}
+.ehp-story-home{background:#EAE2D5;color:#29231D}
+.ehp-visit-section{background:#382719;color:#FAF7F0}
+.ehp-story-copy h2{color:#29231D}
+.ehp-visit-section h2,.ehp-visit-details p{color:#FAF7F0}
+.ehp-story-copy a{color:#382719}
+.ehp-visit-section a{color:#E4C78F}
 .ehp-reviews-section{background:#EAE2D5}
 .ehp-review-card{border-top:3px solid #C49A52}
 .ehp-reviews-empty{padding:22px;border:1px solid #D8CDBD;background:#FAF7F0;color:#74695D;text-align:center}
@@ -52,8 +55,9 @@ body{background:#FAF7F0;color:#29231D}
 /* Four-tab mobile navigation requested for the small-screen storefront. */
 .mobile-bottom-nav{display:none}
 @media(max-width:768px){
- .ehp-site-header{background:#FAF7F0;border-bottom:1px solid #EAE2D5;color:#29231D}
- .ehp-site-header .wordmark-name{color:#29231D}
+ .ehp-site-header{background:#FAF7F0!important;border-bottom:1px solid #EAE2D5;color:#29231D}
+ .ehp-site-header .wordmark-name{color:#29231D!important}
+ .ehp-site-header .wordmark-tamil{color:#60452E!important}
  .ehp-site-header .menu-toggle{border-color:#60452E;background:#FFFFFF;color:#382719}
  .ehp-site-header .menu-toggle-lines,.ehp-site-header .menu-toggle-lines::before,.ehp-site-header .menu-toggle-lines::after{background:#382719}
  .ehp-site-header .main-nav{background:#FAF7F0;border-color:#EAE2D5}

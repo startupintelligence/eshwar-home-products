@@ -212,7 +212,7 @@ const products = [
 
 <style>
   /* One-shot hero reveal and decorative grain sweep; transform/opacity only. */
-  .ehp-home-hero { position: relative; isolation: isolate; overflow: hidden; background: #F3F5F3; }
+  .ehp-home-hero { position: relative; isolation: isolate; overflow: hidden; }
   .ehp-home-hero::after { content: ""; position: absolute; z-index: 0; inset: 0 auto 0 -110%; width: 110%; pointer-events: none; opacity: 0; background-image: radial-gradient(circle, rgba(190,154,85,.72) 1px, transparent 1.5px), linear-gradient(105deg, transparent 35%, rgba(190,154,85,.08) 46%, rgba(190,154,85,.28) 50%, transparent 62%); background-size: 12px 12px, 100% 100%; animation: ehp-grain-sweep 1.25s ease-out .12s both; }
   .ehp-hero-main { position: relative; z-index: 1; }
   .ehp-hero-copy, .ehp-hero-visual { animation: ehp-hero-reveal .65s cubic-bezier(.2,.7,.2,1) both; }
