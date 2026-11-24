@@ -23,6 +23,10 @@ export const GET: APIRoute = ({ site }) => {
     `Disallow: ${prefix}/*?fbclid=`,
     `Disallow: ${prefix}/*?gclid=`,
     `Disallow: ${prefix}/*?ref=`,
+    `Disallow: ${prefix}/*&utm_`,
+    `Disallow: ${prefix}/*&fbclid=`,
+    `Disallow: ${prefix}/*&gclid=`,
+    `Disallow: ${prefix}/*&ref=`,
   ];
   const body = [
     ...agents.map((agent) => `User-agent: ${agent}`),
