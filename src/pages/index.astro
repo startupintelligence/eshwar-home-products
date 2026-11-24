@@ -48,37 +48,8 @@ const products = [
         {categories.map((category) => <a class="ehp-category-link" href={ask(category.item)} data-ehp-dialog="product" data-ehp-title={category.title} data-ehp-description={category.item + " · Ask the store about current options and pack sizes."} data-ehp-items={JSON.stringify([category.item])} aria-haspopup="dialog"><span class="ehp-category-icon" aria-hidden="true">{category.symbol}</span><span>{category.title}</span></a>)}
       </nav>
     </div>
-    <svg class="ehp-cream-arch" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0H1440V22C1180 112 260 112 0 22Z" fill="#FAF8F5" /></svg>
   </section>
 
-  <section class="pantry-ticker" aria-label="Everyday pantry selections" tabindex="0">
-    <div class="pantry-ticker-track">
-      <ul class="pantry-ticker-group" aria-label="Pantry categories and products">
-        <li class="pantry-ticker-item">Traditional rice varieties <span class="pantry-ticker-dot" aria-hidden="true">·</span></li>
-        <li class="pantry-ticker-item">Millet varieties <span class="pantry-ticker-dot" aria-hidden="true">·</span></li>
-        <li class="pantry-ticker-item">Millet flours <span class="pantry-ticker-dot" aria-hidden="true">·</span></li>
-        <li class="pantry-ticker-item">Flakes, vermicelli &amp; pasta <span class="pantry-ticker-dot" aria-hidden="true">·</span></li>
-        <li class="pantry-ticker-item">Millet cookies <span class="pantry-ticker-dot" aria-hidden="true">·</span></li>
-        <li class="pantry-ticker-item">Cold-pressed oils <span class="pantry-ticker-dot" aria-hidden="true">·</span></li>
-        <li class="pantry-ticker-item">Ghee &amp; dairy <span class="pantry-ticker-dot" aria-hidden="true">·</span></li>
-        <li class="pantry-ticker-item">Honey, pulses, dry fruits &amp; nuts <span class="pantry-ticker-dot" aria-hidden="true">·</span></li>
-        <li class="pantry-ticker-item">Health mix (Sathumaavu) <span class="pantry-ticker-dot" aria-hidden="true">·</span></li>
-        <li class="pantry-ticker-item">Mudavattukal Kilangu</li>
-      </ul>
-      <ul class="pantry-ticker-group" aria-hidden="true">
-        <li class="pantry-ticker-item">Traditional rice varieties <span class="pantry-ticker-dot">·</span></li>
-        <li class="pantry-ticker-item">Millet varieties <span class="pantry-ticker-dot">·</span></li>
-        <li class="pantry-ticker-item">Millet flours <span class="pantry-ticker-dot">·</span></li>
-        <li class="pantry-ticker-item">Flakes, vermicelli &amp; pasta <span class="pantry-ticker-dot">·</span></li>
-        <li class="pantry-ticker-item">Millet cookies <span class="pantry-ticker-dot">·</span></li>
-        <li class="pantry-ticker-item">Cold-pressed oils <span class="pantry-ticker-dot">·</span></li>
-        <li class="pantry-ticker-item">Ghee &amp; dairy <span class="pantry-ticker-dot">·</span></li>
-        <li class="pantry-ticker-item">Honey, pulses, dry fruits &amp; nuts <span class="pantry-ticker-dot">·</span></li>
-        <li class="pantry-ticker-item">Health mix (Sathumaavu) <span class="pantry-ticker-dot">·</span></li>
-        <li class="pantry-ticker-item">Mudavattukal Kilangu</li>
-      </ul>
-    </div>
-  </section>
 
   <section class="ehp-products-section" aria-labelledby="products-title">
     <div class="container">

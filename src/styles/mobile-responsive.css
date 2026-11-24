@@ -70,3 +70,13 @@ iframe{display:block}
   .market-visit-row{grid-template-columns:minmax(0,1fr);gap:5px}
 }
 @media(prefers-reduced-motion:reduce){.ehp-home-hero .ehp-category-strip{scroll-behavior:auto}}
+
+/* Homepage mobile: keep category navigation compact and move directly into products. */
+@media(max-width:768px){
+  .ehp-home-hero .ehp-category-band{padding:0 0 10px;background:#3B2112}
+  .ehp-home-hero .ehp-category-strip{padding-top:8px;padding-bottom:10px;scrollbar-width:none}
+  .ehp-home-hero .ehp-category-strip::-webkit-scrollbar{display:none}
+  .ehp-home-hero .ehp-category-link{flex-basis:8.25rem;min-height:78px;gap:8px}
+  .ehp-home-hero .ehp-category-link>span:last-child{max-width:100%;font-size:.72rem;line-height:1.25;text-align:center;text-wrap:balance}
+  .ehp-products-section{padding-top:38px}
+}
