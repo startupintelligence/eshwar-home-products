@@ -83,7 +83,7 @@ const schemaGraph = {
 <body><div class="reading-progress" aria-hidden="true"></div><a class="skip-link" href="#main-content">Skip to content</a><SiteHeader current={current} /><main id="main-content"><slot /></main><SiteFooter /><FloatingActionCards />
 <nav class="mobile-action-bar" aria-label="Quick store actions">
   <a class="mobile-action-call" href="tel:+919941209953">Call Store</a>
-  <button class="mobile-action-whatsapp" type="button" data-ehp-dialog="enquiry" aria-haspopup="dialog">WhatsApp Enquiry ↗</button>
+  <a class="mobile-action-whatsapp" href="https://wa.me/919941209953" target="_blank" rel="noopener noreferrer" data-ehp-dialog="enquiry" aria-haspopup="dialog">WhatsApp Enquiry ↗</a>
 </nav>
 <script is:inline>
   (() => {
@@ -117,6 +117,40 @@ const schemaGraph = {
     analyticsWindow.gtag = function () { analyticsWindow.dataLayer?.push(arguments); };
     analyticsWindow.gtag("js", new Date());
     analyticsWindow.gtag("config", measurementId, { anonymize_ip: true });
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const action = target.closest("a[href], button[type='submit']");
+      if (!action) return;
+      const form = action.closest("#ehp-enquiry-form");
+      const rawHref = action instanceof HTMLAnchorElement ? action.getAttribute("href") ?? "" : "";
+      let method = "";
+      if (form) {
+        method = "whatsapp";
+      } else if (rawHref.startsWith("tel:")) {
+        method = "phone";
+      } else {
+        try {
+          const url = new URL(rawHref, window.location.href);
+          const googleMaps = (url.hostname === "google.com" || url.hostname.endsWith(".google.com")) && url.pathname.startsWith("/maps");
+          const shortMaps = url.hostname === "maps.app.goo.gl" || (url.hostname === "goo.gl" && url.pathname.startsWith("/maps"));
+          if (url.hostname === "wa.me" || url.hostname.endsWith("whatsapp.com")) {
+            method = "whatsapp";
+          } else if (googleMaps || shortMaps || url.hostname === "maps.apple.com") {
+            method = "directions";
+          }
+        } catch {
+          // Ignore malformed or non-contact links.
+        }
+      }
+      if (!method) return;
+      analyticsWindow.gtag?.("event", "contact_click", {
+        contact_method: method,
+        link_url: action instanceof HTMLAnchorElement ? action.href : "https://wa.me/919941209953",
+        link_text: (action.textContent || action.getAttribute("aria-label") || "").trim().replace(/\s+/g, " ").slice(0, 100),
+        transport_type: "beacon",
+      });
+    }, true);
     const analyticsScript = document.createElement("script");
     analyticsScript.async = true;
     analyticsScript.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
