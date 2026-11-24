@@ -1,14 +1,14 @@
-:root{
-  --brand-red:#070B07;--brand-red-dark:#070B07;--brand-green:#070B07;--brand-gold:#9EEC9B;--brand-cream:#F3F5F3;--brand-paper:#F3F5F3;--brand-ink:#070B07;
-  --paper:var(--brand-paper);--surface:#FFFFFF;--ink:var(--brand-ink);--muted:#374937;--olive:var(--brand-green);--olive-soft:#F3F5F3;--clay:var(--brand-red);--line:#E2E8E2;
-  --bg-page:var(--brand-paper);--bg-subtle:var(--brand-cream);--bg-card:#FFFFFF;--earth-dark:#070B07;--accent-green:var(--brand-green);--accent-gold:var(--brand-gold);--text-main:var(--brand-ink);--text-muted:#374937;--border-light:#E2E8E2;
+:root {
+  --brand-red:#7A4B16; --brand-red-dark:#5A3515; --brand-green:#7A4B16; --brand-gold:#D99B26; --brand-cream:#F5EDE3; --brand-paper:#FAF8F5; --brand-ink:#2A1A10;
+  --paper:var(--brand-paper); --surface:#FFFDF9; --ink:var(--brand-ink); --muted:#5A4638; --olive:var(--brand-green); --olive-soft:#F5EDE3; --clay:var(--brand-red); --line:#E5D8C8;
+  --bg-page:var(--brand-paper); --bg-subtle:#F5EDE3; --bg-card:#FFFDF9; --earth-dark:#3B2112; --accent-green:var(--brand-green); --accent-gold:var(--brand-gold); --text-main:var(--brand-ink); --text-muted:#5A4638; --border-light:#E5D8C8;
 }
 .site-header{position:relative;background:var(--brand-cream);border-bottom:3px solid var(--brand-red)}
 .header-inner{min-height:94px;gap:24px}
 .wordmark{gap:2px}
 .wordmark-tamil{color:var(--brand-red);font-size:.8rem;font-weight:700;letter-spacing:.04em}
 .wordmark-name{color:var(--brand-ink);font:700 1.38rem/1.15 Georgia,"Times New Roman",serif;letter-spacing:-.025em}
-.wordmark-place{color:#374937;font-size:.58rem;font-weight:700;letter-spacing:.12em}
+.wordmark-place{color:var(--text-muted, #5A4638);font-size:.58rem;font-weight:700;letter-spacing:.12em}
 .main-nav{gap:22px}
 .main-nav a{color:var(--brand-ink);font-weight:700}
 .main-nav a[aria-current=page]{color:var(--brand-red);border-color:var(--brand-red)}
@@ -43,13 +43,13 @@
 
 /* UI/UX Pro Max refinement: clearer hierarchy, responsive spacing and accessible interactions. */
 :root{
-  --brand-paper:#F3F5F3;
-  --brand-cream:#F3F5F3;
-  --brand-ink:#070B07;
-  --brand-green:#070B07;
-  --brand-red:#070B07;
-  --brand-gold:#9EEC9B;
-  --border-light:#E2E8E2;
+  --brand-paper:var(--bg-page, #FAF8F5);
+  --brand-cream:var(--bg-page, #FAF8F5);
+  --brand-ink:var(--text-main, #2A1A10);
+  --brand-green:var(--text-main, #2A1A10);
+  --brand-red:var(--text-main, #2A1A10);
+  --brand-gold:var(--accent-gold, #D99B26);
+  --border-light:var(--border-light, #E5D8C8);
 }
 html{scroll-padding-top:1.5rem}
 body{background:var(--brand-paper);color:var(--brand-ink);-webkit-font-smoothing:antialiased}
@@ -70,11 +70,11 @@ body{background:var(--brand-paper);color:var(--brand-ink);-webkit-font-smoothing
 .market-overline-mark{width:22px;height:2px;background:var(--brand-gold)}
 .market-tamil{color:var(--brand-gold);font-size:.84rem;letter-spacing:.08em}
 .market-hero h1{font-size:clamp(3.6rem,7.8vw,7rem);line-height:.91;letter-spacing:-.065em;text-wrap:balance}
-.market-hero h1 em{color:#9EEC9B;font-weight:400}
+.market-hero h1 em{color:var(--accent-gold, #D99B26);font-weight:400}
 .market-intro{max-width:540px;color:#FFFFFF;font-size:clamp(.96rem,1.2vw,1.08rem);line-height:1.85}
 .market-button{min-height:52px;padding-inline:21px;font-size:.76rem;letter-spacing:.015em;transition:background .18s ease,color .18s ease,border-color .18s ease}
 .market-button-gold{background:var(--brand-gold);border:1px solid var(--brand-gold);color:var(--brand-ink)}
-.market-button-gold:hover{background:#9EEC9B;border-color:#9EEC9B}
+.market-button-gold:hover{background:var(--accent-gold, #D99B26);border-color:var(--accent-gold, #D99B26)}
 .market-link-light{font-size:.78rem;text-underline-offset:5px;text-decoration-color:rgba(255,255,255,.45)}
 .market-hero-foot{gap:16px 24px;color:#FFFFFF;font-size:.58rem;letter-spacing:.12em}
 .market-art-frame{border:1px solid rgba(255,255,255,.35);padding:9px}
@@ -94,7 +94,7 @@ body{background:var(--brand-paper);color:var(--brand-ink);-webkit-font-smoothing
 .market-section-head h2,.market-visit h2,.market-faq h2{font-size:clamp(2.8rem,5.5vw,5rem);line-height:.98;letter-spacing:-.055em;text-wrap:balance}
 .market-section-head h2 em,.market-visit h2 em,.market-faq h2 em{color:var(--brand-red)}
 .market-aside-number{color:var(--brand-red)}
-.market-section-aside p{max-width:340px;color:#374937;line-height:1.8}
+.market-section-aside p{max-width:340px;color:var(--text-muted, #5A4638);line-height:1.8}
 .market-shelf{gap:clamp(30px,6vw,82px);padding-block:clamp(34px,5vw,64px);border-color:var(--border-light)}
 .market-shelf-image{background:var(--brand-cream);border:1px solid var(--border-light);overflow:hidden}
 .market-shelf-image img{transition:transform .35s ease}
@@ -103,41 +103,41 @@ body{background:var(--brand-paper);color:var(--brand-ink);-webkit-font-smoothing
 .market-shelf-open{background:var(--brand-gold);color:var(--brand-ink)}
 .market-shelf-tamil{color:var(--brand-red)}
 .market-shelf-copy h3{font-size:clamp(2rem,3.4vw,3.1rem);line-height:1.05;letter-spacing:-.04em}
-.market-shelf-detail{max-width:470px;color:#374937;line-height:1.85}
+.market-shelf-detail{max-width:470px;color:var(--text-muted, #5A4638);line-height:1.85}
 .market-shelf-note{color:var(--brand-green);font-size:.72rem;font-weight:700;letter-spacing:.04em}
 .market-shelf-actions{gap:12px 24px}
-.market-shelf-actions a{font-weight:700;text-underline-offset:5px;text-decoration-color:#E2E8E2}
-.market-stock-note{border-left:3px solid var(--brand-gold);background:var(--brand-cream);padding:15px 18px;color:#374937}
+.market-shelf-actions a{font-weight:700;text-underline-offset:5px;text-decoration-color:var(--border-light, #E5D8C8)}
+.market-stock-note{border-left:3px solid var(--brand-gold);background:var(--brand-cream);padding:15px 18px;color:var(--text-muted, #5A4638)}
 .market-story{background:var(--brand-red);color:#FFFFFF}
 .market-story-inner{padding-block:clamp(60px,8vw,100px);gap:clamp(30px,6vw,90px)}
 .market-story-side{color:#FFFFFF}
 .market-story-side strong{color:rgba(255,255,255,.95);font-size:clamp(2.3rem,4vw,4rem);line-height:.92;letter-spacing:-.06em}
 .market-overline-gold .market-overline-mark{background:var(--brand-gold)}
 .market-story-copy h2{font-size:clamp(2.8rem,5vw,5rem);line-height:.98;letter-spacing:-.055em;text-wrap:balance}
-.market-story-copy h2 em{color:#9EEC9B}
+.market-story-copy h2 em{color:var(--accent-gold, #D99B26)}
 .market-story-copy>p:not(.market-overline){max-width:590px;color:#FFFFFF;line-height:1.85}
 .market-story-copy>a{display:inline-flex;margin-top:12px;color:#FFFFFF;text-underline-offset:5px;text-decoration-color:rgba(255,255,255,.55);font-weight:700}
 .market-story-mark{border-color:rgba(255,255,255,.35);color:var(--brand-gold)}
 .market-visit{padding-block:clamp(64px,8vw,104px);gap:clamp(34px,7vw,90px)}
-.market-visit-heading>p:not(.market-overline){max-width:440px;color:#374937;line-height:1.85}
+.market-visit-heading>p:not(.market-overline){max-width:440px;color:var(--text-muted, #5A4638);line-height:1.85}
 .market-button-red{background:var(--brand-red);border:1px solid var(--brand-red);color:#FFFFFF}
 .market-button-red:hover{background:var(--brand-red-dark);border-color:var(--brand-red-dark)}
 .market-visit-card{border-top:2px solid var(--brand-green)}
 .market-visit-row{padding-block:20px;border-bottom:1px solid var(--border-light)}
 .market-visit-row>span{color:var(--brand-red);font-size:.61rem;letter-spacing:.13em}
-.market-visit-row p{color:#374937;line-height:1.8}
+.market-visit-row p{color:var(--text-muted, #5A4638);line-height:1.8}
 .market-visit-row a{color:var(--brand-green);font-weight:700;text-underline-offset:4px}
 .market-faq{background:var(--brand-cream);border-block:1px solid var(--border-light)}
 .market-faq-inner{padding-block:clamp(58px,7vw,88px);gap:40px}
-.market-faq-list details{border-color:#E2E8E2}
+.market-faq-list details{border-color:var(--border-light, #E5D8C8)}
 .market-faq-list summary{min-height:60px;font-size:1.08rem}
 .market-faq-list summary::marker{color:var(--brand-red)}
-.market-faq-list details p{color:#374937;line-height:1.8}
+.market-faq-list details p{color:var(--text-muted, #5A4638);line-height:1.8}
 .market-faq-list a{color:var(--brand-red);text-underline-offset:4px}
 .market-closing{background:var(--brand-green);color:#FFFFFF}
 .market-closing-inner{padding-block:clamp(54px,7vw,84px);gap:30px}
 .market-closing h2{font-size:clamp(3rem,6vw,5.7rem);line-height:.94;letter-spacing:-.06em}
-.market-closing h2 em{color:#9EEC9B}
+.market-closing h2 em{color:var(--accent-gold, #D99B26)}
 .market-button-light{background:var(--brand-cream);border:1px solid var(--brand-cream);color:var(--brand-green)}
 .market-button-light:hover{background:#FFFFFF;color:var(--brand-red)}
 .market-closing-actions>a:last-child{color:rgba(255,255,255,.85);text-underline-offset:5px}
@@ -184,47 +184,47 @@ body{background:var(--brand-paper);color:var(--brand-ink);-webkit-font-smoothing
 }
 
 /* Final cascade guard: this file loads after theme-2.css. */
-:root{--bg-page:#F3F5F3;--bg-subtle:#F3F5F3;--bg-card:#FFFFFF;--earth-dark:#070B07;--brand-red:#070B07;--accent-gold:#9EEC9B;--accent-green:#070B07;--text-main:#070B07;--text-muted:#374937;--border-light:#E2E8E2;--brand-cream:#F3F5F3;--brand-paper:#F3F5F3;--brand-ink:#070B07;--brand-green:#070B07;--brand-gold:#9EEC9B;--brand-red-dark:#070B07}
-.wordmark-name{color:#070B07}
-.main-nav a{color:#070B07}
-.main-nav a:hover,.main-nav a[aria-current=page]{color:#070B07;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
-.site-footer{background:#070B07;color:#FFFFFF}
+:root{--bg-page:var(--bg-page, #FAF8F5);--bg-subtle:var(--bg-page, #FAF8F5);--bg-card:#FFFFFF;--earth-dark:var(--text-main, #2A1A10);--brand-red:var(--text-main, #2A1A10);--accent-gold:var(--accent-gold, #D99B26);--accent-green:var(--text-main, #2A1A10);--text-main:var(--text-main, #2A1A10);--text-muted:var(--text-muted, #5A4638);--border-light:var(--border-light, #E5D8C8);--brand-cream:var(--bg-page, #FAF8F5);--brand-paper:var(--bg-page, #FAF8F5);--brand-ink:var(--text-main, #2A1A10);--brand-green:var(--text-main, #2A1A10);--brand-gold:var(--accent-gold, #D99B26);--brand-red-dark:var(--text-main, #2A1A10)}
+.wordmark-name{color:var(--text-main, #2A1A10)}
+.main-nav a{color:var(--text-main, #2A1A10)}
+.main-nav a:hover,.main-nav a[aria-current=page]{color:var(--text-main, #2A1A10);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.site-footer{background:var(--text-main, #2A1A10);color:#FFFFFF}
 .site-footer :where(h1,h2,h3,p,span,small,address,dt,dd){color:#FFFFFF}
-.site-footer :where(a){color:#9EEC9B;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
-.location-ribbon{background:#070B07;color:#FFFFFF}
+.site-footer :where(a){color:var(--accent-gold, #D99B26);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.location-ribbon{background:var(--text-main, #2A1A10);color:#FFFFFF}
 .location-ribbon :where(h1,h2,h3,p,span,small,address,dt,dd){color:#FFFFFF}
-.location-ribbon a{color:#9EEC9B;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
-:where(.site-header,.page-heading,.visit-note,.home-hero,.guide-hero,.discovery-hero,.category-section,.faq-section,.local-guide,.millet-reference-section,.visit-section,.contact-details-panel,.directions-panel) :where(h1,h2,h3,h4,h5,h6,p,li,dd,dt,small,summary){color:#070B07}
-:where(.site-header,.page-heading,.visit-note,.home-hero,.guide-hero,.discovery-hero,.category-section,.faq-section,.local-guide,.millet-reference-section,.visit-section,.contact-details-panel,.directions-panel) .eyebrow{color:#070B07}
-:where(.text-link,.inline-link,.directory-arrow,.home-refresh-story-link,.guide-card-link,.market-info-inner>a){color:#070B07;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
-:where(.button-dark,.action-primary,.thank-you-button.primary,.shelf-whatsapp-link,.market-button-red){background:#070B07;border-color:#070B07;color:#FFFFFF}
-:where(.button-dark,.action-primary,.thank-you-button.primary,.shelf-whatsapp-link,.market-button-red):hover{background:#070B07;border-color:#070B07;color:#FFFFFF}
+.location-ribbon a{color:var(--accent-gold, #D99B26);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+:where(.site-header,.page-heading,.visit-note,.home-hero,.guide-hero,.discovery-hero,.category-section,.faq-section,.local-guide,.millet-reference-section,.visit-section,.contact-details-panel,.directions-panel) :where(h1,h2,h3,h4,h5,h6,p,li,dd,dt,small,summary){color:var(--text-main, #2A1A10)}
+:where(.site-header,.page-heading,.visit-note,.home-hero,.guide-hero,.discovery-hero,.category-section,.faq-section,.local-guide,.millet-reference-section,.visit-section,.contact-details-panel,.directions-panel) .eyebrow{color:var(--text-main, #2A1A10)}
+:where(.text-link,.inline-link,.directory-arrow,.home-refresh-story-link,.guide-card-link,.market-info-inner>a){color:var(--text-main, #2A1A10);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+:where(.button-dark,.action-primary,.thank-you-button.primary,.shelf-whatsapp-link,.market-button-red){background:var(--text-main, #2A1A10);border-color:var(--text-main, #2A1A10);color:#FFFFFF}
+:where(.button-dark,.action-primary,.thank-you-button.primary,.shelf-whatsapp-link,.market-button-red):hover{background:var(--text-main, #2A1A10);border-color:var(--text-main, #2A1A10);color:#FFFFFF}
 
-.market-hero,.market-story,.market-closing,.conversion-section{background:#070B07;color:#FFFFFF}
+.market-hero,.market-story,.market-closing,.conversion-section{background:var(--text-main, #2A1A10);color:#FFFFFF}
 .market-hero :where(h1,h2,h3,p,li,span),.market-story :where(h1,h2,h3,p,li,span),.market-closing :where(h1,h2,h3,p,li,span),.conversion-section :where(h1,h2,h3,p,li,span){color:#FFFFFF}
-.market-hero .eyebrow,.market-story .eyebrow,.market-closing .eyebrow,.conversion-section .eyebrow{color:#9EEC9B}
+.market-hero .eyebrow,.market-story .eyebrow,.market-closing .eyebrow,.conversion-section .eyebrow{color:var(--accent-gold, #D99B26)}
 
-:where(.market-section-head,.market-visit,.market-faq,.market-info-band,.market-shelves) :where(h1,h2,h3,h4,h5,h6){color:#070B07}
-:where(.market-section-head,.market-visit,.market-faq,.market-info-band,.market-shelves) .eyebrow{color:#070B07}
-:where(.market-info-inner>a,.market-visit-row a,.market-shelf-actions a,.market-faq-list a){color:#070B07;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+:where(.market-section-head,.market-visit,.market-faq,.market-info-band,.market-shelves) :where(h1,h2,h3,h4,h5,h6){color:var(--text-main, #2A1A10)}
+:where(.market-section-head,.market-visit,.market-faq,.market-info-band,.market-shelves) .eyebrow{color:var(--text-main, #2A1A10)}
+:where(.market-info-inner>a,.market-visit-row a,.market-shelf-actions a,.market-faq-list a){color:var(--text-main, #2A1A10);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
 .market-closing-actions>a:last-child{color:#FFFFFF;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
-:where(.page-heading,.visit-note,.contact-details-panel,.directions-panel) :where(a.text-link){color:#070B07;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+:where(.page-heading,.visit-note,.contact-details-panel,.directions-panel) :where(a.text-link){color:var(--text-main, #2A1A10);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
 
-.market-button-gold,.market-button-gold :where(span){color:#070B07}
+.market-button-gold,.market-button-gold :where(span){color:var(--text-main, #2A1A10)}
 
 
 /* Eshwar Home Products canonical Earthy Brown palette */
 :root {
-  --bg-page: #F3F5F3;
+  --bg-page: var(--bg-page, #FAF8F5);
   --bg-card: #FFFFFF;
-  --earth-dark: #070B07;
-  --brand-red: #070B07;
-  --accent-gold: #9EEC9B;
-  --accent-green: #070B07;
-  --text-main: #070B07;
-  --text-muted: #374937;
-  --bg-subtle: #F3F5F3;
-  --border-light: #E2E8E2;
+  --earth-dark: var(--text-main, #2A1A10);
+  --brand-red: var(--text-main, #2A1A10);
+  --accent-gold: var(--accent-gold, #D99B26);
+  --accent-green: var(--text-main, #2A1A10);
+  --text-main: var(--text-main, #2A1A10);
+  --text-muted: var(--text-muted, #5A4638);
+  --bg-subtle: var(--bg-page, #FAF8F5);
+  --border-light: var(--border-light, #E5D8C8);
   --paper: var(--bg-page);
   --surface: var(--bg-card);
   --ink: var(--text-main);
@@ -235,14 +235,14 @@ body{background:var(--brand-paper);color:var(--brand-ink);-webkit-font-smoothing
 }
 
 /* Production Theme 03 contract — solid surfaces, contrast and 48px controls. */
-:root { --bg-page:#F3F5F3; --bg-subtle:#F3F5F3; --bg-card:#FFFFFF; --earth-dark:#070B07; --brand-red:#070B07; --accent-gold:#9EEC9B; --accent-green:#070B07; --text-main:#070B07; --text-muted:#374937; --border-light:#E2E8E2; --serif:Georgia, "Times New Roman", serif; --sans:Arial, Helvetica, sans-serif; }
+:root { --bg-page:var(--bg-page, #FAF8F5); --bg-subtle:var(--bg-page, #FAF8F5); --bg-card:#FFFFFF; --earth-dark:var(--text-main, #2A1A10); --brand-red:var(--text-main, #2A1A10); --accent-gold:var(--accent-gold, #D99B26); --accent-green:var(--text-main, #2A1A10); --text-main:var(--text-main, #2A1A10); --text-muted:var(--text-muted, #5A4638); --border-light:var(--border-light, #E5D8C8); --serif:Georgia, "Times New Roman", serif; --sans:Arial, Helvetica, sans-serif; }
 html,body { background:var(--bg-page); color:var(--text-main); }
 .site-header { background:var(--bg-page); border-bottom:1px solid var(--border-light); }
 .wordmark-name { color:var(--text-main); } .wordmark-tamil { color:var(--brand-red); } .wordmark-place { color:var(--text-muted); }
-.main-nav a { min-height:48px; color:#070B07; }
+.main-nav a { min-height:48px; color:var(--text-main, #2A1A10); }
 .main-nav a:hover,.main-nav a[aria-current=page] { color:var(--brand-red); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:4px; }
 .header-contact { min-height:48px; border:1px solid var(--brand-red); background:var(--brand-red); color:#FFFFFF; }
-.header-contact:hover { background:#070B07; color:#FFFFFF; }
+.header-contact:hover { background:var(--text-main, #2A1A10); color:#FFFFFF; }
 .menu-toggle { min-width:48px; min-height:48px; background:var(--bg-card); color:var(--text-main); border:1px solid var(--earth-dark); }
 .home-utility { border-bottom:1px solid var(--accent-gold); background:var(--earth-dark); color:#FFFFFF; }
 .home-utility span { color:#FFFFFF; } .home-utility a { color:var(--accent-gold); text-decoration:underline; text-underline-offset:3px; }
