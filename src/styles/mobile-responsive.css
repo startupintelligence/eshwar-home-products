@@ -80,3 +80,74 @@ iframe{display:block}
   .ehp-home-hero .ehp-category-link>span:last-child{max-width:100%;font-size:.72rem;line-height:1.25;text-align:center;text-wrap:balance}
   .ehp-products-section{padding-top:38px}
 }
+
+
+/* Mobile homepage refinement: full category labels, less dead space, lighter fixed actions. */
+@media(max-width:768px){
+  .ehp-home-hero .ehp-category-band{
+    padding:0;
+    border-top:1px solid rgba(217,155,38,.35);
+    background:#3B2112;
+  }
+  .ehp-home-hero .ehp-category-strip{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:0;
+    overflow:visible;
+    padding:8px 0;
+    scroll-snap-type:none;
+  }
+  .ehp-home-hero .ehp-category-link{
+    display:flex;
+    flex:initial;
+    min-width:0;
+    min-height:58px;
+    align-items:center;
+    justify-content:flex-start;
+    gap:10px;
+    padding:8px 10px;
+    border-bottom:1px solid rgba(217,155,38,.22);
+    scroll-snap-align:none;
+    text-align:left;
+  }
+  .ehp-home-hero .ehp-category-link:nth-child(odd){border-right:1px solid rgba(217,155,38,.22)}
+  .ehp-home-hero .ehp-category-link:nth-last-child(-n+2){border-bottom:0}
+  .ehp-home-hero .ehp-category-icon{
+    display:grid;
+    width:34px;
+    height:34px;
+    flex:0 0 34px;
+    place-items:center;
+    margin:0;
+    font-size:.9rem;
+  }
+  .ehp-home-hero .ehp-category-link>span:last-child{
+    max-width:none;
+    color:#FFFDF9;
+    font-size:.76rem;
+    line-height:1.25;
+    text-align:left;
+    text-wrap:pretty;
+  }
+  /* The category tiles already expose the range; remove the duplicate text ticker on small screens. */
+  .pantry-ticker{display:none!important}
+  .ehp-products-section{padding-top:28px;padding-bottom:42px}
+  .ehp-products-heading{margin-bottom:20px}
+  .ehp-products-heading>p:last-child span{display:none}
+  .mobile-action-bar{
+    gap:8px;
+    padding:6px 10px calc(6px + env(safe-area-inset-bottom));
+  }
+  .mobile-action-bar a,.mobile-action-bar button{
+    min-height:42px;
+    padding:7px 10px;
+    border-radius:4px;
+    font-size:.82rem;
+  }
+  main{padding-bottom:12px}
+  .site-footer{padding-bottom:calc(70px + env(safe-area-inset-bottom))}
+}
+@media(max-width:380px){
+  .ehp-home-hero .ehp-category-link{gap:7px;padding-inline:7px}
+  .ehp-home-hero .ehp-category-link>span:last-child{font-size:.7rem}
+}
