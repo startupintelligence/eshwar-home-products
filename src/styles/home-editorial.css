@@ -164,3 +164,26 @@
 }
 @media(max-width:380px) { .home-utility { font-size: .57rem; letter-spacing: .04em; } }
 @media(max-width:768px) { .pantry-category-photo img,.pantry-hero-art img { transition: none; transform: none; } }
+
+
+/* Keep homepage token aliases in sync with the shared Earthy Brown system. */
+:root {
+  --bg-page:#FAF8F5;
+  --bg-subtle:#F5EDE3;
+  --bg-card:#FFFDF9;
+  --earth-dark:#3B2112;
+  --brand-red:#7A4B16;
+  --brand-red-dark:#432818;
+  --accent-green:#7A4B16;
+  --accent-gold:#D99B26;
+  --text-main:#2A1A10;
+  --text-muted:#5A4638;
+  --border-light:#E5D8C8;
+  --paper:var(--bg-page);
+  --surface:var(--bg-card);
+  --ink:var(--text-main);
+  --muted:var(--text-muted);
+  --olive:var(--accent-green);
+  --clay:var(--brand-red);
+  --line:var(--border-light);
+}
