@@ -245,7 +245,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--brand-red);outline-
 .ehp-cream-arch{display:block;width:100%;height:64px;margin-top:-1px;background:var(--ehp-cream)}
 .ehp-products-section{padding:18px 0 72px;background:var(--ehp-cream);color:#28180E}
 .ehp-products-heading{text-align:center;margin:0 auto 32px}
-.ehp-section-kicker{color:#94631B;font-size:.66rem}
+.ehp-section-kicker{color:#7A4B16;font-size:.66rem}
 .ehp-products-heading h2{margin:7px 0 4px;color:#28180E;font:400 clamp(2.5rem,4.5vw,3.6rem)/1.05 Georgia,serif;letter-spacing:-.045em}
 .ehp-products-heading>p:last-child{margin:0;color:#5D4836;font-size:.87rem}
 .ehp-products-heading>p:last-child span{display:block;margin-top:4px;font-size:.75rem}
