@@ -183,75 +183,53 @@ body{background:var(--brand-paper);color:var(--brand-ink);-webkit-font-smoothing
   *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
 }
 
-/* Final cascade guard: this file loads after theme-2.css. */
-:root{--bg-page:#F3F5F3;--bg-subtle:#F3F5F3;--bg-card:#FFFFFF;--earth-dark:#070B07;--brand-red:#070B07;--accent-gold:#9EEC9B;--accent-green:#070B07;--text-main:#070B07;--text-muted:#374937;--border-light:#E2E8E2;--brand-cream:#F3F5F3;--brand-paper:#F3F5F3;--brand-ink:#070B07;--brand-green:#070B07;--brand-gold:#9EEC9B;--brand-red-dark:#070B07}
-.wordmark-name{color:#070B07}
-.main-nav a{color:#070B07}
-.main-nav a:hover,.main-nav a[aria-current=page]{color:#070B07;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
-.site-footer{background:#070B07;color:#FFFFFF}
-.site-footer :where(h1,h2,h3,p,span,small,address,dt,dd){color:#FFFFFF}
-.site-footer :where(a){color:#9EEC9B;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
-.location-ribbon{background:#070B07;color:#FFFFFF}
-.location-ribbon :where(h1,h2,h3,p,span,small,address,dt,dd){color:#FFFFFF}
-.location-ribbon a{color:#9EEC9B;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
-:where(.site-header,.page-heading,.visit-note,.home-hero,.guide-hero,.discovery-hero,.category-section,.faq-section,.local-guide,.millet-reference-section,.visit-section,.contact-details-panel,.directions-panel) :where(h1,h2,h3,h4,h5,h6,p,li,dd,dt,small,summary){color:#070B07}
-:where(.site-header,.page-heading,.visit-note,.home-hero,.guide-hero,.discovery-hero,.category-section,.faq-section,.local-guide,.millet-reference-section,.visit-section,.contact-details-panel,.directions-panel) .eyebrow{color:#070B07}
-:where(.text-link,.inline-link,.directory-arrow,.home-refresh-story-link,.guide-card-link,.market-info-inner>a){color:#070B07;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
-:where(.button-dark,.action-primary,.thank-you-button.primary,.shelf-whatsapp-link,.market-button-red){background:#070B07;border-color:#070B07;color:#FFFFFF}
-:where(.button-dark,.action-primary,.thank-you-button.primary,.shelf-whatsapp-link,.market-button-red):hover{background:#070B07;border-color:#070B07;color:#FFFFFF}
-
-.market-hero,.market-story,.market-closing,.conversion-section{background:#070B07;color:#FFFFFF}
-.market-hero :where(h1,h2,h3,p,li,span),.market-story :where(h1,h2,h3,p,li,span),.market-closing :where(h1,h2,h3,p,li,span),.conversion-section :where(h1,h2,h3,p,li,span){color:#FFFFFF}
-.market-hero .eyebrow,.market-story .eyebrow,.market-closing .eyebrow,.conversion-section .eyebrow{color:#9EEC9B}
-
-:where(.market-section-head,.market-visit,.market-faq,.market-info-band,.market-shelves) :where(h1,h2,h3,h4,h5,h6){color:#070B07}
-:where(.market-section-head,.market-visit,.market-faq,.market-info-band,.market-shelves) .eyebrow{color:#070B07}
-:where(.market-info-inner>a,.market-visit-row a,.market-shelf-actions a,.market-faq-list a){color:#070B07;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
-.market-closing-actions>a:last-child{color:#FFFFFF;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
-:where(.page-heading,.visit-note,.contact-details-panel,.directions-panel) :where(a.text-link){color:#070B07;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
-
-.market-button-gold,.market-button-gold :where(span){color:#070B07}
-
-
-/* Eshwar Home Products canonical Earthy Brown palette */
+/* Final cascade guard: keep the site-wide palette aligned with Theme 2 (Earthy Brown). */
 :root {
-  --bg-page: #F3F5F3;
-  --bg-card: #FFFFFF;
-  --earth-dark: #070B07;
-  --brand-red: #070B07;
-  --accent-gold: #9EEC9B;
-  --accent-green: #070B07;
-  --text-main: #070B07;
-  --text-muted: #374937;
-  --bg-subtle: #F3F5F3;
-  --border-light: #E2E8E2;
-  --paper: var(--bg-page);
-  --surface: var(--bg-card);
-  --ink: var(--text-main);
-  --muted: var(--text-muted);
-  --olive: var(--accent-green);
-  --clay: var(--brand-red);
-  --line: var(--border-light);
+  --bg-page:#FAF8F5;
+  --bg-subtle:#F5EDE3;
+  --bg-card:#FFFDF9;
+  --earth-dark:#3B2112;
+  --brand-red:#7A4B16;
+  --brand-red-dark:#432818;
+  --brand-green:#7A4B16;
+  --brand-gold:#D99B26;
+  --brand-cream:#F5EDE3;
+  --brand-paper:#FAF8F5;
+  --brand-ink:#2A1A10;
+  --accent-green:#7A4B16;
+  --accent-gold:#D99B26;
+  --text-main:#2A1A10;
+  --text-muted:#5A4638;
+  --border-light:#E5D8C8;
+  --paper:var(--bg-page);
+  --surface:var(--bg-card);
+  --ink:var(--text-main);
+  --muted:var(--text-muted);
+  --olive:var(--accent-green);
+  --clay:var(--brand-red);
+  --line:var(--border-light);
+  --serif:Georgia,"Times New Roman",serif;
+  --sans:Arial,Helvetica,sans-serif;
 }
-
-/* Production Theme 03 contract — solid surfaces, contrast and 48px controls. */
-:root { --bg-page:#F3F5F3; --bg-subtle:#F3F5F3; --bg-card:#FFFFFF; --earth-dark:#070B07; --brand-red:#070B07; --accent-gold:#9EEC9B; --accent-green:#070B07; --text-main:#070B07; --text-muted:#374937; --border-light:#E2E8E2; --serif:Georgia, "Times New Roman", serif; --sans:Arial, Helvetica, sans-serif; }
 html,body { background:var(--bg-page); color:var(--text-main); }
-.site-header { background:var(--bg-page); border-bottom:1px solid var(--border-light); }
-.wordmark-name { color:var(--text-main); } .wordmark-tamil { color:var(--brand-red); } .wordmark-place { color:var(--text-muted); }
-.main-nav a { min-height:48px; color:#070B07; }
-.main-nav a:hover,.main-nav a[aria-current=page] { color:var(--brand-red); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:4px; }
-.header-contact { min-height:48px; border:1px solid var(--brand-red); background:var(--brand-red); color:#FFFFFF; }
-.header-contact:hover { background:#070B07; color:#FFFFFF; }
-.menu-toggle { min-width:48px; min-height:48px; background:var(--bg-card); color:var(--text-main); border:1px solid var(--earth-dark); }
-.home-utility { border-bottom:1px solid var(--accent-gold); background:var(--earth-dark); color:#FFFFFF; }
-.home-utility span { color:#FFFFFF; } .home-utility a { color:var(--accent-gold); text-decoration:underline; text-underline-offset:3px; }
-.site-footer { border-top:1px solid var(--accent-gold); background:var(--earth-dark); color:#FFFFFF; }
-.site-footer :where(h1,h2,h3,p,span,small,address,dt,dd) { color:#FFFFFF; }
-.site-footer :where(a) { color:var(--accent-gold); text-decoration:underline; text-underline-offset:4px; }
-.site-footer :where(a:hover) { color:#FFFFFF; }
 :where(h1,h2,h3,h4,h5,h6) { text-wrap:balance; }
+:where(.site-header,.page-heading,.visit-note,.home-hero,.guide-hero,.discovery-hero,.category-section,.faq-section,.local-guide,.millet-reference-section,.visit-section,.contact-details-panel,.directions-panel) :where(h1,h2,h3,h4,h5,h6,p,li,dd,dt,small,summary) { color:var(--text-main); }
+:where(.site-header,.page-heading,.visit-note,.home-hero,.guide-hero,.discovery-hero,.category-section,.faq-section,.local-guide,.millet-reference-section,.visit-section,.contact-details-panel,.directions-panel) .eyebrow { color:var(--brand-red); }
+.wordmark-name,.main-nav a { color:var(--text-main); }
+.main-nav a:hover,.main-nav a[aria-current=page] { color:var(--brand-red); }
+:where(.text-link,.inline-link,.directory-arrow,.home-refresh-story-link,.guide-card-link,.market-info-inner>a) { color:var(--brand-red); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:4px; }
+:where(.button-dark,.action-primary,.thank-you-button.primary,.shelf-whatsapp-link,.market-button-red) { background:var(--brand-red); border-color:var(--brand-red); color:#FFFDF9; }
+:where(.button-dark,.action-primary,.thank-you-button.primary,.shelf-whatsapp-link,.market-button-red):hover { background:#432818; border-color:#432818; color:#FFFDF9; }
+.site-footer,.location-ribbon,.market-hero,.market-story,.market-closing,.conversion-section { background:var(--earth-dark); color:#FFFDF9; }
+:where(.site-footer,.location-ribbon,.market-hero,.market-story,.market-closing,.conversion-section) :where(h1,h2,h3,h4,h5,h6,p,li,span,small,address,dt,dd) { color:#FFFDF9; }
+:where(.site-footer,.location-ribbon) a { color:var(--brand-gold); text-decoration:underline; text-underline-offset:4px; }
+:where(.market-hero,.market-story,.market-closing,.conversion-section) .eyebrow { color:#E7B84E; }
+:where(.market-section-head,.market-visit,.market-faq,.market-info-band,.market-shelves) :where(h1,h2,h3,h4,h5,h6) { color:var(--text-main); }
+:where(.market-section-head,.market-visit,.market-faq,.market-info-band,.market-shelves) .eyebrow { color:var(--brand-red); }
+:where(.market-info-inner>a,.market-visit-row a,.market-shelf-actions a,.market-faq-list a,.page-heading a.text-link,.visit-note a.text-link,.contact-details-panel a.text-link,.directions-panel a.text-link) { color:var(--brand-red); text-decoration:underline; text-underline-offset:4px; }
+.market-button-gold,.market-button-gold :where(span) { color:#2A1508; }
 :where(.button,.header-contact,.main-nav a,.footer-nav a,.footer-bottom a,.pantry-button,.pantry-link,.pantry-category-copy>a,.ehp-action,.ehp-about-range-link,.ehp-about-rating,.ehp-google-rating,.action,.inline-link) { min-height:48px; }
-@media(max-width:650px) { .header-contact { display:inline-flex; grid-column:1/-1; width:100%; margin:8px 0 12px; } }
-@media(max-width:768px) { .hero-3d-card,.hero-3d-badge,.pantry-card-3d,.heritage-marquee-track { animation:none!important; transition:none!important; transform:none!important; } .pantry-category-photo img,.pantry-hero-art img { transition:none!important; transform:none!important; }
-  .reveal-item { opacity:1!important; transform:none!important; transition:none!important; } }
+@media(max-width:768px) {
+  .hero-3d-card,.hero-3d-badge,.pantry-card-3d,.heritage-marquee-track { animation:none!important; transition:none!important; transform:none!important; }
+  .reveal-item { opacity:1!important; transform:none!important; transition:none!important; }
+}
