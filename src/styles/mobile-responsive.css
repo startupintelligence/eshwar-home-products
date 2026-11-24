@@ -70,3 +70,21 @@ iframe{display:block}
   .market-visit-row{grid-template-columns:minmax(0,1fr);gap:5px}
 }
 @media(prefers-reduced-motion:reduce){.ehp-home-hero .ehp-category-strip{scroll-behavior:auto}}
+
+
+/* Homepage mobile polish: restore address contrast and keep the hero compact. */
+@media(max-width:768px){
+  .ehp-home-hero .ehp-hero-main{padding-top:20px;padding-bottom:22px;gap:16px}
+  .ehp-home-hero .ehp-hero-copy .ehp-gold-eyebrow{margin-bottom:10px}
+  .ehp-home-hero .ehp-hero-copy h1{margin-top:0}
+  .ehp-home-hero .ehp-hero-copy .ehp-hero-lede{margin-top:14px}
+  .ehp-home-hero .ehp-hero-copy .ehp-gold-button{margin-top:14px}
+  .ehp-home-hero .ehp-hero-copy .ehp-hero-address{
+    display:block;width:100%;max-width:34rem;margin:12px 0 0;padding:0;
+    color:#374937!important;font-size:.78rem;line-height:1.55;
+    text-align:left;text-decoration:underline;text-decoration-color:#879687;
+    text-underline-offset:3px;
+  }
+  .ehp-home-hero .ehp-hero-visual{margin:0}
+  .ehp-home-hero .ehp-hero-visual img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+}
