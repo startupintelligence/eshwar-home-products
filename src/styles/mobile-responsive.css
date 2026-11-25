@@ -13,7 +13,7 @@ iframe{display:block}
   .ehp-site-header{background:#3B2112;border-bottom:1px solid #D99B26;color:#FFFDF9}
   .ehp-site-header .header-inner{display:flex;min-height:64px;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 12px;padding-block:8px}
   .ehp-site-header .wordmark{display:flex;flex:1 1 0;min-width:0;align-items:center;gap:8px}
-  .ehp-site-header .wordmark-logo{display:block;flex:0 0 38px;width:38px;height:38px;object-fit:contain}
+  .ehp-site-header .wordmark-logo{display:block;flex:0 0 42px;width:42px;height:42px;box-sizing:border-box;padding:4px;border:1px solid rgba(217,155,38,.7);border-radius:50%;background:#FFFDF9;object-fit:contain}
   .ehp-site-header .wordmark-copy{display:block;min-width:0}
   .ehp-site-header .wordmark-name{display:block;overflow:hidden;color:#FFFDF9;font-size:1rem;line-height:1.2;letter-spacing:0;text-overflow:ellipsis;white-space:nowrap}
   .ehp-site-header .wordmark-tamil,.ehp-site-header .wordmark-place,.ehp-site-header .header-contact,.ehp-site-header.is-contact-page .header-contact{display:none}
@@ -75,13 +75,13 @@ iframe{display:block}
 /* Homepage mobile polish: restore address contrast and keep the hero compact. */
 @media(max-width:768px){
   .ehp-home-hero .ehp-hero-main{padding-top:20px;padding-bottom:22px;gap:16px}
-  .ehp-home-hero .ehp-hero-copy .ehp-gold-eyebrow{margin-bottom:10px}
+  .ehp-home-hero .ehp-hero-copy .ehp-gold-eyebrow{margin-bottom:10px;color:#7A4B16}
   .ehp-home-hero .ehp-hero-copy h1{margin-top:0}
   .ehp-home-hero .ehp-hero-copy .ehp-hero-lede{margin-top:14px}
   .ehp-home-hero .ehp-hero-copy .ehp-gold-button{margin-top:14px}
   .ehp-home-hero .ehp-hero-copy .ehp-hero-address{
     display:block;width:100%;max-width:34rem;margin:12px 0 0;padding:0;
-    font-size:.78rem;line-height:1.55;
+    color:#3B2314!important;font-size:.78rem;line-height:1.55;
     text-align:left;text-decoration:underline;text-decoration-color:#D99B26;
     text-underline-offset:3px;
   }
