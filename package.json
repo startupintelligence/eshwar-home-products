@@ -4,10 +4,10 @@
   "version": "0.2.0",
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --host 0.0.0.0 --port 3000",
     "build": "astro check && astro build",
     "check": "astro check",
-    "preview": "astro preview",
+    "preview": "astro preview --host 0.0.0.0 --port 3000",
     "test:rules": "firebase emulators:exec --only firestore --project demo-eshwar-home-products \"node --test tests/firestore.rules.test.mjs\""
   },
   "dependencies": {
