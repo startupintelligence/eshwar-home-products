@@ -39,7 +39,7 @@ for (const [, route, declaredLastmod] of entries) {
 
   if (!latestSourceDate) {
     failures.push(`No Git history found for ${sourcePath}.`);
-  } else if (declaredLastmod !== latestSourceDate) {
+  } else if (Date.parse(declaredLastmod) !== Date.parse(latestSourceDate)) {
     failures.push(
       `${route || "/"}: sitemap has ${declaredLastmod}, but ${sourcePath} last changed at ${latestSourceDate}.`,
     );
