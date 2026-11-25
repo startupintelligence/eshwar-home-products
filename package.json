@@ -8,7 +8,8 @@
     "build": "astro check && astro build",
     "check": "astro check",
     "preview": "astro preview",
-    "test:rules": "firebase emulators:exec --only firestore --project demo-eshwar-home-products \"node --test tests/firestore.rules.test.mjs\""
+    "test:rules": "firebase emulators:exec --only firestore --project demo-eshwar-home-products \"node --test tests/firestore.rules.test.mjs\"",
+    "check:sitemap": "node scripts/check-sitemap-lastmod.mjs"
   },
   "dependencies": {
     "@astrojs/react": "4.4.2",
