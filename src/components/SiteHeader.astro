@@ -6,7 +6,7 @@ const base = import.meta.env.BASE_URL;
 <header class={`site-header ehp-site-header${current === "contact" ? " is-contact-page" : ""}`} data-base-url={base}>
   <div class="container header-inner">
     <a class="wordmark" href={base} aria-label="Eshwar Home Products home">
-      <img class="wordmark-logo" src={base + "images/brand/eshwar-home-products-logo.png"} alt="" width="40" height="40" fetchpriority="high" decoding="async" />
+      <img class="wordmark-logo" src={base + "images/brand/eshwar-home-products-logo-96.webp"} alt="" width="36" height="36" decoding="async" />
       <span class="wordmark-name">Eshwar Home Products</span>
     </a>
     <nav class="main-nav" id="primary-navigation" aria-label="Main navigation">
@@ -25,7 +25,7 @@ const base = import.meta.env.BASE_URL;
       <a class="mobile-nav-contact" href="https://wa.me/919941209953" data-ehp-dialog="enquiry" aria-haspopup="dialog">WhatsApp Enquiry ↗</a>
     </nav>
     <div class="mobile-nav-backdrop" id="mobile-nav-backdrop" aria-hidden="true"></div>
-    <form class="header-search" role="search" aria-label="Search product range" data-ehp-header-search>
+    <form class="header-search" id="header-search-form" role="search" aria-label="Search product range" data-ehp-header-search>
       <label class="sr-only" for="ehp-header-search-input">Search products</label>
       <input
         id="ehp-header-search-input"
@@ -43,6 +43,9 @@ const base = import.meta.env.BASE_URL;
       </button>
     </form>
     <div class="header-actions">
+      <button class="header-search-toggle" type="button" data-header-search-toggle aria-expanded="false" aria-controls="header-search-form" aria-label="Open product search">
+        <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="6" /><path d="m14 14 4 4" /></svg>
+      </button>
       <a class="header-contact" href="https://wa.me/919941209953" data-ehp-dialog="enquiry" aria-haspopup="dialog">WhatsApp Enquiry ↗</a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation menu"><span class="menu-toggle-lines" aria-hidden="true"></span></button>
     </div>
@@ -57,6 +60,23 @@ const base = import.meta.env.BASE_URL;
   const navBackdrop = document.querySelector<HTMLElement>("#mobile-nav-backdrop");
   const searchForm = document.querySelector<HTMLFormElement>("[data-ehp-header-search]");
   const searchInput = document.querySelector<HTMLInputElement>("#ehp-header-search-input");
+  const searchToggle = document.querySelector<HTMLButtonElement>("[data-header-search-toggle]");
+
+  const setSearchOpen = (open: boolean, focusInput = false) => {
+    header?.classList.toggle("is-search-open", open);
+    searchToggle?.setAttribute("aria-expanded", String(open));
+    searchToggle?.setAttribute("aria-label", open ? "Close product search" : "Open product search");
+    if (open && focusInput) window.requestAnimationFrame(() => searchInput?.focus());
+  };
+
+  searchToggle?.addEventListener("click", () => {
+    const isOpen = header?.classList.contains("is-search-open") ?? false;
+    setSearchOpen(!isOpen, !isOpen);
+  });
+
+  document.addEventListener("click", (event) => {
+    if (header && event.target instanceof Node && !header.contains(event.target)) setSearchOpen(false);
+  });
 
   const getHeaderOffset = () => (header ? header.getBoundingClientRect().height + 12 : 84);
 
@@ -108,6 +128,7 @@ const base = import.meta.env.BASE_URL;
 
   const openNavigation = () => {
     if (!toggle || !navigation) return;
+    setSearchOpen(false);
     toggle.setAttribute("aria-expanded", "true");
     toggle.setAttribute("aria-label", "Close navigation menu");
     navigation.classList.add("is-open");
@@ -155,6 +176,10 @@ const base = import.meta.env.BASE_URL;
     });
 
     document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && header?.classList.contains("is-search-open")) {
+        setSearchOpen(false);
+        searchToggle?.focus();
+      }
       if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
         closeNavigation();
         toggle.focus();
@@ -218,6 +243,7 @@ const base = import.meta.env.BASE_URL;
 
     searchForm.addEventListener("submit", (event) => {
       event.preventDefault();
+      setSearchOpen(false);
       const query = searchInput.value.trim();
       const productRangeTarget = document.getElementById("products") || document.getElementById("pantry-shelves");
       if (productRangeTarget) {
@@ -234,6 +260,7 @@ const base = import.meta.env.BASE_URL;
     window.addEventListener("ehp:clear-product-search", () => {
       searchInput.value = "";
       broadcastSearch("");
+      if (window.matchMedia("(max-width: 1120px)").matches) setSearchOpen(true);
       searchInput.focus();
     });
   }

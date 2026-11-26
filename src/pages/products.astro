@@ -1,15 +1,16 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
+import { Image } from "astro:assets";
 import catalogue from "../data/catalogue.json";
 import PublishedCatalogue from "../components/PublishedCatalogue";
 import "../styles/mobile-responsive.css";
 import milletsImg from "../assets/images/pantry_whole_millets_1795627178343.jpg";
 import oilsImg from "../assets/images/pantry_cold_pressed_oils_1795627178653.jpg";
 import riceImg from "../assets/images/pantry_traditional_rice_1795627178963.jpg";
-const shelfImages: Record<string, string> = {
-  grains: milletsImg.src,
-  oils: oilsImg.src,
-  pantry: riceImg.src,
+const shelfImages = {
+  grains: milletsImg,
+  oils: oilsImg,
+  pantry: riceImg,
 };
 const siteRoot = Astro.site ?? new URL("https://startupintelligence.github.io");
 const pageUrl = new URL(`${import.meta.env.BASE_URL}products/`, siteRoot).toString();
@@ -113,9 +114,12 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
           const occasions = shelf?.occasions ?? [];
           const searchText = `${categoryName} ${group.eyebrow} ${shelf?.intro ?? group.description} ${cues.join(" ")} ${occasions.join(" ")}`.toLowerCase();
           const message = `Hello Eshwar Home Products, please help me check today's stock for ${categoryName}.`;
+          const shelfImage = shelfImages[group.id as keyof typeof shelfImages];
           return <section class="pantry-group pantry-interactive-card" id={group.id} data-group={group.id} data-pantry-search-item data-search-text={searchText}>
             <div class="pantry-group-visual">
-              <div class="pantry-image-frame"><img src={shelfImages[group.id] ?? `${import.meta.env.BASE_URL}${group.placeholderImage}`} alt={group.placeholderAlt} width="800" height="600" loading="lazy" decoding="async" referrerpolicy="no-referrer" /></div>
+              <div class="pantry-image-frame">
+                {shelfImage ? <Image src={shelfImage} alt={group.placeholderAlt} width={800} format="webp" quality={70} loading="lazy" decoding="async" /> : <img src={`${import.meta.env.BASE_URL}${group.placeholderImage}`} alt={group.placeholderAlt} width="800" height="600" loading="lazy" decoding="async" />}
+              </div>
               <p class="representative-caption">Representative visual · Store photos coming soon</p>
             </div>
             <div class="pantry-group-content">

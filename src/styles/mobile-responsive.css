@@ -261,3 +261,52 @@ iframe { display: block; }
     padding-bottom: calc(82px + env(safe-area-inset-bottom)) !important;
   }
 }
+
+
+/* Compact mobile header: search opens as an overlay instead of a second sticky row. */
+@media (max-width: 768px) {
+  body { font-size: 0.9375rem; }
+  .site-header.ehp-site-header { position: relative; }
+  .site-header.ehp-site-header .header-inner {
+    min-height: 60px;
+    flex-wrap: nowrap;
+    gap: 8px;
+    padding-block: 6px;
+  }
+  .site-header.ehp-site-header .wordmark { flex: 1 1 auto; min-width: 0; }
+  .site-header.ehp-site-header .header-search-toggle {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    place-items: center;
+  }
+  .site-header.ehp-site-header .header-search {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 16px;
+    z-index: 40;
+    display: none;
+    width: calc(100vw - 32px);
+    min-height: 48px;
+    background: var(--bg-card);
+    box-shadow: 0 12px 28px rgba(23, 29, 24, 0.16);
+  }
+  .site-header.ehp-site-header.is-search-open .header-search { display: flex; }
+  .site-header.ehp-site-header .header-search-input,
+  .site-header.ehp-site-header .header-search-btn { height: 46px; }
+  .site-header.ehp-site-header .menu-toggle { width: 44px; height: 44px; flex: 0 0 44px; }
+  .mobile-action-bar a,
+  .mobile-action-bar button { min-height: 48px; font-size: 0.9375rem; }
+  .mobile-action-bar { padding-top: 8px; }
+  .wordmark-tamil,
+  [lang="ta"],
+  .site-footer .footer-bottom,
+  .site-footer .footer-nav a,
+  .pantry-real-photo-grid span,
+  .representative-caption,
+  .kitchen-cue-label { font-size: 0.8125rem; }
+  .pantry-intro-row > p,
+  .pantry-group-heading div > p:last-child,
+  .pantry-real-photos-heading > p:last-child { font-size: 0.9375rem; }
+}

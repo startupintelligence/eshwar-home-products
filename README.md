@@ -55,4 +55,4 @@ Only accounts with an active admin_users/{uid} record and role products-contact 
 
 ## Deployment
 
-The feature branch builds and tests but does not deploy. The repository's GitHub Pages setting must use GitHub Actions as its source before the main branch can deploy this Astro site. Do not merge or publish without approval.
+Production deployment is handled by `.github/workflows/deploy.yml`: pushes to `main` build the static site and deploy it to GitHub Pages through GitHub Actions. Pull requests receive Vercel preview deployments; the Astro config uses the root path for Vercel and `/eshwar-home-products` for the GitHub Pages build. Feature-branch previews do not replace production. Review the preview and required checks before merging; never merge or publish without approval.
