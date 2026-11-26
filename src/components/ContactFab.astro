@@ -1,18 +1,25 @@
 ---
 import { siteConfig } from "../app/config/site";
+
+const emailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(siteConfig.email)}`;
 ---
 
 <div class="contact-fab" data-contact-fab>
   <div class="contact-fab-menu" id="contact-fab-menu" hidden>
-    <a class="contact-fab-option" href={`mailto:${siteConfig.email}`} aria-label="Email Eshwar Home Products">
+    <a class="contact-fab-option" href={emailComposeUrl} target="_blank" rel="noopener noreferrer" aria-label="Compose an email to Eshwar Home Products">
       <span>Email</span>
     </a>
     <a class="contact-fab-option" href={siteConfig.whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Eshwar Home Products">
-      <span>Whatsapp</span>
+      <span>WhatsApp</span>
     </a>
-    <a class="contact-fab-option" href={`tel:${siteConfig.phoneLink}`} aria-label={`Call Eshwar Home Products at ${siteConfig.phoneDisplay}`}>
+    <a class="contact-fab-option contact-fab-call" href={`tel:${siteConfig.phoneLink}`} aria-label={`Call Eshwar Home Products at ${siteConfig.phoneDisplay}`}>
       <span>Call Store</span>
+      <small>{siteConfig.phoneDisplay}</small>
     </a>
+    <button class="contact-fab-option contact-fab-copy" type="button" data-copy-phone>
+      <span>Copy phone number</span>
+    </button>
+    <p class="contact-fab-status" data-contact-status role="status" aria-live="polite"></p>
   </div>
   <button
     class="contact-fab-toggle"
@@ -34,6 +41,8 @@ import { siteConfig } from "../app/config/site";
 
     const toggle = root.querySelector('[data-contact-toggle]');
     const menu = root.querySelector('#contact-fab-menu');
+    const copyPhone = root.querySelector('[data-copy-phone]');
+    const status = root.querySelector('[data-contact-status]');
     if (!(toggle instanceof HTMLButtonElement) || !(menu instanceof HTMLElement)) return;
 
     const setOpen = (open) => {
@@ -48,7 +57,7 @@ import { siteConfig } from "../app/config/site";
     });
 
     document.addEventListener('click', (event) => {
-      if (!root.contains(event.target)) setOpen(false);
+      if (event.target instanceof Node && !root.contains(event.target)) setOpen(false);
     });
 
     root.addEventListener('keydown', (event) => {
@@ -58,13 +67,37 @@ import { siteConfig } from "../app/config/site";
       }
     });
 
+    copyPhone?.addEventListener('click', async () => {
+      const phone = "+91 99412 09953";
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(phone);
+        } else {
+          const field = document.createElement('textarea');
+          field.value = phone;
+          field.setAttribute('readonly', '');
+          field.style.position = 'fixed';
+          field.style.opacity = '0';
+          document.body.appendChild(field);
+          field.select();
+          const copied = document.execCommand('copy');
+          field.remove();
+          if (!copied) throw new Error('Copy unavailable');
+        }
+        if (status) status.textContent = 'Phone number copied.';
+      } catch {
+        if (status) status.textContent = 'Please copy the number shown under Call Store.';
+      }
+    });
+
     const footer = document.querySelector('.site-footer');
     if ('IntersectionObserver' in window && footer) {
       const observer = new IntersectionObserver(([entry]) => {
         if (!entry) return;
-        if (entry.isIntersecting) setOpen(false);
-        root.hidden = entry.isIntersecting;
-      }, { threshold: 0.05 });
+        const overlapsFabArea = entry.isIntersecting && entry.boundingClientRect.top < window.innerHeight - 72;
+        if (overlapsFabArea) setOpen(false);
+        root.hidden = overlapsFabArea;
+      }, { threshold: 0 });
       observer.observe(footer);
     }
   })();
@@ -75,10 +108,15 @@ import { siteConfig } from "../app/config/site";
     position: fixed;
     right: max(22px, env(safe-area-inset-right, 0px));
     bottom: max(22px, env(safe-area-inset-bottom, 0px));
-    z-index: 45;
+    z-index: 90;
     display: grid;
     justify-items: end;
     gap: 12px;
+    pointer-events: none;
+  }
+
+  .contact-fab > * {
+    pointer-events: auto;
   }
 
   .contact-fab-toggle {
@@ -89,7 +127,7 @@ import { siteConfig } from "../app/config/site";
     padding: 0;
     border: 1.5px solid rgba(226, 183, 91, 0.8);
     border-radius: 50%;
-    background: var(--accent-green);
+    background: var(--accent-green, #183828);
     color: #FFFFFF;
     font: 700 0.82rem/1 var(--sans, "Plus Jakarta Sans", sans-serif);
     cursor: pointer;
@@ -99,7 +137,7 @@ import { siteConfig } from "../app/config/site";
 
   .contact-fab-toggle:hover {
     transform: translateY(-2px);
-    background: var(--accent-green-hover);
+    background: var(--accent-green-hover, #24513B);
     box-shadow: 0 14px 30px rgba(23, 29, 24, 0.3);
   }
 
@@ -111,10 +149,10 @@ import { siteConfig } from "../app/config/site";
 
   .contact-fab-menu {
     display: grid;
-    min-width: 164px;
+    min-width: 196px;
     gap: 7px;
     padding: 9px;
-    border: 1px solid var(--border-light);
+    border: 1px solid var(--border-light, #DED8CC);
     border-radius: 12px;
     background: var(--bg-card, #FAF9F6);
     box-shadow: 0 12px 30px rgba(23, 29, 24, 0.18);
@@ -126,21 +164,41 @@ import { siteConfig } from "../app/config/site";
 
   .contact-fab-option {
     display: flex;
+    width: 100%;
     min-height: 44px;
     align-items: center;
+    justify-content: space-between;
+    gap: 12px;
     padding: 9px 13px;
     border: 1px solid transparent;
     border-radius: 8px;
+    background: transparent;
     color: var(--text-main, #171D18);
     font: 600 0.86rem/1.3 var(--sans, "Plus Jakarta Sans", sans-serif);
+    text-align: left;
     text-decoration: none;
+    cursor: pointer;
     transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
   }
 
+  .contact-fab-option small {
+    color: var(--text-muted, #68665F);
+    font-size: 0.72rem;
+    white-space: nowrap;
+  }
+
   .contact-fab-option:hover {
-    border-color: var(--border-light);
+    border-color: var(--border-light, #DED8CC);
     background: var(--bg-subtle, #F2F0EA);
-    color: var(--accent-green);
+    color: var(--accent-green, #183828);
+  }
+
+  .contact-fab-status {
+    min-height: 1em;
+    margin: 0;
+    padding: 0 4px;
+    color: var(--accent-green, #183828);
+    font-size: 0.72rem;
   }
 
   @media (max-width: 768px) {
@@ -155,7 +213,7 @@ import { siteConfig } from "../app/config/site";
     }
 
     .contact-fab-menu {
-      min-width: 156px;
+      min-width: 188px;
     }
   }
 
