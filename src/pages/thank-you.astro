@@ -43,18 +43,18 @@ const base = import.meta.env.BASE_URL;
 
 <style>
   .thank-you-section { min-height: 68vh; display: grid; place-items: center; padding: 64px 20px; background: var(--bg-page); }
-  .thank-you-card { width: min(100%, 720px); padding: clamp(28px, 6vw, 56px); border: 1px solid var(--border-light); background: var(--bg-subtle); text-align: center; }
-  .confirmation-mark { width: 64px; height: 64px; display: grid; place-items: center; margin: 0 auto 24px; border-radius: 50%; background: #EAF0EB; color: var(--accent-green); }
+  .thank-you-card { width: min(100%, 720px); padding: clamp(28px, 6vw, 56px); border: 1px solid var(--border-light); border-radius: 12px; background: var(--bg-subtle); text-align: center; }
+  .confirmation-mark { width: 64px; height: 64px; display: grid; place-items: center; margin: 0 auto 24px; border-radius: 50%; background: #E4ECE7; color: var(--accent-green); }
   .confirmation-mark svg { width: 34px; height: 34px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .thank-you-card .eyebrow { margin: 0 0 12px; color: var(--accent-green); font-family: var(--serif); font-weight: 600; }
-  .thank-you-card h1 { max-width: 590px; margin: 0 auto; color: var(--text-main); font-family: var(--sans); font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; letter-spacing: -.045em; line-height: 1.12; }
-  .thank-you-copy { max-width: 540px; margin: 20px auto 0; color: var(--text-muted); line-height: 1.7; }
-  .store-hours { display: grid; gap: 6px; margin: 28px auto 0; padding: 18px; border: 1px solid var(--border-light); background: var(--bg-page); color: var(--text-main); line-height: 1.5; }
+  .thank-you-card .eyebrow { margin: 0 0 10px; color: var(--accent-brass); font-family: var(--sans); font-weight: 600; }
+  .thank-you-card h1 { max-width: 590px; margin: 0 auto; color: var(--text-main); font-family: var(--serif); font-size: clamp(2rem, 4.5vw, 2.9rem); font-weight: 400; letter-spacing: -.03em; line-height: 1.12; }
+  .thank-you-copy { max-width: 540px; margin: 18px auto 0; color: var(--text-muted); line-height: 1.7; }
+  .store-hours { display: grid; gap: 6px; margin: 28px auto 0; padding: 18px; border: 1px solid var(--border-light); border-radius: 10px; background: var(--bg-card); color: var(--text-main); line-height: 1.5; }
   .store-hours strong { color: var(--accent-green); }
   .thank-you-actions { display: grid; gap: 12px; margin-top: 28px; }
-  .thank-you-button, .thank-you-home { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 18px; border: 1px solid var(--brand-red); border-radius: 4px; font-weight: 650; text-decoration: none; }
-  .thank-you-button.primary { background: var(--brand-red); color: #fff; }
-  .thank-you-button.secondary { background: var(--bg-page); color: var(--brand-red); }
-  .thank-you-home { min-height: 48px; color: var(--text-muted); text-decoration: underline; text-underline-offset: 4px; border-color: transparent; }
+  .thank-you-button, .thank-you-home { min-height: 46px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 18px; border: 1px solid var(--accent-green); border-radius: 8px; font-weight: 600; text-decoration: none; }
+  .thank-you-button.primary { background: var(--accent-green); color: #fff; }
+  .thank-you-button.secondary { background: var(--bg-card); color: var(--text-main); border-color: var(--border-light); }
+  .thank-you-home { min-height: 44px; color: var(--accent-green); text-decoration: underline; text-underline-offset: 4px; border-color: transparent; }
   @media (prefers-reduced-motion: reduce) { .thank-you-button { transition: none; } }
 </style>

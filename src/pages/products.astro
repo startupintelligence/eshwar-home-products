@@ -3,6 +3,14 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 import catalogue from "../data/catalogue.json";
 import PublishedCatalogue from "../components/PublishedCatalogue";
 import "../styles/mobile-responsive.css";
+import milletsImg from "../assets/images/pantry_whole_millets_1795627178343.jpg";
+import oilsImg from "../assets/images/pantry_cold_pressed_oils_1795627178653.jpg";
+import riceImg from "../assets/images/pantry_traditional_rice_1795627178963.jpg";
+const shelfImages: Record<string, string> = {
+  grains: milletsImg.src,
+  oils: oilsImg.src,
+  pantry: riceImg.src,
+};
 const siteRoot = Astro.site ?? new URL("https://startupintelligence.github.io");
 const pageUrl = new URL(`${import.meta.env.BASE_URL}products/`, siteRoot).toString();
 const storeId = `${new URL(import.meta.env.BASE_URL, siteRoot).toString()}#store`;
@@ -83,15 +91,31 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
     </nav>
     <div class="catalogue-live-intro"><p class="eyebrow">Client-published products</p><h2>Recently published to the store catalogue</h2><p>Product details shown here come from the store's publishing system. For anything else, ask the team directly.</p></div>
     <PublishedCatalogue client:visible />
-    <div class="pantry-directory" id="pantry-shelves">
-      <div class="pantry-directory-inner">
+    <div class="pantry-search-status" id="pantry-search-status" hidden aria-live="polite">
+      <span id="pantry-search-text"></span>
+      <button class="pantry-search-clear" type="button" id="pantry-search-clear">Clear search</button>
+    </div>
+    <div class="pantry-search-empty" id="pantry-search-empty" hidden>
+      <p id="pantry-search-empty-text">No pantry shelves matched your search.</p>
+      <button class="filter-button" type="button" id="pantry-search-empty-clear">Show all shelves</button>
+    </div>
+    <div class="pantry-grid-wrap" id="pantry-grid-wrap">
+      <div class="pantry-spinner" id="pantry-spinner" role="status" aria-live="polite" aria-label="Updating pantry shelves" hidden>
+        <span class="pantry-spinner-ring" aria-hidden="true"></span>
+        <span class="sr-only">Updating pantry shelves</span>
+      </div>
+      <div class="pantry-directory" id="pantry-shelves">
+        <div class="pantry-directory-inner">
         {catalogue.groups.map((group, index) => {
           const shelf = shelfDetails[group.id as keyof typeof shelfDetails];
           const categoryName = shelf?.label ?? group.title;
+          const cues = shelf?.cues ?? group.items.map((item) => item.title);
+          const occasions = shelf?.occasions ?? [];
+          const searchText = `${categoryName} ${group.eyebrow} ${shelf?.intro ?? group.description} ${cues.join(" ")} ${occasions.join(" ")}`.toLowerCase();
           const message = `Hello Eshwar Home Products, please help me check today's stock for ${categoryName}.`;
-          return <section class="pantry-group pantry-interactive-card" id={group.id} data-group={group.id}>
+          return <section class="pantry-group pantry-interactive-card" id={group.id} data-group={group.id} data-pantry-search-item data-search-text={searchText}>
             <div class="pantry-group-visual">
-              <div class="pantry-image-frame"><img src={`${import.meta.env.BASE_URL}${group.placeholderImage}`} alt={group.placeholderAlt} width="800" height="600" loading="lazy" decoding="async" /></div>
+              <div class="pantry-image-frame"><img src={shelfImages[group.id] ?? `${import.meta.env.BASE_URL}${group.placeholderImage}`} alt={group.placeholderAlt} width="800" height="600" loading="lazy" decoding="async" referrerpolicy="no-referrer" /></div>
               <p class="representative-caption">Representative visual · Store photos coming soon</p>
             </div>
             <div class="pantry-group-content">
@@ -107,6 +131,7 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
             </div>
           </section>;
         })}
+        </div>
       </div>
     </div>
     <p class="pantry-stock-note">Looking for a particular variety or pack size? Message us on WhatsApp anytime to check today's fresh arrivals and options.</p>
@@ -115,65 +140,150 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
       <div class="pantry-faq-list">
         <details><summary>Can I ask about a Tamil millet name?</summary><p>Yes. Use the Tamil–English millet reference in our <a href={`${import.meta.env.BASE_URL}perambur-millet-store/#millet-reference`}>Perambur store guide</a>, then message the team about the variety you have in mind.</p></details>
         <details><summary>Can I check pack sizes before visiting?</summary><p>Yes. Send the product or variety name through WhatsApp and ask the team about current options.</p></details>
+        <details><summary>How can I check my order status or track pickup?</summary><p>Reply to your existing <a href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20would%20like%20to%20check%20my%20order%20status." target="_blank" rel="noopener noreferrer">WhatsApp message</a> or call <a href="tel:+919941209953">+91 99412 09953</a> with your name during store hours (Mon–Sat, 9 AM–9 PM) for a quick update from our counter team.</p></details>
         <details><summary>Where is the store?</summary><p>119/1, Paddy Field Road, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India.</p></details>
         <details><summary>What are the store hours?</summary><p>Monday – Saturday: 9:00 AM – 9:00 PM · Sunday: Closed</p></details>
       </div>
     </section>
-    <div class="enquiry-row"><div><p class="eyebrow">A neighbourhood pantry in Perambur</p><h2>Need help choosing a shelf?</h2><p class="store-location-note">Call or message the store. The team can help you check today's options before you visit.</p></div><a class="button pantry-bottom-whatsapp" href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20need%20help%20with%20the%20pantry%20range." target="_blank" rel="noopener noreferrer">Ask on WhatsApp ↗</a></div>
+    <div class="enquiry-row"><div><p class="eyebrow">A neighbourhood pantry in Perambur</p><h2>Need help choosing a shelf?</h2><p class="store-location-note">Call or message the store. The team can help you check today's options before you visit.</p></div><a class="button" href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20need%20help%20with%20the%20pantry%20range." target="_blank" rel="noopener noreferrer">Ask on WhatsApp ↗</a></div>
   </section>
 </SiteLayout>
-<script>import "../scripts/catalogue-filter.js";</script>
+<script>
+  import "../scripts/catalogue-filter.js";
+
+  const pantryShelves = document.querySelectorAll<HTMLElement>("[data-pantry-search-item]");
+  const pantryStatus = document.getElementById("pantry-search-status");
+  const pantryStatusText = document.getElementById("pantry-search-text");
+  const pantryEmpty = document.getElementById("pantry-search-empty");
+  const pantryEmptyText = document.getElementById("pantry-search-empty-text");
+  const pantryClearButtons = [
+    document.getElementById("pantry-search-clear"),
+    document.getElementById("pantry-search-empty-clear")
+  ].filter((el): el is HTMLElement => Boolean(el));
+
+  const applyPantrySearch = (rawQuery: string) => {
+    const query = rawQuery.trim().toLowerCase();
+    let visibleCount = 0;
+
+    pantryShelves.forEach((shelf) => {
+      const text = shelf.dataset.searchText ?? "";
+      const matches = !query || text.includes(query);
+      shelf.hidden = !matches;
+      if (matches) visibleCount += 1;
+    });
+
+    if (pantryStatus && pantryStatusText) {
+      if (query) {
+        pantryStatus.hidden = false;
+        pantryStatusText.textContent = `Showing ${visibleCount} ${visibleCount === 1 ? "shelf" : "shelves"} matching "${rawQuery.trim()}"`;
+      } else {
+        pantryStatus.hidden = true;
+      }
+    }
+
+    if (pantryEmpty && pantryEmptyText) {
+      if (query && visibleCount === 0) {
+        pantryEmpty.hidden = false;
+        pantryEmptyText.textContent = `No pantry shelves matched "${rawQuery.trim()}". Try millets, rice, oils, ghee, honey, or nuts.`;
+      } else {
+        pantryEmpty.hidden = true;
+      }
+    }
+  };
+
+  const pantryGridWrap = document.getElementById("pantry-grid-wrap");
+  const pantrySpinner = document.getElementById("pantry-spinner");
+  const pantryReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let pantrySearchTimer: number | undefined;
+
+  const setPantryLoading = (loading: boolean) => {
+    if (pantryGridWrap) pantryGridWrap.classList.toggle("is-updating", loading);
+    if (pantrySpinner) pantrySpinner.hidden = !loading;
+  };
+
+  window.addEventListener("ehp:product-search", (event) => {
+    const detail = (event as CustomEvent<{ query?: string }>).detail;
+    const nextQuery = detail?.query ?? "";
+    if (pantrySearchTimer) window.clearTimeout(pantrySearchTimer);
+    if (pantryReducedMotion) {
+      setPantryLoading(false);
+      applyPantrySearch(nextQuery);
+      return;
+    }
+    setPantryLoading(true);
+    pantrySearchTimer = window.setTimeout(() => {
+      applyPantrySearch(nextQuery);
+      setPantryLoading(false);
+    }, 220);
+  });
+
+  pantryClearButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      if (pantrySearchTimer) window.clearTimeout(pantrySearchTimer);
+      setPantryLoading(false);
+      window.dispatchEvent(new CustomEvent("ehp:clear-product-search"));
+    });
+  });
+
+  const initialPantryQuery = new URLSearchParams(window.location.search).get("q") ?? "";
+  if (initialPantryQuery) {
+    applyPantrySearch(initialPantryQuery);
+  }
+</script>
 <style>
   .pantry-page h2,.pantry-page h3 { text-wrap: balance; }
   .pantry-real-photos { padding:32px 0 12px; }
   .pantry-real-photos-heading { max-width:650px; margin-bottom:18px; }
-  .pantry-real-photos-heading h2 { margin:6px 0; font:400 clamp(1.7rem,3vw,2.35rem)/1.15 Georgia,"Times New Roman",serif; }
-  .pantry-real-photos-heading > p:last-child { color:var(--text-muted); font-size:.84rem; line-height:1.65; }
-  .pantry-real-photo-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
-  .pantry-real-photo-grid a { display:flex; min-width:0; flex-direction:column; overflow:hidden; border:1px solid var(--border-light); color:var(--text-main); text-decoration:none; }
+  .pantry-real-photos-heading h2 { margin:6px 0; font:600 clamp(1.7rem,3vw,2.35rem)/1.15 var(--serif); }
+  .pantry-real-photos-heading > p:last-child { color:var(--text-muted); font-size:.9rem; line-height:1.65; }
+  .pantry-real-photo-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+  .pantry-real-photo-grid a { display:flex; min-width:0; flex-direction:column; overflow:hidden; border:1px solid var(--border-light); border-radius:10px; background:var(--bg-card); color:var(--text-main); text-decoration:none; }
   .pantry-real-photo-grid img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; }
-  .pantry-real-photo-grid span { display:flex; min-height:42px; align-items:center; padding:9px 11px; font-size:.72rem; }
-  .pantry-real-photo-grid a:focus-visible { outline:3px solid var(--accent-gold); outline-offset:3px; }
+  .pantry-real-photo-grid span { display:flex; min-height:42px; align-items:center; padding:10px 12px; font-size:.8rem; font-weight:600; }
+  .pantry-real-photo-grid a:focus-visible { outline:2px solid var(--accent-green); outline-offset:3px; }
   @media(max-width:760px) { .pantry-real-photo-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; } }
   .pantry-intro-row { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:32px; align-items:end; margin-bottom:28px; }
-  .pantry-intro-row h2,.catalogue-live-intro h2 { margin:8px 0 0; font:400 clamp(2rem,4vw,3rem)/1.1 Georgia,"Times New Roman",serif; }
-  .pantry-intro-row > p,.catalogue-live-intro > p:last-child { margin:0; color:var(--text-muted,#5A534C); font-size:.88rem; line-height:1.75; }
+  .pantry-intro-row h2,.catalogue-live-intro h2 { margin:8px 0 0; font:600 clamp(2rem,4vw,2.75rem)/1.1 var(--serif); }
+  .pantry-intro-row > p,.catalogue-live-intro > p:last-child { margin:0; color:var(--text-muted); font-size:.94rem; line-height:1.75; }
   .catalogue-live-intro { margin:32px 0 16px; padding:20px 0 14px; border-top:1px solid var(--border-light); }
   .catalogue-live-intro h2 { font-size:1.65rem; }
   .catalogue-live-intro > p:last-child { margin-top:8px; }
-  .pantry-group { display:grid; grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr); gap:clamp(24px,4vw,48px); align-items:start; padding:34px 0; border-bottom:1px solid var(--border-light); }
+  .pantry-group { display:grid; grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr); gap:clamp(24px,4vw,48px); align-items:start; padding:34px 0; border-bottom:1px solid var(--border-light); }
   .pantry-group-visual { min-width:0; }
-  .pantry-image-frame { overflow:hidden; aspect-ratio:4/3; border:1px solid var(--border-light); background:var(--bg-subtle); }
+  .pantry-image-frame { overflow:hidden; aspect-ratio:4/3; border:1px solid var(--border-light); border-radius:12px; background:var(--bg-subtle); }
   .pantry-image-frame img { display:block; width:100%; height:100%; object-fit:cover; }
-  .representative-caption { margin:7px 0 0; color:var(--text-muted); font-size:.65rem; }
+  .representative-caption { margin:8px 0 0; color:var(--text-muted); font-size:.76rem; }
   .pantry-group-heading { display:grid; grid-template-columns:34px minmax(0,1fr); gap:12px; }
-  .pantry-group-heading h2 { margin:4px 0 8px; font:400 clamp(1.55rem,2.8vw,2.1rem)/1.18 Georgia,"Times New Roman",serif; }
-  .pantry-group-heading div > p:last-child { margin:0; color:var(--text-muted); font-size:.86rem; line-height:1.75; }
-  .kitchen-cue-label { margin:20px 0 9px; color:var(--accent-green); font-size:.67rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+  .pantry-group-heading h2 { margin:4px 0 8px; font:600 clamp(1.55rem,2.8vw,2.1rem)/1.18 var(--serif); }
+  .pantry-group-heading div > p:last-child { margin:0; color:var(--text-muted); font-size:.92rem; line-height:1.75; }
+  .kitchen-cue-label { margin:20px 0 9px; color:var(--accent-brass); font-size:.76rem; font-weight:700; letter-spacing:.03em; }
   .kitchen-cues { display:flex; flex-wrap:wrap; gap:8px; margin:0; padding:0; list-style:none; }
-  .kitchen-cues li { display:flex; min-height:34px; align-items:center; padding:6px 10px; border:1px solid var(--border-light); background:var(--bg-subtle); color:var(--text-main); font-size:.74rem; line-height:1.35; }
+  .kitchen-cues li { display:flex; min-height:36px; align-items:center; padding:4px 12px; border:1px solid var(--border-light); border-radius:8px; background:var(--bg-card); color:var(--text-main); font-size:.82rem; line-height:1.35; }
   .meal-occasions { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
-  .meal-occasions span { color:var(--text-muted); font-size:.7rem; }
-  .meal-occasions span + span::before { content:"·"; margin-right:8px; color:var(--accent-gold); }
-  .shelf-whatsapp-link { display:inline-flex; min-height:48px; align-items:center; justify-content:center; margin:18px 0 8px; padding:10px 16px; border:1px solid #432818; background-color:#432818; color:#FFFDF9; font-size:.76rem; font-weight:700; text-decoration:none; }
-  .shelf-whatsapp-link:hover { border-color:#D99B26; }
-  .shelf-whatsapp-link:focus-visible { outline:2px solid #D99B26; outline-offset:3px; }
-  .pantry-bottom-whatsapp { background-color:#432818; color:#FFFDF9; border:1px solid #432818; }
-  .pantry-bottom-whatsapp:hover { border-color:#D99B26; }
-  .catalogue-details { margin-top:8px; border-top:1px solid var(--border-light); }
-  .catalogue-details summary { display:flex; min-height:48px; align-items:center; color:var(--accent-green); cursor:pointer; font-size:.76rem; font-weight:700; }
-  .pantry-items { margin:0; padding:0; list-style:none; }
-  .pantry-items li { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1fr); gap:16px; padding:10px 0; border-top:1px solid var(--border-light); }
-  .pantry-items strong { font:400 1rem Georgia,"Times New Roman",serif; }
-  .pantry-items span { color:var(--text-muted); font-size:.75rem; }
-  .pantry-stock-note { margin:26px 0; padding:16px 18px; border:1px solid var(--border-light); background:var(--bg-subtle); color:var(--text-main); font-size:.86rem; line-height:1.65; }
+  .meal-occasions span { color:var(--text-muted); font-size:.78rem; }
+  .meal-occasions span + span::before { content:"·"; margin-right:8px; color:var(--accent-brass); }
+  .pantry-page .shelf-whatsapp-link { display:inline-flex; min-height:46px; align-items:center; justify-content:center; margin:16px 0 8px; padding:0 18px; border:1px solid var(--accent-green); border-radius:8px; background:var(--accent-green); color:#FFFFFF; font-size:.84rem; font-weight:600; text-decoration:none; }
+  .pantry-page .shelf-whatsapp-link:hover { background:var(--accent-green-hover); border-color:var(--accent-green-hover); color:#FFFFFF; }
+  .pantry-quickview-trigger { display:inline-flex; min-height:46px; align-items:center; justify-content:center; margin:16px 10px 8px 0; padding:0 16px; border:1px solid var(--border-light); border-radius:8px; background:var(--bg-card); color:var(--text-main); font:inherit; font-size:.84rem; font-weight:600; cursor:pointer; }
+  .pantry-quickview-trigger:hover { border-color:var(--accent-green); background:var(--bg-subtle); }
+  .pantry-stock-note { margin:26px 0; padding:16px 18px; border:1px solid var(--border-light); border-radius:10px; background:var(--bg-subtle); color:var(--text-main); font-size:.88rem; line-height:1.65; }
   .pantry-faq { margin:42px 0 24px; padding:28px 0 12px; border-top:1px solid var(--border-light); }
-  .pantry-faq h2 { margin:8px 0 20px; font:400 clamp(1.8rem,3vw,2.5rem)/1.12 Georgia,"Times New Roman",serif; }
+  .pantry-faq h2 { margin:8px 0 20px; font:600 clamp(1.8rem,3vw,2.4rem)/1.12 var(--serif); }
   .pantry-faq-list { border-top:1px solid var(--border-light); }
   .pantry-faq-list details { border-bottom:1px solid var(--border-light); }
-  .pantry-faq-list summary { display:flex; min-height:52px; align-items:center; padding:12px 28px 12px 0; cursor:pointer; font:400 1.05rem/1.35 Georgia,"Times New Roman",serif; }
-  .pantry-faq-list details p { max-width:720px; margin:0 0 18px; color:var(--text-muted); font-size:.82rem; }
-  .pantry-faq-list a { text-underline-offset:3px; }
+  .pantry-faq-list summary { display:flex; min-height:52px; align-items:center; padding:12px 28px 12px 0; cursor:pointer; font:600 1rem/1.4 var(--sans); }
+  .pantry-faq-list details p { max-width:720px; margin:0 0 18px; color:var(--text-muted); font-size:.9rem; }
+  .pantry-faq-list a { text-underline-offset:3px; color:var(--accent-green); font-weight:600; }
   .enquiry-row { margin-top:24px; }
-  @media(max-width:760px) { .pantry-intro-row,.pantry-group { grid-template-columns:minmax(0,1fr); gap:16px; } .pantry-group-visual { max-width:560px; } .pantry-items li { grid-template-columns:minmax(0,1fr); gap:3px; } }
+  .pantry-group[hidden],.pantry-search-status[hidden],.pantry-search-empty[hidden],.pantry-spinner[hidden] { display:none; }
+  .pantry-grid-wrap { position:relative; }
+  .pantry-grid-wrap.is-updating .pantry-directory { opacity:.45; transition:opacity 160ms var(--ease-out); }
+  .pantry-spinner { position:absolute; top:28px; left:50%; z-index:4; transform:translateX(-50%); display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border:1px solid var(--border-light); border-radius:50%; background:rgba(250,249,246,.96); box-shadow:0 8px 20px rgba(23,29,24,.12); pointer-events:none; }
+  .pantry-spinner-ring { width:22px; height:22px; border:2.5px solid rgba(24,56,40,.16); border-top-color:var(--accent-green); border-radius:50%; animation:pantrySpin 650ms linear infinite; }
+  @keyframes pantrySpin { to { transform:rotate(360deg); } }
+  .pantry-search-status { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; margin:20px 0 8px; padding:12px 16px; border:1px solid var(--border-light); border-radius:10px; background:var(--bg-subtle); color:var(--text-main); font-size:.88rem; }
+  .pantry-search-clear { border:0; padding:4px 0; background:transparent; color:var(--accent-green); font-size:.84rem; font-weight:600; text-decoration:underline; text-underline-offset:4px; cursor:pointer; }
+  .pantry-search-empty { margin:18px 0; padding:24px; border:1px solid var(--border-light); border-radius:12px; background:var(--bg-card); }
+  .pantry-search-empty p { margin:0 0 12px; color:var(--text-muted); font-size:.92rem; }
+  @media(max-width:760px) { .pantry-intro-row,.pantry-group { grid-template-columns:minmax(0,1fr); gap:16px; } .pantry-group-visual { max-width:560px; } }
 </style>

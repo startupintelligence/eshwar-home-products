@@ -3,45 +3,149 @@ interface Props { current?: "home" | "about" | "products" | "contact" | "blog" |
 const { current = "home" } = Astro.props;
 const base = import.meta.env.BASE_URL;
 ---
-<header class={`site-header ehp-site-header${current === "contact" ? " is-contact-page" : ""}`}>
+<header class={`site-header ehp-site-header${current === "contact" ? " is-contact-page" : ""}`} data-base-url={base}>
   <div class="container header-inner">
     <a class="wordmark" href={base} aria-label="Eshwar Home Products home">
-      <img class="wordmark-logo" src={base + "images/brand/eshwar-home-products-logo.png"} alt="Official Eshwar Home Products emblem" width="68" height="56" fetchpriority="high" decoding="async" />
-      <span class="wordmark-copy"><span class="wordmark-name">Eshwar Home Products</span><span class="wordmark-tamil" lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</span></span>
+      <img class="wordmark-logo" src={base + "images/brand/eshwar-home-products-logo.png"} alt="" width="40" height="40" fetchpriority="high" decoding="async" />
+      <span class="wordmark-name">Eshwar Home Products</span>
     </a>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation menu"><span class="menu-toggle-lines" aria-hidden="true"></span></button>
     <nav class="main-nav" id="primary-navigation" aria-label="Main navigation">
+      <div class="mobile-nav-header">
+        <span class="mobile-nav-title">Navigation</span>
+        <button class="mobile-nav-close" type="button" aria-label="Close navigation menu">
+          <span>Close</span>
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <a href={base} aria-current={current === "home" ? "page" : undefined}>Home</a>
       <a href={base+"products/"} aria-current={current === "products" ? "page" : undefined}>The Pantry</a>
       <a href={base+"about/"} aria-current={current === "about" ? "page" : undefined}>Our Story</a>
       <a href={base+"kitchen-guides/"} aria-current={current === "blog" || current === "kitchen-guides" ? "page" : undefined}>Kitchen Guides</a>
-      <a href={base+"contact/"} data-ehp-dialog="store" aria-haspopup="dialog" aria-current={current === "contact" ? "page" : undefined}>Visit Us</a>
-      <a class="header-contact" href="https://wa.me/919941209953" data-ehp-dialog="enquiry" aria-haspopup="dialog">WhatsApp Enquiry ↗</a>
+      <a href={base+"contact/"} aria-current={current === "contact" ? "page" : undefined}>Visit Us</a>
       <a class="mobile-nav-contact" href="https://wa.me/919941209953" data-ehp-dialog="enquiry" aria-haspopup="dialog">WhatsApp Enquiry ↗</a>
     </nav>
+    <div class="mobile-nav-backdrop" id="mobile-nav-backdrop" aria-hidden="true"></div>
+    <form class="header-search" role="search" aria-label="Search product range" data-ehp-header-search>
+      <label class="sr-only" for="ehp-header-search-input">Search products</label>
+      <input
+        id="ehp-header-search-input"
+        class="header-search-input"
+        type="search"
+        name="q"
+        placeholder="Search rice, millets, oils..."
+        autocomplete="off"
+      />
+      <button class="header-search-btn" type="submit" aria-label="Search products">
+        <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="9" r="6" />
+          <path d="m14 14 4 4" />
+        </svg>
+      </button>
+    </form>
+    <div class="header-actions">
+      <a class="header-contact" href="https://wa.me/919941209953" data-ehp-dialog="enquiry" aria-haspopup="dialog">WhatsApp Enquiry ↗</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation menu"><span class="menu-toggle-lines" aria-hidden="true"></span></button>
+    </div>
   </div>
 </header>
 <script>
+  const header = document.querySelector<HTMLElement>(".ehp-site-header");
+  const baseUrl = header?.dataset.baseUrl || "/";
   const toggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
   const navigation = document.querySelector<HTMLElement>("#primary-navigation");
+  const navClose = document.querySelector<HTMLButtonElement>(".mobile-nav-close");
+  const navBackdrop = document.querySelector<HTMLElement>("#mobile-nav-backdrop");
+  const searchForm = document.querySelector<HTMLFormElement>("[data-ehp-header-search]");
+  const searchInput = document.querySelector<HTMLInputElement>("#ehp-header-search-input");
+
+  const getHeaderOffset = () => (header ? header.getBoundingClientRect().height + 12 : 84);
+
+  const smoothScrollToY = (targetY: number, onComplete?: () => void) => {
+    const clampedTarget = Math.max(0, Math.round(targetY));
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) {
+      window.scrollTo(0, clampedTarget);
+      onComplete?.();
+      return;
+    }
+
+    const startY = window.scrollY;
+    const distance = clampedTarget - startY;
+    if (Math.abs(distance) < 2) {
+      onComplete?.();
+      return;
+    }
+
+    const duration = Math.min(680, Math.max(320, Math.abs(distance) * 0.45));
+    let startTime: number | null = null;
+    const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+    const step = (now: number) => {
+      if (startTime === null) startTime = now;
+      const elapsed = now - startTime;
+      const progress = Math.min(1, elapsed / duration);
+      window.scrollTo(0, startY + distance * easeInOutCubic(progress));
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      } else {
+        onComplete?.();
+      }
+    };
+
+    window.requestAnimationFrame(step);
+  };
+
+  const scrollToSection = (target: HTMLElement, focusTarget = true) => {
+    const targetTop = target.getBoundingClientRect().top + window.scrollY - getHeaderOffset();
+    smoothScrollToY(targetTop, () => {
+      if (!focusTarget) return;
+      if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+      target.focus({ preventScroll: true });
+    });
+  };
+
+  const normalizePath = (pathname: string) => (pathname.endsWith("/") ? pathname : `${pathname}/`);
+
+  const openNavigation = () => {
+    if (!toggle || !navigation) return;
+    toggle.setAttribute("aria-expanded", "true");
+    toggle.setAttribute("aria-label", "Close navigation menu");
+    navigation.classList.add("is-open");
+    navBackdrop?.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+    window.requestAnimationFrame(() => navClose?.focus({ preventScroll: true }));
+  };
+
+  const closeNavigation = () => {
+    if (!toggle || !navigation) return;
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "Open navigation menu");
+    navigation.classList.remove("is-open");
+    navBackdrop?.classList.remove("is-open");
+    document.body.style.overflow = "";
+  };
+
   if (toggle && navigation) {
     toggle.addEventListener("click", () => {
       const expanded = toggle.getAttribute("aria-expanded") === "true";
-      toggle.setAttribute("aria-expanded", String(!expanded));
-      toggle.setAttribute("aria-label", expanded ? "Open navigation menu" : "Close navigation menu");
-      navigation.classList.toggle("is-open", !expanded);
-    });
-    const closeNavigation = () => {
-      toggle.setAttribute("aria-expanded", "false");
-      toggle.setAttribute("aria-label", "Open navigation menu");
-      navigation.classList.remove("is-open");
-    };
-    navigation.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", (event) => {
-        const keepsCurrentPageOpen = link.target === "_blank" || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
+      if (expanded) {
         closeNavigation();
-        if (keepsCurrentPageOpen || link.hasAttribute("data-ehp-dialog")) toggle.focus();
-      });
+      } else {
+        openNavigation();
+      }
+    });
+
+    navClose?.addEventListener("click", () => {
+      closeNavigation();
+      toggle.focus();
+    });
+
+    navBackdrop?.addEventListener("click", () => {
+      closeNavigation();
+      toggle.focus();
+    });
+
+    navigation.querySelectorAll("a").forEach((link) => {
       link.addEventListener("auxclick", (event) => {
         if (event.button === 1) {
           closeNavigation();
@@ -49,11 +153,95 @@ const base = import.meta.env.BASE_URL;
         }
       });
     });
+
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
         closeNavigation();
         toggle.focus();
       }
     });
+  }
+
+  header?.querySelectorAll<HTMLAnchorElement>("a[href]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const keepsCurrentPageOpen = link.target === "_blank" || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
+      const isDialogTrigger = link.hasAttribute("data-ehp-dialog");
+      const wasOpen = toggle?.getAttribute("aria-expanded") === "true";
+
+      closeNavigation();
+      if (keepsCurrentPageOpen || isDialogTrigger) {
+        if (wasOpen) toggle?.focus();
+        return;
+      }
+
+      let url: URL;
+      try {
+        url = new URL(link.href, window.location.href);
+      } catch {
+        return;
+      }
+
+      if (url.origin !== window.location.origin) return;
+      if (normalizePath(url.pathname) !== normalizePath(window.location.pathname)) return;
+
+      if (url.hash) {
+        const target = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+        if (target) {
+          event.preventDefault();
+          history.pushState(null, "", url.hash);
+          scrollToSection(target);
+        }
+        return;
+      }
+
+      event.preventDefault();
+      if (window.location.hash) {
+        history.pushState(null, "", url.pathname + url.search);
+      }
+      smoothScrollToY(0);
+    });
+  });
+
+  if (searchForm && searchInput) {
+    const initialQuery = new URLSearchParams(window.location.search).get("q") ?? "";
+    if (initialQuery) {
+      searchInput.value = initialQuery;
+    }
+
+    const broadcastSearch = (query: string) => {
+      window.dispatchEvent(new CustomEvent("ehp:product-search", { detail: { query } }));
+    };
+
+    searchInput.addEventListener("input", () => {
+      broadcastSearch(searchInput.value);
+    });
+
+    searchForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const query = searchInput.value.trim();
+      const productRangeTarget = document.getElementById("products") || document.getElementById("pantry-shelves");
+      if (productRangeTarget) {
+        broadcastSearch(searchInput.value);
+        scrollToSection(productRangeTarget, false);
+        return;
+      }
+      const nextUrl = query
+        ? `${baseUrl}products/?q=${encodeURIComponent(query)}#pantry-shelves`
+        : `${baseUrl}products/`;
+      window.location.assign(nextUrl);
+    });
+
+    window.addEventListener("ehp:clear-product-search", () => {
+      searchInput.value = "";
+      broadcastSearch("");
+      searchInput.focus();
+    });
+  }
+
+  if (window.location.hash) {
+    const initialTarget = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+    if (initialTarget) {
+      window.requestAnimationFrame(() => scrollToSection(initialTarget));
+    }
   }
 </script>

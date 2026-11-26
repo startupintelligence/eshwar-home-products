@@ -113,15 +113,15 @@ const schema = {
 
 <style>
   .kitchen-guides-hero {
-    background: #F5EDE3;
-    border-bottom: 1px solid #E2D6C5;
+    background: var(--bg-subtle);
+    border-bottom: 1px solid var(--border-light);
   }
 
   .kitchen-guides-hero-grid {
     display: grid;
     grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
     align-items: center;
-    gap: clamp(36px, 7vw, 88px);
+    gap: clamp(32px, 6vw, 72px);
     padding-block: clamp(44px, 6vw, 76px);
   }
 
@@ -131,98 +131,108 @@ const schema = {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 9px;
-    margin-bottom: 28px;
-    color: #5A4638;
-    font-size: .68rem;
+    gap: 8px;
+    margin-bottom: 20px;
+    color: var(--text-muted);
+    font-size: .82rem;
   }
 
   .kitchen-guides-breadcrumbs a {
-    color: #5A4638;
+    color: var(--text-muted);
     text-underline-offset: 3px;
   }
 
   .kitchen-guides-copy > .eyebrow,
   .kitchen-guides-store-card > .eyebrow,
   .kitchen-guides-list-heading .eyebrow {
-    margin: 0 0 9px;
-    color: #432818;
-    font-size: .64rem;
-    font-weight: 700;
-    letter-spacing: .08em;
-    text-transform: uppercase;
+    margin: 0 0 10px;
+    color: var(--accent-brass);
+    font-size: .8rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+    text-transform: none;
   }
 
   .kitchen-guides-copy h1 {
     max-width: 680px;
     margin: 0;
-    color: #2A1508;
-    font: 400 clamp(2.65rem, 5.4vw, 4.55rem)/.99 Georgia, "Times New Roman", serif;
-    letter-spacing: -.045em;
+    color: var(--text-main);
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+    letter-spacing: -.035em;
+    line-height: 1.06;
     text-wrap: balance;
   }
 
-  .kitchen-guides-copy h1 em { font-weight: 400; }
+  .kitchen-guides-copy h1 em {
+    font-weight: 400;
+    color: var(--accent-brass);
+  }
 
   .kitchen-guides-intro {
     max-width: 570px;
     margin: 18px 0 0;
-    color: #5A4638;
-    font-size: .83rem;
-    line-height: 1.8;
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
   }
 
   .kitchen-guides-store-card {
     width: 100%;
-    padding: 24px;
-    border: 1px solid #E2D6C5;
-    border-top: 3px solid #D99B26;
-    background: #FFFDF9;
+    padding: 28px;
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    background: var(--bg-card);
   }
 
   .kitchen-guides-store-card h2 {
-    margin: 0 0 13px;
-    color: #2A1508;
-    font: 400 clamp(1.45rem, 2.4vw, 1.9rem)/1.15 Georgia, "Times New Roman", serif;
+    margin: 0 0 12px;
+    color: var(--text-main);
+    font-family: var(--serif);
+    font-size: clamp(1.45rem, 2.4vw, 1.85rem);
+    font-weight: 400;
+    line-height: 1.2;
   }
 
   .kitchen-guides-store-card address,
   .kitchen-guides-hours {
     margin: 0;
-    color: #5A4638;
-    font-size: .7rem;
+    color: var(--text-muted);
+    font-size: .88rem;
     font-style: normal;
-    line-height: 1.7;
+    line-height: 1.65;
   }
 
   .kitchen-guides-hours { margin-top: 8px; }
 
   .kitchen-guides-pantry-button {
     display: inline-flex;
-    min-height: 48px;
+    min-height: 46px;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    margin-top: 18px;
-    padding: 0 18px;
-    border: 1px solid #D99B26;
-    background: #D99B26;
-    color: #2A1508;
-    font-size: .72rem;
-    font-weight: 700;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 0 20px;
+    border: 1px solid var(--accent-green);
+    border-radius: 8px;
+    background: var(--accent-green);
+    color: #FFFFFF;
+    font-size: .88rem;
+    font-weight: 600;
     text-decoration: none;
-    transition: background-color .18s ease, border-color .18s ease;
+    transition: background-color .18s var(--ease-out), transform .18s var(--ease-out);
   }
 
-  @media (hover: hover) and (pointer: fine) {
-    .kitchen-guides-pantry-button:hover {
-      border-color: #B77D16;
-      background: #E7B64E;
-    }
+  .kitchen-guides-pantry-button:hover {
+    border-color: var(--accent-green-hover);
+    background: var(--accent-green-hover);
+    color: #FFFFFF;
+    transform: translateY(-1px);
   }
 
   .kitchen-guides-list {
-    padding-block: clamp(38px, 5vw, 60px) clamp(48px, 6vw, 76px);
+    padding-block: clamp(44px, 5vw, 72px);
   }
 
   .kitchen-guides-list-heading {
@@ -230,23 +240,27 @@ const schema = {
     align-items: end;
     justify-content: space-between;
     gap: 24px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
 
   .kitchen-guides-list-heading h2 {
     margin: 0;
-    color: #2A1508;
-    font: 400 clamp(1.75rem, 3.2vw, 2.5rem)/1.12 Georgia, "Times New Roman", serif;
+    color: var(--text-main);
+    font-family: var(--serif);
+    font-size: clamp(1.85rem, 3.2vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.15;
     letter-spacing: -.025em;
   }
 
   .kitchen-guides-browse-link {
     display: inline-flex;
-    min-height: 48px;
+    min-height: 44px;
     align-items: center;
-    color: #432818;
-    font-size: .7rem;
-    font-weight: 700;
+    color: var(--accent-green);
+    font-size: .88rem;
+    font-weight: 600;
+    text-decoration: underline;
     text-underline-offset: 4px;
     white-space: nowrap;
   }
@@ -254,85 +268,85 @@ const schema = {
   .kitchen-guides-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    border-top: 1px solid #E2D6C5;
-    border-left: 1px solid #E2D6C5;
+    gap: 20px;
   }
 
   .kitchen-guide-card {
     display: flex;
     min-width: 0;
-    min-height: 190px;
+    min-height: 210px;
     flex-direction: column;
     align-items: flex-start;
-    padding: clamp(18px, 2.4vw, 28px);
-    border-right: 1px solid #E2D6C5;
-    border-bottom: 1px solid #E2D6C5;
-    background: #FAF8F5;
-    color: #2A1508;
-    text-decoration: none;
-    transition: transform .18s ease, border-color .18s ease, background-color .18s ease;
+    padding: clamp(20px, 2.4vw, 28px);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    background: var(--bg-card);
+    color: var(--text-main);
+    font-family: var(--sans);
+    text-align: left;
+    cursor: pointer;
+    transition: transform .18s var(--ease-out), border-color .18s var(--ease-out), box-shadow .18s var(--ease-out);
   }
 
-  @media (hover: hover) and (pointer: fine) {
-    .kitchen-guide-card:hover {
-      z-index: 1;
-      transform: translateY(-3px);
-      border-color: #D99B26;
-      background: #FFFDF9;
-    }
+  .kitchen-guide-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-green);
+    box-shadow: 0 12px 28px rgba(24, 56, 40, 0.08);
   }
 
   .kitchen-guide-card:focus-visible {
-    position: relative;
-    z-index: 2;
-    outline: 3px solid #D99B26;
-    outline-offset: -3px;
+    outline: 2px solid var(--accent-green);
+    outline-offset: 3px;
   }
 
   .kitchen-guide-card > .eyebrow {
     margin: 0 0 10px;
-    color: #6B4A2D;
-    font-size: .62rem;
-    font-weight: 700;
-    letter-spacing: .045em;
+    color: var(--accent-brass);
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .02em;
   }
 
   .kitchen-guide-card h3 {
     margin: 0;
-    color: #2A1508;
-    font: 400 clamp(1.2rem, 2vw, 1.55rem)/1.18 Georgia, "Times New Roman", serif;
+    color: var(--text-main);
+    font-family: var(--serif);
+    font-size: clamp(1.25rem, 2vw, 1.55rem);
+    font-weight: 500;
+    line-height: 1.25;
     text-wrap: balance;
   }
 
   .kitchen-guide-card > p {
-    margin: 9px 0 16px;
-    color: #5A4638;
-    font-size: .72rem;
-    line-height: 1.7;
+    margin: 10px 0 18px;
+    color: var(--text-muted);
+    font-size: .9rem;
+    line-height: 1.65;
   }
 
   .kitchen-guide-card-action {
     display: inline-flex;
-    min-height: 48px;
+    min-height: 40px;
     align-items: center;
     gap: 7px;
     margin-top: auto;
-    color: #432818;
-    font-size: .68rem;
-    font-weight: 700;
+    color: var(--accent-green);
+    font-size: .85rem;
+    font-weight: 600;
     text-decoration: underline;
-    text-decoration-color: #D99B26;
+    text-decoration-color: rgba(24, 56, 40, 0.35);
     text-underline-offset: 4px;
   }
 
   .kitchen-guides-note {
-    margin: 14px 0 0;
-    padding: 14px 16px;
-    border: 1px solid #E2D6C5;
-    background: #F5EDE3;
-    color: #5A4638;
-    font-size: .67rem;
-    line-height: 1.7;
+    margin: 24px 0 0;
+    padding: 16px 20px;
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    background: var(--bg-subtle);
+    color: var(--text-muted);
+    font-size: .84rem;
+    line-height: 1.65;
   }
 
   @media (max-width: 760px) {
@@ -342,9 +356,9 @@ const schema = {
       padding-block: 34px 38px;
     }
 
-    .kitchen-guides-breadcrumbs { margin-bottom: 20px; }
-    .kitchen-guides-copy h1 { font-size: clamp(2.65rem, 11vw, 4rem); }
-    .kitchen-guides-store-card { max-width: 520px; }
+    .kitchen-guides-breadcrumbs { margin-bottom: 16px; }
+    .kitchen-guides-copy h1 { font-size: clamp(2.2rem, 10vw, 3.2rem); }
+    .kitchen-guides-store-card { max-width: 520px; padding: 22px; }
     .kitchen-guides-list { padding-block: 36px 48px; }
     .kitchen-guides-list-heading { align-items: flex-start; flex-direction: column; gap: 8px; }
     .kitchen-guides-grid { grid-template-columns: minmax(0, 1fr); }

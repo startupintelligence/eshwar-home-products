@@ -1,5 +1,6 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
+import StoreLocationMap from "../components/StoreLocationMap";
 import "../styles/mobile-responsive.css";
 ---
 <SiteLayout title="Visit us | Eshwar Home Products" description="Find and contact Eshwar Home Products at 119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India." current="contact">
@@ -43,16 +44,7 @@ import "../styles/mobile-responsive.css";
     <div class="directions-panel">
       <p class="eyebrow">Find the shop</p><h2>Paddy Field Rd,<br /><em>Chinnaiyan Colony, Perambur.</em></h2>
       <p>119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India.</p>
-      <iframe
-        class="contact-map-embed"
-        src="https://www.google.com/maps?q=13.1118495,80.2493876&output=embed"
-        title="Map showing Eshwar Home Products on Paddy Field Rd, Chinnaiyan Colony, Perambur"
-        width="100%"
-        height="280"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        allowfullscreen
-      ></iframe>
+      <StoreLocationMap client:visible />
       <a class="text-link" href="https://www.google.com/maps/place/Eshwar+Home+Products/@13.1118547,80.2468127,17z/data=!3m1!4b1!4m6!3m5!1s0x3a526569af8122ad:0xe485caf4b8adf074!8m2!3d13.1118495!4d80.2493876!16s%2Fg%2F11v4j6lc03?entry=ttu&g_ep=EgoyMDI2MTExNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Open directions in Google Maps ↗</a>
     </div>
   </section>
@@ -75,143 +67,178 @@ import "../styles/mobile-responsive.css";
   .social-profile-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+    gap: 16px;
   }
   .social-profile-card {
     display: flex;
-    min-height: 48px;
+    min-height: 64px;
     align-items: center;
     justify-content: space-between;
     gap: 14px;
-    padding: 12px 16px;
-    border: 1px solid #E2D6C5;
-    border-top: 3px solid #D99B26;
-    background: #FFFDF9;
-    color: #432818;
+    padding: 16px 20px;
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    background: var(--bg-card);
+    color: var(--text-main);
     text-decoration: none;
+    transition: border-color .18s var(--ease-out), transform .18s var(--ease-out);
   }
-  .social-profile-card strong { display: block; color: #432818; font-size: .9rem; overflow-wrap: anywhere; }
-  .social-profile-card .eyebrow { display: block; margin-bottom: 4px; color: #8A5A08; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-  .social-profile-action { flex: 0 0 auto; color: #432818; font-size: .76rem; font-weight: 700; }
-  .social-profile-card:hover { border-color: #D99B26; background: #FAF3E8; }
-  @media (max-width: 600px) { .social-profile-grid { grid-template-columns: 1fr; } }
-  .contact-map-embed { display: block; width: 100%; max-width: 100%; height: 280px; margin: 20px 0 16px; border: 1px solid #E2D6C5 !important; border-radius: 10px; }
+  .social-profile-card strong {
+    display: block;
+    color: var(--text-main);
+    font-size: .95rem;
+    overflow-wrap: anywhere;
+  }
+  .social-profile-card .eyebrow {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--accent-brass);
+    font-size: .76rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+    text-transform: none;
+  }
+  .social-profile-action {
+    flex: 0 0 auto;
+    color: var(--accent-green);
+    font-size: .84rem;
+    font-weight: 600;
+  }
+  .social-profile-card:hover {
+    border-color: var(--accent-green);
+    transform: translateY(-2px);
+  }
+  @media (max-width: 600px) {
+    .social-profile-grid { grid-template-columns: 1fr; }
+  }
+  .contact-map-embed {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 280px;
+    margin: 20px 0 16px;
+    border: 1px solid var(--border-light) !important;
+    border-radius: 12px;
+  }
   .contact-hero-grid {
-    width: min(1120px, calc(100% - 56px));
+    width: min(1200px, calc(100% - (2 * clamp(16px, 4vw, 32px))));
     display: grid;
-    grid-template-columns: 1.25fr 0.75fr;
+    grid-template-columns: 1.2fr 0.8fr;
     align-items: center;
     gap: clamp(28px, 5vw, 64px);
   }
   .contact-hero-copy { max-width: 620px; }
   .contact-hero-card {
     position: relative;
-    padding: 26px;
-    background: #FFFDF9;
-    border: 1px solid #E2D6C5;
-    border-top: 3px solid #D99B26;
+    padding: 28px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
     text-align: left;
   }
   .contact-hero-rating {
-    margin: 0 0 22px;
-    color: #2A1508;
-    font-size: .88rem;
-    font-weight: 700;
+    margin: 0 0 20px;
+    color: var(--text-main);
+    font-size: .9rem;
+    font-weight: 600;
     line-height: 1.55;
   }
   .contact-hero-rating span {
     display: block;
     margin-bottom: 4px;
-    color: #8A5A08;
-    font-size: 1.08rem;
+    color: var(--accent-brass);
+    font-size: 1.1rem;
   }
   .contact-hero-fact {
     display: grid;
     gap: 6px;
     padding: 14px 0;
-    border-top: 1px solid #E2D6C5;
+    border-top: 1px solid var(--border-light);
   }
   .contact-hero-fact span {
-    color: #6B5848;
-    font-size: .68rem;
-    font-weight: 700;
-    letter-spacing: .09em;
-    text-transform: uppercase;
+    color: var(--text-muted);
+    font-size: .75rem;
+    font-weight: 600;
   }
   .contact-hero-fact strong {
-    color: #2A1508;
-    font-size: .88rem;
-    line-height: 1.65;
+    color: var(--text-main);
+    font-size: .9rem;
+    line-height: 1.6;
   }
   .contact-explore-button,
   .contact-call-button,
   .contact-whatsapp-button {
     display: inline-flex;
-    min-height: 48px;
+    min-height: 46px;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 0 18px;
+    padding: 0 20px;
     border: 1px solid transparent;
-    font-size: .78rem;
-    font-weight: 700;
+    border-radius: 8px;
+    font-size: .88rem;
+    font-weight: 600;
     text-align: center;
     text-decoration: none;
-    transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+    transition: background-color .18s var(--ease-out), border-color .18s var(--ease-out), transform .18s var(--ease-out);
   }
   .contact-explore-button {
     width: 100%;
-    margin-top: 14px;
-    background: #D99B26;
-    border-color: #D99B26;
-    color: #2A1508;
+    margin-top: 16px;
+    background: var(--accent-green);
+    border-color: var(--accent-green);
+    color: #FFFFFF;
   }
   .contact-explore-button:hover {
-    background: #E8B64F;
-    border-color: #E8B64F;
-    color: #2A1508;
+    background: var(--accent-green-hover);
+    border-color: var(--accent-green-hover);
+    color: #FFFFFF;
+    transform: translateY(-1px);
   }
-  .contact-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
-  .contact-call-button { background: #D99B26; border-color: #D99B26; color: #2A1508; }
-  .contact-call-button:hover { background: #E8B64F; border-color: #E8B64F; color: #2A1508; }
-  .contact-whatsapp-button { background: #432818; border-color: #432818; color: #FFFDF9; }
-  .contact-whatsapp-button:hover { background: #2A1508; border-color: #D99B26; color: #FFFDF9; }
+  .contact-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+  .contact-call-button {
+    background: var(--accent-green);
+    border-color: var(--accent-green);
+    color: #FFFFFF;
+  }
+  .contact-call-button:hover {
+    background: var(--accent-green-hover);
+    border-color: var(--accent-green-hover);
+    color: #FFFFFF;
+    transform: translateY(-1px);
+  }
+  .contact-whatsapp-button {
+    background: var(--bg-card);
+    border-color: var(--border-light);
+    color: var(--text-main);
+  }
+  .contact-whatsapp-button:hover {
+    background: var(--bg-subtle);
+    border-color: var(--accent-green);
+    color: var(--text-main);
+    transform: translateY(-1px);
+  }
   .contact-layout,
   .youtube-promo {
-    width: min(1120px, calc(100% - 56px));
+    width: min(1200px, calc(100% - (2 * clamp(16px, 4vw, 32px))));
     margin-inline: auto;
   }
-  :global(.ehp-site-header.is-contact-page .header-contact) {
-    min-height: 48px;
-    background: #D99B26;
-    border-color: #D99B26;
-    color: #2A1508;
-  }
-  :global(.ehp-site-header.is-contact-page .header-contact:hover) {
-    background: #E8B64F;
-    border-color: #E8B64F;
-    color: #2A1508;
+  .directions-panel {
+    padding: 28px;
   }
   @media (max-width: 760px) {
     .contact-hero-grid { grid-template-columns: 1fr; gap: 26px; }
     .contact-hero-card { max-width: 520px; }
     .contact-layout,
-    .youtube-promo { width: calc(100% - 36px); }
+    .youtube-promo { width: calc(100% - 32px); }
+    .directions-panel { padding: 20px; }
   }
   @media (max-width: 420px) {
-    :global(.ehp-site-header.is-contact-page .header-contact) {
-      display: inline-flex;
-      width: auto;
-      min-height: 44px;
-      margin: 0;
-      padding-inline: 8px;
-      font-size: .6rem;
-      white-space: nowrap;
-    }
     .contact-hero-card { padding: 20px; }
     .contact-actions { display: grid; grid-template-columns: 1fr; }
   }
   @media (prefers-reduced-motion: reduce) {
+    .social-profile-card,
     .contact-explore-button,
     .contact-call-button,
     .contact-whatsapp-button { transition: none; }

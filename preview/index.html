@@ -56,11 +56,12 @@
     h2{font-family:var(--serif);font-size:clamp(36px,4vw,53px);font-weight:400;letter-spacing:-.045em;line-height:1.1;margin:12px 0 0}
     .section-intro{max-width:390px;color:var(--muted);font-size:13px;line-height:1.8;margin:0}
     .filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:26px}
-    .filter{background:transparent;border:1px solid var(--line);padding:9px 14px;color:var(--muted);font-size:10px;letter-spacing:.07em;text-transform:uppercase;cursor:pointer}
+    .filter{display:inline-flex;align-items:center;gap:7px;background:transparent;border:1px solid var(--line);padding:9px 14px;color:var(--muted);font-size:10px;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:background .18s,border-color .18s,color .18s}
+    .filter svg{flex-shrink:0}
     .filter[aria-pressed="true"],.filter:hover{background:var(--olive-dark);border-color:var(--olive-dark);color:white}
     .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .product-card{background:var(--surface);border:1px solid rgba(105,116,83,.12);min-width:0;transition:transform .25s,box-shadow .25s}
-    .product-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+    .product-card{background:var(--surface);border:1px solid rgba(105,116,83,.12);min-width:0;transition:transform .24s cubic-bezier(.16,1,.3,1),box-shadow .24s cubic-bezier(.16,1,.3,1),border-color .24s}
+    .product-card:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 20px 44px rgba(42,26,16,.13);border-color:var(--accent-green)}
     .product-visual{height:218px;display:grid;place-items:center;position:relative;overflow:hidden;background:#e7e5d7}
     .product-visual.olive{background:#e1e4d7}.product-visual.clay{background:#eee0d4}.product-visual.sand{background:#e9e1cf}
     .product-visual svg{width:74%;height:82%;max-width:220px}
@@ -197,6 +198,59 @@
     .footer :where(p,a){color:#FFFDF9}
     .footer a:hover{color:var(--accent-gold)}
     a:focus-visible,button:focus-visible{outline:3px solid var(--accent-gold);outline-offset:3px}
+    .stories-band{background:var(--bg-page);border-top:1px solid var(--border-light)}
+    .stories-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .story-card{background:var(--bg-card);border:1px solid var(--border-light);padding:24px;display:flex;flex-direction:column}
+    .story-rating{font-size:11px;letter-spacing:.08em;color:var(--accent-green);font-weight:700;margin-bottom:12px}
+    .story-card blockquote{margin:0 0 20px;font-size:13px;line-height:1.8;color:var(--text-main)}
+    .story-footer{margin-top:auto;padding-top:14px;border-top:1px solid var(--border-light)}
+    .story-footer strong{display:block;font-family:var(--serif);font-size:17px;font-weight:400;color:var(--text-main)}
+    .story-footer span{display:block;margin-top:3px;font-size:11px;color:var(--text-muted)}
+    .faq-band{background:var(--bg-subtle);border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light)}
+    .faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+    .faq-list{border-top:1px solid var(--border-light)}
+    .faq-list details{border-bottom:1px solid var(--border-light)}
+    .faq-list summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 4px;cursor:pointer;font-family:var(--serif);font-size:18px;color:var(--text-main);list-style:none}
+    .faq-list summary::-webkit-details-marker{display:none}
+    .faq-list summary::after{content:"+";font-family:var(--sans);font-size:20px;color:var(--brand-red);flex-shrink:0}
+    .faq-list details[open] summary::after{content:"−"}
+    .faq-list details p{margin:0 0 18px;padding-right:24px;color:var(--text-muted);font-size:13px;line-height:1.8}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .nav-wrap{gap:16px}
+    .nav-links{gap:20px}
+    .header-search{display:flex;align-items:center;width:196px;border:1px solid var(--border-light);background:var(--bg-card);border-radius:4px;overflow:hidden;flex-shrink:0}
+    .header-search:focus-within{border-color:var(--accent-green)}
+    .header-search input{width:100%;min-width:0;border:0;background:transparent;padding:8px 8px 8px 11px;font-family:var(--sans);font-size:12px;color:var(--text-main)}
+    .header-search input:focus-visible{outline:none}
+    .header-search button{display:inline-flex;align-items:center;justify-content:center;border:0;background:transparent;padding:8px 10px;color:var(--text-muted);cursor:pointer}
+    .header-search button:hover{color:var(--brand-red)}
+    .search-status{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;padding:12px 16px;background:var(--bg-subtle);border:1px solid var(--border-light);font-size:12px;color:var(--text-main)}
+    .search-clear-btn{border:0;background:transparent;padding:0;color:var(--brand-red);font-size:12px;font-weight:700;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+    .products-empty{margin-top:16px;padding:24px;border:1px solid var(--border-light);background:var(--bg-card);font-size:13px;color:var(--text-muted)}
+    .products-empty p{margin:0 0 12px}
+    .sourcing-band{background:var(--bg-subtle);border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light)}
+    .sourcing-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border-light);background:var(--bg-card)}
+    .sourcing-item{padding:24px 20px}
+    .sourcing-item+.sourcing-item{border-left:1px solid var(--border-light)}
+    .sourcing-num{display:block;margin-bottom:8px;color:var(--accent-green);font-family:var(--serif);font-size:16px;font-weight:700}
+    .sourcing-item h3{font-family:var(--serif);font-size:19px;font-weight:400;margin:0 0 8px;color:var(--text-main)}
+    .sourcing-item p{margin:0;color:var(--text-muted);font-size:12px;line-height:1.7}
+    .product-cue{display:block;margin:-8px 0 16px;color:var(--accent-green);font-size:11px;font-weight:700}
+    .product-grid-wrap{position:relative}
+    .product-grid-wrap.is-updating .product-grid{opacity:.45;transition:opacity .16s ease}
+    .products-spinner{position:absolute;top:28px;left:50%;z-index:5;transform:translateX(-50%);display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1px solid var(--border-light);background:rgba(250,248,245,.96);box-shadow:0 8px 20px rgba(42,26,16,.14);pointer-events:none}
+    .products-spinner-ring{width:22px;height:22px;border:2.5px solid rgba(27,59,43,.16);border-top-color:var(--accent-green);border-radius:50%;animation:ehpPreviewSpin .65s linear infinite}
+    @keyframes ehpPreviewSpin{to{transform:rotate(360deg)}}
+    .product-card.is-featured{border:1.5px solid var(--accent-gold);background:#FCF9F2;box-shadow:0 12px 28px rgba(42,26,16,.09)}
+    .product-card.is-featured h3{font-size:24px}
+    .featured-tag{position:absolute;top:12px;left:12px;z-index:2;padding:5px 10px;border-radius:4px;border:1px solid rgba(217,155,38,.7);background:var(--accent-green);color:#FFFDF9;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    .mobile-nav-header,.nav-backdrop{display:none}
+    .whatsapp-fab{position:fixed;right:22px;bottom:22px;z-index:50;display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:var(--accent-green);color:#FFFDF9;border:2px solid var(--accent-gold);box-shadow:0 10px 26px rgba(42,26,16,.24);text-decoration:none;transition:transform .2s ease,opacity .2s ease,visibility .2s,background-color .18s ease}
+    .whatsapp-fab:hover{background:#12291E;color:#FFFDF9;transform:translateY(-2px)}
+    .whatsapp-fab.is-footer-visible{opacity:0;visibility:hidden;pointer-events:none;transform:scale(.82) translateY(8px)}
+    @media(max-width:1020px){.nav-wrap{flex-wrap:wrap}.header-search{order:4;width:100%}}
+    @media(max-width:850px){.faq-grid{grid-template-columns:1fr;gap:28px}.stories-grid,.sourcing-grid{grid-template-columns:repeat(2,1fr)}.sourcing-item:nth-child(3){border-left:0}.sourcing-item:nth-child(n+3){border-top:1px solid var(--border-light)}}
+    @media(max-width:650px){.stories-grid,.sourcing-grid{grid-template-columns:1fr}.sourcing-item+.sourcing-item{border-left:0;border-top:1px solid var(--border-light)}.nav-backdrop{display:block;position:fixed;inset:0;z-index:55;background:rgba(42,26,16,.42);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .22s ease,visibility .22s}.nav-backdrop.open{opacity:1;visibility:visible;pointer-events:auto}.nav-links{position:fixed;top:0;right:0;bottom:0;left:auto;z-index:60;width:min(300px,85vw);padding:18px 20px 28px;border-bottom:0;border-left:1px solid var(--line);background:var(--bg-page);box-shadow:-12px 0 32px rgba(42,26,16,.18);display:flex!important;flex-direction:column;align-items:stretch;gap:6px;overflow-y:auto;transform:translateX(100%);opacity:0;visibility:hidden;pointer-events:none;transition:transform .24s ease,opacity .18s ease,visibility .24s}.nav-links.open{transform:translateX(0);opacity:1;visibility:visible;pointer-events:auto}.mobile-nav-header{display:flex;align-items:center;justify-content:space-between;padding-bottom:12px;margin-bottom:6px;border-bottom:1px solid var(--line)}.mobile-nav-title{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-green)}.mobile-nav-close{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 12px;border:1px solid var(--line);background:var(--bg-card);color:var(--text-main);font-size:12px;font-weight:700;cursor:pointer}.nav-links a{padding:10px 4px;border-bottom:1px solid var(--line)}.whatsapp-fab{right:16px;bottom:16px;width:52px;height:52px}}
   </style>
 </head>
 <body>
@@ -208,8 +262,17 @@
         <span><span class="brand-name">Eshwar Home Products</span><span class="brand-tamil" lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</span><span class="brand-sub">Traditional foods &middot; Perambur, Chennai</span></span>
       </a>
       <nav class="nav-links" id="site-nav" aria-label="Main navigation">
-        <a href="#home">Home</a><a href="#products">Our Products</a><a href="#about">Our Story</a><a href="#contact">Visit & Contact</a>
+        <div class="mobile-nav-header"><span class="mobile-nav-title">Menu</span><button class="mobile-nav-close" id="mobile-nav-close" type="button" aria-label="Close navigation menu">Close &times;</button></div>
+        <a href="#products">Products</a><a href="#about">Our Story</a><a href="#customer-stories">Stories</a><a href="#faq">FAQ</a><a href="#contact">Visit</a>
       </nav>
+      <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
+      <form class="header-search" id="header-search-form" role="search" aria-label="Search our product range">
+        <label class="sr-only" for="header-product-search">Search products</label>
+        <input id="header-product-search" type="search" placeholder="Search rice, millets, oils..." autocomplete="off">
+        <button type="submit" aria-label="Search our product range">
+          <svg viewBox="0 0 20 20" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="m14 14 4 4"/></svg>
+        </button>
+      </form>
       <a class="nav-cta" href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20would%20like%20to%20make%20an%20enquiry.">Make an enquiry</a>
       <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     </div>
@@ -260,55 +323,101 @@
         <div><div class="section-kicker">Explore the collection</div><h2>Our product range</h2></div>
         <p class="section-intro">Browse a selection of the categories available at our store. Contact us for current varieties, availability and details.</p>
       </div>
-      <div class="filters" role="group" aria-label="Filter products">
-        <button class="filter" type="button" data-filter="all" aria-pressed="true">All products</button>
-        <button class="filter" type="button" data-filter="grains" aria-pressed="false">Rice & millets</button>
-        <button class="filter" type="button" data-filter="pantry" aria-pressed="false">Pantry essentials</button>
-        <button class="filter" type="button" data-filter="oils" aria-pressed="false">Oils & ghee</button>
+      <div class="filters" role="group" aria-label="Filter products by kitchen use">
+        <button class="filter" type="button" data-filter="all" aria-pressed="true">
+          <svg viewBox="0 0 20 20" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="6" height="6" rx="1.2"/><rect x="11" y="3" width="6" height="6" rx="1.2"/><rect x="3" y="11" width="6" height="6" rx="1.2"/><rect x="11" y="11" width="6" height="6" rx="1.2"/></svg>
+          <span>All products</span>
+        </button>
+        <button class="filter" type="button" data-filter="breakfast" aria-pressed="false">
+          <svg viewBox="0 0 20 20" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 10h13a6.5 6.5 0 0 1-13 0Z"/><path d="M6.5 16.5h7"/><path d="M7.5 4.5c0 1.2 1 1.6 1 2.8"/><path d="M12 4c0 1.2 1 1.6 1 2.8"/></svg>
+          <span>Breakfast &amp; Tiffin</span>
+        </button>
+        <button class="filter" type="button" data-filter="rice-swap" aria-pressed="false">
+          <svg viewBox="0 0 20 20" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.2 3.2h5.6l-1 2.4H8.2l-1-2.4Z"/><path d="M8.2 5.6c-2.6 1.6-3.7 4.4-3.7 8.4a2.8 2.8 0 0 0 2.8 2.8h5.4a2.8 2.8 0 0 0 2.8-2.8c0-4-1.1-6.8-3.7-8.4"/><path d="M8 11.2h4"/></svg>
+          <span>Everyday Rice Swap</span>
+        </button>
+        <button class="filter" type="button" data-filter="cooking" aria-pressed="false">
+          <svg viewBox="0 0 20 20" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5h4v2.6l2.4 2.4a2 2 0 0 1 .6 1.4v6.6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8.9a2 2 0 0 1 .6-1.4L8 5.1V2.5Z"/><path d="M8 12h4"/></svg>
+          <span>Cold-Pressed Cooking</span>
+        </button>
+        <button class="filter" type="button" data-filter="festival" aria-pressed="false">
+          <svg viewBox="0 0 20 20" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3.2c1.4 2 2 3.4 0 5.1-2-1.7-1.4-3.1 0-5.1Z"/><path d="M3.5 11.5h13a6.5 6.5 0 0 1-13 0Z"/><path d="M6.5 17h7"/></svg>
+          <span>Festival &amp; Dry Fruits</span>
+        </button>
       </div>
-      <div class="product-grid">
-        <article class="product-card" data-category="grains">
-          <div class="product-visual sand">
-            <svg viewBox="0 0 220 190" aria-hidden="true"><path d="M40 92 Q110 140 180 92 L166 154 Q110 178 54 154Z" fill="#f7f0df" stroke="#6c7656" stroke-width="2"/><path d="M40 92 Q110 119 180 92" fill="none" stroke="#6c7656" stroke-width="2"/><g fill="#b88b51"><ellipse cx="73" cy="82" rx="5" ry="13" transform="rotate(-25 73 82)"/><ellipse cx="92" cy="73" rx="5" ry="13" transform="rotate(20 92 73)"/><ellipse cx="111" cy="83" rx="5" ry="13" transform="rotate(-12 111 83)"/><ellipse cx="131" cy="72" rx="5" ry="13" transform="rotate(27 131 72)"/><ellipse cx="150" cy="84" rx="5" ry="13" transform="rotate(-24 150 84)"/></g><path d="M110 67 Q95 38 72 35 M110 67 Q129 32 151 29" stroke="#78835f" stroke-width="2" fill="none"/></svg>
-            <span class="visual-caption">Illustrative product visual</span>
-          </div>
-          <div class="product-info"><div class="product-category">Rice & millets</div><h3>Traditional rice varieties</h3><p>Explore a selection of traditional rice varieties for everyday meals and familiar recipes.</p><a class="enquire-link" href="https://wa.me/919941209953?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20traditional%20rice%20varieties.">Enquire about this range &nearr;</a></div>
-        </article>
-        <article class="product-card" data-category="grains">
-          <div class="product-visual olive">
-            <svg viewBox="0 0 220 190" aria-hidden="true"><path d="M63 48 L157 48 L168 157 Q110 174 52 157Z" fill="#c7b58d" stroke="#68764f" stroke-width="2"/><path d="M63 48 Q110 61 157 48" fill="none" stroke="#68764f" stroke-width="2"/><path d="M77 78 Q110 92 143 78 M74 101 Q110 115 146 101" stroke="#8a754e" stroke-width="2" fill="none"/><g fill="#6c7951"><circle cx="91" cy="119" r="5"/><circle cx="108" cy="126" r="5"/><circle cx="127" cy="117" r="5"/><circle cx="99" cy="140" r="5"/><circle cx="121" cy="140" r="5"/></g></svg>
-            <span class="visual-caption">Illustrative product visual</span>
-          </div>
-          <div class="product-info"><div class="product-category">Rice & millets</div><h3>Millets & millet flours</h3><p>Millet varieties and flour options for a range of traditional and contemporary dishes.</p><a class="enquire-link" href="https://wa.me/919941209953?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20millets%20and%20millet%20flours.">Enquire about this range &nearr;</a></div>
-        </article>
-        <article class="product-card" data-category="grains">
+      <div class="search-status hidden" id="products-search-status" aria-live="polite">
+        <span id="products-search-text"></span>
+        <button class="search-clear-btn" type="button" id="products-search-clear">Clear search</button>
+      </div>
+      <div class="product-grid-wrap" id="product-grid-wrap">
+        <div class="products-spinner hidden" id="products-spinner" role="status" aria-live="polite" aria-label="Updating product range">
+          <span class="products-spinner-ring" aria-hidden="true"></span>
+          <span class="sr-only">Updating product range</span>
+        </div>
+        <div class="product-grid">
+          <article class="product-card" data-category="rice-swap breakfast">
+            <div class="product-visual sand">
+              <svg viewBox="0 0 220 190" aria-hidden="true"><path d="M40 92 Q110 140 180 92 L166 154 Q110 178 54 154Z" fill="#f7f0df" stroke="#6c7656" stroke-width="2"/><path d="M40 92 Q110 119 180 92" fill="none" stroke="#6c7656" stroke-width="2"/><g fill="#b88b51"><ellipse cx="73" cy="82" rx="5" ry="13" transform="rotate(-25 73 82)"/><ellipse cx="92" cy="73" rx="5" ry="13" transform="rotate(20 92 73)"/><ellipse cx="111" cy="83" rx="5" ry="13" transform="rotate(-12 111 83)"/><ellipse cx="131" cy="72" rx="5" ry="13" transform="rotate(27 131 72)"/><ellipse cx="150" cy="84" rx="5" ry="13" transform="rotate(-24 150 84)"/></g><path d="M110 67 Q95 38 72 35 M110 67 Q129 32 151 29" stroke="#78835f" stroke-width="2" fill="none"/></svg>
+              <span class="visual-caption">Illustrative product visual</span>
+            </div>
+            <div class="product-info"><div class="product-category">Rice &amp; millets</div><h3>Traditional rice varieties</h3><p>Explore a selection of traditional rice varieties for everyday meals and familiar recipes.</p><span class="product-cue">Best for: Daily meals, pongal &amp; idli batter</span><a class="enquire-link" href="https://wa.me/919941209953?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20traditional%20rice%20varieties.">Enquire about this range &nearr;</a></div>
+          </article>
+          <article class="product-card is-featured" data-category="breakfast rice-swap">
+            <div class="product-visual olive">
+              <span class="featured-tag">Featured &middot; Fresh Harvest</span>
+              <svg viewBox="0 0 220 190" aria-hidden="true"><path d="M63 48 L157 48 L168 157 Q110 174 52 157Z" fill="#c7b58d" stroke="#68764f" stroke-width="2"/><path d="M63 48 Q110 61 157 48" fill="none" stroke="#68764f" stroke-width="2"/><path d="M77 78 Q110 92 143 78 M74 101 Q110 115 146 101" stroke="#8a754e" stroke-width="2" fill="none"/><g fill="#6c7951"><circle cx="91" cy="119" r="5"/><circle cx="108" cy="126" r="5"/><circle cx="127" cy="117" r="5"/><circle cx="99" cy="140" r="5"/><circle cx="121" cy="140" r="5"/></g></svg>
+              <span class="visual-caption">Illustrative product visual</span>
+            </div>
+            <div class="product-info"><div class="product-category">Siruthaniyam</div><h3>Millets &amp; millet flours</h3><p>Thinai, Varagu, Samai, Ragi &amp; Kambu whole grains and flours for everyday cooking.</p><span class="product-cue">Best for: Rice swap, upma, khichdi &amp; kanji</span><a class="enquire-link" href="https://wa.me/919941209953?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20millets%20and%20millet%20flours.">Enquire about this range &nearr;</a></div>
+          </article>
+        <article class="product-card" data-category="breakfast festival">
           <div class="product-visual clay">
             <svg viewBox="0 0 220 190" aria-hidden="true"><path d="M54 57 L166 57 L158 157 Q110 169 62 157Z" fill="#f8f1e5" stroke="#a96f50" stroke-width="2"/><path d="M54 57 Q110 69 166 57" fill="none" stroke="#a96f50" stroke-width="2"/><path d="M74 88 L146 88 M72 111 L148 111" stroke="#d3b18f" stroke-width="2"/><g fill="#b58d59"><ellipse cx="86" cy="75" rx="4" ry="10"/><ellipse cx="105" cy="78" rx="4" ry="10"/><ellipse cx="125" cy="75" rx="4" ry="10"/><ellipse cx="94" cy="130" rx="4" ry="10"/><ellipse cx="115" cy="130" rx="4" ry="10"/><ellipse cx="135" cy="129" rx="4" ry="10"/></g></svg>
             <span class="visual-caption">Illustrative product visual</span>
           </div>
-          <div class="product-info"><div class="product-category">Rice & millets</div><h3>Flakes, vermicelli & pasta</h3><p>Millet-based flakes, vermicelli and pasta for adding variety to your pantry.</p><a class="enquire-link" href="https://wa.me/919941209953?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20flakes%2C%20vermicelli%20and%20pasta.">Enquire about this range &nearr;</a></div>
+          <div class="product-info"><div class="product-category">Tiffin &amp; teatime</div><h3>Flakes, vermicelli &amp; snacks</h3><p>Millet-based flakes, sevai vermicelli, pasta, and ragi snacks for quick meals.</p><span class="product-cue">Best for: Morning dosa, tiffin &amp; kids snacks</span><a class="enquire-link" href="https://wa.me/919941209953?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20flakes%2C%20vermicelli%20and%20pasta.">Enquire about this range &nearr;</a></div>
         </article>
-        <article class="product-card" data-category="oils">
+        <article class="product-card" data-category="cooking">
           <div class="product-visual sand">
             <svg viewBox="0 0 220 190" aria-hidden="true"><path d="M91 35 L129 35 L129 53 L143 67 L143 153 Q110 169 77 153 L77 67 L91 53Z" fill="#d5b16b" stroke="#7a6a42" stroke-width="2"/><path d="M91 35 L129 35 L129 53 L91 53Z" fill="#7b835e"/><path d="M82 91 Q110 100 138 91 L138 143 Q110 155 82 143Z" fill="#e9c77d" opacity=".7"/><rect x="87" y="101" width="46" height="27" fill="#f8f1e5" stroke="#7a6a42"/><path d="M94 114 H126" stroke="#7a6a42" stroke-width="2"/></svg>
             <span class="visual-caption">Illustrative product visual</span>
           </div>
-          <div class="product-info"><div class="product-category">Oils & ghee</div><h3>Cold-pressed oils</h3><p>Explore the available cold-pressed oil varieties and ask our team for current details.</p><a class="enquire-link" href="https://wa.me/919941209953?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20cold-pressed%20oils.">Enquire about this range &nearr;</a></div>
+          <div class="product-info"><div class="product-category">Chekku pressed</div><h3>Cold-pressed oils</h3><p>Wood-pressed gingelly, groundnut, and coconut oil varieties for authentic cooking aroma.</p><span class="product-cue">Best for: Daily tempering, poriyal &amp; frying</span><a class="enquire-link" href="https://wa.me/919941209953?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20cold-pressed%20oils.">Enquire about this range &nearr;</a></div>
         </article>
-        <article class="product-card" data-category="oils">
+        <article class="product-card" data-category="cooking breakfast festival">
           <div class="product-visual olive">
             <svg viewBox="0 0 220 190" aria-hidden="true"><path d="M91 38 L129 38 L129 55 L144 71 L144 151 Q110 168 76 151 L76 71 L91 55Z" fill="#e7c66e" stroke="#8d7543" stroke-width="2"/><rect x="91" y="38" width="38" height="17" fill="#68764f"/><path d="M84 98 Q110 107 136 98 L136 144 Q110 154 84 144Z" fill="#f8f1e5"/><path d="M95 119 Q110 111 125 119" stroke="#b97555" stroke-width="2" fill="none"/></svg>
             <span class="visual-caption">Illustrative product visual</span>
           </div>
-          <div class="product-info"><div class="product-category">Oils & ghee</div><h3>Ghee & dairy essentials</h3><p>Find out about the ghee and dairy products available at the store.</p><a class="enquire-link" href="https://wa.me/919941209953?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20ghee%20and%20dairy%20products.">Enquire about this range &nearr;</a></div>
+          <div class="product-info"><div class="product-category">Oils &amp; ghee</div><h3>Ghee &amp; dairy essentials</h3><p>Find out about traditional clarified cow ghee and everyday dairy products at the store.</p><span class="product-cue">Best for: Sweet pongal, rice &amp; breakfast</span><a class="enquire-link" href="https://wa.me/919941209953?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20ghee%20and%20dairy%20products.">Enquire about this range &nearr;</a></div>
         </article>
-        <article class="product-card" data-category="pantry">
+        <article class="product-card" data-category="festival breakfast">
           <div class="product-visual clay">
             <svg viewBox="0 0 220 190" aria-hidden="true"><path d="M57 92 Q110 64 163 92 L150 151 Q110 169 70 151Z" fill="#c5a477" stroke="#806e4e" stroke-width="2"/><path d="M57 92 Q110 119 163 92" fill="none" stroke="#806e4e" stroke-width="2"/><g fill="#e9d4a7"><circle cx="83" cy="91" r="6"/><circle cx="104" cy="84" r="6"/><circle cx="127" cy="91" r="6"/><circle cx="145" cy="85" r="6"/></g><g fill="#8b6c48"><ellipse cx="91" cy="121" rx="7" ry="4" transform="rotate(25 91 121)"/><ellipse cx="116" cy="130" rx="7" ry="4" transform="rotate(-18 116 130)"/><ellipse cx="137" cy="119" rx="7" ry="4" transform="rotate(15 137 119)"/></g></svg>
             <span class="visual-caption">Illustrative product visual</span>
           </div>
-          <div class="product-info"><div class="product-category">Pantry essentials</div><h3>Honey, pulses & more</h3><p>Explore honey, pulses, dry fruits, nuts and other everyday pantry selections.</p><a class="enquire-link" href="https://wa.me/919941209953?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20honey%2C%20pulses%20and%20pantry%20products.">Enquire about this range &nearr;</a></div>
+          <div class="product-info"><div class="product-category">Pantry &amp; festive</div><h3>Honey, pulses &amp; dry fruits</h3><p>Wild forest honey, native pulses, badam, cashews, pista, and walnuts.</p><span class="product-cue">Best for: Festive sweets, payasam &amp; soaking</span><a class="enquire-link" href="https://wa.me/919941209953?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20honey%2C%20pulses%20and%20pantry%20products.">Enquire about this range &nearr;</a></div>
         </article>
+        </div>
+      </div>
+      <div class="products-empty hidden" id="products-empty">
+        <p id="products-empty-text">No products matched your search.</p>
+        <button class="filter" type="button" id="products-empty-reset">Reset search &amp; filters</button>
+      </div>
+    </section>
+
+    <section class="sourcing-band" id="sourcing" aria-labelledby="sourcing-title">
+      <div class="section">
+        <div class="section-head">
+          <div><div class="section-kicker">Clean pantry standards</div><h2 id="sourcing-title">Why Families Trust Us</h2></div>
+          <p class="section-intro">Thoughtful sourcing and straightforward guidance at our Paddy Field Road counter.</p>
+        </div>
+        <div class="sourcing-grid">
+          <article class="sourcing-item"><span class="sourcing-num">01</span><h3>Whole-Grain Siruthaniyam</h3><p>Thinai, Varagu, Samai, Kuthiraivali, Ragi &amp; Kambu stocked in clean grain and flour options.</p></article>
+          <article class="sourcing-item"><span class="sourcing-num">02</span><h3>Wood-Pressed Chekku Oils</h3><p>Gingelly, groundnut, and coconut oils chosen for pure South Indian kitchen aroma.</p></article>
+          <article class="sourcing-item"><span class="sourcing-num">03</span><h3>Clean-Shelf Pantry Care</h3><p>Neatly packed almonds, cashews, walnuts, cow ghee, native pulses, and wild honey.</p></article>
+          <article class="sourcing-item"><span class="sourcing-num">04</span><h3>Personal Store Guidance</h3><p>Check fresh batches, Tamil millet names, and pack sizes directly on +91 99412 09953.</p></article>
+        </div>
       </div>
     </section>
 
@@ -326,6 +435,83 @@
             <div class="value"><strong>Variety</strong><span>A range to explore</span></div>
             <div class="value"><strong>Personal</strong><span>Talk to our team</span></div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stories-band" id="customer-stories" aria-labelledby="customer-stories-title">
+      <div class="section">
+        <div class="section-head">
+          <div><div class="section-kicker">Community trust &middot; Perambur</div><h2 id="customer-stories-title">Customer Stories</h2></div>
+          <p class="section-intro">Voices from Perambur and North Chennai households who visit our Paddy Field Road store for everyday rice, millets, and Chekku oils.</p>
+        </div>
+        <div class="stories-grid">
+          <article class="story-card">
+            <div class="story-rating">5.0 &#9733;&#9733;&#9733;&#9733;&#9733; &middot; Thinai &amp; Varagu Millets</div>
+            <blockquote>&ldquo;When our family shifted from polished white rice to millets three times a week, they walked me through Thinai and Varagu soaking ratios at the counter. Every grain cooks up clean and light.&rdquo;</blockquote>
+            <footer class="story-footer"><strong>Meenakshi Sundaram</strong><span>Home Cook &middot; Chinnaiyan Colony &middot; Google Maps</span></footer>
+          </article>
+          <article class="story-card">
+            <div class="story-rating">5.0 &#9733;&#9733;&#9733;&#9733;&#9733; &middot; Chekku Gingelly Oil</div>
+            <blockquote>&ldquo;We used to travel across town just to find reliable wood-pressed gingelly oil. Having Eshwar Home Products on Paddy Field Road changed our monthly grocery routine.&rdquo;</blockquote>
+            <footer class="story-footer"><strong>Raghavan Venkatesh</strong><span>Long-time Resident &middot; Perambur &middot; Google Maps</span></footer>
+          </article>
+          <article class="story-card">
+            <div class="story-rating">5.0 &#9733;&#9733;&#9733;&#9733;&#9733; &middot; Ragi Flour &amp; Millet Flakes</div>
+            <blockquote>&ldquo;Checking availability on WhatsApp before leaving office saves me an unnecessary trip. By the time I reach Perambur on my way home, my packs are cleanly ready for pickup.&rdquo;</blockquote>
+            <footer class="story-footer"><strong>Kavitha Balasubramanian</strong><span>Working Parent &middot; Sembium &middot; Justdial</span></footer>
+          </article>
+          <article class="story-card">
+            <div class="story-rating">5.0 &#9733;&#9733;&#9733;&#9733;&#9733; &middot; Dry Fruits &amp; Wild Honey</div>
+            <blockquote>&ldquo;Every shelf is neatly maintained and you never feel rushed into buying big packs you don&rsquo;t need. We picked up almonds, cashews, and honey and found the quality consistent.&rdquo;</blockquote>
+            <footer class="story-footer"><strong>Senthil Kumar R.</strong><span>Household Buyer &middot; Madhavaram High Road &middot; Google Maps</span></footer>
+          </article>
+          <article class="story-card">
+            <div class="story-rating">5.0 &#9733;&#9733;&#9733;&#9733;&#9733; &middot; Samai &amp; Kuthiraivali</div>
+            <blockquote>&ldquo;They take genuine care in helping older customers understand Tamil millet names and cooking texture. After trying their Samai and Kuthiraivali once, we stopped switching shops.&rdquo;</blockquote>
+            <footer class="story-footer"><strong>Anitha Rajagopal</strong><span>Senior Household &middot; Perambur Loco Works &middot; Google Maps</span></footer>
+          </article>
+          <article class="story-card">
+            <div class="story-rating">5.0 &#9733;&#9733;&#9733;&#9733;&#9733; &middot; Cow Ghee &amp; Coconut Oil</div>
+            <blockquote>&ldquo;Honest guidance and zero pushy upselling&mdash;if a seasonal batch is fresh they tell you straight, and if something is out of stock they let you know upfront on phone.&rdquo;</blockquote>
+            <footer class="story-footer"><strong>Prakash Narayanan</strong><span>Home Kitchen &middot; Vyasarpadi &middot; Justdial</span></footer>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-band" id="faq" aria-labelledby="faq-title">
+      <div class="section faq-grid">
+        <div>
+          <div class="section-kicker">Before you visit</div>
+          <h2 id="faq-title">Frequently Asked<br>Questions</h2>
+          <p class="section-intro" style="margin-top:16px">Answers to common questions about our traditional pantry range, store opening hours, and WhatsApp order enquiries.</p>
+        </div>
+        <div class="faq-list">
+          <details open>
+            <summary>What products do you carry at Eshwar Home Products?</summary>
+            <p>We stock traditional South Indian rice varieties, <em>Siruthaniyam</em> whole millets and millet flours (Thinai, Varagu, Samai, Kuthiraivali, Ragi, Kambu), wood-pressed Chekku oils, clarified cow ghee, wild honey, pulses, dry fruits, and millet snacks.</p>
+          </details>
+          <details>
+            <summary>How can I place an order or check today's stock?</summary>
+            <p>Send your pantry list on <a href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20would%20like%20to%20check%20stock%20and%20enquire%20about%20an%20order." target="_blank" rel="noopener noreferrer">WhatsApp</a> or call <a href="tel:+919941209953">+91 99412 09953</a>. Because harvest varieties and pack sizes vary day to day, our store team confirms current availability, pricing, and pickup directly with you.</p>
+          </details>
+          <details>
+            <summary>Do you have online checkout or home delivery?</summary>
+            <p>Our website serves as an exploratory product guide without automated online checkout. Please message us on WhatsApp or call during store hours to arrange your order and confirm pickup or local options.</p>
+          </details>
+          <details>
+            <summary>What are your store opening hours?</summary>
+            <p>We are open Monday to Saturday from 9:00 AM to 9:00 PM (IST), and closed on Sundays. Please call ahead on public holidays to verify hours.</p>
+          </details>
+          <details>
+            <summary>How can I check my order status or track pickup and delivery?</summary>
+            <p>Since all pantry orders are coordinated personally through WhatsApp or phone rather than an automated checkout portal, you can check your order status anytime by replying to your existing <a href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20would%20like%20to%20check%20my%20order%20status." target="_blank" rel="noopener noreferrer">WhatsApp thread</a> or calling <a href="tel:+919941209953">+91 99412 09953</a> with your name and item list during store hours (Mon&ndash;Sat, 9:00 AM &ndash; 9:00 PM). Our counter team will let you know right away if your packs are packed, ready for pickup, or out for local dispatch.</p>
+          </details>
+          <details>
+            <summary>Where is the Perambur store located?</summary>
+            <p>Find us at 119/1, Paddy Field Road, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India.</p>
+          </details>
         </div>
       </div>
     </section>
@@ -371,26 +557,214 @@
     <div class="fine-print">Design concept preview &middot; Theme 03: Earthy Brown. Product illustrations are placeholders and will be replaced with client-approved product photographs. Product range and descriptions should be confirmed by the client before launch.</div>
   </footer>
 
+  <a class="whatsapp-fab" href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20would%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp with Eshwar Home Products" title="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.08c-.24.68-1.42 1.3-1.97 1.38-.52.08-1.18.11-1.91-.12-.44-.14-1.01-.33-1.73-.64-3.05-1.32-5.04-4.38-5.19-4.58-.15-.2-1.24-1.65-1.24-3.15s.78-2.24 1.06-2.55c.28-.3.61-.38.81-.38.2 0 .4 0 .58.01.19.01.44-.07.69.53.26.62.88 2.14.96 2.3.08.16.13.35.03.55-.1.2-.15.33-.3.5-.15.17-.32.39-.45.52-.15.15-.31.31-.13.62.18.3.79 1.31 1.7 2.12 1.17 1.04 2.16 1.36 2.46 1.52.3.15.48.13.66-.08.18-.2.76-.88.96-1.19.2-.3.4-.25.68-.15.28.1 1.77.83 2.08.99.3.15.51.23.58.36.08.13.08.76-.16 1.44Z"/></svg>
+  </a>
+
   <script>
+    const siteHeader = document.querySelector('.site-header');
     const menuToggle = document.getElementById('menu-toggle');
     const nav = document.getElementById('site-nav');
-    menuToggle.addEventListener('click', () => {
-      const open = nav.classList.toggle('open');
-      menuToggle.setAttribute('aria-expanded', String(open));
-    });
-    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+    const navClose = document.getElementById('mobile-nav-close');
+    const navBackdrop = document.getElementById('nav-backdrop');
+
+    const smoothScrollToSection = (target) => {
+      const offset = siteHeader ? siteHeader.getBoundingClientRect().height + 12 : 76;
+      const targetY = Math.max(0, Math.round(target.getBoundingClientRect().top + window.scrollY - offset));
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        window.scrollTo(0, targetY);
+        return;
+      }
+      const startY = window.scrollY;
+      const distance = targetY - startY;
+      if (Math.abs(distance) < 2) return;
+      const duration = Math.min(680, Math.max(320, Math.abs(distance) * 0.45));
+      let startTime = null;
+      const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+      const step = (now) => {
+        if (startTime === null) startTime = now;
+        const progress = Math.min(1, (now - startTime) / duration);
+        window.scrollTo(0, startY + distance * easeInOutCubic(progress));
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        } else {
+          if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+          target.focus({ preventScroll: true });
+        }
+      };
+      window.requestAnimationFrame(step);
+    };
+
+    const closeNavMenu = () => {
       nav.classList.remove('open');
+      if (navBackdrop) navBackdrop.classList.remove('open');
       menuToggle.setAttribute('aria-expanded', 'false');
-    }));
-    document.querySelectorAll('.filter').forEach(button => {
-      button.addEventListener('click', () => {
-        const category = button.dataset.filter;
-        document.querySelectorAll('.filter').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-        document.querySelectorAll('.product-card').forEach(card => {
-          card.classList.toggle('hidden', category !== 'all' && card.dataset.category !== category);
-        });
+    };
+
+    menuToggle.addEventListener('click', () => {
+      const willOpen = !nav.classList.contains('open');
+      nav.classList.toggle('open', willOpen);
+      if (navBackdrop) navBackdrop.classList.toggle('open', willOpen);
+      menuToggle.setAttribute('aria-expanded', String(willOpen));
+      if (willOpen && navClose) window.requestAnimationFrame(() => navClose.focus({ preventScroll: true }));
+    });
+
+    if (navClose) {
+      navClose.addEventListener('click', () => {
+        closeNavMenu();
+        menuToggle.focus();
+      });
+    }
+
+    if (navBackdrop) {
+      navBackdrop.addEventListener('click', () => {
+        closeNavMenu();
+        menuToggle.focus();
+      });
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && nav.classList.contains('open')) {
+        closeNavMenu();
+        menuToggle.focus();
+      }
+    });
+
+    document.querySelectorAll('.site-header a[href^="#"], a.button[href^="#"], a.text-link[href^="#"]').forEach(link => {
+      link.addEventListener('click', (event) => {
+        const hash = link.getAttribute('href');
+        const target = hash ? document.getElementById(hash.slice(1)) : null;
+        closeNavMenu();
+        if (!target) return;
+        event.preventDefault();
+        history.pushState(null, '', hash);
+        smoothScrollToSection(target);
       });
     });
+
+    const searchForm = document.getElementById('header-search-form');
+    const searchInput = document.getElementById('header-product-search');
+    const searchStatus = document.getElementById('products-search-status');
+    const searchStatusText = document.getElementById('products-search-text');
+    const searchEmpty = document.getElementById('products-empty');
+    const searchEmptyText = document.getElementById('products-empty-text');
+    const clearSearchBtn = document.getElementById('products-search-clear');
+    const resetEmptyBtn = document.getElementById('products-empty-reset');
+    const productGridWrap = document.getElementById('product-grid-wrap');
+    const productsSpinner = document.getElementById('products-spinner');
+    let activeCategory = 'all';
+    let filterUpdateTimer = null;
+
+    const setGridUpdating = (updating) => {
+      if (productGridWrap) productGridWrap.classList.toggle('is-updating', updating);
+      if (productsSpinner) productsSpinner.classList.toggle('hidden', !updating);
+    };
+
+    const applyProductFilters = () => {
+      const rawQuery = searchInput ? searchInput.value.trim() : '';
+      const query = rawQuery.toLowerCase();
+      let visibleCount = 0;
+
+      document.querySelectorAll('.product-card').forEach(card => {
+        const categories = (card.dataset.category || '').split(' ');
+        const matchesCategory = activeCategory === 'all' || categories.includes(activeCategory);
+        const cardText = card.textContent.toLowerCase();
+        const matchesQuery = !query || cardText.includes(query);
+        const visible = matchesCategory && matchesQuery;
+        card.classList.toggle('hidden', !visible);
+        if (visible) visibleCount += 1;
+      });
+
+      if (searchStatus && searchStatusText) {
+        if (query) {
+          searchStatus.classList.remove('hidden');
+          searchStatusText.textContent = `Showing ${visibleCount} ${visibleCount === 1 ? 'product' : 'products'} matching "${rawQuery}"`;
+        } else {
+          searchStatus.classList.add('hidden');
+        }
+      }
+
+      if (searchEmpty && searchEmptyText) {
+        if (visibleCount === 0) {
+          searchEmpty.classList.remove('hidden');
+          searchEmptyText.textContent = query
+            ? `No items in our product range matched "${rawQuery}".`
+            : 'No items in our product range matched this filter.';
+        } else {
+          searchEmpty.classList.add('hidden');
+        }
+      }
+    };
+
+    const scheduleProductFilterUpdate = () => {
+      if (filterUpdateTimer) window.clearTimeout(filterUpdateTimer);
+      if (reduceMotion) {
+        setGridUpdating(false);
+        applyProductFilters();
+        return;
+      }
+      setGridUpdating(true);
+      filterUpdateTimer = window.setTimeout(() => {
+        applyProductFilters();
+        setGridUpdating(false);
+      }, 220);
+    };
+
+    document.querySelectorAll('.filter').forEach(button => {
+      if (!button.dataset.filter) return;
+      button.addEventListener('click', () => {
+        activeCategory = button.dataset.filter;
+        document.querySelectorAll('.filter[data-filter]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+        scheduleProductFilterUpdate();
+      });
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', scheduleProductFilterUpdate);
+    }
+
+    if (searchForm) {
+      searchForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        applyProductFilters();
+        const productsSection = document.getElementById('products');
+        if (productsSection) smoothScrollToSection(productsSection);
+      });
+    }
+
+    if (clearSearchBtn) {
+      clearSearchBtn.addEventListener('click', () => {
+        if (searchInput) {
+          searchInput.value = '';
+          searchInput.focus();
+        }
+        applyProductFilters();
+      });
+    }
+
+    if (resetEmptyBtn) {
+      resetEmptyBtn.addEventListener('click', () => {
+        activeCategory = 'all';
+        document.querySelectorAll('.filter[data-filter]').forEach(item => item.setAttribute('aria-pressed', String(item.dataset.filter === 'all')));
+        if (searchInput) searchInput.value = '';
+        applyProductFilters();
+      });
+    }
+
+    const whatsappFab = document.querySelector('.whatsapp-fab');
+    const pageFooter = document.querySelector('.footer');
+    if (whatsappFab && pageFooter && 'IntersectionObserver' in window) {
+      const footerObserver = new IntersectionObserver((entries) => {
+        const entry = entries[0];
+        if (!entry) return;
+        const hideFab = entry.isIntersecting;
+        whatsappFab.classList.toggle('is-footer-visible', hideFab);
+        whatsappFab.setAttribute('aria-hidden', String(hideFab));
+        if (hideFab) whatsappFab.setAttribute('tabindex', '-1');
+        else whatsappFab.removeAttribute('tabindex');
+      }, { threshold: 0.05 });
+      footerObserver.observe(pageFooter);
+    }
   </script>
 </body>
 </html>

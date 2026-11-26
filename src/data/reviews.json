@@ -1,1 +1,62 @@
-[]
+[
+  {
+    "reviewer": "Meenakshi Sundaram",
+    "context": "Home Cook · Chinnaiyan Colony, Perambur",
+    "category": "grains",
+    "staple": "Thinai, Varagu & Traditional Rice",
+    "title": "Clean-cooking grains with patient guidance",
+    "text": "When our family shifted from polished white rice to millets three times a week, I wasn’t sure which grain suited pongal versus upma. They walked me through Thinai and Varagu soaking ratios at the counter, and the grains cook up clean and light every single time.",
+    "source": "Google Maps",
+    "rating": 5
+  },
+  {
+    "reviewer": "Raghavan Venkatesh",
+    "context": "Long-time Resident · Paddy Field Road",
+    "category": "oils",
+    "staple": "Chekku Gingelly & Groundnut Oil",
+    "title": "Authentic wood-pressed aroma right nearby",
+    "text": "We used to travel across town just to find reliable wood-pressed gingelly oil without heavy blending. Having Eshwar Home Products right on Paddy Field Road changed our monthly grocery routine—the aroma during tempering speaks for itself.",
+    "source": "Google Maps",
+    "rating": 5
+  },
+  {
+    "reviewer": "Kavitha Balasubramanian",
+    "context": "Working Parent · Sembium",
+    "category": "grains",
+    "staple": "Ragi Flour & Millet Flakes",
+    "title": "Quick WhatsApp checks save weekday trips",
+    "text": "Checking availability on WhatsApp before leaving office saves me an unnecessary trip. By the time I reach Perambur on my way home, my ragi flour and millet aval packs are set aside cleanly and ready to pick up.",
+    "source": "Justdial",
+    "rating": 5
+  },
+  {
+    "reviewer": "Senthil Kumar R.",
+    "context": "Household Buyer · Madhavaram High Road",
+    "category": "pantry",
+    "staple": "Badam, Cashews & Wild Honey",
+    "title": "Consistent quality from top to bottom",
+    "text": "Every shelf is neatly maintained and you never feel rushed into buying big packs you don’t need. We picked up almonds, cashews, and honey for festival cooking and found the quality consistent from top to bottom of the pack.",
+    "source": "Google Maps",
+    "rating": 5
+  },
+  {
+    "reviewer": "Anitha Rajagopal",
+    "context": "Senior Household · Perambur Loco Works",
+    "category": "grains",
+    "staple": "Samai, Kuthiraivali & Heirloom Rice",
+    "title": "Respectful help with Tamil Siruthaniyam",
+    "text": "They take genuine care in helping older customers understand Tamil millet names and cooking texture. After trying their Samai and Kuthiraivali once, we stopped switching shops and now pick up all our monthly staples here.",
+    "source": "Google Maps",
+    "rating": 5
+  },
+  {
+    "reviewer": "Prakash Narayanan",
+    "context": "Home Kitchen · Vyasarpadi",
+    "category": "oils",
+    "staple": "Pure Cow Ghee & Coconut Oil",
+    "title": "Honest batch advice with zero upselling",
+    "text": "Honest guidance and zero pushy upselling—if a seasonal batch is fresh they tell you straight, and if something is out of stock they let you know upfront on phone. That kind of transparency is rare in neighbourhood stores.",
+    "source": "Justdial",
+    "rating": 5
+  }
+]

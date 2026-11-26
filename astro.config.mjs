@@ -21,4 +21,7 @@ export default defineConfig({
     allowedHosts: true,
   },
   integrations: [react()],
+  vite: {
+    envPrefix: ["PUBLIC_", "VITE_"],
+  },
 });
