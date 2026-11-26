@@ -1,14 +1,27 @@
 ---
-interface Props { current?: "home" | "about" | "products" | "contact" | "blog" | "kitchen-guides"; }
+import { storeConfig } from "../data/store";
+
+interface Props {
+  current?: "home" | "about" | "products" | "contact" | "blog" | "kitchen-guides";
+}
+
 const { current = "home" } = Astro.props;
 const base = import.meta.env.BASE_URL;
 ---
 <header class={`site-header ehp-site-header${current === "contact" ? " is-contact-page" : ""}`} data-base-url={base}>
   <div class="container header-inner">
-    <a class="wordmark" href={base} aria-label="Eshwar Home Products home">
-      <img class="wordmark-logo" src={base + "images/brand/eshwar-home-products-logo.png"} alt="" width="40" height="40" fetchpriority="high" decoding="async" />
-      <span class="wordmark-name">Eshwar Home Products</span>
+    <a class="wordmark" href={base} aria-label={`${storeConfig.name} home`}>
+      <img
+        class="wordmark-logo"
+        src={base + "images/brand/eshwar-home-products-logo-96.webp"}
+        alt=""
+        width="36"
+        height="36"
+        decoding="async"
+      />
+      <span class="wordmark-name">{storeConfig.name}</span>
     </a>
+
     <nav class="main-nav" id="primary-navigation" aria-label="Main navigation">
       <div class="mobile-nav-header">
         <span class="mobile-nav-title">Navigation</span>
@@ -18,21 +31,28 @@ const base = import.meta.env.BASE_URL;
         </button>
       </div>
       <a href={base} aria-current={current === "home" ? "page" : undefined}>Home</a>
-      <a href={base+"products/"} aria-current={current === "products" ? "page" : undefined}>The Pantry</a>
-      <a href={base+"about/"} aria-current={current === "about" ? "page" : undefined}>Our Story</a>
-      <a href={base+"kitchen-guides/"} aria-current={current === "blog" || current === "kitchen-guides" ? "page" : undefined}>Kitchen Guides</a>
-      <a href={base+"contact/"} aria-current={current === "contact" ? "page" : undefined}>Visit Us</a>
-      <a class="mobile-nav-contact" href="https://wa.me/919941209953" data-ehp-dialog="enquiry" aria-haspopup="dialog">WhatsApp Enquiry ↗</a>
+      <a href={base + "products/"} aria-current={current === "products" ? "page" : undefined}>The Pantry</a>
+      <a href={base + "about/"} aria-current={current === "about" ? "page" : undefined}>Our Story</a>
+      <a href={base + "kitchen-guides/"} aria-current={current === "blog" || current === "kitchen-guides" ? "page" : undefined}>Kitchen Guides</a>
+      <a href={base + "contact/"} aria-current={current === "contact" ? "page" : undefined}>Visit Us</a>
+      <a class="mobile-nav-contact" href={storeConfig.whatsappUrl} data-ehp-dialog="enquiry" aria-haspopup="dialog">WhatsApp Enquiry ↗</a>
     </nav>
     <div class="mobile-nav-backdrop" id="mobile-nav-backdrop" aria-hidden="true"></div>
-    <form class="header-search" role="search" aria-label="Search product range" data-ehp-header-search>
+
+    <form
+      id="header-search-form"
+      class="header-search"
+      role="search"
+      aria-label="Search product range"
+      data-ehp-header-search
+    >
       <label class="sr-only" for="ehp-header-search-input">Search products</label>
       <input
         id="ehp-header-search-input"
         class="header-search-input"
         type="search"
         name="q"
-        placeholder="Search rice, millets, oils..."
+        placeholder="Search pantry..."
         autocomplete="off"
       />
       <button class="header-search-btn" type="submit" aria-label="Search products">
@@ -42,12 +62,28 @@ const base = import.meta.env.BASE_URL;
         </svg>
       </button>
     </form>
+
     <div class="header-actions">
-      <a class="header-contact" href="https://wa.me/919941209953" data-ehp-dialog="enquiry" aria-haspopup="dialog">WhatsApp Enquiry ↗</a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation menu"><span class="menu-toggle-lines" aria-hidden="true"></span></button>
+      <button
+        class="mobile-search-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="header-search-form"
+        aria-label="Open product search"
+      >
+        <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="9" r="6" />
+          <path d="m14 14 4 4" />
+        </svg>
+      </button>
+      <a class="header-contact" href={storeConfig.whatsappUrl} data-ehp-dialog="enquiry" aria-haspopup="dialog">WhatsApp Enquiry ↗</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation menu">
+        <span class="menu-toggle-lines" aria-hidden="true"></span>
+      </button>
     </div>
   </div>
 </header>
+
 <script>
   const header = document.querySelector<HTMLElement>(".ehp-site-header");
   const baseUrl = header?.dataset.baseUrl || "/";
@@ -57,6 +93,7 @@ const base = import.meta.env.BASE_URL;
   const navBackdrop = document.querySelector<HTMLElement>("#mobile-nav-backdrop");
   const searchForm = document.querySelector<HTMLFormElement>("[data-ehp-header-search]");
   const searchInput = document.querySelector<HTMLInputElement>("#ehp-header-search-input");
+  const mobileSearchToggle = document.querySelector<HTMLButtonElement>(".mobile-search-toggle");
 
   const getHeaderOffset = () => (header ? header.getBoundingClientRect().height + 12 : 84);
 
@@ -106,8 +143,34 @@ const base = import.meta.env.BASE_URL;
 
   const normalizePath = (pathname: string) => (pathname.endsWith("/") ? pathname : `${pathname}/`);
 
+  const setMobileSearchOpen = (open: boolean, returnFocus = false) => {
+    if (!searchForm || !mobileSearchToggle) return;
+    searchForm.classList.toggle("is-mobile-open", open);
+    mobileSearchToggle.setAttribute("aria-expanded", String(open));
+    mobileSearchToggle.setAttribute("aria-label", open ? "Close product search" : "Open product search");
+    if (open) {
+      window.requestAnimationFrame(() => searchInput?.focus({ preventScroll: true }));
+    } else if (returnFocus) {
+      mobileSearchToggle.focus({ preventScroll: true });
+    }
+  };
+
+  if (mobileSearchToggle && searchForm) {
+    mobileSearchToggle.addEventListener("click", () => {
+      const expanded = mobileSearchToggle.getAttribute("aria-expanded") === "true";
+      setMobileSearchOpen(!expanded);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && mobileSearchToggle.getAttribute("aria-expanded") === "true") {
+        setMobileSearchOpen(false, true);
+      }
+    });
+  }
+
   const openNavigation = () => {
     if (!toggle || !navigation) return;
+    setMobileSearchOpen(false);
     toggle.setAttribute("aria-expanded", "true");
     toggle.setAttribute("aria-label", "Close navigation menu");
     navigation.classList.add("is-open");
@@ -206,6 +269,7 @@ const base = import.meta.env.BASE_URL;
     const initialQuery = new URLSearchParams(window.location.search).get("q") ?? "";
     if (initialQuery) {
       searchInput.value = initialQuery;
+      setMobileSearchOpen(true);
     }
 
     const broadcastSearch = (query: string) => {

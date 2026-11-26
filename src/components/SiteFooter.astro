@@ -1,40 +1,114 @@
 ---
+import { buildWhatsAppUrl, storeConfig } from "../data/store";
+
 const base = import.meta.env.BASE_URL;
+const whatsappHref = buildWhatsAppUrl(
+  "Hello Eshwar Home Products, I would like to enquire about products.",
+);
+const facebookUrl = storeConfig.socials.facebook.url;
 ---
 <footer class="site-footer">
   <div class="container footer-main">
     <div class="footer-brand">
       <div class="footer-brand-lockup">
-        <span class="footer-logo-badge"><img class="footer-logo" src={base + "images/brand/eshwar-home-products-logo.png"} alt="Eshwar Home Products emblem" width="56" height="44" loading="lazy" decoding="async" /></span>
+        <span class="footer-logo-badge">
+          <img
+            class="footer-logo"
+            src={base + "images/brand/eshwar-home-products-logo-96.webp"}
+            alt="Eshwar Home Products emblem"
+            width="44"
+            height="44"
+            loading="lazy"
+            decoding="async"
+          />
+        </span>
         <div class="footer-brand-copy">
-          <a class="footer-name footer-name-copy" href={base}>Eshwar Home Products</a>
-          <p class="footer-brand-tamil" lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</p>
+          <a class="footer-name footer-name-copy" href={base}>{storeConfig.name}</a>
+          <p class="footer-brand-tamil" lang="ta">{storeConfig.tamilName}</p>
         </div>
       </div>
-      <p>Traditional rice, Siruthaniyam millets, cold-pressed oils &amp; pantry essentials in Perambur, Chennai.</p>
+      <p>{storeConfig.tagline}</p>
+
+      <section class="footer-social-section" aria-labelledby="footer-social-heading">
+        <span class="footer-contact-heading" id="footer-social-heading">Follow Us</span>
+        <div class="footer-socials">
+          <a
+            class="footer-social-link"
+            href={storeConfig.socials.youtube.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Eshwar Home Products on YouTube"
+          >
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+              <path d="M21.58 7.19a2.75 2.75 0 0 0-1.94-1.95C17.93 4.78 12 4.78 12 4.78s-5.93 0-7.64.46A2.75 2.75 0 0 0 2.42 7.2 28.8 28.8 0 0 0 2 12a28.8 28.8 0 0 0 .42 4.81 2.75 2.75 0 0 0 1.94 1.95c1.71.46 7.64.46 7.64.46s5.93 0 7.64-.46a2.75 2.75 0 0 0 1.94-1.95A28.8 28.8 0 0 0 22 12a28.8 28.8 0 0 0-.42-4.81ZM10 15.1V8.9L15.4 12 10 15.1Z" />
+            </svg>
+            <span>YouTube</span>
+          </a>
+
+          <a
+            class="footer-social-link"
+            href={storeConfig.socials.instagram.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Eshwar Home Products on Instagram"
+          >
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+            </svg>
+            <span>Instagram</span>
+          </a>
+
+          {facebookUrl ? (
+            <a
+              class="footer-social-link"
+              href={facebookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Eshwar Home Products on Facebook"
+            >
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                <path d="M13.5 21v-7.6h2.55l.38-2.96H13.5V8.55c0-.86.24-1.44 1.47-1.44h1.57V4.46A21 21 0 0 0 14.25 4.34c-2.27 0-3.82 1.38-3.82 3.92v2.18H7.88v2.96h2.55V21h3.07Z" />
+              </svg>
+              <span>Facebook</span>
+            </a>
+          ) : (
+            <span
+              class="footer-social-link is-unconfigured"
+              aria-label="Facebook page link not yet configured"
+              title="Set PUBLIC_FACEBOOK_URL or storeConfig.socials.facebook.url in src/data/store.ts"
+            >
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                <path d="M13.5 21v-7.6h2.55l.38-2.96H13.5V8.55c0-.86.24-1.44 1.47-1.44h1.57V4.46A21 21 0 0 0 14.25 4.34c-2.27 0-3.82 1.38-3.82 3.92v2.18H7.88v2.96h2.55V21h3.07Z" />
+              </svg>
+              <span>Facebook</span>
+            </span>
+          )}
+        </div>
+      </section>
     </div>
+
     <nav class="footer-nav" aria-label="Footer navigation">
-      <a href={base+"about/"}>Our story</a>
-      <a href={base+"products/"}>The pantry</a>
-      <a href={base+"contact/"}>Visit us</a>
-      <a href={base+"perambur-millet-store/"}>Perambur guide</a>
-      <a href={base+"kitchen-guides/"}>Kitchen guides</a>
+      <a href={base + "about/"}>Our story</a>
+      <a href={base + "products/"}>The pantry</a>
+      <a href={base + "contact/"}>Visit us</a>
+      <a href={base + "perambur-millet-store/"}>Perambur guide</a>
+      <a href={base + "kitchen-guides/"}>Kitchen guides</a>
     </nav>
+
     <div class="footer-contact">
       <span class="footer-contact-heading">Call or WhatsApp</span>
-      <a class="footer-contact-link" href="tel:+919941209953">+91 99412 09953</a>
-      <a class="footer-contact-link footer-whatsapp-link" href="https://wa.me/919941209953" target="_blank" rel="noopener noreferrer">WhatsApp Enquiry ↗</a>
+      <a class="footer-contact-link" href={storeConfig.phoneHref}>{storeConfig.phoneDisplay}</a>
+      <a class="footer-contact-link footer-whatsapp-link" href={whatsappHref} target="_blank" rel="noopener noreferrer">WhatsApp Enquiry ↗</a>
       <span class="footer-contact-heading">Email</span>
-      <a class="footer-contact-link" data-email-contact href="mailto:info.eshwarhomeproducts@gmail.com">Send an email</a>
-      <span class="footer-hours">Mon–Sat: 9:00 AM – 9:00 PM · Sun: Closed</span>
+      <a class="footer-contact-link" data-email-contact href={storeConfig.emailHref}>{storeConfig.email}</a>
+      <span class="footer-hours">{storeConfig.shortHours}</span>
     </div>
   </div>
+
   <div class="container footer-bottom">
-    <span>119/1, Paddy Field Road, Chinnaiyan Colony, Perambur, Chennai 600011</span>
-    <div class="footer-socials">
-      <a class="footer-social-link" href="https://www.youtube.com/@EHP_PeramburOfficial" target="_blank" rel="noopener noreferrer">YouTube ↗</a>
-      <a class="footer-social-link" href="https://www.instagram.com/eshwar_home_products/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
-    </div>
-    <span>© {new Date().getFullYear()} Eshwar Home Products</span>
+    <span>{storeConfig.address}</span>
+    <span>© {new Date().getFullYear()} {storeConfig.name}</span>
   </div>
 </footer>

@@ -50,7 +50,7 @@
 .ehp-story-english {
   margin: 8px 0 0;
   color: var(--text-main);
-  font-size: .82rem;
+  font-size: .875rem;
   font-weight: 700;
   letter-spacing: .1em;
   text-wrap: balance;
@@ -59,7 +59,7 @@
   max-width: 290px;
   margin: 18px 0 0;
   color: var(--text-muted);
-  font-size: .88rem;
+  font-size: .9rem;
   line-height: 1.65;
   text-wrap: balance;
 }
@@ -75,7 +75,7 @@
   border-radius: 8px;
   background: var(--bg-subtle);
   color: var(--accent-green);
-  font-size: .82rem;
+  font-size: .84rem;
   font-weight: 600;
   text-decoration: none;
 }
@@ -86,7 +86,7 @@
   margin: 0 0 12px;
   color: var(--accent-brass);
   font-family: var(--sans);
-  font-size: .8rem;
+  font-size: .8125rem;
   font-weight: 600;
   letter-spacing: .02em;
   line-height: 1.5;
@@ -129,12 +129,12 @@
 }
 .ehp-story-values span {
   color: var(--accent-brass);
-  font-size: .74rem;
+  font-size: .8125rem;
   font-weight: 600;
 }
 .ehp-story-values strong {
   color: var(--text-main);
-  font-size: .82rem;
+  font-size: .875rem;
   line-height: 1.35;
   text-wrap: balance;
 }
@@ -326,7 +326,7 @@
 .ehp-about-range-link > span:first-child {
   grid-row: span 2;
   color: var(--accent-brass);
-  font-size: .78rem;
+  font-size: .8125rem;
   font-weight: 600;
 }
 .ehp-about-range-link strong {
@@ -339,7 +339,7 @@
 }
 .ehp-about-range-link > span:last-child {
   color: var(--accent-green);
-  font-size: .8rem;
+  font-size: .84rem;
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -376,7 +376,7 @@
 .ehp-commitment:last-child { padding-right: 0; border-right: 0; }
 .ehp-commitment-number {
   color: var(--accent-brass);
-  font-size: .8rem;
+  font-size: .8125rem;
   font-weight: 600;
 }
 .ehp-commitment h3 {
@@ -391,7 +391,7 @@
 .ehp-commitment p {
   margin: 12px 0 0;
   color: var(--text-muted);
-  font-size: .9rem;
+  font-size: .9375rem;
   line-height: 1.7;
 }
 
@@ -469,7 +469,7 @@
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  color: #C78A1B;
+  color: var(--accent-brass);
   font-size: 1.05rem;
   letter-spacing: 1px;
   line-height: 1;

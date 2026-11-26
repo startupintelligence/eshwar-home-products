@@ -1,5 +1,4 @@
 /* Mobile responsive rules aligned with the unified Mineral Ivory & Cardamom Forest design system. */
-*, *::before, *::after { box-sizing: border-box; }
 html, body { max-width: 100%; overflow-x: clip; }
 img, svg, video, iframe { max-width: 100%; }
 img, svg, video { height: auto; }
@@ -18,25 +17,17 @@ iframe { display: block; }
 @media (max-width: 768px) {
   .container, .discovery-container { width: calc(100% - 32px); max-width: 100%; min-width: 0; }
 
+  /* Non-sticky compact single-row mobile header */
   .site-header.ehp-site-header {
-    background: var(--bg-page) !important;
-    border-bottom: 1px solid var(--border-light) !important;
+    position: relative;
+    background: var(--bg-page);
+    border-bottom: 1px solid var(--border-light);
   }
   .site-header.ehp-site-header .header-inner {
-    min-height: 60px;
+    min-height: 58px;
     flex-wrap: wrap;
-    gap: 8px 12px;
-    padding-block: 8px;
-  }
-  .site-header.ehp-site-header .header-search {
-    order: 3;
-    flex: 1 0 100%;
-    width: 100%;
-    min-height: 44px;
-  }
-  .site-header.ehp-site-header .header-search-input,
-  .site-header.ehp-site-header .header-search-btn {
-    height: 42px;
+    gap: 8px 10px;
+    padding-block: 7px;
   }
   .site-header.ehp-site-header .wordmark {
     flex: 1 1 0;
@@ -51,6 +42,43 @@ iframe { display: block; }
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  /* Collapsible search under 768px */
+  .site-header.ehp-site-header .header-search {
+    display: none;
+    order: 4;
+    flex: 1 0 100%;
+    width: 100%;
+    min-height: 44px;
+  }
+  .site-header.ehp-site-header .header-search.is-mobile-open {
+    display: flex;
+  }
+  .site-header.ehp-site-header .header-search-input,
+  .site-header.ehp-site-header .header-search-btn {
+    height: 42px;
+    font-size: 0.9375rem;
+  }
+  .site-header.ehp-site-header .mobile-search-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    background: var(--bg-card);
+    color: var(--text-main);
+    cursor: pointer;
+  }
+  .site-header.ehp-site-header .mobile-search-toggle[aria-expanded="true"] {
+    border-color: var(--accent-green);
+    color: var(--accent-green);
+    background: var(--bg-subtle);
+  }
+
   .site-header.ehp-site-header .header-contact,
   .site-header.ehp-site-header.is-contact-page .header-contact {
     display: none;
@@ -138,7 +166,7 @@ iframe { display: block; }
   }
   .site-header.ehp-site-header .mobile-nav-title {
     color: var(--accent-brass);
-    font-size: 0.78rem;
+    font-size: 0.8125rem;
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -156,7 +184,7 @@ iframe { display: block; }
     background: var(--bg-card);
     color: var(--text-main);
     font-family: var(--sans);
-    font-size: 0.85rem;
+    font-size: 0.875rem;
     font-weight: 600;
     cursor: pointer;
   }
@@ -174,7 +202,7 @@ iframe { display: block; }
     border-bottom: 1px solid var(--border-light);
     background: transparent;
     color: var(--text-main);
-    font-size: 0.96rem;
+    font-size: 1rem;
     text-decoration: none;
   }
   .site-header.ehp-site-header .main-nav a:last-child { border-bottom: 0; }
@@ -182,6 +210,15 @@ iframe { display: block; }
   .site-header.ehp-site-header .main-nav .mobile-nav-contact {
     color: var(--accent-green);
     font-weight: 600;
+  }
+
+  /* Mobile Typography Floor (>= 0.9375rem body / >= 1rem Tamil / >= 0.8125rem labels) */
+  body {
+    font-size: 0.9375rem;
+  }
+
+  [lang="ta"] {
+    font-size: max(1rem, 1em);
   }
 
   .ehp-about-page .ehp-about-hero-inner,
@@ -206,6 +243,7 @@ iframe { display: block; }
     grid-template-columns: minmax(0, 1fr);
   }
 
+  /* 48px comfortable thumb-reach mobile action bar */
   .mobile-action-bar {
     position: fixed;
     z-index: 40;
@@ -226,12 +264,12 @@ iframe { display: block; }
   .mobile-action-bar button {
     display: flex;
     min-width: 0;
-    min-height: 44px;
+    min-height: 48px;
     align-items: center;
     justify-content: center;
     padding: 8px 12px;
     border-radius: 8px;
-    font-size: 0.86rem;
+    font-size: 0.9375rem;
     font-weight: 600;
     line-height: 1.2;
     text-align: center;
@@ -250,14 +288,17 @@ iframe { display: block; }
     color: #FFFFFF;
   }
 
-  .whatsapp-fab {
+  .contact-fab-wrap {
     right: 16px;
-    bottom: calc(74px + env(safe-area-inset-bottom, 0px));
-    width: 52px;
-    height: 52px;
+    bottom: calc(78px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .contact-fab-trigger {
+    width: 54px;
+    height: 54px;
   }
 
   .site-footer {
-    padding-bottom: calc(82px + env(safe-area-inset-bottom)) !important;
+    padding-bottom: calc(88px + env(safe-area-inset-bottom));
   }
 }
