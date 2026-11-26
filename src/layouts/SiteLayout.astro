@@ -2,6 +2,7 @@
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import FloatingActionCards from "../components/FloatingActionCards.astro";
+import ContactFab from "../components/ContactFab.astro";
 import "../styles/global.css";
 import "../styles/theme-2.css";
 import "../styles/shared-editorial.css";
@@ -28,19 +29,7 @@ const storeSchema = { "@context":"https://schema.org", "@type":"GroceryStore", "
 {import.meta.env.PUBLIC_GA4_ID && <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />}
 {includeStoreSchema && <script type="application/ld+json" set:html={JSON.stringify(storeSchema)} />}
 </head>
-<body><a class="skip-link" href="#main-content">Skip to content</a><SiteHeader current={current} /><main id="main-content"><slot /></main><SiteFooter /><FloatingActionCards />
-<a
-  class="whatsapp-fab"
-  href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20would%20like%20to%20enquire%20about%20products."
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Chat on WhatsApp with Eshwar Home Products"
-  title="Chat on WhatsApp"
->
-  <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true">
-    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.08c-.24.68-1.42 1.3-1.97 1.38-.52.08-1.18.11-1.91-.12-.44-.14-1.01-.33-1.73-.64-3.05-1.32-5.04-4.38-5.19-4.58-.15-.2-1.24-1.65-1.24-3.15s.78-2.24 1.06-2.55c.28-.3.61-.38.81-.38.2 0 .4 0 .58.01.19.01.44-.07.69.53.26.62.88 2.14.96 2.3.08.16.13.35.03.55-.1.2-.15.33-.3.5-.15.17-.32.39-.45.52-.15.15-.31.31-.13.62.18.3.79 1.31 1.7 2.12 1.17 1.04 2.16 1.36 2.46 1.52.3.15.48.13.66-.08.18-.2.76-.88.96-1.19.2-.3.4-.25.68-.15.28.1 1.77.83 2.08.99.3.15.51.23.58.36.08.13.08.76-.16 1.44Z" />
-  </svg>
-</a>
+<body><a class="skip-link" href="#main-content">Skip to content</a><SiteHeader current={current} /><main id="main-content"><slot /></main><SiteFooter /><FloatingActionCards /><ContactFab />
 <nav class="mobile-action-bar" aria-label="Quick store actions">
   <a class="mobile-action-call" href="tel:+919941209953">Call Store</a>
   <button class="mobile-action-whatsapp" type="button" data-ehp-dialog="enquiry" aria-haspopup="dialog">WhatsApp Enquiry ↗</button>
@@ -62,24 +51,6 @@ const storeSchema = { "@context":"https://schema.org", "@type":"GroceryStore", "
       });
     }, { rootMargin: '0px 0px -36px 0px', threshold: 0.08 });
     items.forEach((item) => observer.observe(item));
-  })();
-  (() => {
-    const whatsappFab = document.querySelector('.whatsapp-fab');
-    const siteFooter = document.querySelector('.site-footer');
-    if (!whatsappFab || !siteFooter || !('IntersectionObserver' in window)) return;
-    const footerObserver = new IntersectionObserver((entries) => {
-      const entry = entries[0];
-      if (!entry) return;
-      const hideFab = entry.isIntersecting;
-      whatsappFab.classList.toggle('is-footer-visible', hideFab);
-      whatsappFab.setAttribute('aria-hidden', String(hideFab));
-      if (hideFab) {
-        whatsappFab.setAttribute('tabindex', '-1');
-      } else {
-        whatsappFab.removeAttribute('tabindex');
-      }
-    }, { threshold: 0.05 });
-    footerObserver.observe(siteFooter);
   })();
 </script>
 <script>

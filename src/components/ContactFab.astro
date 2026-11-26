@@ -1,0 +1,174 @@
+---
+import { siteConfig } from "../app/config/site";
+---
+
+<div class="contact-fab" data-contact-fab>
+  <div class="contact-fab-menu" id="contact-fab-menu" hidden>
+    <a class="contact-fab-option" href={`mailto:${siteConfig.email}`} aria-label="Email Eshwar Home Products">
+      <span>Email</span>
+    </a>
+    <a class="contact-fab-option" href={siteConfig.whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Eshwar Home Products">
+      <span>Whatsapp</span>
+    </a>
+    <a class="contact-fab-option" href={`tel:${siteConfig.phoneLink}`} aria-label={`Call Eshwar Home Products at ${siteConfig.phoneDisplay}`}>
+      <span>Call Store</span>
+    </a>
+  </div>
+  <button
+    class="contact-fab-toggle"
+    type="button"
+    aria-label="Open contact options"
+    aria-expanded="false"
+    aria-controls="contact-fab-menu"
+    data-contact-toggle
+  >
+    Contact
+  </button>
+</div>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector('[data-contact-fab]');
+    if (!root || root.dataset.initialized === 'true') return;
+    root.dataset.initialized = 'true';
+
+    const toggle = root.querySelector('[data-contact-toggle]');
+    const menu = root.querySelector('#contact-fab-menu');
+    if (!(toggle instanceof HTMLButtonElement) || !(menu instanceof HTMLElement)) return;
+
+    const setOpen = (open) => {
+      menu.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close contact options' : 'Open contact options');
+      root.classList.toggle('is-open', open);
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!root.contains(event.target)) setOpen(false);
+    });
+
+    root.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+
+    const footer = document.querySelector('.site-footer');
+    if ('IntersectionObserver' in window && footer) {
+      const observer = new IntersectionObserver(([entry]) => {
+        if (!entry) return;
+        if (entry.isIntersecting) setOpen(false);
+        root.hidden = entry.isIntersecting;
+      }, { threshold: 0.05 });
+      observer.observe(footer);
+    }
+  })();
+</script>
+
+<style is:global>
+  .contact-fab {
+    position: fixed;
+    right: max(22px, env(safe-area-inset-right, 0px));
+    bottom: max(22px, env(safe-area-inset-bottom, 0px));
+    z-index: 45;
+    display: grid;
+    justify-items: end;
+    gap: 12px;
+  }
+
+  .contact-fab-toggle {
+    display: inline-grid;
+    width: 64px;
+    height: 64px;
+    place-items: center;
+    padding: 0;
+    border: 1.5px solid rgba(226, 183, 91, 0.8);
+    border-radius: 50%;
+    background: var(--accent-green);
+    color: #FFFFFF;
+    font: 700 0.82rem/1 var(--sans, "Plus Jakarta Sans", sans-serif);
+    cursor: pointer;
+    box-shadow: 0 10px 26px rgba(23, 29, 24, 0.24);
+    transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .contact-fab-toggle:hover {
+    transform: translateY(-2px);
+    background: var(--accent-green-hover);
+    box-shadow: 0 14px 30px rgba(23, 29, 24, 0.3);
+  }
+
+  .contact-fab-toggle:focus-visible,
+  .contact-fab-option:focus-visible {
+    outline: 3px solid var(--accent-gold, #E2B75B);
+    outline-offset: 3px;
+  }
+
+  .contact-fab-menu {
+    display: grid;
+    min-width: 164px;
+    gap: 7px;
+    padding: 9px;
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    background: var(--bg-card, #FAF9F6);
+    box-shadow: 0 12px 30px rgba(23, 29, 24, 0.18);
+  }
+
+  .contact-fab-menu[hidden] {
+    display: none;
+  }
+
+  .contact-fab-option {
+    display: flex;
+    min-height: 44px;
+    align-items: center;
+    padding: 9px 13px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: var(--text-main, #171D18);
+    font: 600 0.86rem/1.3 var(--sans, "Plus Jakarta Sans", sans-serif);
+    text-decoration: none;
+    transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+  }
+
+  .contact-fab-option:hover {
+    border-color: var(--border-light);
+    background: var(--bg-subtle, #F2F0EA);
+    color: var(--accent-green);
+  }
+
+  @media (max-width: 768px) {
+    .contact-fab {
+      right: max(16px, env(safe-area-inset-right, 0px));
+      bottom: calc(86px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .contact-fab-toggle {
+      width: 58px;
+      height: 58px;
+    }
+
+    .contact-fab-menu {
+      min-width: 156px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-fab-toggle,
+    .contact-fab-option {
+      transition: none;
+    }
+  }
+
+  @media print {
+    .contact-fab {
+      display: none !important;
+    }
+  }
+</style>
