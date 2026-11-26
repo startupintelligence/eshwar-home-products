@@ -4,8 +4,9 @@ import { buildWhatsAppUrl, storeConfig } from "../data/store";
 const whatsappHref = buildWhatsAppUrl(
   "Hello Eshwar Home Products, I would like to enquire about products.",
 );
+const emailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(storeConfig.email)}`;
 ---
-<div class="contact-fab-wrap" data-contact-fab>
+<div class="contact-fab-wrap" data-contact-fab data-phone={storeConfig.phoneDisplay}>
   <div
     class="contact-fab-menu"
     id="contact-fab-menu"
@@ -13,7 +14,7 @@ const whatsappHref = buildWhatsAppUrl(
     aria-label="Contact options"
     hidden
   >
-    <a class="contact-fab-option" href={storeConfig.emailHref}>
+    <a class="contact-fab-option" href={emailComposeUrl} target="_blank" rel="noopener noreferrer" aria-label={`Compose an email to ${storeConfig.email}`}>
       <span class="contact-fab-option-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <rect x="3" y="5" width="18" height="14" rx="2" />
@@ -54,6 +55,17 @@ const whatsappHref = buildWhatsAppUrl(
         <span>{storeConfig.phoneDisplay}</span>
       </span>
     </a>
+
+    <button class="contact-fab-option contact-fab-copy" type="button" data-copy-phone aria-label={`Copy store phone number ${storeConfig.phoneDisplay}`}>
+      <span class="contact-fab-option-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3" /></svg>
+      </span>
+      <span class="contact-fab-option-copy">
+        <strong>Copy phone number</strong>
+        <span>{storeConfig.phoneDisplay}</span>
+      </span>
+    </button>
+    <p class="contact-fab-status" data-copy-status role="status" aria-live="polite"></p>
   </div>
 
   <button
@@ -83,6 +95,8 @@ const whatsappHref = buildWhatsAppUrl(
   const fabTrigger = fabWrap?.querySelector<HTMLButtonElement>(".contact-fab-trigger");
   const fabMenu = fabWrap?.querySelector<HTMLElement>("#contact-fab-menu");
   const siteFooter = document.querySelector<HTMLElement>(".site-footer");
+  const copyPhoneButton = fabMenu?.querySelector<HTMLButtonElement>("[data-copy-phone]");
+  const copyStatus = fabMenu?.querySelector<HTMLElement>("[data-copy-status]");
 
   if (fabWrap && fabTrigger && fabMenu) {
     const setMenuOpen = (open: boolean, returnFocus = false) => {
@@ -95,6 +109,29 @@ const whatsappHref = buildWhatsAppUrl(
         fabTrigger.focus({ preventScroll: true });
       }
     };
+
+    copyPhoneButton?.addEventListener("click", async () => {
+      const phoneNumber = fabWrap.dataset.phone ?? "";
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(phoneNumber);
+        } else {
+          const field = document.createElement("textarea");
+          field.value = phoneNumber;
+          field.setAttribute("readonly", "");
+          field.style.position = "fixed";
+          field.style.opacity = "0";
+          document.body.appendChild(field);
+          field.select();
+          const copied = document.execCommand("copy");
+          field.remove();
+          if (!copied) throw new Error("Clipboard unavailable");
+        }
+        if (copyStatus) copyStatus.textContent = "Phone number copied.";
+      } catch {
+        if (copyStatus) copyStatus.textContent = `Please copy the number shown: ${phoneNumber}`;
+      }
+    });
 
     fabTrigger.addEventListener("click", () => {
       const isOpen = fabTrigger.getAttribute("aria-expanded") === "true";

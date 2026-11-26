@@ -30,7 +30,7 @@ A static, editorial-style website for Eshwar Home Products in Perambur, Chennai.
     npm run build
     npm run preview
 
-The Firestore rules suite uses the local emulator. It tests public reads, editor permissions, and immutable audit history. The production build is generated in dist/ and deployed to GitHub Pages by .github/workflows/deploy.yml.
+The Firestore rules suite uses the local emulator. It tests public reads, editor permissions, and immutable audit history. The production build is generated in dist/. Vercel is the configured canonical site host at https://eshwar-home-products.vercel.app and provides pull-request preview deployments. The GitHub Actions workflow also builds the static site and deploys a GitHub Pages copy on pushes to main.
 
 ## Product content and photography
 
@@ -55,4 +55,4 @@ Only accounts with an active admin_users/{uid} record and role products-contact 
 
 ## Deployment
 
-The feature branch builds and tests but does not deploy. The repository's GitHub Pages setting must use GitHub Actions as its source before the main branch can deploy this Astro site. Do not merge or publish without approval.
+Pull requests run the GitHub Actions checks and receive a Vercel preview URL. The GitHub Pages deploy job is restricted to main; Vercel handles the configured site deployment and PR previews. Feature branches never replace the production site. Review the preview and required checks before merging.

@@ -1,5 +1,6 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
+import { Image } from "astro:assets";
 import StoreLocationMap from "../components/StoreLocationMap";
 import reviewData from "../data/reviews.json";
 import "../styles/mobile-responsive.css";
@@ -8,6 +9,8 @@ import riceImg from "../assets/images/pantry_traditional_rice_1795627178963.jpg"
 import milletsImg from "../assets/images/pantry_whole_millets_1795627178343.jpg";
 import oilsImg from "../assets/images/pantry_cold_pressed_oils_1795627178653.jpg";
 import gheeHoneyImg from "../assets/images/pantry_ghee_honey_1795627179772.jpg";
+import badamImg from "../assets/images/ESH_Badam_Pack.jpeg";
+import ragiImg from "../assets/images/ESH_Ragi_Pack.jpeg";
 
 interface CustomerReview {
   reviewer: string;
@@ -26,19 +29,19 @@ const whatsappUrl = "https://wa.me/919941209953";
 const ask = (item: string) => whatsappUrl + "?text=" + encodeURIComponent("Hello Eshwar Home Products, please help me check today's availability and pack sizes for " + item + ".");
 
 const categories = [
-  { title: "Grains & Millets", subtitle: "Siruthaniyam & Rice", item: "grains and millets", image: riceImg.src },
-  { title: "Chekku Oils", subtitle: "Wood-Pressed Purity", item: "cold-pressed oils", image: oilsImg.src },
-  { title: "Whole Millets", subtitle: "Thinai, Varagu & Samai", item: "whole millets", image: milletsImg.src },
-  { title: "Dry Fruits & Nuts", subtitle: "Badam, Cashew & Pista", item: "dry fruits and nuts", image: `${base}images/products/ESH_Badam_Pack.jpeg` },
-  { title: "Ragi & Snacks", subtitle: "Flours, Cookies & Sevai", item: "ragi and millet snacks", image: `${base}images/products/ESH_Ragi_Pack.jpeg` },
-  { title: "Ghee & Honey", subtitle: "Cow Ghee & Wild Honey", item: "ghee and wild honey", image: gheeHoneyImg.src }
+  { title: "Grains & Millets", subtitle: "Siruthaniyam & Rice", item: "grains and millets", image: riceImg },
+  { title: "Chekku Oils", subtitle: "Wood-Pressed Purity", item: "cold-pressed oils", image: oilsImg },
+  { title: "Whole Millets", subtitle: "Thinai, Varagu & Samai", item: "whole millets", image: milletsImg },
+  { title: "Dry Fruits & Nuts", subtitle: "Badam, Cashew & Pista", item: "dry fruits and nuts", image: badamImg },
+  { title: "Ragi & Snacks", subtitle: "Flours, Cookies & Sevai", item: "ragi and millet snacks", image: ragiImg },
+  { title: "Ghee & Honey", subtitle: "Cow Ghee & Wild Honey", item: "ghee and wild honey", image: gheeHoneyImg }
 ];
 
 const featuredProducts = [
   {
     category: "Heirloom Staples",
     title: "Traditional Rice",
-    image: riceImg.src,
+    image: riceImg,
     alt: "Traditional South Indian heirloom rice varieties in ceramic and brass bowls",
     enquiry: "traditional rice varieties",
     description: "Familiar and heirloom South Indian rice varieties for everyday home meals.",
@@ -51,7 +54,7 @@ const featuredProducts = [
     title: "Whole Millets & Flours",
     featured: true,
     featuredLabel: "Featured · Fresh Harvest",
-    image: milletsImg.src,
+    image: milletsImg,
     alt: "Whole millets including foxtail millet, finger millet ragi, and pearl millet in ceramic bowls",
     enquiry: "whole millets and millet varieties",
     description: "Thinai, Varagu, Samai, Kuthiraivali, Ragi, and Kambu in whole grain and flour.",
@@ -62,7 +65,7 @@ const featuredProducts = [
   {
     category: "Tiffin & Teatime",
     title: "Ragi & Millet Snacks",
-    image: `${base}images/products/ESH_Ragi_Pack.jpeg`,
+    image: ragiImg,
     alt: "Packaged ragi millet staples and nutritious snacks from Eshwar Home Products",
     enquiry: "ragi, millet cookies, flakes and sevai",
     description: "Sprouted ragi flours, millet flakes, vermicelli, pasta, and everyday tiffin snacks.",
@@ -73,7 +76,7 @@ const featuredProducts = [
   {
     category: "Chekku Pressed",
     title: "Cold-Pressed Oils",
-    image: oilsImg.src,
+    image: oilsImg,
     alt: "Cold-pressed gingelly sesame oil and groundnut oil in glass bottles with sesame seeds and peanuts",
     enquiry: "cold-pressed oils",
     description: "Wood-pressed gingelly, groundnut, and coconut oils chosen for everyday cooking.",
@@ -84,7 +87,7 @@ const featuredProducts = [
   {
     category: "Kitchen Pure",
     title: "Pure Ghee & Wild Honey",
-    image: gheeHoneyImg.src,
+    image: gheeHoneyImg,
     alt: "Artisanal clarified cow ghee and wild forest honey in glass jars on limestone",
     enquiry: "ghee and honey",
     description: "Traditional clarified cow ghee, everyday dairy, and pure wild forest honey.",
@@ -95,7 +98,7 @@ const featuredProducts = [
   {
     category: "Pantry & Festive",
     title: "Badam, Cashews & Nuts",
-    image: `${base}images/products/ESH_Badam_Pack.jpeg`,
+    image: badamImg,
     alt: "Cleanly packed whole almonds, cashews, and pantry dry fruits at Eshwar Home Products",
     enquiry: "badam, cashews, pista and dry fruits",
     description: "Cleanly packed almonds, cashews, pistachios, walnuts, and native pantry pulses.",
@@ -205,15 +208,15 @@ const sourcingHighlights = [
             data-ehp-items={JSON.stringify([category.item])}
             aria-haspopup="dialog"
           >
-            <img
+            <Image
               class="home-category-thumb"
               src={category.image}
               alt=""
-              width="52"
-              height="52"
+              width={160}
+              format="webp"
+              quality={60}
               loading="lazy"
               decoding="async"
-              referrerpolicy="no-referrer"
             />
             <span class="home-category-copy">
               <strong>{category.title}</strong>
@@ -296,15 +299,16 @@ const sourcingHighlights = [
                 {product.featured && (
                   <span class="home-product-featured-tag">{product.featuredLabel ?? "Featured"}</span>
                 )}
-                <img
-                src={product.image}
-                alt={product.alt}
-                width="1200"
-                height="900"
-                loading="lazy"
-                decoding="async"
-                referrerpolicy="no-referrer"
-              />
+                <Image
+                  src={product.image}
+                  alt={product.alt}
+                  widths={[400, 800]}
+                  sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  format="webp"
+                  quality={70}
+                  loading="lazy"
+                  decoding="async"
+                />
               <button
                 class="home-product-overlay-trigger"
                 type="button"
@@ -409,7 +413,7 @@ const sourcingHighlights = [
             aria-haspopup="dialog"
           >
             <img
-              src={base + "images/brand/eshwar-home-products-logo.png"}
+              src={base + "images/brand/eshwar-home-products-logo-400.webp"}
               alt="Official Eshwar Home Products emblem with Rudraksha bead, golden Trishuls, Damrus and lemons"
               width="200"
               height="200"
@@ -720,7 +724,7 @@ const sourcingHighlights = [
   .home-hero-media {
     position: relative;
     margin: 0;
-    min-height: 360px;
+    min-height: clamp(420px, 40vw, 560px);
     border-radius: 14px;
     overflow: hidden;
     background: var(--bg-subtle);
@@ -946,7 +950,7 @@ const sourcingHighlights = [
 
   .home-product-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 24px;
     transition: opacity 160ms var(--ease-out);
   }
@@ -989,10 +993,17 @@ const sourcingHighlights = [
     pointer-events: none;
   }
 
-  .home-product-card:hover {
-    transform: translateY(-4px) scale(1.018);
+  .home-product-card:hover,
+  .home-product-card:focus-within {
+    transform: translateY(-3px);
     border-color: rgba(24, 56, 40, 0.42);
-    box-shadow: 0 14px 32px rgba(23, 29, 24, 0.09);
+    box-shadow: 0 12px 26px rgba(23, 29, 24, 0.08);
+  }
+
+  .home-category-item:focus-visible {
+    outline: 3px solid var(--accent-green);
+    outline-offset: -3px;
+    background: var(--bg-subtle);
   }
 
   .home-product-media {
@@ -1741,7 +1752,9 @@ const sourcingHighlights = [
   }
 
   @media (max-width: 1024px) {
-    .home-product-grid,
+    .home-product-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
     .home-stories-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -1766,6 +1779,9 @@ const sourcingHighlights = [
   }
 
   @media (max-width: 860px) {
+    .home-product-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
     .home-hero-grid,
     .home-story-layout,
     .home-visit-faq-grid {

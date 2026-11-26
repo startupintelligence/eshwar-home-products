@@ -302,3 +302,31 @@ iframe { display: block; }
     padding-bottom: calc(88px + env(safe-area-inset-bottom));
   }
 }
+
+
+/* Consistent readable mobile text floors across home and pantry pages. */
+@media (max-width: 768px) {
+  main p:not(.eyebrow):not(.home-product-category):not(.home-product-cue):not(.home-meta-line):not(.home-hero-proof):not(.home-hero-caption) {
+    font-size: max(0.9375rem, 1em);
+  }
+  main li:not([data-mobile-size]),
+  main dd:not([data-mobile-size]),
+  main .pantry-stock-note:not([data-mobile-size]),
+  main .pantry-search-status:not([data-mobile-size]) {
+    font-size: max(0.9375rem, 1em);
+  }
+  main .eyebrow:not([data-mobile-size]),
+  main .home-meta-line:not([data-mobile-size]),
+  main .home-hero-proof:not([data-mobile-size]),
+  main .home-product-category:not([data-mobile-size]),
+  main .home-product-cue:not([data-mobile-size]),
+  main .home-product-featured-tag:not([data-mobile-size]),
+  main .home-category-copy > span:not([data-mobile-size]),
+  main .representative-caption:not([data-mobile-size]),
+  main .kitchen-cue-label:not([data-mobile-size]),
+  main .meal-occasions span:not([data-mobile-size]),
+  main .pantry-search-clear:not([data-mobile-size]),
+  main .pantry-real-photo-grid span:not([data-mobile-size]) {
+    font-size: 0.8125rem;
+  }
+}
