@@ -1265,7 +1265,8 @@ input:focus-visible {
   position: fixed;
   right: max(22px, env(safe-area-inset-right, 0px));
   bottom: max(22px, env(safe-area-inset-bottom, 0px));
-  z-index: 45;
+  z-index: 70;
+  pointer-events: auto;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
