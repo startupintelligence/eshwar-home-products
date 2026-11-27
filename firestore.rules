@@ -1,70 +1,86 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    function signedIn() {
-      return request.auth != null;
-    }
-
+    function signedIn() { return request.auth != null; }
     function isClientEditor() {
       return signedIn()
         && exists(/databases/$(database)/documents/admin_users/$(request.auth.uid))
         && get(/databases/$(database)/documents/admin_users/$(request.auth.uid)).data.active == true
         && get(/databases/$(database)/documents/admin_users/$(request.auth.uid)).data.role == 'products-contact';
     }
-
+    function isAnonymousSubmitter() {
+      return signedIn() && request.auth.token.firebase.sign_in_provider == 'anonymous';
+    }
+    function submissionLimitAfter() {
+      let limitPath = /databases/$(database)/documents/public_submission_limits/$(request.auth.uid);
+      return existsAfter(limitPath)
+        && getAfter(limitPath).data.keys().hasOnly(['lastSubmittedAt'])
+        && getAfter(limitPath).data.lastSubmittedAt == request.time;
+    }
+    function validPublicSubmissionLimit() {
+      return request.resource.data.keys().hasOnly(['lastSubmittedAt'])
+        && request.resource.data.keys().hasAll(['lastSubmittedAt'])
+        && request.resource.data.lastSubmittedAt == request.time;
+    }
+    function validCustomerName() {
+      return request.resource.data.customerName is string
+        && request.resource.data.customerName.size() >= 2
+        && request.resource.data.customerName.size() <= 60;
+    }
+    function validReview() {
+      return request.resource.data.keys().hasOnly(['customerName', 'rating', 'reviewText', 'status', 'createdAt'])
+        && request.resource.data.keys().hasAll(['customerName', 'rating', 'reviewText', 'status', 'createdAt'])
+        && validCustomerName()
+        && request.resource.data.rating is int
+        && request.resource.data.rating >= 1 && request.resource.data.rating <= 5
+        && request.resource.data.reviewText is string
+        && request.resource.data.reviewText.size() >= 15 && request.resource.data.reviewText.size() <= 1200
+        && request.resource.data.status == 'pending'
+        && request.resource.data.createdAt == request.time;
+    }
+    function validComment() {
+      return request.resource.data.keys().hasOnly(['customerName', 'commentText', 'status', 'createdAt'])
+        && request.resource.data.keys().hasAll(['customerName', 'commentText', 'status', 'createdAt'])
+        && validCustomerName()
+        && request.resource.data.commentText is string
+        && request.resource.data.commentText.size() >= 5 && request.resource.data.commentText.size() <= 1000
+        && request.resource.data.status == 'pending'
+        && request.resource.data.createdAt == request.time;
+    }
+    function validModerationUpdate() {
+      return isClientEditor() && resource.data.status == 'pending'
+        && request.resource.data.status in ['approved', 'rejected']
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'updatedAt']);
+    }
     function validProductData(productId, expectedStatus) {
       let data = request.resource.data;
-      return data.keys().hasAll([
-          'id', 'name', 'categoryId', 'description', 'available', 'status', 'updatedAt'
-        ])
-        && data.keys().hasOnly([
-          'id', 'name', 'categoryId', 'description', 'available', 'status', 'updatedAt',
-          'price', 'imagePath'
-        ])
-        && data.id == productId
-        && data.name is string
-        && data.name.size() > 0
-        && data.name.size() <= 100
-        && data.categoryId in ['grains', 'oils', 'pantry']
-        && data.description is string
-        && data.description.size() <= 500
-        && data.available is bool
-        && data.status == expectedStatus
-        && data.updatedAt == request.time
-        && (!data.keys().hasAny(['price'])
-          || (data.price is number && data.price >= 0 && data.price <= 10000000))
-        && (!data.keys().hasAny(['imagePath'])
-          || (data.imagePath is string && data.imagePath.size() <= 500));
+      return data.keys().hasAll(['id', 'name', 'categoryId', 'description', 'available', 'status', 'updatedAt'])
+        && data.keys().hasOnly(['id', 'name', 'categoryId', 'description', 'available', 'status', 'updatedAt', 'price', 'imagePath'])
+        && data.id == productId && data.name is string && data.name.size() > 0 && data.name.size() <= 100
+        && data.categoryId in ['grains', 'oils', 'pantry'] && data.description is string && data.description.size() <= 500
+        && data.available is bool && data.status == expectedStatus && data.updatedAt == request.time
+        && (!data.keys().hasAny(['price']) || (data.price is number && data.price >= 0 && data.price <= 10000000))
+        && (!data.keys().hasAny(['imagePath']) || (data.imagePath is string && data.imagePath.size() <= 500));
     }
-
     function validChangeHistoryEntry() {
       return request.resource.data.keys().hasAll(['actorUid', 'action', 'entityType', 'entityId', 'summary', 'createdAt'])
         && request.resource.data.keys().hasOnly(['actorUid', 'action', 'entityType', 'entityId', 'summary', 'createdAt'])
         && request.resource.data.actorUid == request.auth.uid
         && request.resource.data.action in ['create', 'update', 'delete', 'publish', 'settings_update']
         && request.resource.data.entityType in ['product', 'site_settings']
-        && request.resource.data.entityId is string
-        && request.resource.data.entityId.size() > 0
-        && request.resource.data.summary is string
-        && request.resource.data.summary.size() <= 280
+        && request.resource.data.entityId is string && request.resource.data.entityId.size() > 0
+        && request.resource.data.summary is string && request.resource.data.summary.size() <= 280
         && request.resource.data.createdAt == request.time;
     }
-
-    match /admin_users/{userId} {
-      allow read: if signedIn() && request.auth.uid == userId;
-      allow write: if false;
-    }
+    match /admin_users/{userId} { allow read: if signedIn() && request.auth.uid == userId; allow write: if false; }
     function validPublishedProductWrite(productId) {
       let draftPath = /databases/$(database)/documents/product_drafts/$(productId);
-      return exists(draftPath)
-        && !existsAfter(draftPath)
-        && validProductData(productId, 'published')
+      return exists(draftPath) && !existsAfter(draftPath) && validProductData(productId, 'published')
         && request.resource.data.diff(get(draftPath).data).affectedKeys().hasOnly(['status', 'updatedAt']);
     }
-
     match /products/{productId} {
       allow read: if resource.data.status == 'published' || isClientEditor();
-      // Publishing must atomically promote the matching draft and remove it.
       allow create, update: if isClientEditor() && validPublishedProductWrite(productId);
       allow delete: if false;
     }
@@ -73,24 +89,31 @@ service cloud.firestore {
       allow create, update: if isClientEditor() && validProductData(draftId, 'draft');
       allow delete: if isClientEditor();
     }
-    match /categories/{categoryId} {
-      allow read: if resource.data.published == true || isClientEditor();
-      allow create, update, delete: if isClientEditor();
+    match /categories/{categoryId} { allow read: if resource.data.published == true || isClientEditor(); allow create, update, delete: if isClientEditor(); }
+    match /site_settings/{documentId} { allow read: if documentId == 'public' || isClientEditor(); allow create, update, delete: if isClientEditor(); }
+    match /site_settings_drafts/{documentId} { allow read, create, update, delete: if isClientEditor(); }
+    match /change_history/{changeId} { allow read: if isClientEditor(); allow create: if isClientEditor() && validChangeHistoryEntry(); allow update, delete: if false; }
+    match /public_submission_limits/{userId} {
+      allow read: if false;
+      allow create: if isAnonymousSubmitter() && request.auth.uid == userId && validPublicSubmissionLimit();
+      allow update: if isAnonymousSubmitter() && request.auth.uid == userId
+        && resource.data.lastSubmittedAt is timestamp
+        && resource.data.lastSubmittedAt + duration.value(60, 's') <= request.time
+        && validPublicSubmissionLimit();
+      allow delete: if false;
     }
-    match /site_settings/{documentId} {
-      allow read: if documentId == 'public' || isClientEditor();
-      allow create, update, delete: if isClientEditor();
+    match /customer_reviews/{reviewId} {
+      allow read: if resource.data.status == 'approved' || isClientEditor();
+      allow create: if isAnonymousSubmitter() && submissionLimitAfter() && validReview();
+      allow update: if validModerationUpdate();
+      allow delete: if isClientEditor();
     }
-    match /site_settings_drafts/{documentId} {
-      allow read, create, update, delete: if isClientEditor();
+    match /customer_comments/{commentId} {
+      allow read: if resource.data.status == 'approved' || isClientEditor();
+      allow create: if isAnonymousSubmitter() && submissionLimitAfter() && validComment();
+      allow update: if validModerationUpdate();
+      allow delete: if isClientEditor();
     }
-    match /change_history/{changeId} {
-      allow read: if isClientEditor();
-      allow create: if isClientEditor() && validChangeHistoryEntry();
-      allow update, delete: if false;
-    }
-    match /{document=**} {
-      allow read, write: if false;
-    }
+    match /{document=**} { allow read, write: if false; }
   }
 }
