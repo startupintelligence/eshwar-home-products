@@ -322,5 +322,12 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
   .pantry-search-clear { border:0; padding:4px 0; background:transparent; color:var(--accent-green); font-size:.875rem; font-weight:600; text-decoration:underline; text-underline-offset:4px; cursor:pointer; }
   .pantry-search-empty { margin:18px 0; padding:24px; border:1px solid var(--border-light); border-radius:12px; background:var(--bg-card); }
   .pantry-search-empty p { margin:0 0 12px; color:var(--text-muted); font-size:.9375rem; }
-  @media(max-width:760px) { .pantry-intro-row,.pantry-group { grid-template-columns:minmax(0,1fr); gap:16px; } .pantry-group-visual { max-width:560px; } }
+  @media(max-width:760px) {
+    .pantry-hero { padding: 28px 0 34px; }
+    .pantry-intro-row,.pantry-group { grid-template-columns:minmax(0,1fr); gap:16px; }
+    .pantry-group-visual { max-width:560px; }
+    .kitchen-cues li { min-height: 44px; padding: 2px 12px; }
+    .pantry-quickview-trigger,
+    .pantry-page .shelf-whatsapp-link { width: 100%; margin: 10px 0 0; }
+  }
 </style>

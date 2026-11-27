@@ -233,15 +233,18 @@ import { storeConfig } from "../data/store";
     padding: 28px;
   }
   @media (max-width: 760px) {
-    .contact-hero-grid { grid-template-columns: 1fr; gap: 26px; }
-    .contact-hero-card { max-width: 520px; }
+    .contact-hero { padding: 28px 0 34px; }
+    .contact-hero-grid { grid-template-columns: 1fr; gap: 22px; }
+    .contact-hero-card { max-width: 520px; padding: 20px; }
     .contact-layout,
     .youtube-promo { width: calc(100% - 32px); }
+    .contact-list a { display: inline-flex; min-height: 44px; align-items: center; }
     .directions-panel { padding: 20px; }
   }
-  @media (max-width: 420px) {
-    .contact-hero-card { padding: 20px; }
+  @media (max-width: 600px) {
     .contact-actions { display: grid; grid-template-columns: 1fr; }
+    .contact-call-button,
+    .contact-whatsapp-button { width: 100%; }
   }
   @media (prefers-reduced-motion: reduce) {
     .social-profile-card,

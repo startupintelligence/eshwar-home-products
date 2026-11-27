@@ -17,10 +17,12 @@ iframe { display: block; }
 @media (max-width: 768px) {
   .container, .discovery-container { width: calc(100% - 32px); max-width: 100%; min-width: 0; }
 
-  /* Non-sticky compact single-row mobile header */
+  /* Non-sticky compact single-row mobile header (disable backdrop-filter so fixed nav drawer spans viewport) */
   .site-header.ehp-site-header {
     position: relative;
     background: var(--bg-page);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     border-bottom: 1px solid var(--border-light);
   }
   .site-header.ehp-site-header .header-inner {
@@ -32,6 +34,7 @@ iframe { display: block; }
   .site-header.ehp-site-header .wordmark {
     flex: 1 1 0;
     min-width: 0;
+    min-height: 44px;
   }
   .site-header.ehp-site-header .wordmark-logo {
     width: 32px;
@@ -56,7 +59,7 @@ iframe { display: block; }
   }
   .site-header.ehp-site-header .header-search-input,
   .site-header.ehp-site-header .header-search-btn {
-    height: 42px;
+    height: 44px;
     font-size: 0.9375rem;
   }
   .site-header.ehp-site-header .mobile-search-toggle {
@@ -138,7 +141,7 @@ iframe { display: block; }
     width: min(320px, 86vw);
     max-width: 100%;
     margin: 0;
-    padding: 16px 18px calc(24px + env(safe-area-inset-bottom));
+    padding: 16px 18px calc(88px + env(safe-area-inset-bottom));
     overflow-y: auto;
     border-left: 1px solid var(--border-light);
     background: var(--bg-page);
@@ -243,7 +246,19 @@ iframe { display: block; }
     grid-template-columns: minmax(0, 1fr);
   }
 
-  /* 48px comfortable thumb-reach mobile action bar */
+  /* Enforce >= 44px interactive touch targets across secondary controls & links */
+  .ehp-gmap-btn,
+  .ehp-gmap-ext-link,
+  .site-footer .footer-contact-link,
+  .pantry-search-clear,
+  .filter-button,
+  .pantry-item-trigger {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* 46px comfortable single-line thumb-reach mobile action bar */
   .mobile-action-bar {
     position: fixed;
     z-index: 40;
@@ -254,7 +269,7 @@ iframe { display: block; }
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
     width: 100%;
-    padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+    padding: 6px 12px calc(6px + env(safe-area-inset-bottom));
     border-top: 1px solid var(--border-light);
     background: rgba(250, 249, 246, 0.96);
     backdrop-filter: blur(8px);
@@ -264,14 +279,15 @@ iframe { display: block; }
   .mobile-action-bar button {
     display: flex;
     min-width: 0;
-    min-height: 48px;
+    min-height: 46px;
     align-items: center;
     justify-content: center;
-    padding: 8px 12px;
+    padding: 6px 10px;
     border-radius: 8px;
-    font-size: 0.9375rem;
+    font-size: 0.9rem;
     font-weight: 600;
     line-height: 1.2;
+    white-space: nowrap;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
@@ -289,21 +305,55 @@ iframe { display: block; }
   }
 
   .contact-fab-wrap {
-    right: 16px;
-    bottom: calc(78px + env(safe-area-inset-bottom, 0px));
+    right: 12px;
+    bottom: calc(68px + env(safe-area-inset-bottom, 0px));
   }
 
   .contact-fab-menu {
-    max-height: calc(100vh - 160px);
-    max-height: calc(100dvh - 160px);
+    max-height: calc(100vh - 150px);
+    max-height: calc(100dvh - 150px);
   }
 
   .contact-fab-trigger {
-    width: 54px;
-    height: 54px;
+    width: 48px;
+    height: 48px;
   }
 
   .site-footer {
-    padding-bottom: calc(88px + env(safe-area-inset-bottom));
+    padding-bottom: calc(84px + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 360px) {
+  .site-header.ehp-site-header .header-inner {
+    gap: 6px 8px;
+  }
+  .mobile-action-bar {
+    gap: 6px;
+    padding: 6px 10px calc(6px + env(safe-area-inset-bottom));
+  }
+  .mobile-action-bar a,
+  .mobile-action-bar button {
+    padding: 6px 6px;
+    font-size: 0.8125rem;
+  }
+}
+
+@media (hover: none) {
+  .home-product-card:hover,
+  .product-card:hover,
+  .live-product:hover,
+  .home-story-card:hover,
+  .guide-card:hover,
+  .kitchen-guide-card:hover,
+  .social-profile-card:hover,
+  .ehp-about-range-link:hover,
+  .home-category-item:hover {
+    transform: none;
+  }
+  .home-product-card:hover .home-product-media img,
+  .product-card:hover .home-product-media img,
+  .home-gallery-tile:hover img {
+    transform: none;
   }
 }

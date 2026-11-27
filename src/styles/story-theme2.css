@@ -496,7 +496,9 @@
   .ehp-story-grid,
   .ehp-name-story-grid,
   .ehp-visit-cta-inner,
-  .ehp-about-page .ehp-about-hero-inner { grid-template-columns: 1fr; gap: 26px; }
+  .ehp-about-page .ehp-about-hero-inner { grid-template-columns: 1fr; gap: 22px; }
+  .ehp-about-page .ehp-about-hero-inner { padding-block: 28px 34px; }
+  .ehp-about-page .ehp-about-hero h1 { font-size: clamp(1.95rem, 8.6vw, 2.8rem); }
   .ehp-story-proof-inner { min-height: 260px; }
   .ehp-story-values { grid-template-columns: 1fr; }
   .ehp-commitments-heading { align-items: flex-start; flex-direction: column; gap: 12px; }
