@@ -1,58 +1,64 @@
 # Eshwar Home Products
 
-A static, editorial-style website for Eshwar Home Products in Perambur, Chennai. The public website is a product catalogue and store-information site, not an e-commerce checkout.
+A static, editorial website for **Eshwar Home Products** in Perambur, Chennai (`119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur, Chennai 600011`). The public website serves as a curated neighbourhood pantry guide and store information portal (not an online e-commerce checkout).
 
 ## Stack
 
-- Astro static site generation
-- Vanilla CSS with CSS custom properties
-- Small browser-native JavaScript for mobile navigation and pantry filters
-- React islands for the client portal and Firestore-backed published catalogue
-- Firebase Authentication and Cloud Firestore for authorised client editing
+- **Astro 5** static site generation with Astro image optimization (`astro:assets` / `getImage` generating WebP srcsets)
+- **Consolidated CSS** in `src/styles/brand-system.css` and `src/styles/mobile-responsive.css` (with page-scoped styles in Astro pages)
+- **React 19 islands** (`@astrojs/react`) for the Firestore-backed live catalogue (`PublishedCatalogue`), interactive Google Maps view (`StoreLocationMap`), and client admin portal
+- **Firebase Authentication & Cloud Firestore** for authorised client product publishing
 
 ## Routes
 
-- / — Home
-- /about/ — Our story
-- /products/ — Pantry catalogue, category filters, and published product records
-- /contact/ — Store details and directions
-- /admin/ — Client product workspace (not indexed)
+- `/` — Home (hero, category strip, featured & filterable pantry collection, store story & community reviews, FAQs, and interactive map)
+- `/products/` — The Pantry (full shelf guide, live client-published catalogue, and pantry search/filter)
+- `/about/` — Our Story
+- `/perambur-millet-store/` — Perambur Millet Store & Tamil–English Siruthaniyam reference table
+- `/kitchen-guides/` & `/blog/` — Kitchen guides and practical Tamil cooking notes
+- `/contact/` — Store contact details, directions, interactive store map, and official social channels
+- `/admin/` — Client product workspace (not indexed)
 
-## Local development
+## Store Configuration & Contacts
 
-    npm ci
-    npm run dev
+Verified store details, WhatsApp helpers, and social media URLs are centralized in `src/data/store.ts`.
 
-## Checks
+- **Email**, **WhatsApp**, and **Call Store** actions across pages, header/footer, and the floating `Contact` button read from `src/data/store.ts`.
+- To add or update the store's Facebook page URL, set `PUBLIC_FACEBOOK_URL` in your environment (`.env`) or update `configuredFacebookUrl` in `src/data/store.ts`.
 
-    npm run check
-    npm run test:rules
-    npm run build
-    npm run preview
+## Local Development & Verification
 
-The Firestore rules suite uses the local emulator. It tests public reads, editor permissions, and immutable audit history. The production build is generated in dist/ and deployed to GitHub Pages by .github/workflows/deploy.yml.
+```bash
+npm ci
+npm run dev
+```
 
-## Product content and photography
+Run checks and production build:
 
-The static pantry index is maintained in src/data/catalogue.json. Keep it as the fallback until the client confirms product-level records. Published Firestore product records appear in the public catalogue when Firebase is configured and at least one product is published.
+```bash
+npm run check
+npm run test:rules
+npm run build
+npm run preview
+```
 
-Do not invent product names, prices, pack sizes, availability, ingredients, certifications, or health claims. Until the client supplies original store photographs, use only clean, representative category visuals (royalty-free stock with its licence recorded, or crisp custom SVG category illustrations) in `public/images/placeholders/`. Keep the three shelf files aligned with `rice-millets`, `oils-ghee`, and `pantry-essentials`. Use these only as category illustrations and as the Firestore product-image fallback when a published record has no `imageUrl`/`imagePath`. Never present a representative visual as a photograph of a specific product. Use descriptive alt text such as `Representative image of traditional millets and grains` and the unobtrusive caption `Representative visual · Store photos coming soon`. All shelf and product image frames must reserve a 4:3 aspect ratio and explicit intrinsic dimensions to avoid layout shift. When approved store/product photos arrive, replace the SVGs or add the approved product image path without changing the reserved frame dimensions. Optimise any temporary raster photographs to lightweight WebP before adding them; custom SVG category illustrations are preferred for crisp, small files. See `public/images/placeholders/README.md` for the temporary-phase rules.
+The Firestore rules suite uses the local emulator to test public reads, editor permissions, and immutable audit history.
 
-The client dashboard currently supports product drafts, editing, publishing, and draft deletion. Direct photo uploads, contact/business settings, and media management are not enabled yet. Under the agreed Firebase Spark setup, images remain managed in the repository by Quantora Digital.
+## Product Content & Asset Optimization
 
-## Firebase
+- High-resolution product and pantry assets imported in `.astro` files live in `src/assets/images/` and are processed via `getImage()` into sized WebP assets (`120x120` category thumbnails, `400w` / `800w` product cards).
+- Optimized brand emblems and PWA/favicon icons live in `public/images/brand/` (`96px` and `400px` WebP) and `public/icons/` / `public/favicon/` (`32px`, `180px`, `512px` PNG).
+- Static category fallback visuals in `public/images/placeholders/` remain lightweight WebP files aligned with `src/data/catalogue.json`. Always keep a `4:3` aspect ratio and do not invent prices, stock guarantees, or medical/health claims.
 
-The client portal reads these GitHub Actions secrets at build time:
+## Environment & Deployment
 
-- VITE_FIREBASE_API_KEY
-- VITE_FIREBASE_AUTH_DOMAIN
-- VITE_FIREBASE_PROJECT_ID
-- VITE_FIREBASE_APP_ID
+Configure client environment variables via `.env` (see `.env.example`):
 
-The workflow maps these existing secret names to Astro's PUBLIC_FIREBASE_ environment variables. Local development uses the matching PUBLIC_FIREBASE_ names in .env. If the GitHub secrets are missing, the sign-in page shows a setup notice.
+- `PUBLIC_FIREBASE_API_KEY`
+- `PUBLIC_FIREBASE_AUTH_DOMAIN`
+- `PUBLIC_FIREBASE_PROJECT_ID`
+- `PUBLIC_FIREBASE_APP_ID`
+- `PUBLIC_GOOGLE_MAPS_API_KEY`
+- `PUBLIC_FACEBOOK_URL` (optional store Facebook page link)
 
-Only accounts with an active admin_users/{uid} record and role products-contact can edit. Public registration is not available. Do not add private service-account credentials to the frontend.
-
-## Deployment
-
-The feature branch builds and tests but does not deploy. The repository's GitHub Pages setting must use GitHub Actions as its source before the main branch can deploy this Astro site. Do not merge or publish without approval.
+Only accounts with an active `admin_users/{uid}` Firestore record and `products-contact` role can edit published catalogue items in `/admin/`.

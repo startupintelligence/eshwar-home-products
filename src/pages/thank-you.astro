@@ -1,6 +1,6 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
-import "../styles/mobile-responsive.css";
+import { storeConfig } from "../data/store";
 
 const base = import.meta.env.BASE_URL;
 ---
@@ -26,12 +26,12 @@ const base = import.meta.env.BASE_URL;
       </p>
       <div class="store-hours" aria-label="Store hours">
         <strong>Store details</strong>
-        <span>119/1, Paddy Field Road, Perambur, Chennai, Tamil Nadu 600 011, India</span>
+        <span>{storeConfig.address}</span>
         <span>Mon–Sat: 9:00 AM – 9:00 PM</span>
         <span>Sun: Closed</span>
       </div>
       <div class="thank-you-actions">
-        <a class="thank-you-button primary" href="https://wa.me/919941209953" target="_blank" rel="noopener noreferrer">
+        <a class="thank-you-button primary" href={storeConfig.whatsappUrl} target="_blank" rel="noopener noreferrer">
           Chat on WhatsApp Now <span aria-hidden="true">↗</span>
         </a>
         <a class="thank-you-button secondary" href={`${base}products/`}>Browse the Pantry</a>

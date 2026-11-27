@@ -22,13 +22,13 @@ const mapsUrl = storeConfig.mapsUrl;
       <label><input type="checkbox" name="need" value="Cold-Pressed Oil"> Cold-Pressed Oil</label><label><input type="checkbox" name="need" value="Ghee"> Ghee</label><label><input type="checkbox" name="need" value="Sathumaavu"> Sathumaavu</label><label><input type="checkbox" name="need" value="Other pantry item"> Other pantry item</label>
     </fieldset>
     <label class="ehp-quantity-label" for="ehp-enquiry-quantity">Quantity or pack size (optional)</label><input id="ehp-enquiry-quantity" name="quantity" type="text" maxlength="80" placeholder="e.g. 1 kg, 2 packs">
-    <p id="ehp-enquiry-error" class="ehp-dialog-error" role="alert" hidden>Please select at least one item.</p><button class="ehp-dialog-primary" type="submit">Send List on WhatsApp ↗</button>
+    <p id="ehp-enquiry-error" class="ehp-dialog-error" role="alert" hidden></p><button class="ehp-dialog-primary" type="submit">Send List on WhatsApp ↗</button>
   </form>
 </dialog>
 <dialog class="ehp-floating-card" id="ehp-store-dialog" aria-labelledby="ehp-store-title">
   <div class="ehp-dialog-top"><p class="eyebrow">Visit Our Store · Perambur</p><button class="ehp-dialog-close" type="button" aria-label="Close">×</button></div>
   <h2 id="ehp-store-title">Eshwar Home Products</h2>
-  <p class="ehp-store-status" id="ehp-store-status" aria-live="polite">Checking store hours…</p>
+  <p class="ehp-store-status" id="ehp-store-status" aria-live="polite"></p>
   <p class="ehp-store-hours">Monday–Saturday: 9:00 AM – 9:00 PM<br>Sunday: Closed · Chennai time (IST)</p>
   <address id="ehp-store-address">{address}</address>
   <div class="ehp-dialog-actions"><button class="ehp-dialog-secondary" id="ehp-copy-address" type="button">Copy Address</button><a class="ehp-dialog-primary" href={mapsUrl} target="_blank" rel="noopener noreferrer">Get Directions ↗</a><a class="ehp-dialog-secondary" href={storeConfig.phoneHref}>Call Store · {storeConfig.phoneDisplay}</a></div>
@@ -55,7 +55,7 @@ const mapsUrl = storeConfig.mapsUrl;
  const initialiseEnquiry=(items=[])=>{
   const form=document.getElementById('ehp-enquiry-form');if(!form)return;
   form.reset();
-  const error=document.getElementById('ehp-enquiry-error');if(error)error.hidden=true;
+  const error=document.getElementById('ehp-enquiry-error');if(error){error.hidden=true;error.textContent='';}
   const requested=Array.isArray(items)?items.map((item)=>String(item).toLowerCase()):[];
   form.querySelectorAll('input[name="need"]').forEach((input)=>{input.checked=requested.some((item)=>item.includes(input.value.toLowerCase())||input.value.toLowerCase().includes(item));});
  };
@@ -108,7 +108,7 @@ const mapsUrl = storeConfig.mapsUrl;
  });
  document.getElementById('ehp-enquiry-form')?.addEventListener('submit',(event)=>{
   event.preventDefault();const selected=[...document.querySelectorAll('#ehp-enquiry-form input[name="need"]:checked')].map((input)=>input.value);
-  const error=document.getElementById('ehp-enquiry-error');if(!selected.length){error.hidden=false;return;}error.hidden=true;
+  const error=document.getElementById('ehp-enquiry-error');if(!selected.length){if(error){error.textContent='Please select at least one item.';error.hidden=false;}return;}if(error){error.hidden=true;error.textContent='';}
   const quantity=document.getElementById('ehp-enquiry-quantity').value.trim();
   const message='Hello Eshwar Home Products, please help me check availability for: '+selected.join(', ')+'.'+(quantity?' Quantity or pack size: '+quantity+'.':'')+' Please share today’s options.';
   window.location.href='https://wa.me/919941209953?text='+encodeURIComponent(message);

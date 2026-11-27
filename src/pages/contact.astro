@@ -1,7 +1,7 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
 import StoreLocationMap from "../components/StoreLocationMap";
-import "../styles/mobile-responsive.css";
+import { storeConfig } from "../data/store";
 ---
 <SiteLayout title="Visit us | Eshwar Home Products" description="Find and contact Eshwar Home Products at 119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India." current="contact">
   <section class="page-heading contact-hero">
@@ -15,11 +15,11 @@ import "../styles/mobile-responsive.css";
         <p class="contact-hero-rating"><span aria-hidden="true">5.0 ★</span> Rated Neighbourhood Store on Google Maps</p>
         <div class="contact-hero-fact">
           <span>Opening hours</span>
-          <strong>Mon–Sat: 9:00 AM – 9:00 PM · Sun: Closed</strong>
+          <strong>{storeConfig.shortHours}</strong>
         </div>
         <div class="contact-hero-fact">
           <span>Visit our store</span>
-          <strong>119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur, Chennai 600011</strong>
+          <strong>{storeConfig.shortAddress}</strong>
         </div>
         <a class="contact-explore-button" href="../products/">Explore the Pantry <span aria-hidden="true">→</span></a>
       </aside>
@@ -30,35 +30,41 @@ import "../styles/mobile-responsive.css";
     <div class="contact-details-panel">
       <p class="eyebrow">Store details</p><h2>Come by<br /><em>and say hello.</em></h2>
       <dl class="contact-list">
-        <div><dt>Address</dt><dd>119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India.</dd></div>
-        <div><dt>Phone</dt><dd><a href="tel:+919941209953">+91 99412 09953</a></dd></div>
-        <div><dt>WhatsApp</dt><dd><a href="https://wa.me/919941209953" target="_blank" rel="noopener noreferrer">+91 99412 09953</a></dd></div>
-        <div><dt>Email</dt><dd><a data-email-contact href="mailto:info.eshwarhomeproducts@gmail.com">Send an email</a></dd></div>
-        <div><dt>Opening hours</dt><dd>Mon–Sat: 9:00 AM – 9:00 PM · Sun: Closed</dd></div>
+        <div><dt>Address</dt><dd>{storeConfig.address}.</dd></div>
+        <div><dt>Phone</dt><dd><a href={storeConfig.phoneHref}>{storeConfig.phoneDisplay}</a></dd></div>
+        <div><dt>WhatsApp</dt><dd><a href={storeConfig.whatsappUrl} target="_blank" rel="noopener noreferrer">{storeConfig.phoneDisplay}</a></dd></div>
+        <div><dt>Email</dt><dd><a data-email-contact href={storeConfig.emailHref}>Send an email</a></dd></div>
+        <div><dt>Opening hours</dt><dd>{storeConfig.shortHours}</dd></div>
       </dl>
       <div class="contact-actions">
-        <a class="contact-call-button" href="tel:+919941209953">Call the shop</a>
-        <a class="contact-whatsapp-button" href="https://wa.me/919941209953" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
+        <a class="contact-call-button" href={storeConfig.phoneHref}>Call the shop</a>
+        <a class="contact-whatsapp-button" href={storeConfig.whatsappUrl} target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
       </div>
     </div>
     <div class="directions-panel">
       <p class="eyebrow">Find the shop</p><h2>Paddy Field Rd,<br /><em>Chinnaiyan Colony, Perambur.</em></h2>
-      <p>119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India.</p>
+      <p>{storeConfig.address}.</p>
       <StoreLocationMap client:visible />
-      <a class="text-link" href="https://www.google.com/maps/place/Eshwar+Home+Products/@13.1118547,80.2468127,17z/data=!3m1!4b1!4m6!3m5!1s0x3a526569af8122ad:0xe485caf4b8adf074!8m2!3d13.1118495!4d80.2493876!16s%2Fg%2F11v4j6lc03?entry=ttu&g_ep=EgoyMDI2MTExNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Open directions in Google Maps ↗</a>
+      <a class="text-link" href={storeConfig.mapsUrl} target="_blank" rel="noopener noreferrer">Open directions in Google Maps ↗</a>
     </div>
   </section>
 
   <section class="section container youtube-promo" aria-label="Follow Eshwar Home Products">
     <div class="social-profile-grid">
-      <a class="social-profile-card" href="https://www.youtube.com/@EHP_PeramburOfficial" target="_blank" rel="noopener noreferrer">
-        <span><span class="eyebrow">Official YouTube</span><strong>@EHP_PeramburOfficial</strong></span>
+      <a class="social-profile-card" href={storeConfig.socials.youtube.url} target="_blank" rel="noopener noreferrer">
+        <span><span class="eyebrow">Official YouTube</span><strong>{storeConfig.socials.youtube.handle}</strong></span>
         <span class="social-profile-action">Visit channel ↗</span>
       </a>
-      <a class="social-profile-card" href="https://www.instagram.com/eshwar_home_products/" target="_blank" rel="noopener noreferrer">
-        <span><span class="eyebrow">Official Instagram</span><strong>@eshwar_home_products</strong></span>
+      <a class="social-profile-card" href={storeConfig.socials.instagram.url} target="_blank" rel="noopener noreferrer">
+        <span><span class="eyebrow">Official Instagram</span><strong>{storeConfig.socials.instagram.handle}</strong></span>
         <span class="social-profile-action">Visit profile ↗</span>
       </a>
+      {storeConfig.socials.facebook.url && (
+        <a class="social-profile-card" href={storeConfig.socials.facebook.url} target="_blank" rel="noopener noreferrer">
+          <span><span class="eyebrow">Official Facebook</span><strong>{storeConfig.socials.facebook.handle || "Eshwar Home Products"}</strong></span>
+          <span class="social-profile-action">Visit page ↗</span>
+        </a>
+      )}
     </div>
   </section>
 </SiteLayout>
@@ -93,7 +99,7 @@ import "../styles/mobile-responsive.css";
     display: block;
     margin-bottom: 4px;
     color: var(--accent-brass);
-    font-size: .76rem;
+    font-size: .8125rem;
     font-weight: 600;
     letter-spacing: .02em;
     text-transform: none;
@@ -101,7 +107,7 @@ import "../styles/mobile-responsive.css";
   .social-profile-action {
     flex: 0 0 auto;
     color: var(--accent-green);
-    font-size: .84rem;
+    font-size: .875rem;
     font-weight: 600;
   }
   .social-profile-card:hover {
@@ -139,7 +145,7 @@ import "../styles/mobile-responsive.css";
   .contact-hero-rating {
     margin: 0 0 20px;
     color: var(--text-main);
-    font-size: .9rem;
+    font-size: .9375rem;
     font-weight: 600;
     line-height: 1.55;
   }
@@ -157,12 +163,12 @@ import "../styles/mobile-responsive.css";
   }
   .contact-hero-fact span {
     color: var(--text-muted);
-    font-size: .75rem;
+    font-size: .8125rem;
     font-weight: 600;
   }
   .contact-hero-fact strong {
     color: var(--text-main);
-    font-size: .9rem;
+    font-size: .9375rem;
     line-height: 1.6;
   }
   .contact-explore-button,

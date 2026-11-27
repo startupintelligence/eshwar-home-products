@@ -1,4 +1,15 @@
-const configuredFacebookUrl = (import.meta.env.PUBLIC_FACEBOOK_URL ?? "").trim();
+function sanitizeHttpUrl(value: string): string {
+  const trimmed = value.trim();
+  if (!trimmed) return "";
+  try {
+    const parsed = new URL(trimmed);
+    return parsed.protocol === "https:" || parsed.protocol === "http:" ? parsed.toString() : "";
+  } catch {
+    return "";
+  }
+}
+
+const configuredFacebookUrl = sanitizeHttpUrl(import.meta.env.PUBLIC_FACEBOOK_URL ?? "");
 
 export const storeConfig = {
   name: "Eshwar Home Products",
@@ -27,7 +38,7 @@ export const storeConfig = {
       handle: "@eshwar_home_products",
       url: "https://www.instagram.com/eshwar_home_products/",
     },
-    // Set PUBLIC_FACEBOOK_URL in .env or edit this string once an official Facebook page URL is ready.
+    // Set PUBLIC_FACEBOOK_URL in .env or update once an official Facebook page URL is ready.
     facebook: {
       label: "Facebook",
       handle: "",

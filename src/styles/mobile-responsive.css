@@ -293,6 +293,11 @@ iframe { display: block; }
     bottom: calc(78px + env(safe-area-inset-bottom, 0px));
   }
 
+  .contact-fab-menu {
+    max-height: calc(100vh - 160px);
+    max-height: calc(100dvh - 160px);
+  }
+
   .contact-fab-trigger {
     width: 54px;
     height: 54px;

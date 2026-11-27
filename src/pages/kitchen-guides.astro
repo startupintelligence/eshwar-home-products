@@ -1,6 +1,6 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
-import "../styles/mobile-responsive.css";
+import { storeConfig } from "../data/store";
 
 const base = import.meta.env.BASE_URL;
 const siteOrigin = Astro.site ?? new URL("https://startupintelligence.github.io");
@@ -82,8 +82,8 @@ const schema = {
       <aside class="kitchen-guides-store-card" aria-label="Eshwar Home Products store details">
         <p class="eyebrow">Your neighbourhood pantry</p>
         <h2>Eshwar Home Products</h2>
-        <address>119/1, Paddy Field Road, Perambur, Chennai 600 011</address>
-        <p class="kitchen-guides-hours">Mon–Sat: 9:00 AM – 9:00 PM · Sun: Closed</p>
+        <address>{storeConfig.shortAddress}</address>
+        <p class="kitchen-guides-hours">{storeConfig.shortHours}</p>
         <a class="kitchen-guides-pantry-button" href={base + "products/"}>Explore the Pantry <span aria-hidden="true">↗</span></a>
       </aside>
     </div>
@@ -147,7 +147,7 @@ const schema = {
   .kitchen-guides-list-heading .eyebrow {
     margin: 0 0 10px;
     color: var(--accent-brass);
-    font-size: .8rem;
+    font-size: .8125rem;
     font-weight: 600;
     letter-spacing: .02em;
     text-transform: none;
@@ -302,7 +302,7 @@ const schema = {
   .kitchen-guide-card > .eyebrow {
     margin: 0 0 10px;
     color: var(--accent-brass);
-    font-size: .78rem;
+    font-size: .8125rem;
     font-weight: 600;
     letter-spacing: .02em;
   }
@@ -320,7 +320,7 @@ const schema = {
   .kitchen-guide-card > p {
     margin: 10px 0 18px;
     color: var(--text-muted);
-    font-size: .9rem;
+    font-size: .9375rem;
     line-height: 1.65;
   }
 
@@ -331,7 +331,7 @@ const schema = {
     gap: 7px;
     margin-top: auto;
     color: var(--accent-green);
-    font-size: .85rem;
+    font-size: .875rem;
     font-weight: 600;
     text-decoration: underline;
     text-decoration-color: rgba(24, 56, 40, 0.35);
@@ -345,7 +345,7 @@ const schema = {
     border-radius: 10px;
     background: var(--bg-subtle);
     color: var(--text-muted);
-    font-size: .84rem;
+    font-size: .875rem;
     line-height: 1.65;
   }
 

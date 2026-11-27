@@ -1,17 +1,17 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
 import catalogue from "../data/catalogue.json";
-import "../styles/mobile-responsive.css";
+import { buildWhatsAppUrl, storeConfig } from "../data/store";
 
 const base = import.meta.env.BASE_URL;
 const siteOrigin = Astro.site ?? new URL("https://startupintelligence.github.io");
 const pageUrl = new URL(base + "perambur-millet-store/", siteOrigin).toString();
-const storeAddress = "119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India";
-const phone = "+91 99412 09953";
-const phoneHref = "tel:+919941209953";
-const whatsappUrl = "https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20would%20like%20to%20check%20current%20stock%20for%3A";
-const mapsUrl = "https://www.google.com/maps/place/Eshwar+Home+Products/@13.1118547,80.2468127,17z/data=!3m1!4b1!4m6!3m5!1s0x3a526569af8122ad:0xe485caf4b8adf074!8m2!3d13.1118495!4d80.2493876!16s%2Fg%2F11v4j6lc03?entry=ttu&g_ep=EgoyMDI2MTExNS4wIKXMDSoASAFQAw%3D%3D";
-const youtubeUrl = "https://www.youtube.com/@EHP_PeramburOfficial";
+const storeAddress = storeConfig.address;
+const phone = storeConfig.phoneDisplay;
+const phoneHref = storeConfig.phoneHref;
+const whatsappUrl = buildWhatsAppUrl("Hello Eshwar Home Products, I would like to check current stock for:");
+const mapsUrl = storeConfig.mapsUrl;
+const youtubeUrl = storeConfig.socials.youtube.url;
 
 const faqs = [
   {
@@ -58,7 +58,7 @@ const discoverySchema = {
       alternateName: "ஈஸ்வர் ஹோம் புராடக்ட்ஸ்",
       url: pageUrl,
       telephone: "+91 99412 09953",
-      logo: new URL("images/brand/eshwar-home-products-logo.png", new URL(base, siteOrigin)).toString(),
+      logo: new URL("icons/icon-512.png", new URL(base, siteOrigin)).toString(),
       address: {
         "@type": "PostalAddress",
         streetAddress: "119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur",
@@ -69,7 +69,11 @@ const discoverySchema = {
       },
       openingHours: ["Mo-Sa 09:00-21:00"], description: "Mon–Sat: 9:00 AM – 9:00 PM · Sun: Closed",
       areaServed: { "@type": "City", name: "Chennai" },
-      sameAs: [youtubeUrl]
+      sameAs: [
+        storeConfig.socials.youtube.url,
+        storeConfig.socials.instagram.url,
+        ...(storeConfig.socials.facebook.url ? [storeConfig.socials.facebook.url] : []),
+      ]
     },
     {
       "@type": "FAQPage",
@@ -128,7 +132,7 @@ const discoverySchema = {
           </div>
           <div>
             <dt>Email</dt>
-            <dd><a data-email-contact href="mailto:info.eshwarhomeproducts@gmail.com">Send an email</a></dd>
+            <dd><a data-email-contact href={storeConfig.emailHref}>Send an email</a></dd>
           </div>
           <div>
             <dt>Official YouTube</dt>
@@ -273,7 +277,7 @@ const discoverySchema = {
   .discovery-container { width: min(1200px, calc(100% - (2 * clamp(16px, 4vw, 32px)))); margin-inline: auto; }
   .discovery-hero { padding: clamp(44px, 6vw, 76px) 0; background: var(--bg-subtle); border-bottom: 1px solid var(--border-light); }
   .hero-layout { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(290px, .85fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
-  .eyebrow { margin: 0 0 8px; color: var(--accent-brass); font-family: var(--sans); font-size: .8rem; font-weight: 600; letter-spacing: .02em; text-transform: none; }
+  .eyebrow { margin: 0 0 8px; color: var(--accent-brass); font-family: var(--sans); font-size: .8125rem; font-weight: 600; letter-spacing: .02em; text-transform: none; }
   .brand-tamil { display: block; margin: 0 0 10px; color: var(--accent-brass); font-family: "Noto Sans Tamil", var(--sans); font-size: clamp(1.15rem, 2vw, 1.45rem); font-weight: 600; letter-spacing: 0; line-height: 1.5; }
   .brand-english { display: block; }
   h1, h2, h3 { text-wrap: balance; }
@@ -289,36 +293,36 @@ const discoverySchema = {
   .entity-card h2 { margin: 4px 0 16px; font-family: var(--serif); font-size: 1.65rem; font-weight: 400; line-height: 1.2; }
   .entity-card dl { margin: 0; }
   .entity-card dl > div { padding: 12px 0; border-top: 1px solid var(--border-light); }
-  .entity-card dt { margin-bottom: 4px; color: var(--accent-brass); font-size: .74rem; font-weight: 600; }
-  .entity-card dd { margin: 0; color: var(--text-main); font-size: .88rem; line-height: 1.6; overflow-wrap: anywhere; }
+  .entity-card dt { margin-bottom: 4px; color: var(--accent-brass); font-size: .8125rem; font-weight: 600; }
+  .entity-card dd { margin: 0; color: var(--text-main); font-size: .9375rem; line-height: 1.6; overflow-wrap: anywhere; }
   .entity-card a { color: var(--accent-green); font-weight: 600; text-underline-offset: 3px; }
-  .entity-note { margin: 16px 0 0; padding-top: 14px; border-top: 1px solid var(--border-light); color: var(--text-muted); font-size: .8rem; line-height: 1.6; }
+  .entity-note { margin: 16px 0 0; padding-top: 14px; border-top: 1px solid var(--border-light); color: var(--text-muted); font-size: .875rem; line-height: 1.6; }
   .category-section, .faq-section { padding: clamp(48px, 6vw, 76px) 0; background: var(--bg-page); }
   .section-heading { max-width: 690px; margin-bottom: 30px; }
   .section-heading h2, .local-guide h2, .conversion-inner h2 { margin: 8px 0 12px; color: var(--text-main); font-family: var(--serif); font-size: clamp(1.9rem, 3.6vw, 2.9rem); font-weight: 400; line-height: 1.12; letter-spacing: -.03em; }
   .section-heading > p:last-child, .local-guide-copy p, .conversion-inner > div > p:last-child { color: var(--text-muted); font-size: .95rem; line-height: 1.7; }
   .category-list { border-top: 1px solid var(--border-light); }
   .category-row { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 18px; padding: 26px 0; border-bottom: 1px solid var(--border-light); }
-  .category-number { color: var(--accent-brass); font-size: .8rem; font-weight: 600; font-variant-numeric: tabular-nums; }
-  .category-eyebrow { margin: 0 0 6px; color: var(--accent-brass); font-size: .78rem; font-weight: 600; }
+  .category-number { color: var(--accent-brass); font-size: .8125rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .category-eyebrow { margin: 0 0 6px; color: var(--accent-brass); font-size: .8125rem; font-weight: 600; }
   .category-row h3 { margin: 0; font-family: var(--serif); font-size: 1.45rem; font-weight: 500; line-height: 1.25; }
-  .category-row > div > p:not(.category-eyebrow) { margin: 8px 0 14px; color: var(--text-muted); font-size: .92rem; line-height: 1.65; }
+  .category-row > div > p:not(.category-eyebrow) { margin: 8px 0 14px; color: var(--text-muted); font-size: .9375rem; line-height: 1.65; }
   .category-row ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; margin: 0; padding: 0; list-style: none; }
   .category-row li { display: grid; gap: 3px; padding: 11px 0; border-top: 1px solid var(--border-light); }
   .category-row li strong { color: var(--text-main); font-family: var(--serif); font-size: 1.02rem; font-weight: 500; }
-  .category-row li span { color: var(--text-muted); font-size: .82rem; line-height: 1.55; }
-  .inline-link { display: inline-flex; min-height: 44px; align-items: center; gap: 8px; margin-top: 20px; color: var(--accent-green); font-size: .9rem; font-weight: 600; text-underline-offset: 4px; }
+  .category-row li span { color: var(--text-muted); font-size: .875rem; line-height: 1.55; }
+  .inline-link { display: inline-flex; min-height: 44px; align-items: center; gap: 8px; margin-top: 20px; color: var(--accent-green); font-size: .9375rem; font-weight: 600; text-underline-offset: 4px; }
   .millet-reference-section { padding: clamp(48px, 6vw, 76px) 0; background: var(--bg-subtle); border-block: 1px solid var(--border-light); }
   .millet-table-wrap { overflow-x: auto; border: 1px solid var(--border-light); border-radius: 12px; background: var(--bg-card); }
   .millet-reference-table { width: 100%; border-collapse: collapse; text-align: left; }
-  .millet-reference-table th, .millet-reference-table td { padding: 14px 18px; border-bottom: 1px solid var(--border-light); font-size: .88rem; line-height: 1.55; vertical-align: top; }
-  .millet-reference-table thead th { background: var(--bg-subtle); color: var(--accent-green); font-size: .78rem; font-weight: 600; }
+  .millet-reference-table th, .millet-reference-table td { padding: 14px 18px; border-bottom: 1px solid var(--border-light); font-size: .9375rem; line-height: 1.55; vertical-align: top; }
+  .millet-reference-table thead th { background: var(--bg-subtle); color: var(--accent-green); font-size: .8125rem; font-weight: 600; }
   .millet-reference-table tbody th { min-width: 145px; color: var(--text-main); font-weight: 600; }
   .millet-reference-table tbody th span, .millet-reference-table tbody th small { display: block; }
   .millet-reference-table tbody th span { font-family: "Noto Sans Tamil", var(--sans); font-size: 1rem; }
-  .millet-reference-table tbody th small { margin-top: 3px; color: var(--text-muted); font-size: .76rem; font-weight: 400; }
+  .millet-reference-table tbody th small { margin-top: 3px; color: var(--text-muted); font-size: .8125rem; font-weight: 400; }
   .millet-reference-table tbody tr:last-child th, .millet-reference-table tbody tr:last-child td { border-bottom: 0; }
-  .millet-reference-note { margin: 14px 0 0; color: var(--text-muted); font-size: .82rem; line-height: 1.65; }
+  .millet-reference-note { margin: 14px 0 0; color: var(--text-muted); font-size: .875rem; line-height: 1.65; }
   .local-guide { padding: clamp(48px, 6vw, 76px) 0; border-bottom: 1px solid var(--border-light); background: var(--bg-page); }
   .local-guide-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(26px, 6vw, 74px); }
   .local-guide-copy p:first-child { margin-top: 0; }
@@ -326,11 +330,11 @@ const discoverySchema = {
   .faq-layout .section-heading { margin: 0; }
   .faq-list { border-top: 1px solid var(--border-light); }
   .faq-list details { border-bottom: 1px solid var(--border-light); }
-  .faq-list summary { display: flex; min-height: 56px; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 4px 14px 0; color: var(--text-main); cursor: pointer; font-family: var(--serif); font-size: 1.05rem; font-weight: 500; line-height: 1.4; list-style: none; }
+  .faq-list summary { display:flex; min-height: 56px; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 4px 14px 0; color: var(--text-main); cursor: pointer; font-family: var(--serif); font-size: 1.05rem; font-weight: 500; line-height: 1.4; list-style: none; }
   .faq-list summary::-webkit-details-marker { display: none; }
   .faq-list summary::after { content: "+"; color: var(--accent-brass); font-family: var(--sans); font-size: 1.25rem; font-weight: 500; }
   .faq-list details[open] summary::after { content: "−"; }
-  .faq-list details p { margin: 0 0 18px; color: var(--text-muted); font-size: .9rem; line-height: 1.7; }
+  .faq-list details p { margin: 0 0 18px; color: var(--text-muted); font-size: .9375rem; line-height: 1.7; }
   .conversion-section { padding: clamp(44px, 6vw, 72px) 0; background: var(--earth-dark); color: #FAF9F6; }
   .conversion-inner { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 30px; align-items: center; }
   .conversion-section .eyebrow { color: var(--accent-gold); }

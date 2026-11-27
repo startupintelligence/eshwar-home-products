@@ -74,7 +74,7 @@ const storeSchema = {
 <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={ogImage} />
 <link rel="icon" type="image/png" sizes="32x32" href={favicon32} /><link rel="apple-touch-icon" sizes="180x180" href={appleTouchIcon} /><link rel="canonical" href={canonical} />
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href={googleFontsHref} media="print" onload="this.media='all'" />
+<link rel="stylesheet" href={googleFontsHref} media="print" onload="this.removeAttribute('media')" />
 <noscript><link rel="stylesheet" href={googleFontsHref} /></noscript>
 {preloadHomeHero && (
   <link

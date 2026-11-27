@@ -1,22 +1,54 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
+import { getImage } from "astro:assets";
 import catalogue from "../data/catalogue.json";
 import PublishedCatalogue from "../components/PublishedCatalogue";
-import "../styles/mobile-responsive.css";
+import { buildWhatsAppUrl, storeConfig } from "../data/store";
 import milletsImg from "../assets/images/pantry_whole_millets_1795627178343.jpg";
 import oilsImg from "../assets/images/pantry_cold_pressed_oils_1795627178653.jpg";
-import riceImg from "../assets/images/pantry_traditional_rice_1795627178963.jpg";
-const shelfImages: Record<string, string> = {
-  grains: milletsImg.src,
-  oils: oilsImg.src,
-  pantry: riceImg.src,
+import ragiImg from "../assets/images/ESH_Ragi_Pack.jpeg";
+import badamImg from "../assets/images/ESH_Badam_Pack.jpeg";
+
+async function buildShelfImageSet(image: ImageMetadata) {
+  const [w400, w800] = await Promise.all([
+    getImage({ src: image, width: 400, height: 300, format: "webp", fit: "cover" }),
+    getImage({ src: image, width: 800, height: 600, format: "webp", fit: "cover" }),
+  ]);
+  return {
+    src: w800.src,
+    srcset: `${w400.src} 400w, ${w800.src} 800w`,
+  };
+}
+
+const [grainsVisual, oilsVisual, pantryVisual] = await Promise.all([
+  buildShelfImageSet(ragiImg),
+  buildShelfImageSet(oilsImg),
+  buildShelfImageSet(badamImg),
+]);
+
+const shelfImages: Record<string, { src: string; srcset: string; alt: string; caption: string }> = {
+  grains: {
+    ...grainsVisual,
+    alt: "Official Eshwar Home Products Ragi finger millet pouch pack",
+    caption: "Official Eshwar Home Products pack · Whole millets & rice stocked in-store",
+  },
+  oils: {
+    ...oilsVisual,
+    alt: "Representative illustration of cold-pressed gingelly and groundnut oils",
+    caption: "Representative visual · Ask on WhatsApp for today's bottled Chekku oils",
+  },
+  pantry: {
+    ...pantryVisual,
+    alt: "Official Eshwar Home Products Badam almonds pouch pack",
+    caption: "Official Eshwar Home Products pack · Nuts, honey & snacks stocked in-store",
+  },
 };
+void milletsImg;
 const siteRoot = Astro.site ?? new URL("https://startupintelligence.github.io");
 const pageUrl = new URL(`${import.meta.env.BASE_URL}products/`, siteRoot).toString();
 const storeId = `${new URL(import.meta.env.BASE_URL, siteRoot).toString()}#store`;
 const homeUrl = new URL(import.meta.env.BASE_URL, siteRoot).toString();
-const whatsappNumber = "919941209953";
-const mapsUrl = "https://www.google.com/maps/place/Eshwar+Home+Products/@13.1118547,80.2468127,17z/data=!3m1!4b1!4m6!3m5!1s0x3a526569af8122ad:0xe485caf4b8adf074!8m2!3d13.1118495!4d80.2493876!16s%2Fg%2F11v4j6lc03?entry=ttu&g_ep=EgoyMDI2MTExNS4wIKXMDSoASAFQAw%3D%3D";
+const mapsUrl = storeConfig.mapsUrl;
 const shelfDetails = {
   grains: {
     label: "Rice & Millets (Siruthaniyam)",
@@ -59,24 +91,24 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
       <h1>Good things for<br /><em>everyday cooking.</em></h1>
       <p>Explore traditional rice, millets, cooking essentials and familiar pantry favourites for everyday South Indian kitchens. Browse by shelf, then ask our team about the variety or pack size you need.</p>
       <div class="hero-actions">
-        <a class="button pantry-hero-cta" href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20please%20help%20me%20check%20today%27s%20pantry%20stock." target="_blank" rel="noopener noreferrer">Check today's stock on WhatsApp ↗</a>
-        <a class="text-link phone-action" href="tel:+919941209953">Call +91 99412 09953</a>
+        <a class="button pantry-hero-cta" href={buildWhatsAppUrl("Hello Eshwar Home Products, please help me check today's pantry stock.")} target="_blank" rel="noopener noreferrer">Check today's stock on WhatsApp ↗</a>
+        <a class="text-link phone-action" href={storeConfig.phoneHref}>Call {storeConfig.phoneDisplay}</a>
       </div>
     </div>
     <aside class="pantry-store-card" aria-label="Store details">
       <p class="eyebrow">Visit our neighbourhood store</p>
-      <div class="pantry-store-detail"><span>Store location</span><address>119/1, Paddy Field Road, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011</address></div>
-      <div class="pantry-store-detail"><span>Opening hours</span><p>Mon–Sat: 9:00 AM – 9:00 PM · Sun: Closed</p></div>
-      <div class="pantry-store-detail"><span>Direct contact</span><a href="tel:+919941209953">+91 99412 09953</a></div>
+      <div class="pantry-store-detail"><span>Store location</span><address>{storeConfig.address}</address></div>
+      <div class="pantry-store-detail"><span>Opening hours</span><p>{storeConfig.shortHours}</p></div>
+      <div class="pantry-store-detail"><span>Direct contact</span><a href={storeConfig.phoneHref}>{storeConfig.phoneDisplay}</a></div>
     </aside>
   </div></section>
   <section class="pantry-real-photos" aria-labelledby="pantry-real-photos-title">
     <div class="container">
-      <div class="pantry-real-photos-heading"><p class="eyebrow">PHOTOS FROM OUR STORE</p><h2 id="pantry-real-photos-title">A closer look at Eshwar Home Products.</h2><p>These are photographs of our Perambur store and product range. Select a photo to find us or browse the pantry catalogue.</p></div>
+      <div class="pantry-real-photos-heading"><p class="eyebrow">STOREFRONT &amp; PRODUCT BOARDS</p><h2 id="pantry-real-photos-title">A closer look at Eshwar Home Products.</h2><p>View our Perambur storefront, printed Tamil product lists, and store location. Select any card to browse the shelves or find directions.</p></div>
       <div class="pantry-real-photo-grid">
-        <a href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Find Eshwar Home Products in Google Maps"><picture><source type="image/webp" srcset={`${import.meta.env.BASE_URL}images/business/EHP_Shop_Front_View-480.webp 480w, ${import.meta.env.BASE_URL}images/business/EHP_Shop_Front_View-768.webp 768w, ${import.meta.env.BASE_URL}images/business/EHP_Shop_Front_View-1280.webp 1280w`} sizes="(max-width: 700px) 100vw, 40vw" /><img src={`${import.meta.env.BASE_URL}images/business/EHP_Shop_Front_View.jpeg`} alt="Eshwar Home Products storefront in Perambur, Chennai" width="1288" height="966" loading="lazy" decoding="async" /></picture><span>Find our store on Maps ↗</span></a>
-        <a href="#pantry-shelves" aria-label="Browse pantry categories"><picture><source type="image/webp" srcset={`${import.meta.env.BASE_URL}images/business/EHP_Products1-480.webp 480w, ${import.meta.env.BASE_URL}images/business/EHP_Products1-767.webp 767w`} sizes="(max-width: 700px) 100vw, 25vw" /><img src={`${import.meta.env.BASE_URL}images/business/EHP_Products1.jpeg`} alt="Product range photographed inside Eshwar Home Products" width="767" height="1280" loading="lazy" decoding="async" /></picture><span>Browse the product catalogue →</span></a>
-        <a href="#pantry-shelves" aria-label="Explore the pantry catalogue"><picture><source type="image/webp" srcset={`${import.meta.env.BASE_URL}images/business/EHP_Products2-480.webp 480w, ${import.meta.env.BASE_URL}images/business/EHP_Products2-768.webp 768w, ${import.meta.env.BASE_URL}images/business/EHP_Products2-960.webp 960w`} sizes="(max-width: 700px) 100vw, 25vw" /><img src={`${import.meta.env.BASE_URL}images/business/EHP_Products2.jpeg`} alt="More products photographed at Eshwar Home Products" width="960" height="1600" loading="lazy" decoding="async" /></picture><span>Explore pantry categories →</span></a>
+        <a href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Find Eshwar Home Products in Google Maps"><picture><source type="image/webp" srcset={`${import.meta.env.BASE_URL}images/business/EHP_Shop_Front_View-480.webp 480w, ${import.meta.env.BASE_URL}images/business/EHP_Shop_Front_View-768.webp 768w, ${import.meta.env.BASE_URL}images/business/EHP_Shop_Front_View-1280.webp 1280w`} sizes="(max-width: 700px) 100vw, 40vw" /><img src={`${import.meta.env.BASE_URL}images/business/EHP_Shop_Front_View.jpeg`} alt="Eshwar Home Products storefront in Perambur, Chennai" width="1288" height="966" loading="lazy" decoding="async" /></picture><span>Perambur storefront on Maps ↗</span></a>
+        <a class="is-board" href="#grains" aria-label="Browse rice and millet varieties"><picture><source type="image/webp" srcset={`${import.meta.env.BASE_URL}images/business/EHP_Products1-480.webp 480w, ${import.meta.env.BASE_URL}images/business/EHP_Products1-767.webp 767w`} sizes="(max-width: 700px) 100vw, 25vw" /><img src={`${import.meta.env.BASE_URL}images/business/EHP_Products1.jpeg`} alt="Printed Tamil rice and Siruthaniyam millet product board from Eshwar Home Products" width="767" height="1280" loading="lazy" decoding="async" /></picture><span>Rice &amp; Millet Board →</span></a>
+        <a class="is-board" href="#oils" aria-label="Explore Chekku oils, ghee, and pantry board"><picture><source type="image/webp" srcset={`${import.meta.env.BASE_URL}images/business/EHP_Products2-480.webp 480w, ${import.meta.env.BASE_URL}images/business/EHP_Products2-768.webp 768w, ${import.meta.env.BASE_URL}images/business/EHP_Products2-960.webp 960w`} sizes="(max-width: 700px) 100vw, 25vw" /><img src={`${import.meta.env.BASE_URL}images/business/EHP_Products2.jpeg`} alt="Printed Tamil Chekku oils, ghee, honey, and pantry product board from Eshwar Home Products" width="960" height="1600" loading="lazy" decoding="async" /></picture><span>Oils &amp; Pantry Board →</span></a>
         <a href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Open the store map in Google Maps"><picture><source type="image/webp" srcset={`${import.meta.env.BASE_URL}images/business/EHP_Map_Small-480.webp 480w, ${import.meta.env.BASE_URL}images/business/EHP_Map_Small-768.webp 768w`} sizes="(max-width: 700px) 100vw, 25vw" /><img src={`${import.meta.env.BASE_URL}images/business/EHP_Map_Small.jpeg`} alt="Map image for Eshwar Home Products in Perambur" width="1088" height="638" loading="lazy" decoding="async" /></picture><span>Open store location ↗</span></a>
       </div>
     </div>
@@ -96,13 +128,13 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
       <button class="pantry-search-clear" type="button" id="pantry-search-clear">Clear search</button>
     </div>
     <div class="pantry-search-empty" id="pantry-search-empty" hidden>
-      <p id="pantry-search-empty-text">No pantry shelves matched your search.</p>
+      <p id="pantry-search-empty-text"></p>
       <button class="filter-button" type="button" id="pantry-search-empty-clear">Show all shelves</button>
     </div>
     <div class="pantry-grid-wrap" id="pantry-grid-wrap">
-      <div class="pantry-spinner" id="pantry-spinner" role="status" aria-live="polite" aria-label="Updating pantry shelves" hidden>
+      <div class="pantry-spinner" id="pantry-spinner" role="status" aria-live="polite" hidden>
         <span class="pantry-spinner-ring" aria-hidden="true"></span>
-        <span class="sr-only">Updating pantry shelves</span>
+        <span class="sr-only" id="pantry-spinner-label"></span>
       </div>
       <div class="pantry-directory" id="pantry-shelves">
         <div class="pantry-directory-inner">
@@ -113,10 +145,11 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
           const occasions = shelf?.occasions ?? [];
           const searchText = `${categoryName} ${group.eyebrow} ${shelf?.intro ?? group.description} ${cues.join(" ")} ${occasions.join(" ")}`.toLowerCase();
           const message = `Hello Eshwar Home Products, please help me check today's stock for ${categoryName}.`;
+          const shelfVisual = shelfImages[group.id];
           return <section class="pantry-group pantry-interactive-card" id={group.id} data-group={group.id} data-pantry-search-item data-search-text={searchText}>
             <div class="pantry-group-visual">
-              <div class="pantry-image-frame"><img src={shelfImages[group.id] ?? `${import.meta.env.BASE_URL}${group.placeholderImage}`} alt={group.placeholderAlt} width="800" height="600" loading="lazy" decoding="async" referrerpolicy="no-referrer" /></div>
-              <p class="representative-caption">Representative visual · Store photos coming soon</p>
+              <div class="pantry-image-frame"><img src={shelfVisual?.src ?? `${import.meta.env.BASE_URL}${group.placeholderImage}`} srcset={shelfVisual?.srcset} sizes="(max-width: 760px) 100vw, 420px" alt={shelfVisual?.alt ?? group.placeholderAlt} width="800" height="600" loading="lazy" decoding="async" /></div>
+              <p class="representative-caption">{shelfVisual?.caption ?? "Representative visual · Store photos coming soon"}</p>
             </div>
             <div class="pantry-group-content">
               <div class="pantry-group-heading"><span class="directory-number">{String(index + 1).padStart(2, "0")}</span><div>
@@ -126,7 +159,7 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
               <ul class="kitchen-cues">{(shelf?.cues ?? group.items.map((item) => item.title)).map((cue) => <li><button class="pantry-item-trigger" type="button" data-ehp-dialog="product" data-ehp-title={cue} data-ehp-description={"Ask the store about current options for " + cue + "."} data-ehp-items={JSON.stringify([cue])} aria-haspopup="dialog">{cue}</button></li>)}</ul>
               <div class="meal-occasions">{(shelf?.occasions ?? []).map((occasion) => <span>{occasion}</span>)}</div>
               <button class="pantry-quickview-trigger" type="button" data-ehp-dialog="product" data-ehp-title={categoryName} data-ehp-description={shelf?.intro ?? group.description} data-ehp-items={JSON.stringify(shelf?.cues ?? group.items.map((item) => item.title))} aria-haspopup="dialog">View shelf details →</button>
-              <a class="shelf-whatsapp-link" href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`} target="_blank" rel="noopener noreferrer">Check Today's Stock on WhatsApp ↗</a>
+              <a class="shelf-whatsapp-link" href={buildWhatsAppUrl(message)} target="_blank" rel="noopener noreferrer">Check Today's Stock on WhatsApp ↗</a>
               
             </div>
           </section>;
@@ -140,12 +173,12 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
       <div class="pantry-faq-list">
         <details><summary>Can I ask about a Tamil millet name?</summary><p>Yes. Use the Tamil–English millet reference in our <a href={`${import.meta.env.BASE_URL}perambur-millet-store/#millet-reference`}>Perambur store guide</a>, then message the team about the variety you have in mind.</p></details>
         <details><summary>Can I check pack sizes before visiting?</summary><p>Yes. Send the product or variety name through WhatsApp and ask the team about current options.</p></details>
-        <details><summary>How can I check my order status or track pickup?</summary><p>Reply to your existing <a href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20would%20like%20to%20check%20my%20order%20status." target="_blank" rel="noopener noreferrer">WhatsApp message</a> or call <a href="tel:+919941209953">+91 99412 09953</a> with your name during store hours (Mon–Sat, 9 AM–9 PM) for a quick update from our counter team.</p></details>
-        <details><summary>Where is the store?</summary><p>119/1, Paddy Field Road, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011, India.</p></details>
-        <details><summary>What are the store hours?</summary><p>Monday – Saturday: 9:00 AM – 9:00 PM · Sunday: Closed</p></details>
+        <details><summary>How can I check my order status or track pickup?</summary><p>Reply to your existing <a href={buildWhatsAppUrl("Hello Eshwar Home Products, I would like to check my order status.")} target="_blank" rel="noopener noreferrer">WhatsApp message</a> or call <a href={storeConfig.phoneHref}>{storeConfig.phoneDisplay}</a> with your name during store hours (Mon–Sat, 9 AM–9 PM) for a quick update from our counter team.</p></details>
+        <details><summary>Where is the store?</summary><p>{storeConfig.address}.</p></details>
+        <details><summary>What are the store hours?</summary><p>{storeConfig.hours}</p></details>
       </div>
     </section>
-    <div class="enquiry-row"><div><p class="eyebrow">A neighbourhood pantry in Perambur</p><h2>Need help choosing a shelf?</h2><p class="store-location-note">Call or message the store. The team can help you check today's options before you visit.</p></div><a class="button" href="https://wa.me/919941209953?text=Hello%20Eshwar%20Home%20Products%2C%20I%20need%20help%20with%20the%20pantry%20range." target="_blank" rel="noopener noreferrer">Ask on WhatsApp ↗</a></div>
+    <div class="enquiry-row"><div><p class="eyebrow">A neighbourhood pantry in Perambur</p><h2>Need help choosing a shelf?</h2><p class="store-location-note">Call or message the store. The team can help you check today's options before you visit.</p></div><a class="button" href={buildWhatsAppUrl("Hello Eshwar Home Products, I need help with the pantry range.")} target="_blank" rel="noopener noreferrer">Ask on WhatsApp ↗</a></div>
   </section>
 </SiteLayout>
 <script>
@@ -187,18 +220,21 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
         pantryEmptyText.textContent = `No pantry shelves matched "${rawQuery.trim()}". Try millets, rice, oils, ghee, honey, or nuts.`;
       } else {
         pantryEmpty.hidden = true;
+        pantryEmptyText.textContent = "";
       }
     }
   };
 
   const pantryGridWrap = document.getElementById("pantry-grid-wrap");
   const pantrySpinner = document.getElementById("pantry-spinner");
+  const pantrySpinnerLabel = document.getElementById("pantry-spinner-label");
   const pantryReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let pantrySearchTimer: number | undefined;
 
   const setPantryLoading = (loading: boolean) => {
     if (pantryGridWrap) pantryGridWrap.classList.toggle("is-updating", loading);
     if (pantrySpinner) pantrySpinner.hidden = !loading;
+    if (pantrySpinnerLabel) pantrySpinnerLabel.textContent = loading ? "Updating pantry shelves" : "";
   };
 
   window.addEventListener("ehp:product-search", (event) => {
@@ -235,16 +271,17 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
   .pantry-real-photos { padding:32px 0 12px; }
   .pantry-real-photos-heading { max-width:650px; margin-bottom:18px; }
   .pantry-real-photos-heading h2 { margin:6px 0; font:600 clamp(1.7rem,3vw,2.35rem)/1.15 var(--serif); }
-  .pantry-real-photos-heading > p:last-child { color:var(--text-muted); font-size:.9rem; line-height:1.65; }
+  .pantry-real-photos-heading > p:last-child { color:var(--text-muted); font-size:.9375rem; line-height:1.65; }
   .pantry-real-photo-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
   .pantry-real-photo-grid a { display:flex; min-width:0; flex-direction:column; overflow:hidden; border:1px solid var(--border-light); border-radius:10px; background:var(--bg-card); color:var(--text-main); text-decoration:none; }
   .pantry-real-photo-grid img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; }
-  .pantry-real-photo-grid span { display:flex; min-height:42px; align-items:center; padding:10px 12px; font-size:.8rem; font-weight:600; }
+  .pantry-real-photo-grid a.is-board img { object-fit:contain; background:#FFFFFF; padding:6px; }
+  .pantry-real-photo-grid span { display:flex; min-height:42px; align-items:center; padding:10px 12px; font-size:.8125rem; font-weight:600; }
   .pantry-real-photo-grid a:focus-visible { outline:2px solid var(--accent-green); outline-offset:3px; }
   @media(max-width:760px) { .pantry-real-photo-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; } }
   .pantry-intro-row { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:32px; align-items:end; margin-bottom:28px; }
   .pantry-intro-row h2,.catalogue-live-intro h2 { margin:8px 0 0; font:600 clamp(2rem,4vw,2.75rem)/1.1 var(--serif); }
-  .pantry-intro-row > p,.catalogue-live-intro > p:last-child { margin:0; color:var(--text-muted); font-size:.94rem; line-height:1.75; }
+  .pantry-intro-row > p,.catalogue-live-intro > p:last-child { margin:0; color:var(--text-muted); font-size:.9375rem; line-height:1.75; }
   .catalogue-live-intro { margin:32px 0 16px; padding:20px 0 14px; border-top:1px solid var(--border-light); }
   .catalogue-live-intro h2 { font-size:1.65rem; }
   .catalogue-live-intro > p:last-child { margin-top:8px; }
@@ -252,27 +289,27 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
   .pantry-group-visual { min-width:0; }
   .pantry-image-frame { overflow:hidden; aspect-ratio:4/3; border:1px solid var(--border-light); border-radius:12px; background:var(--bg-subtle); }
   .pantry-image-frame img { display:block; width:100%; height:100%; object-fit:cover; }
-  .representative-caption { margin:8px 0 0; color:var(--text-muted); font-size:.76rem; }
+  .representative-caption { margin:8px 0 0; color:var(--text-muted); font-size:.8125rem; }
   .pantry-group-heading { display:grid; grid-template-columns:34px minmax(0,1fr); gap:12px; }
   .pantry-group-heading h2 { margin:4px 0 8px; font:600 clamp(1.55rem,2.8vw,2.1rem)/1.18 var(--serif); }
-  .pantry-group-heading div > p:last-child { margin:0; color:var(--text-muted); font-size:.92rem; line-height:1.75; }
-  .kitchen-cue-label { margin:20px 0 9px; color:var(--accent-brass); font-size:.76rem; font-weight:700; letter-spacing:.03em; }
+  .pantry-group-heading div > p:last-child { margin:0; color:var(--text-muted); font-size:.9375rem; line-height:1.75; }
+  .kitchen-cue-label { margin:20px 0 9px; color:var(--accent-brass); font-size:.8125rem; font-weight:700; letter-spacing:.03em; }
   .kitchen-cues { display:flex; flex-wrap:wrap; gap:8px; margin:0; padding:0; list-style:none; }
-  .kitchen-cues li { display:flex; min-height:36px; align-items:center; padding:4px 12px; border:1px solid var(--border-light); border-radius:8px; background:var(--bg-card); color:var(--text-main); font-size:.82rem; line-height:1.35; }
+  .kitchen-cues li { display:flex; min-height:36px; align-items:center; padding:4px 12px; border:1px solid var(--border-light); border-radius:8px; background:var(--bg-card); color:var(--text-main); font-size:.875rem; line-height:1.35; }
   .meal-occasions { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
-  .meal-occasions span { color:var(--text-muted); font-size:.78rem; }
+  .meal-occasions span { color:var(--text-muted); font-size:.8125rem; }
   .meal-occasions span + span::before { content:"·"; margin-right:8px; color:var(--accent-brass); }
-  .pantry-page .shelf-whatsapp-link { display:inline-flex; min-height:46px; align-items:center; justify-content:center; margin:16px 0 8px; padding:0 18px; border:1px solid var(--accent-green); border-radius:8px; background:var(--accent-green); color:#FFFFFF; font-size:.84rem; font-weight:600; text-decoration:none; }
+  .pantry-page .shelf-whatsapp-link { display:inline-flex; min-height:46px; align-items:center; justify-content:center; margin:16px 0 8px; padding:0 18px; border:1px solid var(--accent-green); border-radius:8px; background:var(--accent-green); color:#FFFFFF; font-size:.875rem; font-weight:600; text-decoration:none; }
   .pantry-page .shelf-whatsapp-link:hover { background:var(--accent-green-hover); border-color:var(--accent-green-hover); color:#FFFFFF; }
-  .pantry-quickview-trigger { display:inline-flex; min-height:46px; align-items:center; justify-content:center; margin:16px 10px 8px 0; padding:0 16px; border:1px solid var(--border-light); border-radius:8px; background:var(--bg-card); color:var(--text-main); font:inherit; font-size:.84rem; font-weight:600; cursor:pointer; }
+  .pantry-quickview-trigger { display:inline-flex; min-height:46px; align-items:center; justify-content:center; margin:16px 10px 8px 0; padding:0 16px; border:1px solid var(--border-light); border-radius:8px; background:var(--bg-card); color:var(--text-main); font:inherit; font-size:.875rem; font-weight:600; cursor:pointer; }
   .pantry-quickview-trigger:hover { border-color:var(--accent-green); background:var(--bg-subtle); }
-  .pantry-stock-note { margin:26px 0; padding:16px 18px; border:1px solid var(--border-light); border-radius:10px; background:var(--bg-subtle); color:var(--text-main); font-size:.88rem; line-height:1.65; }
+  .pantry-stock-note { margin:26px 0; padding:16px 18px; border:1px solid var(--border-light); border-radius:10px; background:var(--bg-subtle); color:var(--text-main); font-size:.9375rem; line-height:1.65; }
   .pantry-faq { margin:42px 0 24px; padding:28px 0 12px; border-top:1px solid var(--border-light); }
   .pantry-faq h2 { margin:8px 0 20px; font:600 clamp(1.8rem,3vw,2.4rem)/1.12 var(--serif); }
   .pantry-faq-list { border-top:1px solid var(--border-light); }
   .pantry-faq-list details { border-bottom:1px solid var(--border-light); }
   .pantry-faq-list summary { display:flex; min-height:52px; align-items:center; padding:12px 28px 12px 0; cursor:pointer; font:600 1rem/1.4 var(--sans); }
-  .pantry-faq-list details p { max-width:720px; margin:0 0 18px; color:var(--text-muted); font-size:.9rem; }
+  .pantry-faq-list details p { max-width:720px; margin:0 0 18px; color:var(--text-muted); font-size:.9375rem; }
   .pantry-faq-list a { text-underline-offset:3px; color:var(--accent-green); font-weight:600; }
   .enquiry-row { margin-top:24px; }
   .pantry-group[hidden],.pantry-search-status[hidden],.pantry-search-empty[hidden],.pantry-spinner[hidden] { display:none; }
@@ -281,9 +318,9 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
   .pantry-spinner { position:absolute; top:28px; left:50%; z-index:4; transform:translateX(-50%); display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border:1px solid var(--border-light); border-radius:50%; background:rgba(250,249,246,.96); box-shadow:0 8px 20px rgba(23,29,24,.12); pointer-events:none; }
   .pantry-spinner-ring { width:22px; height:22px; border:2.5px solid rgba(24,56,40,.16); border-top-color:var(--accent-green); border-radius:50%; animation:pantrySpin 650ms linear infinite; }
   @keyframes pantrySpin { to { transform:rotate(360deg); } }
-  .pantry-search-status { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; margin:20px 0 8px; padding:12px 16px; border:1px solid var(--border-light); border-radius:10px; background:var(--bg-subtle); color:var(--text-main); font-size:.88rem; }
-  .pantry-search-clear { border:0; padding:4px 0; background:transparent; color:var(--accent-green); font-size:.84rem; font-weight:600; text-decoration:underline; text-underline-offset:4px; cursor:pointer; }
+  .pantry-search-status { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; margin:20px 0 8px; padding:12px 16px; border:1px solid var(--border-light); border-radius:10px; background:var(--bg-subtle); color:var(--text-main); font-size:.9375rem; }
+  .pantry-search-clear { border:0; padding:4px 0; background:transparent; color:var(--accent-green); font-size:.875rem; font-weight:600; text-decoration:underline; text-underline-offset:4px; cursor:pointer; }
   .pantry-search-empty { margin:18px 0; padding:24px; border:1px solid var(--border-light); border-radius:12px; background:var(--bg-card); }
-  .pantry-search-empty p { margin:0 0 12px; color:var(--text-muted); font-size:.92rem; }
+  .pantry-search-empty p { margin:0 0 12px; color:var(--text-muted); font-size:.9375rem; }
   @media(max-width:760px) { .pantry-intro-row,.pantry-group { grid-template-columns:minmax(0,1fr); gap:16px; } .pantry-group-visual { max-width:560px; } }
 </style>
