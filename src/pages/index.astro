@@ -4,10 +4,6 @@ import StoreLocationMap from "../components/StoreLocationMap";
 import reviewData from "../data/reviews.json";
 import "../styles/mobile-responsive.css";
 
-import riceImg from "../assets/images/pantry_traditional_rice_1795627178963.jpg";
-import milletsImg from "../assets/images/pantry_whole_millets_1795627178343.jpg";
-import oilsImg from "../assets/images/pantry_cold_pressed_oils_1795627178653.jpg";
-import gheeHoneyImg from "../assets/images/pantry_ghee_honey_1795627179772.jpg";
 
 interface CustomerReview {
   reviewer: string;
@@ -21,24 +17,27 @@ interface CustomerReview {
 }
 const reviews = reviewData as CustomerReview[];
 const base = import.meta.env.BASE_URL;
+const pantryImage = (slug: string, width: number) => `${base}images/pantry/${slug}-${width}.webp`;
+const pantrySrcSet = (slug: string) => `${pantryImage(slug, 480)} 480w, ${pantryImage(slug, 800)} 800w`;
 const mapsUrl = "https://www.google.com/maps/place/Eshwar+Home+Products/@13.1118547,80.2468127,17z/data=!3m1!4b1!4m6!3m5!1s0x3a526569af8122ad:0xe485caf4b8adf074!8m2!3d13.1118495!4d80.2493876!16s%2Fg%2F11v4j6lc03?entry=ttu&g_ep=EgoyMDI2MTExNS4wIKXMDSoASAFQAw%3D%3D";
 const whatsappUrl = "https://wa.me/919941209953";
 const ask = (item: string) => whatsappUrl + "?text=" + encodeURIComponent("Hello Eshwar Home Products, please help me check today's availability and pack sizes for " + item + ".");
 
 const categories = [
-  { title: "Grains & Millets", subtitle: "Siruthaniyam & Rice", item: "grains and millets", image: riceImg.src },
-  { title: "Chekku Oils", subtitle: "Wood-Pressed Purity", item: "cold-pressed oils", image: oilsImg.src },
-  { title: "Whole Millets", subtitle: "Thinai, Varagu & Samai", item: "whole millets", image: milletsImg.src },
-  { title: "Dry Fruits & Nuts", subtitle: "Badam, Cashew & Pista", item: "dry fruits and nuts", image: `${base}images/products/ESH_Badam_Pack.jpeg` },
-  { title: "Ragi & Snacks", subtitle: "Flours, Cookies & Sevai", item: "ragi and millet snacks", image: `${base}images/products/ESH_Ragi_Pack.jpeg` },
-  { title: "Ghee & Honey", subtitle: "Cow Ghee & Wild Honey", item: "ghee and wild honey", image: gheeHoneyImg.src }
+  { title: "Grains & Millets", subtitle: "Siruthaniyam & Rice", item: "grains and millets", image: pantryImage("traditional-rice", 120) },
+  { title: "Chekku Oils", subtitle: "Wood-Pressed Purity", item: "cold-pressed oils", image: pantryImage("cold-pressed-oils", 120) },
+  { title: "Whole Millets", subtitle: "Thinai, Varagu & Samai", item: "whole millets", image: pantryImage("whole-millets", 120) },
+  { title: "Dry Fruits & Nuts", subtitle: "Badam, Cashew & Pista", item: "dry fruits and nuts", image: pantryImage("pack-badam", 120) },
+  { title: "Ragi & Snacks", subtitle: "Flours, Cookies & Sevai", item: "ragi and millet snacks", image: pantryImage("pack-ragi", 120) },
+  { title: "Ghee & Honey", subtitle: "Cow Ghee & Wild Honey", item: "ghee and wild honey", image: pantryImage("ghee-honey", 120) }
 ];
 
 const featuredProducts = [
   {
     category: "Heirloom Staples",
     title: "Traditional Rice",
-    image: riceImg.src,
+    image: pantryImage("traditional-rice", 800),
+    srcset: pantrySrcSet("traditional-rice"),
     alt: "Traditional South Indian heirloom rice varieties in ceramic and brass bowls",
     enquiry: "traditional rice varieties",
     description: "Familiar and heirloom South Indian rice varieties for everyday home meals.",
@@ -51,7 +50,8 @@ const featuredProducts = [
     title: "Whole Millets & Flours",
     featured: true,
     featuredLabel: "Featured · Fresh Harvest",
-    image: milletsImg.src,
+    image: pantryImage("whole-millets", 800),
+    srcset: pantrySrcSet("whole-millets"),
     alt: "Whole millets including foxtail millet, finger millet ragi, and pearl millet in ceramic bowls",
     enquiry: "whole millets and millet varieties",
     description: "Thinai, Varagu, Samai, Kuthiraivali, Ragi, and Kambu in whole grain and flour.",
@@ -62,7 +62,8 @@ const featuredProducts = [
   {
     category: "Tiffin & Teatime",
     title: "Ragi & Millet Snacks",
-    image: `${base}images/products/ESH_Ragi_Pack.jpeg`,
+    image: pantryImage("pack-ragi", 800),
+    srcset: pantrySrcSet("pack-ragi"),
     alt: "Packaged ragi millet staples and nutritious snacks from Eshwar Home Products",
     enquiry: "ragi, millet cookies, flakes and sevai",
     description: "Sprouted ragi flours, millet flakes, vermicelli, pasta, and everyday tiffin snacks.",
@@ -73,7 +74,8 @@ const featuredProducts = [
   {
     category: "Chekku Pressed",
     title: "Cold-Pressed Oils",
-    image: oilsImg.src,
+    image: pantryImage("cold-pressed-oils", 800),
+    srcset: pantrySrcSet("cold-pressed-oils"),
     alt: "Cold-pressed gingelly sesame oil and groundnut oil in glass bottles with sesame seeds and peanuts",
     enquiry: "cold-pressed oils",
     description: "Wood-pressed gingelly, groundnut, and coconut oils chosen for everyday cooking.",
@@ -84,7 +86,8 @@ const featuredProducts = [
   {
     category: "Kitchen Pure",
     title: "Pure Ghee & Wild Honey",
-    image: gheeHoneyImg.src,
+    image: pantryImage("ghee-honey", 800),
+    srcset: pantrySrcSet("ghee-honey"),
     alt: "Artisanal clarified cow ghee and wild forest honey in glass jars on limestone",
     enquiry: "ghee and honey",
     description: "Traditional clarified cow ghee, everyday dairy, and pure wild forest honey.",
@@ -95,7 +98,8 @@ const featuredProducts = [
   {
     category: "Pantry & Festive",
     title: "Badam, Cashews & Nuts",
-    image: `${base}images/products/ESH_Badam_Pack.jpeg`,
+    image: pantryImage("pack-badam", 800),
+    srcset: pantrySrcSet("pack-badam"),
     alt: "Cleanly packed whole almonds, cashews, and pantry dry fruits at Eshwar Home Products",
     enquiry: "badam, cashews, pista and dry fruits",
     description: "Cleanly packed almonds, cashews, pistachios, walnuts, and native pantry pulses.",
@@ -298,6 +302,8 @@ const sourcingHighlights = [
                 )}
                 <img
                 src={product.image}
+                srcset={product.srcset}
+                sizes="(max-width: 700px) 92vw, (max-width: 1200px) 45vw, 400px"
                 alt={product.alt}
                 width="1200"
                 height="900"
