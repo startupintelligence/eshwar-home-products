@@ -230,6 +230,14 @@ const base = import.meta.env.BASE_URL;
   };
 
   if (toggle && navigation) {
+    const mobileNavigationQuery = window.matchMedia("(max-width: 768px)");
+    mobileNavigationQuery.addEventListener("change", (event) => {
+      if (!event.matches && toggle.getAttribute("aria-expanded") === "true") {
+        closeNavigation();
+        navigation.querySelector<HTMLElement>("a[href]")?.focus({ preventScroll: true });
+      }
+    });
+
     toggle.addEventListener("click", () => {
       const expanded = toggle.getAttribute("aria-expanded") === "true";
       if (expanded) {
