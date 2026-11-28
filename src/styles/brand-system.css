@@ -42,6 +42,7 @@
   --text-main: #2A1A10;
   --text-muted: #5B4637;
   --border-light: #CDB89D;
+  --border-control: #8E735C;
   --paper: var(--bg-page);
   --surface: var(--bg-card);
   --ink: var(--text-main);
@@ -264,7 +265,7 @@ input:focus-visible {
   align-items: center;
   width: clamp(150px, 16vw, 200px);
   min-height: 40px;
-  border: 1px solid var(--border-light);
+  border: 1px solid var(--border-control);
   border-radius: 8px;
   background: var(--bg-card);
   overflow: hidden;
@@ -1027,7 +1028,7 @@ input:focus-visible {
   color: #F8F0E4;
 }
 
-/* Contrast-checked Harvest Brass stars on ivory/white surfaces */
+/* Contrast-checked Roasted Brass stars on warm light surfaces */
 .five-stars-reveal {
   display: inline-flex;
   align-items: center;
