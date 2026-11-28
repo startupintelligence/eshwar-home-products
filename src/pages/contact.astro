@@ -126,6 +126,8 @@ const base = import.meta.env.BASE_URL;
 </SiteLayout>
 
 <script>
+  import { isValidEmail, isValidPhoneNumber } from "../utils/validation.mjs";
+
   const form = document.getElementById("contact-enquiry-form") as HTMLFormElement | null;
   if (form) {
     const nameInput = document.getElementById("contact-name") as HTMLInputElement;
@@ -139,7 +141,6 @@ const base = import.meta.env.BASE_URL;
     const dispatchEmail = document.getElementById("contact-dispatch-email") as HTMLAnchorElement;
     const dispatchConfirm = document.getElementById("contact-dispatch-confirm") as HTMLAnchorElement;
 
-    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     let locked = false;
 
     const setFieldError = (input: HTMLElement, errorId: string, msg: string) => {
@@ -193,18 +194,17 @@ const base = import.meta.env.BASE_URL;
         setFieldError(nameInput, "contact-name-error", "");
       }
 
-      const phoneDigits = phoneVal.replace(/\D/g, "");
       if (!phoneVal) {
         setFieldError(phoneInput, "contact-phone-error", "Please enter your phone number.");
         firstInvalid = firstInvalid ?? phoneInput;
-      } else if (phoneDigits.length < 10 || phoneDigits.length > 13 || !/^[+\d\s()-]+$/.test(phoneVal)) {
+      } else if (!isValidPhoneNumber(phoneVal)) {
         setFieldError(phoneInput, "contact-phone-error", "Enter a valid 10-digit phone number (with or without +91).");
         firstInvalid = firstInvalid ?? phoneInput;
       } else {
         setFieldError(phoneInput, "contact-phone-error", "");
       }
 
-      if (emailVal && !EMAIL_RE.test(emailVal)) {
+      if (emailVal && !isValidEmail(emailVal)) {
         setFieldError(emailInput, "contact-email-error", "Please enter a valid email address or leave this field empty.");
         firstInvalid = firstInvalid ?? emailInput;
       } else {
