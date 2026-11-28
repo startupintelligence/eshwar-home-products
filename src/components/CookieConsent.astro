@@ -18,7 +18,7 @@ const base = import.meta.env.BASE_URL;
     <div class="cookie-banner-copy">
       <strong>Privacy &amp; cookie preferences</strong>
       <p>
-        We use essential browser storage for site functions and your saved choices. Optional analytics stay off unless you choose Accept All.
+        We use essential browser storage for site functions and your saved choices. Optional Google Analytics stays off unless you choose Accept All.
         <a href={base + "privacy-policy/"}>Read our privacy policy</a>
       </p>
     </div>
@@ -49,7 +49,7 @@ const base = import.meta.env.BASE_URL;
 
     <div class="cookie-pref-item">
       <div>
-        <strong>Analytics (Ahrefs &amp; optional Google Analytics)</strong>
+        <strong>Google Analytics</strong>
         <span>Helps us understand which pantry guides and store pages visitors find helpful. Loads only when enabled.</span>
       </div>
       <label class="cookie-pref-toggle" for="ehp-cookie-analytics-toggle">
@@ -74,7 +74,7 @@ const base = import.meta.env.BASE_URL;
     version: number;
   }
 
-  const STORAGE_KEY = "ehp_cookie_consent_v1";
+  const STORAGE_KEY = "ehp_cookie_consent_v2";
   const banner = document.getElementById("ehp-cookie-banner");
   const dialog = document.getElementById("ehp-cookie-dialog");
   const acceptBtn = document.getElementById("ehp-cookie-accept");
@@ -93,7 +93,7 @@ const base = import.meta.env.BASE_URL;
       const raw = window.localStorage.getItem(STORAGE_KEY);
       if (!raw) return null;
       const parsed = JSON.parse(raw) as Partial<ConsentState>;
-      if (typeof parsed.analytics !== "boolean") return null;
+      if (typeof parsed.analytics !== "boolean" || parsed.version !== 2) return null;
       return {
         essential: true,
         analytics: parsed.analytics,
@@ -105,30 +105,65 @@ const base = import.meta.env.BASE_URL;
     }
   };
 
+  const clearAnalyticsCookies = () => {
+    const names = document.cookie
+      .split(";")
+      .map((cookie) => cookie.trim().split("=")[0])
+      .filter((name) => /^_ga(?:_|$)|^_gid$|^_gat(?:_|$)|^_gac_|^ahrefs_|^_ahrefs/.test(name));
+    const hostParts = window.location.hostname.split(".");
+    const domains = new Set([window.location.hostname, `.${window.location.hostname}`]);
+    if (hostParts.length > 2) domains.add(`.${hostParts.slice(-2).join(".")}`);
+    for (const name of names) {
+      document.cookie = `${name}=; Max-Age=0; path=/; SameSite=Lax`;
+      domains.forEach((domain) => {
+        document.cookie = `${name}=; Max-Age=0; path=/; domain=${domain}; SameSite=Lax`;
+      });
+    }
+  };
+
   const loadAnalyticsScripts = () => {
-    if (analyticsLoaded) return;
+    const ga4Id = banner?.getAttribute("data-ga4-id")?.trim();
+    if (analyticsLoaded || !ga4Id) return;
     analyticsLoaded = true;
 
-    const ahrefs = document.createElement("script");
-    ahrefs.src = "https://analytics.ahrefs.com/analytics.js";
-    ahrefs.setAttribute("data-key", "T8+LOj2/EakoZK7/pjg3rg");
-    ahrefs.async = true;
-    document.head.appendChild(ahrefs);
+    const analyticsWindow = window as unknown as {
+      [key: string]: unknown;
+      dataLayer?: IArguments[];
+      gtag?: (...args: unknown[]) => void;
+    };
+    analyticsWindow[`ga-disable-${ga4Id}`] = false;
+    analyticsWindow.dataLayer = analyticsWindow.dataLayer || [];
+    analyticsWindow.gtag = function () {
+      analyticsWindow.dataLayer?.push(arguments);
+    };
+    analyticsWindow.gtag("js", new Date());
+    analyticsWindow.gtag("config", ga4Id, { anonymize_ip: true });
+    const gaScript = document.createElement("script");
+    gaScript.async = true;
+    gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(ga4Id)}`;
+    document.head.appendChild(gaScript);
+  };
 
+  const stopAnalyticsScripts = () => {
     const ga4Id = banner?.getAttribute("data-ga4-id")?.trim();
+    const analyticsWindow = window as unknown as {
+      [key: string]: unknown;
+      gtag?: (...args: unknown[]) => void;
+    };
     if (ga4Id) {
-      const analyticsWindow = window as Window & { dataLayer?: IArguments[]; gtag?: (...args: unknown[]) => void };
-      analyticsWindow.dataLayer = analyticsWindow.dataLayer || [];
-      analyticsWindow.gtag = function () {
-        analyticsWindow.dataLayer?.push(arguments);
-      };
-      analyticsWindow.gtag("js", new Date());
-      analyticsWindow.gtag("config", ga4Id, { anonymize_ip: true });
-      const gaScript = document.createElement("script");
-      gaScript.async = true;
-      gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(ga4Id)}`;
-      document.head.appendChild(gaScript);
+      analyticsWindow[`ga-disable-${ga4Id}`] = true;
+      analyticsWindow.gtag?.("consent", "update", {
+        analytics_storage: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+      });
     }
+    document.querySelectorAll<HTMLScriptElement>(
+      'script[src*="googletagmanager.com/gtag/js"], script[src*="analytics.ahrefs.com"]'
+    ).forEach((script) => script.remove());
+    clearAnalyticsCookies();
+    analyticsLoaded = false;
   };
 
   const writeConsent = (analytics: boolean) => {
@@ -136,7 +171,7 @@ const base = import.meta.env.BASE_URL;
       essential: true,
       analytics,
       updatedAt: new Date().toISOString(),
-      version: 1,
+      version: 2,
     };
     try {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(nextState));
@@ -146,6 +181,7 @@ const base = import.meta.env.BASE_URL;
     if (analyticsToggle) analyticsToggle.checked = analytics;
     if (banner) banner.hidden = true;
     if (analytics) loadAnalyticsScripts();
+    else stopAnalyticsScripts();
     window.dispatchEvent(new CustomEvent("ehp:consent-updated", { detail: nextState }));
   };
 
@@ -171,6 +207,7 @@ const base = import.meta.env.BASE_URL;
   if (existing) {
     if (banner) banner.hidden = true;
     if (existing.analytics) loadAnalyticsScripts();
+    else stopAnalyticsScripts();
   } else if (banner) {
     banner.hidden = false;
   }
