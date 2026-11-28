@@ -214,6 +214,7 @@ export default function StoreLocationMap({
   ).trim();
 
   const [mounted, setMounted] = useState(false);
+  const [mapRequested, setMapRequested] = useState(false);
   const [quotaExceeded, setQuotaExceeded] = useState(false);
   const [loadStatus, setLoadStatus] = useState<APILoadingStatus>(
     APILoadingStatus.NOT_LOADED
@@ -254,7 +255,7 @@ export default function StoreLocationMap({
         </div>
       )}
 
-      {mounted && apiKey ? (
+      {mounted && apiKey && mapRequested ? (
         <APIProvider apiKey={apiKey} libraries={["marker"]} language="en" region="IN">
           <StoreMapCanvas compact={compact} onStatusChange={setLoadStatus} />
         </APIProvider>
@@ -273,6 +274,11 @@ export default function StoreLocationMap({
             119/1, Paddy Field Rd, Chinnaiyan Colony, Perambur, Chennai, Tamil
             Nadu 600011
           </p>
+          {apiKey && (
+            <button className="ehp-gmap-btn" type="button" onClick={() => setMapRequested(true)}>
+              Load interactive map
+            </button>
+          )}
           <a
             className="ehp-gmap-ext-link"
             href={STORE_MAPS_URL}
