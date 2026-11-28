@@ -252,13 +252,13 @@ const sourcingHighlights = [
             <span class="home-meta-sep" aria-hidden="true">·</span>
             <span class="home-meta-hours">Mon–Sat 9 AM – 9 PM</span>
           </p>
-          <h1 id="home-title">Traditional Rice, Millets &amp; <em>Everyday Pantry</em> Essentials</h1>
+          <h1 id="home-title">Rice, Millets &amp; <em>Everyday Pantry</em> Essentials in Perambur</h1>
           <p class="home-hero-lede">
-            Thoughtfully chosen staples for everyday South Indian kitchens. Visit our neighbourhood pantry on Paddy Field Road in Perambur, or message us directly to check today's fresh stock.
+            Visit our Perambur store for traditional rice, whole millets, cold-pressed oils and everyday pantry essentials.
           </p>
           <div class="home-hero-actions">
-            <a class="button" href={base + "products/"}>Explore Our Pantry <span aria-hidden="true">→</span></a>
-            <button class="button-whatsapp" type="button" data-ehp-dialog="enquiry" aria-haspopup="dialog">Check Stock on WhatsApp</button>
+            <a class="button" href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Get directions to Eshwar Home Products in Perambur">Get Directions <span aria-hidden="true">↗</span></a>
+            <a class="action-secondary" href={base + "products/"}>Browse Pantry <span aria-hidden="true">→</span></a>
           </div>
           <div class="home-hero-proof">
             <a class="home-proof-rating" href={mapsUrl} target="_blank" rel="noopener noreferrer">
@@ -855,7 +855,7 @@ const sourcingHighlights = [
     position: relative;
     margin: 0;
     min-height: 430px;
-    border-radius: 14px;
+    border-radius: 8px;
     overflow: hidden;
     background: var(--bg-subtle);
     border: 1px solid var(--border-light);
@@ -1107,9 +1107,9 @@ const sourcingHighlights = [
   }
 
   .home-product-card.is-featured {
-    border: 1.5px solid rgba(130, 86, 16, 0.55);
-    background: #F7F4EC;
-    box-shadow: 0 10px 24px rgba(24, 56, 40, 0.08);
+    border: 1.5px solid rgba(112, 68, 42, 0.55);
+    background: var(--bg-card);
+    box-shadow: 0 10px 24px rgba(49, 86, 63, 0.08);
   }
 
   .home-product-card.is-featured .home-product-body h3 {
@@ -1347,7 +1347,7 @@ const sourcingHighlights = [
   .home-story-band {
     padding: clamp(56px, 7vw, 96px) 0;
     background: var(--earth-dark);
-    color: #FAF9F6;
+    color: var(--bg-card);
   }
 
   .home-story-layout {
@@ -1364,7 +1364,7 @@ const sourcingHighlights = [
     padding: 28px 24px;
     border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 12px;
-    background: #FFFFFF;
+    background: var(--bg-card);
     color: var(--text-main);
     text-align: center;
   }
@@ -1477,7 +1477,7 @@ const sourcingHighlights = [
     overflow: hidden;
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.16);
-    background: #10281C;
+    background: var(--accent-green-hover);
     text-decoration: none;
   }
 
@@ -1491,7 +1491,7 @@ const sourcingHighlights = [
   }
 
   .home-gallery-tile.is-board {
-    background: #FFFFFF;
+    background: var(--bg-card);
   }
 
   .home-gallery-tile.is-board img {

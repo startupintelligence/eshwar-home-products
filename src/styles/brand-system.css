@@ -1,6 +1,6 @@
-/* Unified Design System — Eshwar Home Products
-   Palette: Mineral Ivory (#FAF9F6), Stone Linen (#F2F0EA), Cardamom Forest (#183828),
-            Harvest Brass (#825610 on light surfaces >= 4.5:1, #E2B75B on Cardamom Forest)
+/* Eshwar Home Products Design System
+   Palette: Warm Grain Cream (#F1E4D2), Toasted Sand (#E7D6C1), Rice Paper (#F8F0E4),
+            Espresso (#2A1A10), Forest Green (#31563F), Roasted Brass (#70442A)
    Typography: Fraunces (Display Serif) + Plus Jakarta Sans (Body Sans) + Noto Sans Tamil
 */
 
@@ -24,24 +24,24 @@
 
 :root {
   color-scheme: light;
-  --bg-page: #FAF9F6;
-  --bg-subtle: #F2F0EA;
-  --bg-card: #FFFFFF;
-  --earth-dark: #183828;
-  --brand-red: #183828;
-  --brand-red-dark: #10281C;
-  --brand-green: #183828;
-  --brand-gold: #E2B75B;
-  --brand-cream: #F2F0EA;
-  --brand-paper: #FAF9F6;
-  --brand-ink: #171D18;
-  --accent-gold: #E2B75B;
-  --accent-brass: #825610;
-  --accent-green: #183828;
-  --accent-green-hover: #10281C;
-  --text-main: #171D18;
-  --text-muted: #4A544B;
-  --border-light: #E2DFD7;
+  --bg-page: #F1E4D2;
+  --bg-subtle: #E7D6C1;
+  --bg-card: #F8F0E4;
+  --earth-dark: #2A1A10;
+  --brand-red: #31563F;
+  --brand-red-dark: #24432F;
+  --brand-green: #31563F;
+  --brand-gold: #F1C875;
+  --brand-cream: #E7D6C1;
+  --brand-paper: #F1E4D2;
+  --brand-ink: #2A1A10;
+  --accent-gold: #F1C875;
+  --accent-brass: #70442A;
+  --accent-green: #31563F;
+  --accent-green-hover: #24432F;
+  --text-main: #2A1A10;
+  --text-muted: #5B4637;
+  --border-light: #CDB89D;
   --paper: var(--bg-page);
   --surface: var(--bg-card);
   --ink: var(--text-main);
@@ -1004,11 +1004,11 @@ input:focus-visible {
 /* Perambur Store Guide Conversion Dark Band (used sparingly) */
 .conversion-section {
   background: var(--earth-dark);
-  color: #FAF9F6;
+  color: #F8F0E4;
 }
 
 .conversion-section :where(h2, p) {
-  color: #FAF9F6;
+  color: #F8F0E4;
 }
 
 .conversion-section .eyebrow {
@@ -1018,13 +1018,13 @@ input:focus-visible {
 .conversion-section .action-primary {
   background: var(--accent-gold);
   border-color: var(--accent-gold);
-  color: #171D18;
+  color: #2A1A10;
 }
 
 .conversion-section .action-secondary {
   background: transparent;
-  border-color: rgba(250, 249, 246, 0.35);
-  color: #FAF9F6;
+  border-color: rgba(248, 240, 228, 0.35);
+  color: #F8F0E4;
 }
 
 /* Contrast-checked Harvest Brass stars on ivory/white surfaces */
@@ -1043,8 +1043,8 @@ input:focus-visible {
    ========================================================================== */
 .site-footer {
   background: var(--earth-dark);
-  color: #FAF9F6;
-  border-top: 1px solid rgba(226, 183, 91, 0.28);
+  color: #F8F0E4;
+  border-top: 1px solid rgba(241, 200, 117, 0.28);
   padding: 56px 0 calc(28px + env(safe-area-inset-bottom, 0px));
 }
 
@@ -1069,8 +1069,8 @@ input:focus-visible {
   justify-content: center;
   padding: 6px;
   border-radius: 8px;
-  border: 1px solid rgba(226, 183, 91, 0.45);
-  background: #FFFFFF;
+  border: 1px solid rgba(241, 200, 117, 0.45);
+  background: var(--bg-card);
 }
 
 .site-footer .footer-logo {
@@ -1135,7 +1135,7 @@ input:focus-visible {
 
 .site-footer .footer-social-link:hover,
 .site-footer .footer-social-link:focus-visible {
-  background: rgba(226, 183, 91, 0.16);
+  background: rgba(241, 200, 117, 0.16);
   border-color: var(--accent-gold);
   color: #FFFFFF;
   transform: translateY(-1px);
