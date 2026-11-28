@@ -209,6 +209,7 @@ const base = import.meta.env.BASE_URL;
     if (existing.analytics) loadAnalyticsScripts();
     else stopAnalyticsScripts();
   } else if (banner) {
+    stopAnalyticsScripts();
     banner.hidden = false;
   }
 
