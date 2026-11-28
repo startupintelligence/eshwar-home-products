@@ -809,9 +809,6 @@ summary:focus-visible,
   background: var(--border-light);
 }
 
-to { opacity: 0.9; }
-}
-
 .live-catalogue-loading-text {
   margin: 0 0 12px;
   color: var(--text-muted);
