@@ -80,15 +80,15 @@
   --surface-brown: #D0B08F;
   --brand-red: var(--brand-brown);
   --brand-red-dark: var(--brand-brown-dark);
-  --brand-green: #61765B;
+  --brand-green: #536B65;
   --brand-gold: #C79F44;
   --brand-cream: #F3E7D8;
   --brand-paper: #E9D8C4;
   --brand-ink: #24170F;
   --accent-gold: #C79F44;
   --accent-brass: #7F4E1B;
-  --accent-green: #61765B;
-  --accent-green-hover: #4B6048;
+  --accent-green: #536B65;
+  --accent-green-hover: #40534E;
   --text-main: #24170F;
   --text-muted: #5B4939;
   --border-light: #C9B094;
@@ -96,7 +96,7 @@
   --surface: var(--bg-card);
   --ink: var(--text-main);
   --muted: var(--text-muted);
-  --olive: #687B5B;
+  --olive: #536B65;
   --olive-soft: #E0D1BB;
   --clay: #A77B56;
   --line: var(--border-light);
