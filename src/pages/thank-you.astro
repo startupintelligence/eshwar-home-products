@@ -31,7 +31,10 @@ const base = import.meta.env.BASE_URL;
         <span>Sun: Closed</span>
       </div>
       <div class="thank-you-actions">
-        <a class="thank-you-button primary" href={storeConfig.whatsappUrl} target="_blank" rel="noopener noreferrer">
+        <a class="thank-you-button primary" href={storeConfig.mapsUrl} target="_blank" rel="noopener noreferrer">
+          Visit Store &amp; Directions <span aria-hidden="true">↗</span>
+        </a>
+        <a class="thank-you-button secondary" href={storeConfig.whatsappUrl} target="_blank" rel="noopener noreferrer">
           Chat on WhatsApp Now <span aria-hidden="true">↗</span>
         </a>
         <a class="thank-you-button secondary" href={`${base}products/`}>Browse the Pantry</a>
@@ -44,7 +47,7 @@ const base = import.meta.env.BASE_URL;
 <style>
   .thank-you-section { min-height: 68vh; display: grid; place-items: center; padding: 64px 20px; background: var(--bg-page); }
   .thank-you-card { width: min(100%, 720px); padding: clamp(28px, 6vw, 56px); border: 1px solid var(--border-light); border-radius: 12px; background: var(--bg-subtle); text-align: center; }
-  .confirmation-mark { width: 64px; height: 64px; display: grid; place-items: center; margin: 0 auto 24px; border-radius: 50%; background: #E4ECE7; color: var(--accent-green); }
+  .confirmation-mark { width: 64px; height: 64px; display: grid; place-items: center; margin: 0 auto 24px; border-radius: 50%; background: #F2EBE0; color: var(--accent-green); border: 1px solid var(--border-light); }
   .confirmation-mark svg { width: 34px; height: 34px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .thank-you-card .eyebrow { margin: 0 0 10px; color: var(--accent-brass); font-family: var(--sans); font-weight: 600; }
   .thank-you-card h1 { max-width: 590px; margin: 0 auto; color: var(--text-main); font-family: var(--serif); font-size: clamp(2rem, 4.5vw, 2.9rem); font-weight: 400; letter-spacing: -.03em; line-height: 1.12; }

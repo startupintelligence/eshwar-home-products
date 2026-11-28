@@ -246,19 +246,20 @@ const sourcingHighlights = [
       <div class="home-hero-grid">
         <div class="home-hero-copy">
           <p class="home-meta-line">
-            <span>Perambur, Chennai</span>
-            <span aria-hidden="true">·</span>
-            <span lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</span>
-            <span aria-hidden="true">·</span>
-            <span>Mon–Sat 9 AM – 9 PM</span>
+            <span class="home-meta-place">Perambur, Chennai</span>
+            <span class="home-meta-sep home-meta-sep-ta" aria-hidden="true">·</span>
+            <span class="home-meta-tamil" lang="ta">ஈஸ்வர் ஹோம் புராடக்ட்ஸ்</span>
+            <span class="home-meta-sep" aria-hidden="true">·</span>
+            <span class="home-meta-hours">Mon–Sat 9 AM – 9 PM</span>
           </p>
           <h1 id="home-title">Traditional Rice, Millets &amp; <em>Everyday Pantry</em> Essentials</h1>
           <p class="home-hero-lede">
             Thoughtfully chosen staples for everyday South Indian kitchens. Visit our neighbourhood pantry on Paddy Field Road in Perambur, or message us directly to check today's fresh stock.
           </p>
           <div class="home-hero-actions">
-            <a class="button" href={base + "products/"}>Explore Our Pantry <span aria-hidden="true">→</span></a>
-            <button class="button-whatsapp" type="button" data-ehp-dialog="enquiry" aria-haspopup="dialog">Check Stock on WhatsApp</button>
+            <a class="button" href={mapsUrl} target="_blank" rel="noopener noreferrer">Visit Store &amp; Buy <span aria-hidden="true">↗</span></a>
+            <a class="button-whatsapp" href={base + "products/"}>Browse The Pantry <span aria-hidden="true">→</span></a>
+            <button class="text-link" type="button" data-ehp-dialog="enquiry" aria-haspopup="dialog">WhatsApp Enquiry ↗</button>
           </div>
           <div class="home-hero-proof">
             <a class="home-proof-rating" href={mapsUrl} target="_blank" rel="noopener noreferrer">
@@ -1073,7 +1074,7 @@ const sourcingHighlights = [
   .home-spinner-ring {
     width: 22px;
     height: 22px;
-    border: 2.5px solid rgba(24, 56, 40, 0.16);
+    border: 2.5px solid rgba(66, 39, 25, 0.16);
     border-top-color: var(--accent-green);
     border-radius: 50%;
     animation: ehpGridSpin 650ms linear infinite;
@@ -1109,7 +1110,7 @@ const sourcingHighlights = [
   .home-product-card.is-featured {
     border: 1.5px solid rgba(130, 86, 16, 0.55);
     background: #F7F4EC;
-    box-shadow: 0 10px 24px rgba(24, 56, 40, 0.08);
+    box-shadow: 0 10px 24px rgba(66, 39, 25, 0.08);
   }
 
   .home-product-card.is-featured .home-product-body h3 {
@@ -1138,7 +1139,7 @@ const sourcingHighlights = [
   .home-product-card:focus-within,
   .product-card:focus-within {
     transform: translateY(-4px) scale(1.02);
-    border-color: rgba(24, 56, 40, 0.48);
+    border-color: rgba(66, 39, 25, 0.48);
     box-shadow: 0 18px 36px rgba(23, 29, 24, 0.13);
   }
 
@@ -1477,7 +1478,7 @@ const sourcingHighlights = [
     overflow: hidden;
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.16);
-    background: #10281C;
+    background: #2B1A11;
     text-decoration: none;
   }
 
@@ -1634,7 +1635,7 @@ const sourcingHighlights = [
 
   .home-story-card:hover {
     transform: translateY(-2px);
-    border-color: rgba(24, 56, 40, 0.32);
+    border-color: rgba(66, 39, 25, 0.32);
     box-shadow: 0 10px 24px rgba(23, 29, 24, 0.05);
   }
 
@@ -1933,7 +1934,7 @@ const sourcingHighlights = [
     .home-hero-media {
       order: -1;
       min-height: 170px;
-      max-height: 210px;
+      max-height: 205px;
       aspect-ratio: 16 / 9;
     }
     .home-stories-header,
@@ -1946,9 +1947,102 @@ const sourcingHighlights = [
     }
   }
 
+  @media (max-width: 768px) {
+    .home-meal-toolbar,
+    .home-stories-toolbar {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+    }
+    .home-meal-filters,
+    .home-stories-filters {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      max-width: 100%;
+      padding-bottom: 4px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .home-meal-filters::-webkit-scrollbar,
+    .home-stories-filters::-webkit-scrollbar {
+      display: none;
+    }
+    .home-meal-filters .filter-button,
+    .home-stories-filters .filter-button {
+      flex: 0 0 auto;
+      min-height: 44px;
+      padding: 0 14px;
+    }
+    .home-product-details-link,
+    .home-product-wa,
+    .home-proof-rating,
+    .home-proof-address,
+    .home-emblem-rating,
+    .home-search-clear {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+    }
+    .home-stories-links {
+      flex-wrap: wrap;
+      gap: 8px 18px;
+    }
+  }
+
   @media (max-width: 600px) {
+    .home-hero-section {
+      padding-top: 16px;
+    }
+    .home-hero-grid {
+      gap: 16px;
+    }
+    .home-hero-media {
+      min-height: 152px;
+      max-height: 180px;
+    }
+    .home-hero-caption {
+      right: 12px;
+      bottom: 12px;
+      left: 12px;
+      font-size: 0.8125rem;
+    }
+    .home-hero-copy {
+      padding-block: 4px 16px;
+    }
+    .home-meta-line {
+      gap: 4px 8px;
+      margin-bottom: 12px;
+      font-size: 0.8125rem;
+      line-height: 1.45;
+    }
+    .home-meta-tamil {
+      order: -1;
+      flex: 1 0 100%;
+    }
+    .home-meta-sep-ta {
+      display: none;
+    }
+    .home-hero-copy h1 {
+      font-size: clamp(1.85rem, 7.6vw, 2.3rem);
+    }
+    .home-hero-lede {
+      margin-top: 12px;
+      font-size: 0.9375rem;
+      line-height: 1.6;
+    }
+    .home-hero-actions {
+      margin-top: 18px;
+      gap: 10px;
+    }
+    .home-hero-proof {
+      margin-top: 16px;
+      padding-top: 12px;
+      gap: 4px 10px;
+    }
     .home-category-strip {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 20px;
     }
     .home-category-item {
       padding: 12px 10px;
@@ -1985,6 +2079,10 @@ const sourcingHighlights = [
     .home-section-header {
       flex-direction: column;
       align-items: flex-start;
+      gap: 10px;
+    }
+    .home-visit-card-body {
+      padding: 20px;
     }
     .home-visit-dl > div {
       grid-template-columns: minmax(0, 1fr);

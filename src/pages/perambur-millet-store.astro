@@ -188,13 +188,13 @@ const discoverySchema = {
         <table class="millet-reference-table">
           <thead><tr><th scope="col">தமிழ் பெயர்</th><th scope="col">Common name</th><th scope="col">English grain name</th><th scope="col">Kitchen use</th></tr></thead>
           <tbody>
-            <tr><th scope="row"><span lang="ta">தினை</span><small>Thinai</small></th><td>Thinai</td><td>Foxtail millet</td><td>Upma, pongal and everyday grain dishes</td></tr>
-            <tr><th scope="row"><span lang="ta">வரகு</span><small>Varagu</small></th><td>Varagu</td><td>Kodo millet</td><td>Pongal, upma and mixed-rice preparations</td></tr>
-            <tr><th scope="row"><span lang="ta">சாமை</span><small>Samai</small></th><td>Samai</td><td>Little millet</td><td>Pongal, upma and one-pot meals</td></tr>
-            <tr><th scope="row"><span lang="ta">குதிரைவாலி</span><small>Kuthiraivali</small></th><td>Kuthiraivali</td><td>Barnyard millet</td><td>Upma, pongal and tiffin dishes</td></tr>
-            <tr><th scope="row"><span lang="ta">கம்பு</span><small>Kambu</small></th><td>Kambu</td><td>Pearl millet</td><td>Koozh, kali and roti</td></tr>
-            <tr><th scope="row"><span lang="ta">கேழ்வரகு</span><small>Kelvaragu / Ragi</small></th><td>Ragi</td><td>Finger millet</td><td>Kali, dosa and porridge</td></tr>
-            <tr><th scope="row"><span lang="ta">சோளம்</span><small>Cholam</small></th><td>Cholam</td><td>Sorghum</td><td>Flour-based dishes, roti and snacks</td></tr>
+            <tr><th scope="row"><span lang="ta">தினை</span><small>Thinai</small></th><td data-label="Common name">Thinai</td><td data-label="English grain">Foxtail millet</td><td data-label="Kitchen use">Upma, pongal and everyday grain dishes</td></tr>
+            <tr><th scope="row"><span lang="ta">வரகு</span><small>Varagu</small></th><td data-label="Common name">Varagu</td><td data-label="English grain">Kodo millet</td><td data-label="Kitchen use">Pongal, upma and mixed-rice preparations</td></tr>
+            <tr><th scope="row"><span lang="ta">சாமை</span><small>Samai</small></th><td data-label="Common name">Samai</td><td data-label="English grain">Little millet</td><td data-label="Kitchen use">Pongal, upma and one-pot meals</td></tr>
+            <tr><th scope="row"><span lang="ta">குதிரைவாலி</span><small>Kuthiraivali</small></th><td data-label="Common name">Kuthiraivali</td><td data-label="English grain">Barnyard millet</td><td data-label="Kitchen use">Upma, pongal and tiffin dishes</td></tr>
+            <tr><th scope="row"><span lang="ta">கம்பு</span><small>Kambu</small></th><td data-label="Common name">Kambu</td><td data-label="English grain">Pearl millet</td><td data-label="Kitchen use">Koozh, kali and roti</td></tr>
+            <tr><th scope="row"><span lang="ta">கேழ்வரகு</span><small>Kelvaragu / Ragi</small></th><td data-label="Common name">Ragi</td><td data-label="English grain">Finger millet</td><td data-label="Kitchen use">Kali, dosa and porridge</td></tr>
+            <tr><th scope="row"><span lang="ta">சோளம்</span><small>Cholam</small></th><td data-label="Common name">Cholam</td><td data-label="English grain">Sorghum</td><td data-label="Kitchen use">Flour-based dishes, roti and snacks</td></tr>
           </tbody>
         </table>
       </div>
@@ -344,15 +344,55 @@ const discoverySchema = {
   .conversion-actions .action-secondary { border-color: rgba(255,255,255,.35); background: transparent; color: #FFFFFF; }
   .conversion-actions .action-secondary:hover { border-color: var(--accent-gold); background: rgba(255,255,255,0.08); }
   @media (max-width: 760px) {
-    .hero-layout, .local-guide-grid, .faq-layout, .conversion-inner { grid-template-columns: minmax(0, 1fr); gap: 28px; }
-    .discovery-hero { padding: 40px 0; }
-    h1 { font-size: clamp(2.1rem, 10vw, 3.2rem); }
+    .hero-layout, .local-guide-grid, .faq-layout, .conversion-inner { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+    .discovery-hero { padding: 28px 0 34px; }
+    h1 { font-size: clamp(1.95rem, 8.6vw, 2.8rem); }
     .entity-card { padding: 20px; }
     .category-row { grid-template-columns: 28px minmax(0, 1fr); gap: 10px; }
     .category-row ul { grid-template-columns: minmax(0, 1fr); }
     .faq-layout .section-heading { margin-bottom: 0; }
+    .hero-actions,
     .conversion-actions { display: grid; grid-template-columns: minmax(0, 1fr); }
+    .hero-actions .action,
     .conversion-actions .action { width: 100%; }
+  }
+  @media (max-width: 640px) {
+    .millet-table-wrap { overflow-x: visible; border: 0; background: transparent; }
+    .millet-reference-table { display: block; }
+    .millet-reference-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
+    .millet-reference-table tbody { display: grid; gap: 10px; }
+    .millet-reference-table tbody tr {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 14px;
+      padding: 14px 16px;
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      background: var(--bg-card);
+    }
+    .millet-reference-table tbody th,
+    .millet-reference-table tbody td {
+      display: block;
+      min-width: 0;
+      padding: 0;
+      border: 0;
+    }
+    .millet-reference-table tbody th {
+      grid-column: 1 / -1;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .millet-reference-table tbody td[data-label="Kitchen use"] {
+      grid-column: 1 / -1;
+    }
+    .millet-reference-table tbody td::before {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--accent-brass);
+      font-size: 0.78rem;
+      font-weight: 600;
+      content: attr(data-label);
+    }
   }
   @media (prefers-reduced-motion: reduce) {
     .store-real-photo-grid a, .action { transition: none; }

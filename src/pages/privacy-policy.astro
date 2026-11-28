@@ -1,0 +1,123 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { storeConfig } from "../data/store";
+
+const base = import.meta.env.BASE_URL;
+const siteOrigin = Astro.site ?? new URL("https://startupintelligence.github.io");
+const pageUrl = new URL(base + "privacy-policy/", siteOrigin).toString();
+---
+<SiteLayout
+  title="Privacy & Cookie Policy | Eshwar Home Products"
+  description="Read how Eshwar Home Products in Perambur handles enquiries, interactive map requests, essential browser storage, and optional analytics preferences."
+  canonicalUrl={pageUrl}
+>
+  <section class="page-heading">
+    <div class="container">
+      <p class="eyebrow">Privacy &amp; Browser Storage · Perambur, Chennai</p>
+      <h1>Privacy &amp; <em>Cookie Policy.</em></h1>
+      <p>
+        This website serves as an online product catalogue and store guide for {storeConfig.name} in Perambur, Chennai.
+        It does not process online payments or require customer accounts to browse products.
+      </p>
+    </div>
+  </section>
+
+  <section class="section container policy-layout">
+    <article class="policy-card">
+      <p class="eyebrow">01 · Enquiries &amp; direct contact</p>
+      <h2>How customer enquiries work</h2>
+      <p>
+        When you tap a WhatsApp button, call link, email link, or use the store enquiry form on this website, your message is prepared in your own device's WhatsApp app, dialer, or email client to reach {storeConfig.name} directly at
+        <a href={storeConfig.phoneHref}>{storeConfig.phoneDisplay}</a> or via <a data-email-contact href={storeConfig.emailHref}>{storeConfig.email}</a>.
+      </p>
+      <p>
+        This website does not store customer order carts, credit card numbers, or public visitor accounts on an external checkout server.
+      </p>
+    </article>
+
+    <article class="policy-card">
+      <p class="eyebrow">02 · Cookies &amp; consent choices</p>
+      <h2>Essential storage &amp; optional analytics</h2>
+      <p>
+        Essential browser storage (<code>localStorage</code>) is used only to remember your cookie preference choice so the banner does not ask repeatedly.
+      </p>
+      <p>
+        Optional Google Analytics, if configured, stays disabled by default and loads only if you choose <strong>Accept All</strong> in the consent banner or enable analytics under Cookie Preferences. You can turn it off at any time through Cookie Preferences; when disabled, future collection is blocked and accessible analytics cookies are cleared.
+      </p>
+      <div class="policy-actions">
+        <button type="button" class="button" data-ehp-cookie-prefs>Manage Cookie Preferences</button>
+      </div>
+    </article>
+
+    <article class="policy-card">
+      <p class="eyebrow">03 · Third-party services</p>
+      <h2>Maps &amp; store catalogue services</h2>
+      <p>
+        Interactive store location views load Google Maps assets when an API key is active, and recently published pantry items connect to Google Firebase Firestore in read-only mode for public visitors. Only authorised store staff sign in on the restricted <code>/admin/</code> portal.
+      </p>
+    </article>
+
+    <article class="policy-card">
+      <p class="eyebrow">04 · Store contact</p>
+      <h2>Questions about your privacy</h2>
+      <dl class="contact-list">
+        <div><dt>Store</dt><dd>{storeConfig.name} ({storeConfig.tamilName})</dd></div>
+        <div><dt>Address</dt><dd>{storeConfig.address}</dd></div>
+        <div><dt>Hours</dt><dd>{storeConfig.shortHours}</dd></div>
+        <div><dt>Phone</dt><dd><a href={storeConfig.phoneHref}>{storeConfig.phoneDisplay}</a></dd></div>
+        <div><dt>Email</dt><dd><a data-email-contact href={storeConfig.emailHref}>{storeConfig.email}</a></dd></div>
+      </dl>
+    </article>
+
+    <aside class="policy-notice" aria-label="Items for business owner confirmation">
+      <p class="eyebrow">Owner review note</p>
+      <h2>Details to confirm with the store owner</h2>
+      <p>
+        This policy accurately describes the technical behaviour of the website. Before treating it as a formal legal notice, the business owner should review and confirm: (1) registered legal entity / proprietor name, (2) WhatsApp and email enquiry retention duration, and (3) whether optional web analytics should remain active at all.
+      </p>
+    </aside>
+  </section>
+</SiteLayout>
+
+<style>
+  .policy-layout {
+    display: grid;
+    gap: 20px;
+  }
+  .policy-card,
+  .policy-notice {
+    padding: clamp(22px, 3vw, 32px);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    background: var(--bg-card);
+  }
+  .policy-notice {
+    background: var(--bg-subtle);
+  }
+  .policy-card h2,
+  .policy-notice h2 {
+    margin: 8px 0 12px;
+    font-size: clamp(1.45rem, 2.5vw, 1.9rem);
+    font-weight: 500;
+  }
+  .policy-card p,
+  .policy-notice p {
+    margin: 0 0 12px;
+    max-width: 72ch;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+  .policy-card p:last-child,
+  .policy-notice p:last-child {
+    margin-bottom: 0;
+  }
+  .policy-card a {
+    color: var(--accent-green);
+    font-weight: 600;
+    text-underline-offset: 3px;
+  }
+  .policy-actions {
+    margin-top: 16px;
+  }
+</style>

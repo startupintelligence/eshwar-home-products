@@ -1,12 +1,75 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
+import { storeConfig } from "../data/store";
+
 const base = import.meta.env.BASE_URL;
 ---
-<SiteLayout title="Page not found | Eshwar Home Products" description="The page you requested could not be found.">
-  <section class="page-heading"><div class="container">
-    <p class="eyebrow">404 · Page not found</p>
-    <h1>This page<br /><em>isn’t on our shelves.</em></h1>
-    <p>The address may have changed. Head back to the home page or browse the pantry.</p>
-    <div class="hero-actions"><a class="button button-dark" href={base}>Back to home</a><a class="text-link" href={base + "products/"}>Browse the pantry ↗</a></div>
-  </div></section>
+<SiteLayout
+  title="Page not found (404) | Eshwar Home Products"
+  description="The requested page could not be found. Return home, browse our pantry staples, or visit our neighbourhood store in Perambur, Chennai."
+  includeStoreSchema={false}
+  noindex={true}
+>
+  <section class="page-heading not-found-section" aria-labelledby="not-found-title">
+    <div class="container not-found-grid">
+      <div class="not-found-copy">
+        <p class="eyebrow">404 · Page not found</p>
+        <h1 id="not-found-title">This page<br /><em>isn’t on our shelves.</em></h1>
+        <p>
+          The web address may have moved or been mistyped. Visit our Perambur store in person, return to the home page, or browse our pantry categories.
+        </p>
+        <div class="hero-actions not-found-actions">
+          <a class="button button-dark" href={storeConfig.mapsUrl} target="_blank" rel="noopener noreferrer">
+            Visit Store &amp; Buy (Directions) <span aria-hidden="true">↗</span>
+          </a>
+          <a class="button-whatsapp" href={base + "products/"}>Browse The Pantry →</a>
+          <a class="text-link" href={base}>Return Home</a>
+          <a class="text-link" href={base + "contact/#directions"}>Store Location &amp; Map</a>
+        </div>
+      </div>
+
+      <aside class="pantry-store-card" aria-label="Visit Eshwar Home Products in Perambur">
+        <p class="eyebrow">Visit Store &amp; Buy in Person</p>
+        <div class="pantry-store-detail">
+          <span>Address</span>
+          <address>{storeConfig.address}</address>
+        </div>
+        <div class="pantry-store-detail">
+          <span>Opening Hours</span>
+          <p>{storeConfig.shortHours}</p>
+        </div>
+        <div class="pantry-store-detail">
+          <span>Call Before Visiting</span>
+          <a href={storeConfig.phoneHref}>{storeConfig.phoneDisplay}</a>
+        </div>
+      </aside>
+    </div>
+  </section>
 </SiteLayout>
+
+<style>
+  .not-found-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+    align-items: start;
+    gap: clamp(28px, 5vw, 56px);
+  }
+  .not-found-copy {
+    min-width: 0;
+  }
+  @media (max-width: 768px) {
+    .not-found-grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+    }
+    .not-found-actions {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+    }
+    .not-found-actions .button,
+    .not-found-actions .button-whatsapp {
+      width: 100%;
+    }
+  }
+</style>

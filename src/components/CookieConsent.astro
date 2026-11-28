@@ -1,0 +1,276 @@
+---
+interface Props {
+  ga4Id?: string;
+}
+
+const { ga4Id = "" } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+<aside
+  id="ehp-cookie-banner"
+  class="cookie-banner"
+  role="region"
+  aria-label="Cookie preferences"
+  data-ga4-id={ga4Id}
+  hidden
+>
+  <div class="cookie-banner-inner">
+    <div class="cookie-banner-copy">
+      <strong>Privacy &amp; cookie preferences</strong>
+      <p>
+        We use essential browser storage for site functions and your saved choices. Optional Google Analytics stays off unless you choose Accept All.
+        <a href={base + "privacy-policy/"}>Read our privacy policy</a>
+      </p>
+    </div>
+    <div class="cookie-banner-actions">
+      <button type="button" class="cookie-btn cookie-btn--primary" id="ehp-cookie-accept">Accept All</button>
+      <button type="button" class="cookie-btn" id="ehp-cookie-reject">Reject Non-Essential</button>
+      <button type="button" class="cookie-btn" id="ehp-cookie-open-prefs" aria-haspopup="dialog" aria-controls="ehp-cookie-dialog">Preferences</button>
+    </div>
+  </div>
+</aside>
+
+<dialog class="ehp-floating-card" id="ehp-cookie-dialog" aria-labelledby="ehp-cookie-dialog-title">
+  <div class="ehp-dialog-top">
+    <p class="eyebrow">Privacy Controls · Eshwar Home Products</p>
+    <button class="ehp-dialog-close" type="button" id="ehp-cookie-dialog-close" aria-label="Close privacy preferences">×</button>
+  </div>
+  <h2 id="ehp-cookie-dialog-title">Cookie preferences</h2>
+  <p>Choose which browser storage and analytics tools are enabled when you browse this website. You can change your choice anytime from the footer.</p>
+
+  <div class="cookie-pref-group">
+    <div class="cookie-pref-item">
+      <div>
+        <strong>Essential storage</strong>
+        <span>Required to remember your consent choices and support core page navigation and catalogue viewing.</span>
+      </div>
+      <span class="cookie-pref-status">Always on</span>
+    </div>
+
+    <div class="cookie-pref-item">
+      <div>
+        <strong>Google Analytics</strong>
+        <span>Helps us understand which pantry guides and store pages visitors find helpful. Loads only when enabled.</span>
+      </div>
+      <label class="cookie-pref-toggle" for="ehp-cookie-analytics-toggle">
+        <input type="checkbox" id="ehp-cookie-analytics-toggle" />
+        <span>Allow</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="ehp-dialog-actions">
+    <button type="button" class="ehp-dialog-primary" id="ehp-cookie-save">Save preferences</button>
+    <button type="button" class="ehp-dialog-secondary" id="ehp-cookie-dialog-accept">Accept All</button>
+    <button type="button" class="ehp-dialog-secondary" id="ehp-cookie-dialog-reject">Reject Non-Essential</button>
+  </div>
+</dialog>
+
+<script>
+  import { getCookieDomains } from "../utils/cookie-consent.mjs";
+
+  interface ConsentState {
+    essential: true;
+    analytics: boolean;
+    updatedAt: string;
+    version: number;
+  }
+
+  const STORAGE_KEY = "ehp_cookie_consent_v2";
+  const banner = document.getElementById("ehp-cookie-banner");
+  const dialog = document.getElementById("ehp-cookie-dialog");
+  const acceptBtn = document.getElementById("ehp-cookie-accept");
+  const rejectBtn = document.getElementById("ehp-cookie-reject");
+  const openPrefsBtn = document.getElementById("ehp-cookie-open-prefs");
+  const closeDialogBtn = document.getElementById("ehp-cookie-dialog-close");
+  const analyticsToggle = document.getElementById("ehp-cookie-analytics-toggle") as HTMLInputElement | null;
+  const saveBtn = document.getElementById("ehp-cookie-save");
+  const dialogAcceptBtn = document.getElementById("ehp-cookie-dialog-accept");
+  const dialogRejectBtn = document.getElementById("ehp-cookie-dialog-reject");
+
+  let analyticsLoaded = false;
+
+  const readConsent = (): ConsentState | null => {
+    try {
+      const raw = window.localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw) as Partial<ConsentState>;
+      if (typeof parsed.analytics !== "boolean" || parsed.version !== 2) return null;
+      return {
+        essential: true,
+        analytics: parsed.analytics,
+        updatedAt: typeof parsed.updatedAt === "string" ? parsed.updatedAt : new Date().toISOString(),
+        version: typeof parsed.version === "number" ? parsed.version : 1,
+      };
+    } catch {
+      return null;
+    }
+  };
+
+  const clearAnalyticsCookies = () => {
+    const names = document.cookie
+      .split(";")
+      .map((cookie) => cookie.trim().split("=")[0])
+      .filter((name) => /^_ga(?:_|$)|^_gid$|^_gat(?:_|$)|^_gac_|^ahrefs_|^_ahrefs/.test(name));
+    const domains = getCookieDomains(window.location.hostname);
+    for (const name of names) {
+      document.cookie = `${name}=; Max-Age=0; path=/; SameSite=Lax`;
+      domains.forEach((domain) => {
+        document.cookie = `${name}=; Max-Age=0; path=/; domain=${domain}; SameSite=Lax`;
+      });
+    }
+  };
+
+  const loadAnalyticsScripts = () => {
+    const ga4Id = banner?.getAttribute("data-ga4-id")?.trim();
+    if (analyticsLoaded || !ga4Id) return;
+    analyticsLoaded = true;
+
+    const analyticsWindow = window as unknown as {
+      [key: string]: unknown;
+      dataLayer?: IArguments[];
+      gtag?: (...args: unknown[]) => void;
+    };
+    analyticsWindow[`ga-disable-${ga4Id}`] = false;
+    analyticsWindow.dataLayer = analyticsWindow.dataLayer || [];
+    analyticsWindow.gtag = function () {
+      analyticsWindow.dataLayer?.push(arguments);
+    };
+    analyticsWindow.gtag("consent", "update", {
+      analytics_storage: "granted",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+    });
+    analyticsWindow.gtag("js", new Date());
+    analyticsWindow.gtag("config", ga4Id, { anonymize_ip: true });
+    const gaScript = document.createElement("script");
+    gaScript.async = true;
+    gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(ga4Id)}`;
+    document.head.appendChild(gaScript);
+  };
+
+  const stopAnalyticsScripts = () => {
+    const ga4Id = banner?.getAttribute("data-ga4-id")?.trim();
+    const analyticsWindow = window as unknown as {
+      [key: string]: unknown;
+      gtag?: (...args: unknown[]) => void;
+    };
+    if (ga4Id) {
+      analyticsWindow[`ga-disable-${ga4Id}`] = true;
+      analyticsWindow.gtag?.("consent", "update", {
+        analytics_storage: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+      });
+    }
+    document.querySelectorAll<HTMLScriptElement>(
+      'script[src*="googletagmanager.com/gtag/js"], script[src*="analytics.ahrefs.com"]'
+    ).forEach((script) => script.remove());
+    clearAnalyticsCookies();
+    analyticsLoaded = false;
+  };
+
+  const writeConsent = (analytics: boolean) => {
+    const nextState: ConsentState = {
+      essential: true,
+      analytics,
+      updatedAt: new Date().toISOString(),
+      version: 2,
+    };
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(nextState));
+    } catch {
+      // Ignore storage write errors in restricted browsing modes.
+    }
+    if (analyticsToggle) analyticsToggle.checked = analytics;
+    if (banner) banner.hidden = true;
+    if (analytics) loadAnalyticsScripts();
+    else stopAnalyticsScripts();
+    window.dispatchEvent(new CustomEvent("ehp:consent-updated", { detail: nextState }));
+  };
+
+  window.addEventListener("storage", (event: StorageEvent) => {
+    if (event.key !== STORAGE_KEY && event.key !== null) return;
+    if (!readConsent()?.analytics) stopAnalyticsScripts();
+  });
+
+  let lastTrigger: HTMLElement | null = null;
+
+  const openPreferencesDialog = (trigger?: HTMLElement | null) => {
+    lastTrigger = trigger ?? (document.activeElement instanceof HTMLElement ? document.activeElement : null);
+    const saved = readConsent();
+    if (analyticsToggle) analyticsToggle.checked = Boolean(saved?.analytics);
+    if (dialog instanceof HTMLDialogElement && !dialog.open) {
+      dialog.showModal();
+    }
+  };
+
+  const closePreferencesDialog = () => {
+    if (dialog instanceof HTMLDialogElement && dialog.open) {
+      dialog.close();
+      lastTrigger?.focus();
+    }
+  };
+
+  const existing = readConsent();
+  if (existing) {
+    if (banner) banner.hidden = true;
+    if (existing.analytics) loadAnalyticsScripts();
+    else stopAnalyticsScripts();
+  } else if (banner) {
+    stopAnalyticsScripts();
+    banner.hidden = false;
+  }
+
+  acceptBtn?.addEventListener("click", () => writeConsent(true));
+  rejectBtn?.addEventListener("click", () => writeConsent(false));
+  openPrefsBtn?.addEventListener("click", (event) => openPreferencesDialog(event.currentTarget as HTMLElement));
+
+  saveBtn?.addEventListener("click", () => {
+    writeConsent(Boolean(analyticsToggle?.checked));
+    closePreferencesDialog();
+  });
+  dialogAcceptBtn?.addEventListener("click", () => {
+    writeConsent(true);
+    closePreferencesDialog();
+  });
+  dialogRejectBtn?.addEventListener("click", () => {
+    writeConsent(false);
+    closePreferencesDialog();
+  });
+  closeDialogBtn?.addEventListener("click", closePreferencesDialog);
+
+  if (dialog instanceof HTMLDialogElement) {
+    let pointerDownOutside = false;
+    dialog.addEventListener("pointerdown", (event) => {
+      const rect = dialog.getBoundingClientRect();
+      pointerDownOutside =
+        event.clientX < rect.left ||
+        event.clientX > rect.right ||
+        event.clientY < rect.top ||
+        event.clientY > rect.bottom;
+    });
+    dialog.addEventListener("click", (event) => {
+      if (!pointerDownOutside) return;
+      const rect = dialog.getBoundingClientRect();
+      const inside =
+        event.clientX >= rect.left &&
+        event.clientX <= rect.right &&
+        event.clientY >= rect.top &&
+        event.clientY <= rect.bottom;
+      if (!inside) closePreferencesDialog();
+      pointerDownOutside = false;
+    });
+  }
+
+  document.addEventListener("click", (event) => {
+    const target = event.target instanceof Element ? event.target.closest<HTMLElement>("[data-ehp-cookie-prefs]") : null;
+    if (!target) return;
+    event.preventDefault();
+    openPreferencesDialog(target);
+  });
+
+  window.addEventListener("ehp:open-cookie-preferences", () => openPreferencesDialog());
+</script>

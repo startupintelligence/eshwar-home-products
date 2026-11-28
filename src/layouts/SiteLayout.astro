@@ -3,9 +3,12 @@ import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import FloatingActionCards from "../components/FloatingActionCards.astro";
 import FloatingContactButton from "../components/FloatingContactButton.astro";
+import CookieConsent from "../components/CookieConsent.astro";
 import { storeConfig } from "../data/store";
 import "../styles/brand-system.css";
 import "../styles/mobile-responsive.css";
+import plusJakartaPreloadHref from "@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2?url";
+import frauncesPreloadHref from "@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2?url";
 
 interface Props {
   title: string;
@@ -33,8 +36,6 @@ const ogImage = new URL("images/og-eshwar-home-products.png", siteUrl).toString(
 const favicon32 = new URL("favicon/favicon-32.png", siteUrl).toString();
 const appleTouchIcon = new URL("icons/apple-touch-icon-180.png", siteUrl).toString();
 const schemaLogo = new URL("icons/icon-512.png", siteUrl).toString();
-const googleFontsHref =
-  "https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Noto+Sans+Tamil:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap";
 
 const sameAs = [
   storeConfig.socials.youtube.url,
@@ -68,14 +69,13 @@ const storeSchema = {
 <!doctype html>
 <html lang="en-IN">
 <head>
-<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="theme-color" content="#183828" />
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="theme-color" content="#422719" />
 <meta name="description" content={description} />{noindex && <meta name="robots" content="noindex, nofollow" />}
 <meta property="og:type" content="website" /><meta property="og:site_name" content={storeConfig.name} /><meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:locale" content="en_IN" /><meta property="og:url" content={canonical} /><meta property="og:image" content={ogImage} /><meta property="og:image:secure_url" content={ogImage} /><meta property="og:image:type" content="image/png" /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta property="og:image:alt" content="Eshwar Home Products, Perambur, Chennai" />
 <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={ogImage} />
 <link rel="icon" type="image/png" sizes="32x32" href={favicon32} /><link rel="apple-touch-icon" sizes="180x180" href={appleTouchIcon} /><link rel="canonical" href={canonical} />
-<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href={googleFontsHref} media="print" onload="this.removeAttribute('media')" />
-<noscript><link rel="stylesheet" href={googleFontsHref} /></noscript>
+<link rel="preload" as="font" type="font/woff2" href={plusJakartaPreloadHref} crossorigin />
+<link rel="preload" as="font" type="font/woff2" href={frauncesPreloadHref} crossorigin />
 {preloadHomeHero && (
   <link
     rel="preload"
@@ -87,8 +87,6 @@ const storeSchema = {
   />
 )}
 <title>{title}</title>
-<script src="https://analytics.ahrefs.com/analytics.js" data-key="T8+LOj2/EakoZK7/pjg3rg" async></script>
-{import.meta.env.PUBLIC_GA4_ID && <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />}
 {includeStoreSchema && <script type="application/ld+json" set:html={JSON.stringify(storeSchema)} />}
 </head>
 <body>
@@ -98,47 +96,38 @@ const storeSchema = {
 <SiteFooter />
 <FloatingActionCards />
 <FloatingContactButton />
+<CookieConsent ga4Id={import.meta.env.PUBLIC_GA4_ID?.trim() || ""} />
 <nav class="mobile-action-bar" aria-label="Quick store actions">
-  <a class="mobile-action-call" href={storeConfig.phoneHref}>Call Store</a>
-  <button class="mobile-action-whatsapp" type="button" data-ehp-dialog="enquiry" aria-haspopup="dialog">WhatsApp Enquiry ↗</button>
+  <a class="mobile-action-visit" href={storeConfig.mapsUrl} target="_blank" rel="noopener noreferrer">Visit Store ↗</a>
+  <button class="mobile-action-whatsapp" type="button" data-ehp-dialog="enquiry" aria-haspopup="dialog">WhatsApp ↗</button>
+  <a class="mobile-action-call" href={storeConfig.phoneHref}>Call</a>
 </nav>
-<script is:inline>
-  (() => {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const lowMemoryDevice = 'deviceMemory' in navigator && navigator.deviceMemory <= 4;
-    if (reduceMotion || lowMemoryDevice || !('IntersectionObserver' in window)) return;
-    const items = document.querySelectorAll('.reveal-item');
-    if (!items.length) return;
-    document.documentElement.classList.add('has-reveal');
-    const observer = new IntersectionObserver((entries, activeObserver) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          activeObserver.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: '0px 0px -36px 0px', threshold: 0.08 });
-    items.forEach((item) => observer.observe(item));
-  })();
-</script>
 <script>
-  const emailAddress = [105,110,102,111,46,101,115,104,119,97,114,104,111,109,101,112,114,111,100,117,99,116,115,64,103,109,97,105,108,46,99,111,109].map((code) => String.fromCharCode(code)).join('');
-  document.querySelectorAll('[data-email-contact]').forEach((node) => {
-    node.setAttribute('href', `mailto:${emailAddress}`);
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const lowMemoryDevice = "deviceMemory" in navigator && (navigator as Navigator & { deviceMemory?: number }).deviceMemory !== undefined && (navigator as Navigator & { deviceMemory: number }).deviceMemory <= 4;
+  if (!reduceMotion && !lowMemoryDevice && "IntersectionObserver" in window) {
+    const items = document.querySelectorAll(".reveal-item");
+    if (items.length) {
+      document.documentElement.classList.add("has-reveal");
+      const observer = new IntersectionObserver((entries, activeObserver) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            activeObserver.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: "0px 0px -36px 0px", threshold: 0.08 });
+      items.forEach((item) => observer.observe(item));
+    }
+  }
+
+  const emailAddress = [105,110,102,111,46,101,115,104,119,97,114,104,111,109,101,112,114,111,100,117,99,116,115,64,103,109,97,105,108,46,99,111,109]
+    .map((code) => String.fromCharCode(code))
+    .join("");
+  document.querySelectorAll("[data-email-contact]").forEach((node) => {
+    node.setAttribute("href", `mailto:${emailAddress}`);
     node.textContent = emailAddress;
   });
-  const measurementId = import.meta.env.PUBLIC_GA4_ID?.trim();
-  if (measurementId) {
-    const analyticsWindow = window as Window & { dataLayer?: IArguments[]; gtag?: (...args: unknown[]) => void };
-    analyticsWindow.dataLayer = analyticsWindow.dataLayer || [];
-    analyticsWindow.gtag = function () { analyticsWindow.dataLayer?.push(arguments); };
-    analyticsWindow.gtag("js", new Date());
-    analyticsWindow.gtag("config", measurementId, { anonymize_ip: true });
-    const analyticsScript = document.createElement("script");
-    analyticsScript.async = true;
-    analyticsScript.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
-    document.head.appendChild(analyticsScript);
-  }
 </script>
 </body>
 </html>

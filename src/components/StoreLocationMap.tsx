@@ -168,9 +168,9 @@ function StoreMapCanvas({ compact = false, onStatusChange }: StoreMapCanvasProps
             onClick={() => setInfoOpen((prev) => !prev)}
           >
             <Pin
-              background="#183828"
-              borderColor="#8A5E14"
-              glyphColor="#E2B75B"
+              background="#422719"
+              borderColor="#7F4E1B"
+              glyphColor="#E4B76A"
               scale={1.15}
             />
           </AdvancedMarker>
