@@ -47,6 +47,7 @@ The catalogue is a guide to product categories, not a live stock guarantee. Spec
 - Contact and directions: https://eshwar-home-products.vercel.app/contact/
 - XML sitemap: https://eshwar-home-products.vercel.app/sitemap.xml
 - Robots instructions: https://eshwar-home-products.vercel.app/robots.txt
+- Machine-readable catalogue dataset: https://eshwar-home-products.vercel.app/ai-dataset.json
 
 Privacy Policy: https://eshwar-home-products.vercel.app/privacy-policy/
 Cookie Policy: https://eshwar-home-products.vercel.app/cookie-policy/
