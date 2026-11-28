@@ -131,15 +131,29 @@ const storeSchema = {
   });
   const measurementId = import.meta.env.PUBLIC_GA4_ID?.trim();
   let analyticsLoaded = false;
-  const loadAnalyticsIfAllowed = () => {
-    if (!measurementId || analyticsLoaded) return;
+  const analyticsWindow = window as Window & { dataLayer?: IArguments[]; gtag?: (...args: unknown[]) => void };
+  const clearAnalyticsCookies = () => {
+    document.cookie.split(';').forEach((part) => {
+      const name = part.split('=')[0]?.trim();
+      if (name === '_ga' || name?.startsWith('_ga_')) {
+        document.cookie = `${name}=; Max-Age=0; path=/; SameSite=Lax`;
+        document.cookie = `${name}=; Max-Age=0; path=/; domain=${location.hostname}; SameSite=Lax`;
+      }
+    });
+  };
+  const applyAnalyticsConsent = () => {
     let consent = null;
     try { consent = JSON.parse(window.localStorage.getItem('ehp-consent-v1') || 'null'); } catch { return; }
-    if (consent?.analytics !== true) return;
+    if (consent?.analytics !== true) {
+      if (analyticsLoaded && analyticsWindow.gtag) analyticsWindow.gtag('consent', 'update', { analytics_storage: 'denied' });
+      clearAnalyticsCookies();
+      return;
+    }
+    if (!measurementId || analyticsLoaded) return;
     analyticsLoaded = true;
-    const analyticsWindow = window as Window & { dataLayer?: IArguments[]; gtag?: (...args: unknown[]) => void };
     analyticsWindow.dataLayer = analyticsWindow.dataLayer || [];
     analyticsWindow.gtag = function () { analyticsWindow.dataLayer?.push(arguments); };
+    analyticsWindow.gtag('consent', 'default', { analytics_storage: 'granted' });
     analyticsWindow.gtag('js', new Date());
     analyticsWindow.gtag('config', measurementId, { anonymize_ip: true });
     const analyticsScript = document.createElement('script');
@@ -147,8 +161,8 @@ const storeSchema = {
     analyticsScript.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
     document.head.appendChild(analyticsScript);
   };
-  loadAnalyticsIfAllowed();
-  window.addEventListener('ehp:consent-updated', loadAnalyticsIfAllowed);
+  applyAnalyticsConsent();
+  window.addEventListener('ehp:consent-updated', applyAnalyticsConsent);
 </script>
 </body>
 </html>
