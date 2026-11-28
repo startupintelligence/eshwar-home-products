@@ -1,9 +1,10 @@
 node_modules/
 dist/
+.astro/
 .env
 .env.*
 !.env.example
-*.local
+.local
 .DS_Store
 *.log
 coverage/
