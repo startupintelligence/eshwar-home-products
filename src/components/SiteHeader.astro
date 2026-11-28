@@ -184,9 +184,17 @@ const base = import.meta.env.BASE_URL;
 
   const setBackgroundInert = (inert: boolean) => {
     if (inert) {
-      inertBackground = Array.from(document.body.children)
-        .filter((element): element is HTMLElement => element instanceof HTMLElement && element !== header)
-        .map((element) => ({ element, wasInert: element.inert }));
+      const pageSiblings = Array.from(document.body.children).filter(
+        (element): element is HTMLElement => element instanceof HTMLElement && element !== header
+      );
+      const headerSiblings = Array.from(navigation?.parentElement?.children ?? []).filter(
+        (element): element is HTMLElement =>
+          element instanceof HTMLElement && element !== navigation && element !== navBackdrop
+      );
+      inertBackground = Array.from(new Set([...pageSiblings, ...headerSiblings])).map((element) => ({
+        element,
+        wasInert: element.inert,
+      }));
       inertBackground.forEach(({ element }) => { element.inert = true; });
       return;
     }
