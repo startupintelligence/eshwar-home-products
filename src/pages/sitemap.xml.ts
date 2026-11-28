@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 
 // Published public routes for search engine indexing (admin, 404, and thank-you pages are intentionally excluded).
-const pages = ["", "about", "products", "perambur-millet-store", "kitchen-guides", "blog", "contact", "privacy-policy"];
+const pages = ["", "about", "products", "perambur-millet-store", "kitchen-guides", "blog", "contact", "privacy-policy", "cookie-policy", "license"];
 
 export const GET: APIRoute = ({ site }) => {
   const origin = site?.toString().replace(/\/$/, "") ?? "https://eshwar-home-products.vercel.app";

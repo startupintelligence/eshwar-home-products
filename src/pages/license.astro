@@ -1,0 +1,33 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { storeConfig } from "../data/store";
+const base = import.meta.env.BASE_URL;
+---
+<SiteLayout title="Website Use & License | Eshwar Home Products" description="Usage notice for the Eshwar Home Products website, text, branding and product imagery.">
+  <article class="legal-page">
+    <p class="legal-updated">Last updated: 28 November 2026</p>
+    <h1>Website Use &amp; License</h1>
+    <p>This page explains permitted use of the Eshwar Home Products website. It is a website content notice, not an open-source software licence for the underlying website code.</p>
+    <h2>Website content</h2>
+    <p>Unless a page or asset says otherwise, the website’s original text, page layouts, graphics and store-created materials are reserved to {storeConfig.name} or their respective rights holders. You may view the website and share links to its public pages for personal, non-commercial reference.</p>
+    <h2>Product names, brands and images</h2>
+    <p>Product names, trademarks, logos and third-party product imagery remain the property of their respective owners. Their appearance in this catalogue does not imply ownership by or endorsement of {storeConfig.name}. Product details and availability should be confirmed with the store.</p>
+    <h2>Not permitted</h2>
+    <ul><li>Copying or republishing substantial website content or imagery for commercial use without permission.</li><li>Removing copyright, trademark or attribution notices.</li><li>Using the website in a way that disrupts its operation or violates applicable law.</li></ul>
+    <h2>Open-source software</h2>
+    <p>The website may use third-party open-source packages. Those packages remain subject to their own licence terms and notices. This page does not replace or override those licences.</p>
+    <h2>Permission and contact</h2>
+    <p>For permission to reuse original website materials, contact <a href={storeConfig.emailHref}>{storeConfig.email}</a>.</p>
+    <p class="legal-related"><a href={base + "privacy-policy/"}>Privacy Policy</a> · <a href={base + "cookie-policy/"}>Cookie Policy</a></p>
+  </article>
+</SiteLayout>
+<style>
+  .legal-page { width: min(100% - 2rem, 850px); margin-inline: auto; padding-block: clamp(3rem, 7vw, 6rem); line-height: 1.75; color: var(--text-main); }
+  .legal-page h1 { max-width: 18ch; margin: 0 0 1rem; line-height: 1.12; }
+  .legal-page h2 { margin: 2.2rem 0 .6rem; line-height: 1.25; }
+  .legal-page p, .legal-page li { max-width: 76ch; color: var(--text-muted); }
+  .legal-page a { color: var(--accent-green); text-decoration: underline; text-underline-offset: 3px; }
+  .legal-page .legal-updated { margin-bottom: 2rem; font-size: .9rem; opacity: .75; }
+  .legal-page li + li { margin-top: .35rem; }
+  .legal-related { margin-top: 2rem; }
+</style>

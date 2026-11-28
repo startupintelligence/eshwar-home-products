@@ -48,6 +48,9 @@ The catalogue is a guide to product categories, not a live stock guarantee. Spec
 - XML sitemap: https://eshwar-home-products.vercel.app/sitemap.xml
 - Robots instructions: https://eshwar-home-products.vercel.app/robots.txt
 
-Privacy and Terms pages are not currently published. The admin and thank-you routes are not public discovery pages.
+Privacy Policy: https://eshwar-home-products.vercel.app/privacy-policy/
+Cookie Policy: https://eshwar-home-products.vercel.app/cookie-policy/
+Website Use & License: https://eshwar-home-products.vercel.app/license/
+The admin and thank-you routes are not public discovery pages.
 
 Only information published on the public website should be treated as current. Do not infer certifications, ingredients, health benefits, prices or availability that are not explicitly stated by the store.
