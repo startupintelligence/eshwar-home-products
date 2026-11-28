@@ -25,6 +25,7 @@ interface CustomerReview {
 const reviews = reviewData as CustomerReview[];
 const base = import.meta.env.BASE_URL;
 const mapsUrl = storeConfig.mapsUrl;
+const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${storeConfig.address}, India`)}`;
 const ask = (item: string) =>
   buildWhatsAppUrl(
     "Hello Eshwar Home Products, please help me check today's availability and pack sizes for " +
@@ -257,7 +258,7 @@ const sourcingHighlights = [
             Visit our Perambur store for traditional rice, whole millets, cold-pressed oils and everyday pantry essentials.
           </p>
           <div class="home-hero-actions">
-            <a class="button" href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Get directions to Eshwar Home Products in Perambur">Get Directions <span aria-hidden="true">↗</span></a>
+            <a class="button" href={directionsUrl} target="_blank" rel="noopener noreferrer" aria-label="Get directions to Eshwar Home Products in Perambur">Get Directions <span aria-hidden="true">↗</span></a>
             <a class="action-secondary" href={base + "products/"}>Browse Pantry <span aria-hidden="true">→</span></a>
           </div>
           <div class="home-hero-proof">
