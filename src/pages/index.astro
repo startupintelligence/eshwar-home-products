@@ -4,6 +4,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 import StoreLocationMap from "../components/StoreLocationMap";
 import reviewData from "../data/reviews.json";
 import { buildWhatsAppUrl, storeConfig } from "../data/store";
+import { buildGoogleMapsDirectionsUrl } from "../utils/maps.mjs";
 
 import riceImg from "../assets/images/pantry_traditional_rice_1795627178963.jpg";
 import milletsImg from "../assets/images/pantry_whole_millets_1795627178343.jpg";
@@ -25,6 +26,7 @@ interface CustomerReview {
 const reviews = reviewData as CustomerReview[];
 const base = import.meta.env.BASE_URL;
 const mapsUrl = storeConfig.mapsUrl;
+const directionsUrl = buildGoogleMapsDirectionsUrl(storeConfig.address);
 const ask = (item: string) =>
   buildWhatsAppUrl(
     "Hello Eshwar Home Products, please help me check today's availability and pack sizes for " +
@@ -80,7 +82,7 @@ const categories = [
   { title: "Whole Millets", subtitle: "Thinai, Varagu & Samai", item: "whole millets", image: thumbMillets.src },
   { title: "Dry Fruits & Nuts", subtitle: "Badam, Cashew & Pista", item: "dry fruits and nuts", image: thumbBadam.src },
   { title: "Ragi & Snacks", subtitle: "Flours, Cookies & Sevai", item: "ragi and millet snacks", image: thumbRagi.src },
-  { title: "Ghee & Honey", subtitle: "Cow Ghee & Wild Honey", item: "ghee and wild honey", image: thumbGhee.src }
+  { title: "Ghee & Honey", subtitle: "Cow Ghee & Honey", item: "ghee and honey", image: thumbGhee.src }
 ];
 
 const featuredProducts = [
@@ -101,7 +103,7 @@ const featuredProducts = [
     category: "Siruthaniyam",
     title: "Whole Millets & Flours",
     featured: true,
-    featuredLabel: "Featured · Fresh Harvest",
+    featuredLabel: "Pantry Range",
     image: cardMillets.src,
     srcset: cardMillets.srcset,
     alt: "Representative bowl visual of whole millets including foxtail millet, finger millet ragi, and pearl millet",
@@ -139,98 +141,84 @@ const featuredProducts = [
     items: ["Wood-pressed gingelly oil", "Wood-pressed groundnut oil", "Wood-pressed coconut oil"]
   },
   {
-    category: "Kitchen Pure",
-    title: "Pure Ghee & Wild Honey",
+    category: "Pantry Essentials",
+    title: "Ghee & Honey",
     image: cardGhee.src,
     srcset: cardGhee.srcset,
-    alt: "Representative visual of clarified cow ghee and wild forest honey",
+    alt: "Representative visual of cow ghee and honey pantry products",
     visualType: "Representative Visual",
     enquiry: "ghee and honey",
-    description: "Traditional clarified cow ghee, everyday dairy, and pure wild forest honey.",
+    description: "Browse cow ghee, honey and dairy essentials, subject to current stock.",
     kitchenUse: "Best for: Sweet pongal, warm breakfast & drizzle",
     meals: ["breakfast", "cooking", "festival"],
-    items: ["Clarified cow ghee", "Wild forest honey", "Everyday dairy essentials"]
+    items: ["Cow ghee", "Honey", "Dairy essentials"]
   },
   {
     category: "Pantry & Festive",
-    title: "Badam, Cashews & Nuts",
+    title: "Nuts & Dry Fruits",
     image: cardBadam.src,
     srcset: cardBadam.srcset,
     alt: "Official Eshwar Home Products Badam almonds pouch pack",
     visualType: "Store Pack Photo",
     enquiry: "badam, cashews, pista and dry fruits",
-    description: "Cleanly packed almonds, cashews, pistachios, walnuts, and native pantry pulses.",
+    description: "Browse nuts, dry fruits and pantry pulses, subject to current stock.",
     kitchenUse: "Best for: Festive sweets, payasam & daily soaking",
     meals: ["festival", "breakfast"],
-    items: ["Whole Badam (Almonds)", "Whole Cashews & Pista", "Walnuts & Native Pulses"]
+    items: ["Nuts & dry fruits", "Pulses", "Pantry essentials"]
   }
 ];
 
 const kitchenHighlights = [
   {
     category: "grains",
-    tag: "Thinai, Varagu & Traditional Rice",
-    title: "Honest grain matching for everyday cooking",
-    summary: "Families from Chinnaiyan Colony and Perambur often ask at the counter which rice or Siruthaniyam variety best suits pongal, upma, or idli batter before buying a full pack.",
-    area: "Perambur Counter"
+    tag: "Traditional rice & millets",
+    title: "Rice, millets and flours",
+    summary: "Browse traditional rice, whole millets and flours for everyday South Indian cooking.",
+    area: "Rice & Millets",
   },
   {
     category: "oils",
-    tag: "Chekku Gingelly & Groundnut Oil",
-    title: "Traditional wood-pressed kitchen oils",
-    summary: "Neighbours along Paddy Field Road pick up wood-pressed gingelly, groundnut, and coconut oils for daily tempering and cooking, calling ahead to confirm pack sizes.",
-    area: "Paddy Field Road"
-  },
-  {
-    category: "grains",
-    tag: "Ragi Flour & Millet Flakes",
-    title: "Quick WhatsApp checks before pickup",
-    summary: "Commuters from Sembium and nearby streets message +91 99412 09953 on WhatsApp to confirm ragi flour or millet aval availability so pickup takes just minutes.",
-    area: "Sembium & Perambur"
+    tag: "Wood-pressed oils",
+    title: "Chekku oils for everyday cooking",
+    summary: "Explore gingelly, groundnut and coconut oils. Contact the store to confirm available brands and pack sizes.",
+    area: "Cooking Oils",
   },
   {
     category: "pantry",
-    tag: "Badam, Cashews & Wild Honey",
-    title: "Clean-counter dry fruits and festive packs",
-    summary: "Customers preparing sweets, payasam, or daily breakfasts check for clean whole almonds, cashews, pistachios, and forest honey without needing bulk quantities.",
-    area: "Madhavaram & Kolathur"
+    tag: "Nuts & dry fruits",
+    title: "Nuts for snacks and recipes",
+    summary: "Browse nuts and dry fruits for snacks and recipes, subject to current stock.",
+    area: "Nuts & Dry Fruits",
   },
   {
-    category: "grains",
-    tag: "Samai, Kuthiraivali & Tamil Names",
-    title: "Friendly help with Tamil Siruthaniyam names",
-    summary: "Whether you know a grain by its Tamil name (தினை, வரகு, சாமை, குதிரைவாலி) or English name, the store team helps match varieties to familiar recipes.",
-    area: "Tamil & English Guide"
+    category: "pantry",
+    tag: "Honey & ghee",
+    title: "Honey, ghee and pantry essentials",
+    summary: "Browse honey, cow ghee, pulses and other pantry staples at the store.",
+    area: "Pantry",
   },
-  {
-    category: "oils",
-    tag: "Cow Ghee & Batch Transparency",
-    title: "Straightforward stock updates with no upselling",
-    summary: "If a particular batch or pack size is out of stock, the store lets you know upfront by phone or WhatsApp before you travel.",
-    area: "Mon–Sat, 9 AM – 9 PM"
-  }
 ];
 
 const sourcingHighlights = [
   {
     number: "01",
-    title: "Whole-Grain Siruthaniyam",
-    detail: "Thinai, Varagu, Samai, Kuthiraivali, Ragi, and Kambu stocked cleanly in whole grain, rava, and flour."
+    title: "Traditional Rice & Millets",
+    detail: "Browse traditional rice, whole millets and millet flours for everyday cooking."
   },
   {
     number: "02",
-    title: "Wood-Pressed Chekku Oils",
-    detail: "Gingelly, groundnut, and coconut oils selected for authentic South Indian kitchen aroma and daily cooking."
+    title: "Cold-Pressed Oils",
+    detail: "Explore gingelly, groundnut and coconut oils. Confirm available brands and pack sizes with the store."
   },
   {
     number: "03",
-    title: "Clean-Shelf Pantry Care",
-    detail: "Neat counter packs of badam, cashews, walnuts, cow ghee, native pulses, and wild forest honey."
+    title: "Nuts, Dry Fruits & Pantry Staples",
+    detail: "Browse nuts, dry fruits, pulses, ghee and honey, subject to current stock."
   },
   {
     number: "04",
-    title: "Honest Counter & WhatsApp Help",
-    detail: "Confirm fresh arrivals, Tamil millet names, and available pack sizes directly on +91 99412 09953 before visiting."
+    title: "Check Stock Before Visiting",
+    detail: "Call or WhatsApp the store to confirm current availability and pack sizes before you visit."
   }
 ];
 ---
@@ -254,12 +242,11 @@ const sourcingHighlights = [
           </p>
           <h1 id="home-title">Traditional Rice, Millets &amp; <em>Everyday Pantry</em> Essentials</h1>
           <p class="home-hero-lede">
-            Thoughtfully chosen staples for everyday South Indian kitchens. Visit our neighbourhood pantry on Paddy Field Road in Perambur, or message us directly to check today's fresh stock.
+            Browse everyday South Indian pantry essentials. Visit our Perambur store or message us to check current stock and pack sizes.
           </p>
           <div class="home-hero-actions">
-            <a class="button" href={mapsUrl} target="_blank" rel="noopener noreferrer">Visit Store &amp; Buy <span aria-hidden="true">↗</span></a>
+            <a class="button" href={directionsUrl} target="_blank" rel="noopener noreferrer">Visit Store &amp; Buy <span aria-hidden="true">↗</span></a>
             <a class="button-whatsapp" href={base + "products/"}>Browse The Pantry <span aria-hidden="true">→</span></a>
-            <button class="text-link" type="button" data-ehp-dialog="enquiry" aria-haspopup="dialog">WhatsApp Enquiry ↗</button>
           </div>
           <div class="home-hero-proof">
             <a class="home-proof-rating" href={mapsUrl} target="_blank" rel="noopener noreferrer">
@@ -483,13 +470,13 @@ const sourcingHighlights = [
     </div>
   </section>
 
-  <!-- 2B. Sourcing & Chekku Craft Highlights -->
+  <!-- 2B. Pantry Range -->
   <section class="home-sourcing-band" id="sourcing" aria-labelledby="sourcing-title">
     <div class="container">
       <div class="home-sourcing-header">
         <div>
-          <p class="eyebrow">Clean Pantry Standards · Pure Kitchen Craft</p>
-          <h2 id="sourcing-title">Why Perambur Families <em>Trust Our Shelves</em></h2>
+          <p class="eyebrow">Our Pantry Range · Perambur</p>
+          <h2 id="sourcing-title">Explore Our <em>Pantry Range</em></h2>
         </div>
         <a class="text-link" href={base + "perambur-millet-store/"}>Explore our grain &amp; oil guide →</a>
       </div>
@@ -543,7 +530,7 @@ const sourcingHighlights = [
           </p>
           <div class="home-story-actions">
             <a class="home-dark-link" href={base + "about/"}>Read Our Story <span aria-hidden="true">→</span></a>
-            <a class="home-dark-link" href="#customer-stories">{reviews.length > 0 ? "Read Customer Stories" : "What Families Shop For"} <span aria-hidden="true">↓</span></a>
+            <a class="home-dark-link" href="#customer-stories">{reviews.length > 0 ? "Read Customer Stories" : "Pantry Highlights"} <span aria-hidden="true">↓</span></a>
           </div>
 
           <div class="home-gallery-strip" aria-label="Storefront photo and printed product boards from Eshwar Home Products">
@@ -577,17 +564,17 @@ const sourcingHighlights = [
     </div>
   </section>
 
-  <!-- 4. Verified Store Reviews & Neighbourhood Highlights -->
+  <!-- 4. Customer Reviews & Pantry Highlights -->
   <section class="home-stories-section" id="customer-stories" aria-labelledby="customer-stories-title">
     <div class="container">
       <div class="home-stories-header">
         <div class="home-stories-heading">
-          <p class="eyebrow">Community Trust · Perambur</p>
-          <h2 id="customer-stories-title">{reviews.length > 0 ? <>Customer <em>Stories</em></> : <>What Perambur Families <em>Shop With Us For</em></>}</h2>
+          <p class="eyebrow">{reviews.length > 0 ? "Customer Reviews · Perambur" : "Pantry Highlights · Perambur"}</p>
+          <h2 id="customer-stories-title">{reviews.length > 0 ? <>Customer <em>Stories</em></> : <>Explore Our <em>Pantry</em></>}</h2>
           <p class="home-stories-lede">
             {reviews.length > 0
-              ? "Verified customer notes from households across Perambur, Sembium, and North Chennai."
-              : "See why households across Perambur, Sembium, and North Chennai message or visit us for everyday rice, Siruthaniyam millets, and Chekku oils, or read live customer reviews directly on Google Maps and Justdial."}
+              ? "Customer notes shared with the store."
+              : "Browse the product ranges available at our Perambur store. Message us to confirm current stock and pack sizes before you visit."}
           </p>
         </div>
         <div class="home-stories-proof">
@@ -627,8 +614,12 @@ const sourcingHighlights = [
           {reviews.map((review) => (
             <article class="home-story-card" data-story-category={review.category ?? "pantry"}>
               <div class="home-story-top">
-                <span class="five-stars-reveal" role="img" aria-label={`${(review.rating ?? 5).toFixed(1)} out of 5 stars`}>★★★★★</span>
-                <span class="home-story-rating-num">{(review.rating ?? 5).toFixed(1)}</span>
+                {typeof review.rating === "number" && (
+                  <>
+                    <span class="five-stars-reveal" role="img" aria-label={`${review.rating.toFixed(1)} out of 5 stars`}>★★★★★</span>
+                    <span class="home-story-rating-num">{review.rating.toFixed(1)}</span>
+                  </>
+                )}
                 {review.staple && (
                   <>
                     <span aria-hidden="true">·</span>
@@ -672,7 +663,7 @@ const sourcingHighlights = [
       <div class="home-stories-cta">
         <p>
           <strong>Want help choosing for your kitchen?</strong>
-          <span>Message us on WhatsApp to check today’s fresh rice, millet, or Chekku oil varieties before you visit.</span>
+          <span>Message us on WhatsApp to check today’s available rice, millet, or Chekku oil varieties before you visit.</span>
         </p>
         <div class="home-stories-cta-actions">
           <button class="button" type="button" data-ehp-dialog="enquiry" aria-haspopup="dialog">Check Stock on WhatsApp</button>
@@ -691,7 +682,7 @@ const sourcingHighlights = [
         <div class="home-faq-list">
           <details name="ehp-home-faq" open>
             <summary>What products are available at Eshwar Home Products?</summary>
-            <p>We carry traditional South Indian rice varieties, <em>Siruthaniyam</em> whole millets and millet flours (Thinai, Varagu, Samai, Kuthiraivali, Ragi, and Kambu), Chekku wood-pressed oils, pure cow ghee, wild honey, pulses, dry fruits, and millet snacks. <a href={base + "products/"}>Browse the full pantry catalogue →</a>.</p>
+            <p>We carry traditional South Indian rice varieties, <em>Siruthaniyam</em> whole millets and millet flours (Thinai, Varagu, Samai, Kuthiraivali, Ragi, and Kambu), Chekku wood-pressed oils, cow ghee, honey, pulses, dry fruits, and millet snacks. <a href={base + "products/"}>Browse the full pantry catalogue →</a>.</p>
           </details>
           <details name="ehp-home-faq">
             <summary>How can I check product availability or place an order?</summary>
@@ -707,11 +698,11 @@ const sourcingHighlights = [
           </details>
           <details name="ehp-home-faq">
             <summary>Where is Eshwar Home Products located?</summary>
-            <p>119/1, Paddy Field Road, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011. <a href={mapsUrl} target="_blank" rel="noopener noreferrer">Open Google Maps directions ↗</a>.</p>
+            <p>119/1, Paddy Field Road, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011. <a href={directionsUrl} target="_blank" rel="noopener noreferrer">Open Google Maps directions ↗</a>.</p>
           </details>
           <details name="ehp-home-faq">
-            <summary>How can I check my order status or track pickup and delivery?</summary>
-            <p>Because pantry orders are coordinated personally rather than through an automated checkout portal, simply reply to your existing <a href={ask("checking my order status")} target="_blank" rel="noopener noreferrer">WhatsApp thread ↗</a> or call <a href="tel:+919941209953">+91 99412 09953</a> with your name and item list during store hours (Mon–Sat, 9:00 AM – 9:00 PM). Our team will share an immediate update on packing, ready-for-pickup status, or local dispatch.</p>
+            <summary>How can I check my order or pickup status?</summary>
+            <p>For an order arranged with the store, reply to your existing <a href={ask("checking my order status")} target="_blank" rel="noopener noreferrer">WhatsApp thread ↗</a> or call <a href="tel:+919941209953">+91 99412 09953</a> during store hours with your name and item list. We’ll confirm packing and collection details.</p>
           </details>
           <details name="ehp-home-faq">
             <summary>Can I ask about Tamil millet names like Thinai, Varagu &amp; Samai?</summary>
@@ -740,7 +731,7 @@ const sourcingHighlights = [
             </div>
           </dl>
           <div class="home-visit-actions">
-            <a class="button" href={mapsUrl} target="_blank" rel="noopener noreferrer">Get Directions <span aria-hidden="true">↗</span></a>
+            <a class="button" href={directionsUrl} target="_blank" rel="noopener noreferrer">Get Directions <span aria-hidden="true">↗</span></a>
             <button class="button-whatsapp" type="button" data-ehp-dialog="store" aria-haspopup="dialog">Store Hours &amp; Address</button>
           </div>
         </div>
@@ -1826,9 +1817,9 @@ const sourcingHighlights = [
 
   .home-visit-card {
     overflow: hidden;
-    border: 1px solid var(--border-light);
+    border: 1px solid var(--accent-green);
     border-radius: 12px;
-    background: var(--bg-card);
+    background: var(--surface-brown);
   }
 
   .home-visit-map-link {
@@ -1852,6 +1843,7 @@ const sourcingHighlights = [
 
   .home-visit-card-body .eyebrow {
     margin: 0 0 6px;
+    color: var(--brand-green);
   }
 
   .home-visit-card-body h3 {
