@@ -10,30 +10,49 @@ const mapsUrl = storeConfig.mapsUrl;
   <h2 id="ehp-product-title">Pantry details</h2>
   <p id="ehp-product-description">Ask the store about current varieties and availability.</p>
   <ul id="ehp-product-items" class="ehp-dialog-list"></ul>
-  <p class="ehp-dialog-note">Varieties and pack sizes can change. Please confirm today's stock and available sizes with the store.</p>
-  <a class="ehp-dialog-primary" id="ehp-product-whatsapp" href="https://wa.me/919941209953" target="_blank" rel="noopener noreferrer">Check availability on WhatsApp ↗</a>
+  <p class="ehp-dialog-note">Varieties and pack sizes can change. Visit our Perambur store or confirm today's stock directly.</p>
+  <div class="ehp-dialog-actions">
+    <a class="ehp-dialog-primary" href={mapsUrl} target="_blank" rel="noopener noreferrer">Visit Store &amp; Directions ↗</a>
+    <a class="ehp-dialog-secondary" id="ehp-product-whatsapp" href={storeConfig.whatsappUrl} target="_blank" rel="noopener noreferrer">Check availability on WhatsApp ↗</a>
+  </div>
 </dialog>
+
 <dialog class="ehp-floating-card" id="ehp-enquiry-dialog" aria-labelledby="ehp-enquiry-title">
   <div class="ehp-dialog-top"><p class="eyebrow">Quick Enquiry</p><button class="ehp-dialog-close" type="button" aria-label="Close">×</button></div>
-  <h2 id="ehp-enquiry-title">What would you like to check?</h2><p>Select the pantry items you need. The store team can confirm current varieties and pack sizes.</p>
-  <form id="ehp-enquiry-form">
+  <h2 id="ehp-enquiry-title">What would you like to check?</h2>
+  <p>Select the pantry items you need to prepare a ready WhatsApp message for our Perambur store team.</p>
+  <form id="ehp-enquiry-form" novalidate>
     <fieldset class="ehp-enquiry-options"><legend class="visually-hidden">Choose pantry requirements</legend>
       <label><input type="checkbox" name="need" value="Rice"> Rice</label><label><input type="checkbox" name="need" value="Millets"> Millets</label>
       <label><input type="checkbox" name="need" value="Cold-Pressed Oil"> Cold-Pressed Oil</label><label><input type="checkbox" name="need" value="Ghee"> Ghee</label><label><input type="checkbox" name="need" value="Sathumaavu"> Sathumaavu</label><label><input type="checkbox" name="need" value="Other pantry item"> Other pantry item</label>
     </fieldset>
-    <label class="ehp-quantity-label" for="ehp-enquiry-quantity">Quantity or pack size (optional)</label><input id="ehp-enquiry-quantity" name="quantity" type="text" maxlength="80" placeholder="e.g. 1 kg, 2 packs">
-    <p id="ehp-enquiry-error" class="ehp-dialog-error" role="alert" hidden></p><button class="ehp-dialog-primary" type="submit">Send List on WhatsApp ↗</button>
+    <label class="ehp-quantity-label" for="ehp-enquiry-quantity">Quantity or pack size (optional)</label>
+    <input id="ehp-enquiry-quantity" name="quantity" type="text" maxlength="80" placeholder="e.g. 1 kg, 2 packs" />
+    <label class="ehp-quantity-label" for="ehp-enquiry-phone">Your phone number (optional, for store reply)</label>
+    <input id="ehp-enquiry-phone" name="phone" type="tel" maxlength="20" inputmode="tel" placeholder="e.g. +91 98400 00000" aria-describedby="ehp-enquiry-error" />
+    <p id="ehp-enquiry-error" class="ehp-dialog-error" role="alert" hidden></p>
+    <div id="ehp-enquiry-success" class="ehp-dialog-success" role="status" aria-live="polite" hidden>
+      <p id="ehp-enquiry-success-text"></p>
+      <a class="ehp-dialog-primary" id="ehp-enquiry-ready-link" href={storeConfig.whatsappUrl} target="_blank" rel="noopener noreferrer">Open WhatsApp Message ↗</a>
+    </div>
+    <button class="ehp-dialog-primary" id="ehp-enquiry-submit" type="submit">Prepare WhatsApp Enquiry ↗</button>
   </form>
 </dialog>
+
 <dialog class="ehp-floating-card" id="ehp-store-dialog" aria-labelledby="ehp-store-title">
   <div class="ehp-dialog-top"><p class="eyebrow">Visit Our Store · Perambur</p><button class="ehp-dialog-close" type="button" aria-label="Close">×</button></div>
   <h2 id="ehp-store-title">Eshwar Home Products</h2>
   <p class="ehp-store-status" id="ehp-store-status" aria-live="polite"></p>
   <p class="ehp-store-hours">Monday–Saturday: 9:00 AM – 9:00 PM<br>Sunday: Closed · Chennai time (IST)</p>
   <address id="ehp-store-address">{address}</address>
-  <div class="ehp-dialog-actions"><button class="ehp-dialog-secondary" id="ehp-copy-address" type="button">Copy Address</button><a class="ehp-dialog-primary" href={mapsUrl} target="_blank" rel="noopener noreferrer">Get Directions ↗</a><a class="ehp-dialog-secondary" href={storeConfig.phoneHref}>Call Store · {storeConfig.phoneDisplay}</a></div>
+  <div class="ehp-dialog-actions">
+    <a class="ehp-dialog-primary" href={mapsUrl} target="_blank" rel="noopener noreferrer">Get Directions ↗</a>
+    <a class="ehp-dialog-secondary" href={storeConfig.phoneHref}>Call Store · {storeConfig.phoneDisplay}</a>
+    <button class="ehp-dialog-secondary" id="ehp-copy-address" type="button">Copy Address</button>
+  </div>
   <p class="ehp-dialog-feedback" id="ehp-copy-feedback" role="status" aria-live="polite"></p>
 </dialog>
+
 <dialog class="ehp-floating-card" id="ehp-story-dialog" aria-labelledby="ehp-story-title">
   <div class="ehp-dialog-top"><p class="eyebrow">Our Story · Perambur, Chennai</p><button class="ehp-dialog-close" type="button" aria-label="Close">×</button></div>
   <h2 id="ehp-story-title">Rooted in devotion, serving everyday kitchens.</h2>
@@ -41,6 +60,7 @@ const mapsUrl = storeConfig.mapsUrl;
   <p>At the store in Chinnaiyan Colony, Perambur, the team brings together traditional rice, whole millets, millet flours, cold-pressed oils, ghee and other pantry essentials. The aim is to make familiar foods easier to find and help customers choose what suits their everyday kitchens.</p>
   <a class="ehp-dialog-primary" href={import.meta.env.BASE_URL + "about/"}>Read the full story ↗</a>
 </dialog>
+
 <dialog class="ehp-floating-card" id="ehp-guide-dialog" aria-labelledby="ehp-guide-title">
   <div class="ehp-dialog-top"><p class="eyebrow">Kitchen Guide · Practical Notes</p><button class="ehp-dialog-close" type="button" aria-label="Close">×</button></div>
   <h2 id="ehp-guide-title">Kitchen guide</h2><p id="ehp-guide-description"></p><ul id="ehp-guide-notes" class="ehp-dialog-list"></ul>
@@ -48,86 +68,264 @@ const mapsUrl = storeConfig.mapsUrl;
   <a class="ehp-dialog-secondary" id="ehp-guide-reference" href="#" hidden>Open the original reference ↗</a>
   <button class="ehp-dialog-primary" id="ehp-guide-shop" type="button">Shop Ingredients for This Guide ↗</button>
 </dialog>
-<script is:inline>
-(() => {
- const dialogs={product:document.getElementById('ehp-product-dialog'),enquiry:document.getElementById('ehp-enquiry-dialog'),store:document.getElementById('ehp-store-dialog'),story:document.getElementById('ehp-story-dialog'),guide:document.getElementById('ehp-guide-dialog')};
- const openDialog=(dialog)=>{if(dialog instanceof HTMLDialogElement&&typeof dialog.showModal==='function'&&!dialog.open)dialog.showModal();};
- const initialiseEnquiry=(items=[])=>{
-  const form=document.getElementById('ehp-enquiry-form');if(!form)return;
-  form.reset();
-  const error=document.getElementById('ehp-enquiry-error');if(error){error.hidden=true;error.textContent='';}
-  const requested=Array.isArray(items)?items.map((item)=>String(item).toLowerCase()):[];
-  form.querySelectorAll('input[name="need"]').forEach((input)=>{input.checked=requested.some((item)=>item.includes(input.value.toLowerCase())||input.value.toLowerCase().includes(item));});
- };
- document.querySelectorAll('.ehp-dialog-close').forEach((button)=>button.addEventListener('click',()=>button.closest('dialog')?.close()));
- Object.values(dialogs).forEach((dialog)=>{
-  if(!dialog)return;
-  let pointerStart=null;
-  const outside=(point,rect)=>point.x<rect.left||point.x>rect.right||point.y<rect.top||point.y>rect.bottom;
-  dialog.addEventListener('pointerdown',(event)=>{pointerStart={x:event.clientX,y:event.clientY};});
-  dialog.addEventListener('click',(event)=>{
-   if(!pointerStart)return;
-   const rect=dialog.getBoundingClientRect(),pointerEnd={x:event.clientX,y:event.clientY};
-   if(outside(pointerStart,rect)&&outside(pointerEnd,rect))dialog.close();
-   pointerStart=null;
+
+<script>
+  const dialogs: Record<string, HTMLDialogElement | null> = {
+    product: document.getElementById("ehp-product-dialog") as HTMLDialogElement | null,
+    enquiry: document.getElementById("ehp-enquiry-dialog") as HTMLDialogElement | null,
+    store: document.getElementById("ehp-store-dialog") as HTMLDialogElement | null,
+    story: document.getElementById("ehp-story-dialog") as HTMLDialogElement | null,
+    guide: document.getElementById("ehp-guide-dialog") as HTMLDialogElement | null,
+  };
+
+  let lastDialogTrigger: HTMLElement | null = null;
+  let enquirySubmitting = false;
+
+  const openDialog = (dialog: HTMLDialogElement | null, trigger?: HTMLElement | null) => {
+    if (!(dialog instanceof HTMLDialogElement) || dialog.open) return;
+    lastDialogTrigger = trigger ?? (document.activeElement instanceof HTMLElement ? document.activeElement : null);
+    dialog.showModal();
+  };
+
+  const closeDialog = (dialog: HTMLDialogElement | null) => {
+    if (dialog instanceof HTMLDialogElement && dialog.open) {
+      dialog.close();
+      lastDialogTrigger?.focus();
+    }
+  };
+
+  const updateStoreStatus = () => {
+    const parts = new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Asia/Kolkata",
+      weekday: "short",
+      hour: "2-digit",
+      minute: "2-digit",
+      hourCycle: "h23",
+    }).formatToParts(new Date());
+    const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+    const hour = Number(values.hour);
+    const open = values.weekday !== "Sun" && hour >= 9 && hour < 21;
+    const status = document.getElementById("ehp-store-status");
+    if (status) {
+      status.textContent = `${open ? "Open now" : "Closed now"} · Chennai ${values.hour}:${values.minute} IST`;
+      status.dataset.open = String(open);
+    }
+  };
+
+  const initialiseEnquiry = (items: string[] = []) => {
+    const form = document.getElementById("ehp-enquiry-form") as HTMLFormElement | null;
+    if (!form) return;
+    form.reset();
+    enquirySubmitting = false;
+    const error = document.getElementById("ehp-enquiry-error");
+    const success = document.getElementById("ehp-enquiry-success");
+    const submitBtn = document.getElementById("ehp-enquiry-submit") as HTMLButtonElement | null;
+    const phoneInput = document.getElementById("ehp-enquiry-phone") as HTMLInputElement | null;
+    if (error) {
+      error.hidden = true;
+      error.textContent = "";
+    }
+    if (success) success.hidden = true;
+    if (submitBtn) {
+      submitBtn.hidden = false;
+      submitBtn.disabled = false;
+    }
+    if (phoneInput) phoneInput.removeAttribute("aria-invalid");
+    const requested = items.map((item) => String(item).toLowerCase());
+    form.querySelectorAll<HTMLInputElement>('input[name="need"]').forEach((input) => {
+      input.checked = requested.some(
+        (item) => item.includes(input.value.toLowerCase()) || input.value.toLowerCase().includes(item)
+      );
+    });
+  };
+
+  document.querySelectorAll<HTMLButtonElement>(".ehp-dialog-close").forEach((button) => {
+    button.addEventListener("click", () => closeDialog(button.closest("dialog")));
   });
-  dialog.addEventListener('pointercancel',()=>{pointerStart=null;});
- });
- document.addEventListener('click',(event)=>{
-  const trigger=event.target instanceof Element?event.target.closest('[data-ehp-dialog], [data-quickview-trigger]'):null;if(!trigger)return;
-  const kind=trigger.dataset.ehpDialog||(trigger.hasAttribute('data-quickview-trigger')?'product':'');if(!dialogs[kind])return;event.preventDefault();
-  if(kind==='product'){
-   const title=trigger.dataset.ehpTitle||trigger.dataset.quickviewTitle||'Pantry details';
-   document.getElementById('ehp-product-title').textContent=title;
-   document.getElementById('ehp-product-description').textContent=trigger.dataset.ehpDescription||trigger.dataset.quickviewDescription||'Ask the store about current varieties and availability.';
-   let items=[];try{items=JSON.parse(trigger.dataset.ehpItems||trigger.dataset.quickviewItems||'[]');}catch{}
-   document.getElementById('ehp-product-items').replaceChildren(...items.map((item)=>{const li=document.createElement('li');li.textContent=item;return li;}));
-   document.getElementById('ehp-product-whatsapp').href='https://wa.me/919941209953?text='+encodeURIComponent('Hi, I want to check availability for '+title+'. Please share current varieties and pack sizes.');
-  }
-  if(kind==='store')updateStoreStatus();
-  if(kind==='guide'){
-   const title=trigger.dataset.ehpTitle||'Kitchen guide';document.getElementById('ehp-guide-title').textContent=title;
-   document.getElementById('ehp-guide-description').textContent=trigger.dataset.ehpDescription||'';
-   let notes=[];try{notes=JSON.parse(trigger.dataset.ehpItems||'[]');}catch{}
-   document.getElementById('ehp-guide-notes').replaceChildren(...notes.map((item)=>{const li=document.createElement('li');li.textContent=item;return li;}));
-   const reference=document.getElementById('ehp-guide-reference');
-   reference.href=trigger.dataset.ehpHref||'#';reference.hidden=!trigger.dataset.ehpHref;
-   reference.textContent=(trigger.dataset.ehpAction||'Open the original reference')+' ↗';
-   const shop=document.getElementById('ehp-guide-shop');shop.dataset.ehpItems=JSON.stringify(notes);shop.dataset.ehpTitle=title;
-  }
-  if(kind==='enquiry'){
-   let preset=[];try{preset=JSON.parse(trigger.dataset.ehpItems||'[]');}catch{}
-   initialiseEnquiry(preset);
-  }
-  openDialog(dialogs[kind]);
- });
- document.getElementById('ehp-guide-shop')?.addEventListener('click',(event)=>{
-  const button=event.currentTarget;let notes=[];try{notes=JSON.parse(button.dataset.ehpItems||'[]');}catch{}
-  initialiseEnquiry(notes);
-  dialogs.guide.close();openDialog(dialogs.enquiry);
- });
- document.getElementById('ehp-enquiry-form')?.addEventListener('submit',(event)=>{
-  event.preventDefault();const selected=[...document.querySelectorAll('#ehp-enquiry-form input[name="need"]:checked')].map((input)=>input.value);
-  const error=document.getElementById('ehp-enquiry-error');if(!selected.length){if(error){error.textContent='Please select at least one item.';error.hidden=false;}return;}if(error){error.hidden=true;error.textContent='';}
-  const quantity=document.getElementById('ehp-enquiry-quantity').value.trim();
-  const message='Hello Eshwar Home Products, please help me check availability for: '+selected.join(', ')+'.'+(quantity?' Quantity or pack size: '+quantity+'.':'')+' Please share today’s options.';
-  window.location.href='https://wa.me/919941209953?text='+encodeURIComponent(message);
- });
- function updateStoreStatus(){
-  const parts=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Kolkata',weekday:'short',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date());
-  const values=Object.fromEntries(parts.map((part)=>[part.type,part.value]));const hour=Number(values.hour);
-  const open=values.weekday!=='Sun'&&hour>=9&&hour<21;
-  const status=document.getElementById('ehp-store-status');status.textContent=(open?'Open now':'Closed now')+' · Chennai '+values.hour+':'+values.minute+' IST';status.dataset.open=String(open);
- }
- document.getElementById('ehp-copy-address')?.addEventListener('click',async()=>{
-  const address=document.getElementById('ehp-store-address').textContent.trim(),feedback=document.getElementById('ehp-copy-feedback');
-  try{await navigator.clipboard.writeText(address);feedback.textContent='Address copied.';}catch{feedback.textContent='Copy is not available in this browser. Please select the address text.';}
- });
-})();
+
+  Object.values(dialogs).forEach((dialog) => {
+    if (!dialog) return;
+    let pointerStart: { x: number; y: number } | null = null;
+    const outside = (point: { x: number; y: number }, rect: DOMRect) =>
+      point.x < rect.left || point.x > rect.right || point.y < rect.top || point.y > rect.bottom;
+    dialog.addEventListener("pointerdown", (event) => {
+      pointerStart = { x: event.clientX, y: event.clientY };
+    });
+    dialog.addEventListener("click", (event) => {
+      if (!pointerStart) return;
+      const rect = dialog.getBoundingClientRect();
+      const pointerEnd = { x: event.clientX, y: event.clientY };
+      if (outside(pointerStart, rect) && outside(pointerEnd, rect)) closeDialog(dialog);
+      pointerStart = null;
+    });
+    dialog.addEventListener("pointercancel", () => {
+      pointerStart = null;
+    });
+    dialog.addEventListener("cancel", () => {
+      window.requestAnimationFrame(() => lastDialogTrigger?.focus());
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    const trigger = event.target instanceof Element
+      ? event.target.closest<HTMLElement>("[data-ehp-dialog], [data-quickview-trigger]")
+      : null;
+    if (!trigger) return;
+    const kind = trigger.dataset.ehpDialog || (trigger.hasAttribute("data-quickview-trigger") ? "product" : "");
+    const dialog = dialogs[kind];
+    if (!dialog) return;
+    event.preventDefault();
+
+    if (kind === "product") {
+      const title = trigger.dataset.ehpTitle || trigger.dataset.quickviewTitle || "Pantry details";
+      const titleEl = document.getElementById("ehp-product-title");
+      const descEl = document.getElementById("ehp-product-description");
+      const listEl = document.getElementById("ehp-product-items");
+      const waLink = document.getElementById("ehp-product-whatsapp") as HTMLAnchorElement | null;
+      if (titleEl) titleEl.textContent = title;
+      if (descEl) descEl.textContent = trigger.dataset.ehpDescription || trigger.dataset.quickviewDescription || "Ask the store about current varieties and availability.";
+      let items: string[] = [];
+      try { items = JSON.parse(trigger.dataset.ehpItems || trigger.dataset.quickviewItems || "[]"); } catch { items = []; }
+      if (listEl) {
+        listEl.replaceChildren(...items.map((item) => {
+          const li = document.createElement("li");
+          li.textContent = item;
+          return li;
+        }));
+      }
+      if (waLink) {
+        waLink.href = `https://wa.me/919941209953?text=${encodeURIComponent(`Hi, I want to check availability for ${title}. Please share current varieties and pack sizes.`)}`;
+      }
+    }
+
+    if (kind === "store") updateStoreStatus();
+
+    if (kind === "guide") {
+      const title = trigger.dataset.ehpTitle || "Kitchen guide";
+      const titleEl = document.getElementById("ehp-guide-title");
+      const descEl = document.getElementById("ehp-guide-description");
+      const notesEl = document.getElementById("ehp-guide-notes");
+      const reference = document.getElementById("ehp-guide-reference") as HTMLAnchorElement | null;
+      const shopBtn = document.getElementById("ehp-guide-shop");
+      if (titleEl) titleEl.textContent = title;
+      if (descEl) descEl.textContent = trigger.dataset.ehpDescription || "";
+      let notes: string[] = [];
+      try { notes = JSON.parse(trigger.dataset.ehpItems || "[]"); } catch { notes = []; }
+      if (notesEl) {
+        notesEl.replaceChildren(...notes.map((item) => {
+          const li = document.createElement("li");
+          li.textContent = item;
+          return li;
+        }));
+      }
+      if (reference) {
+        reference.href = trigger.dataset.ehpHref || "#";
+        reference.hidden = !trigger.dataset.ehpHref;
+        reference.textContent = `${trigger.dataset.ehpAction || "Open the original reference"} ↗`;
+      }
+      if (shopBtn) {
+        shopBtn.dataset.ehpItems = JSON.stringify(notes);
+        shopBtn.dataset.ehpTitle = title;
+      }
+    }
+
+    if (kind === "enquiry") {
+      let preset: string[] = [];
+      try { preset = JSON.parse(trigger.dataset.ehpItems || "[]"); } catch { preset = []; }
+      initialiseEnquiry(preset);
+    }
+
+    openDialog(dialog, trigger);
+  });
+
+  document.getElementById("ehp-guide-shop")?.addEventListener("click", (event) => {
+    const button = event.currentTarget as HTMLElement;
+    let notes: string[] = [];
+    try { notes = JSON.parse(button.dataset.ehpItems || "[]"); } catch { notes = []; }
+    initialiseEnquiry(notes);
+    closeDialog(dialogs.guide);
+    openDialog(dialogs.enquiry, lastDialogTrigger);
+  });
+
+  document.getElementById("ehp-enquiry-form")?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (enquirySubmitting) return;
+
+    const selected = Array.from(
+      document.querySelectorAll<HTMLInputElement>('#ehp-enquiry-form input[name="need"]:checked')
+    ).map((input) => input.value);
+    const error = document.getElementById("ehp-enquiry-error");
+    const success = document.getElementById("ehp-enquiry-success");
+    const successText = document.getElementById("ehp-enquiry-success-text");
+    const readyLink = document.getElementById("ehp-enquiry-ready-link") as HTMLAnchorElement | null;
+    const submitBtn = document.getElementById("ehp-enquiry-submit") as HTMLButtonElement | null;
+    const qtyInput = document.getElementById("ehp-enquiry-quantity") as HTMLInputElement | null;
+    const phoneInput = document.getElementById("ehp-enquiry-phone") as HTMLInputElement | null;
+
+    if (!selected.length) {
+      if (error) {
+        error.textContent = "Please select at least one pantry item before continuing.";
+        error.hidden = false;
+      }
+      return;
+    }
+
+    const phoneRaw = phoneInput?.value.trim() ?? "";
+    if (phoneRaw) {
+      const digits = phoneRaw.replace(/\D/g, "");
+      if (digits.length < 10 || digits.length > 13 || !/^[+\d\s()-]+$/.test(phoneRaw)) {
+        if (error) {
+          error.textContent = "Please enter a valid 10-digit phone number (or leave it blank).";
+          error.hidden = false;
+        }
+        phoneInput?.setAttribute("aria-invalid", "true");
+        phoneInput?.focus();
+        return;
+      }
+    }
+    phoneInput?.removeAttribute("aria-invalid");
+
+    if (error) {
+      error.hidden = true;
+      error.textContent = "";
+    }
+
+    enquirySubmitting = true;
+    if (submitBtn) submitBtn.disabled = true;
+
+    const quantity = qtyInput?.value.trim() ?? "";
+    const message =
+      `Hello Eshwar Home Products, please help me check availability for: ${selected.join(", ")}.` +
+      (quantity ? ` Quantity or pack size: ${quantity}.` : "") +
+      (phoneRaw ? ` Contact number: ${phoneRaw}.` : "") +
+      " Please share today’s options.";
+
+    const waHref = `https://wa.me/919941209953?text=${encodeURIComponent(message)}`;
+    if (readyLink) readyLink.href = waHref;
+    if (successText) {
+      successText.textContent = `Message prepared for ${selected.join(", ")}. Tap below to open WhatsApp and send it to our Perambur store.`;
+    }
+    if (success) success.hidden = false;
+    if (submitBtn) submitBtn.hidden = true;
+    readyLink?.focus();
+  });
+
+  document.getElementById("ehp-copy-address")?.addEventListener("click", async () => {
+    const addressEl = document.getElementById("ehp-store-address");
+    const feedback = document.getElementById("ehp-copy-feedback");
+    if (!addressEl || !feedback) return;
+    try {
+      await navigator.clipboard.writeText(addressEl.textContent?.trim() ?? "");
+      feedback.textContent = "Address copied.";
+    } catch {
+      feedback.textContent = "Copy is not available in this browser. Please select the address text.";
+    }
+  });
 </script>
+
 <style is:global>
-.ehp-floating-card{width:min(480px,calc(100vw - 28px));max-width:480px;max-height:min(82vh,720px);max-height:min(82dvh,720px);overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;margin:auto;padding:26px;border:1px solid var(--border-light);border-radius:12px;background:#FFFFFF;color:var(--text-main);box-shadow:0 20px 50px rgba(23,29,24,.18)}
-.ehp-floating-card::backdrop{background:rgba(23,29,24,.52)}
+.ehp-floating-card{width:min(480px,calc(100vw - 28px));max-width:480px;max-height:min(82vh,720px);max-height:min(82dvh,720px);overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;margin:auto;padding:26px;border:1px solid var(--border-light);border-radius:12px;background:#FFFFFF;color:var(--text-main);box-shadow:0 20px 50px rgba(34,21,13,.18)}
+.ehp-floating-card::backdrop{background:rgba(34,21,13,.54)}
 .ehp-dialog-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px}
 .ehp-dialog-top .eyebrow{margin:0;color:var(--accent-green);font-size:.8125rem;font-weight:600;letter-spacing:.02em;text-transform:none}
 .ehp-dialog-close{display:grid;width:44px;height:44px;flex:0 0 44px;place-items:center;border:1px solid var(--border-light);border-radius:8px;background:var(--bg-page);color:var(--text-main);font-size:1.4rem;cursor:pointer}
@@ -139,7 +337,7 @@ const mapsUrl = storeConfig.mapsUrl;
 .ehp-representative-meta{margin:0 0 4px;color:var(--accent-brass);font-size:.8125rem;font-weight:600}
 .ehp-dialog-list{display:grid;gap:8px;margin:16px 0;padding-left:20px;color:var(--text-main);font-size:.9375rem}
 .ehp-dialog-note{padding:12px 14px;border:1px solid var(--border-light);border-radius:8px;background:var(--bg-subtle);font-size:.84rem}
-.ehp-dialog-primary,.ehp-dialog-secondary{display:flex;min-height:46px;align-items:center;justify-content:center;width:100%;padding:10px 18px;border:1px solid var(--accent-green);border-radius:8px;background:var(--accent-green);color:#FFFFFF;font-size:.875rem;font-weight:600;text-align:center;text-decoration:none;cursor:pointer;transition:background-color .16s ease,border-color .16s ease}
+.ehp-dialog-primary,.ehp-dialog-secondary{display:flex;min-height:48px;align-items:center;justify-content:center;width:100%;padding:10px 18px;border:1px solid var(--accent-green);border-radius:8px;background:var(--accent-green);color:#FFFFFF;font-size:.875rem;font-weight:600;text-align:center;text-decoration:none;cursor:pointer;transition:background-color .16s ease,border-color .16s ease}
 .ehp-dialog-primary:hover{background:var(--accent-green-hover)}
 .ehp-dialog-secondary{background:#FFFFFF;color:var(--accent-green);border-color:var(--border-light)}
 .ehp-dialog-secondary:hover{background:var(--bg-subtle)}
@@ -148,8 +346,11 @@ const mapsUrl = storeConfig.mapsUrl;
 .ehp-enquiry-options label{display:flex;min-height:46px;align-items:center;gap:9px;padding:8px 12px;border:1px solid var(--border-light);border-radius:8px;background:var(--bg-page);color:var(--text-main);font-size:.875rem;cursor:pointer}
 .ehp-enquiry-options input{width:18px;height:18px;accent-color:var(--accent-green)}
 .ehp-quantity-label{display:block;margin:12px 0 6px;color:var(--text-main);font-size:.875rem;font-weight:600}
-#ehp-enquiry-quantity{width:100%;min-height:46px;padding:10px 12px;border:1px solid var(--border-light);border-radius:8px;background:#FFFFFF;color:var(--text-main);font:inherit}
-.ehp-dialog-error{color:#9B2C20;font-size:.84rem}
+#ehp-enquiry-quantity,#ehp-enquiry-phone{width:100%;min-height:46px;padding:10px 12px;border:1px solid var(--border-light);border-radius:8px;background:#FFFFFF;color:var(--text-main);font:inherit}
+#ehp-enquiry-phone[aria-invalid="true"]{border-color:#9B2C20}
+.ehp-dialog-error{margin:10px 0 0;color:#9B2C20;font-size:.84rem;font-weight:600}
+.ehp-dialog-success{margin:14px 0 0;padding:14px;border:1px solid var(--border-light);border-radius:8px;background:var(--bg-subtle)}
+.ehp-dialog-success p{margin:0 0 12px;color:var(--text-main);font-size:.875rem;font-weight:500}
 .ehp-store-status{margin:0 0 8px;color:var(--accent-green);font-size:.875rem;font-weight:700}
 .ehp-store-status[data-open="false"]{color:var(--accent-brass)}
 .ehp-dialog-feedback{min-height:1.5em;margin-bottom:0;font-size:.84rem;color:var(--accent-green)}

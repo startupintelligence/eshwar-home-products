@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { firebaseReady } from "../services/firebase/client";
 import { getPublishedProducts } from "../services/firebase/products";
 import catalogue from "../data/catalogue.json";
 import type { Product } from "../types/content";
@@ -26,10 +27,21 @@ function resolveProductImage(path: string) {
 
 export default function PublishedCatalogue() {
   const [products, setProducts] = useState<Product[]>([]);
-  const [loaded, setLoaded] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [attempt, setAttempt] = useState(0);
 
-  useEffect(() => {
+  const loadProducts = useCallback(() => {
+    if (!firebaseReady) {
+      setLoading(false);
+      setErrorMessage("");
+      return () => {};
+    }
+
     let active = true;
+    setLoading(true);
+    setErrorMessage("");
+
     getPublishedProducts()
       .then((items) => {
         if (!active) return;
@@ -41,25 +53,52 @@ export default function PublishedCatalogue() {
         }
       })
       .catch(() => {
-        // Keep the verified static catalogue visible if Firebase is unavailable.
+        if (!active) return;
+        setErrorMessage(
+          "We could not load recently published store items right now. You can retry below or browse our full category guide on this page."
+        );
       })
       .finally(() => {
-        if (active) setLoaded(true);
+        if (active) setLoading(false);
       });
+
     return () => {
       active = false;
     };
   }, []);
 
   useEffect(() => {
+    const cleanup = loadProducts();
+    return cleanup;
+  }, [loadProducts, attempt]);
+
+  useEffect(() => {
     document.dispatchEvent(new Event("catalogue:updated"));
   }, [products]);
 
-  if (!loaded) {
+  if (loading) {
     return (
-      <div className="live-catalogue-skeleton" aria-label="Checking the published store catalogue" aria-busy="true">
-        <div className="skeleton-card" aria-hidden="true" />
-        <div className="skeleton-card" aria-hidden="true" />
+      <div className="live-catalogue-loading" role="status" aria-live="polite" aria-busy="true">
+        <p className="live-catalogue-loading-text">Checking recently published store items…</p>
+        <div className="live-catalogue-skeleton">
+          <div className="skeleton-card" aria-hidden="true" />
+          <div className="skeleton-card" aria-hidden="true" />
+        </div>
+      </div>
+    );
+  }
+
+  if (errorMessage) {
+    return (
+      <div className="live-catalogue-error" role="alert">
+        <p>{errorMessage}</p>
+        <button
+          type="button"
+          className="filter-button live-catalogue-retry"
+          onClick={() => setAttempt((prev) => prev + 1)}
+        >
+          Retry loading items
+        </button>
       </div>
     );
   }

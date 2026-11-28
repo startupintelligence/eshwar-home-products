@@ -11,7 +11,7 @@ const guides = [
 ];
 const schema = { "@context": "https://schema.org", "@type": "CollectionPage", "name": "Kitchen Guides | Eshwar Home Products", "url": pageUrl, "description": "Practical Tamil kitchen references and pantry guides from Eshwar Home Products in Perambur, Chennai.", "mainEntity": { "@type": "ItemList", "itemListElement": guides.map((guide, index) => ({ "@type": "ListItem", "position": index + 1, "name": guide.title, "url": new URL(guide.href.replace(base, base), siteOrigin).toString() })) } };
 ---
-<SiteLayout title="Kitchen Guides & Tamil Pantry Notes | Eshwar Home Products" description="Practical Tamil kitchen references, millet name guides and pantry-use notes from Eshwar Home Products in Perambur, Chennai." current="blog" canonicalUrl={pageUrl}>
+<SiteLayout title="Millet & Kitchen Guides Archive | Eshwar Home Products" description="Browse practical kitchen reference notes on Siruthaniyam Tamil millet names, traditional rice, Chekku cooking oils, and everyday pantry staples from Eshwar Home Products, Perambur." current="blog" canonicalUrl={pageUrl}>
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <section class="guide-hero"><div class="container">
     <p class="eyebrow">Kitchen notes · Eshwar Home Products · Perambur</p>

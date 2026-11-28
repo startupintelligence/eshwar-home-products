@@ -257,8 +257,9 @@ const sourcingHighlights = [
             Thoughtfully chosen staples for everyday South Indian kitchens. Visit our neighbourhood pantry on Paddy Field Road in Perambur, or message us directly to check today's fresh stock.
           </p>
           <div class="home-hero-actions">
-            <a class="button" href={base + "products/"}>Explore Our Pantry <span aria-hidden="true">→</span></a>
-            <button class="button-whatsapp" type="button" data-ehp-dialog="enquiry" aria-haspopup="dialog">Check Stock on WhatsApp</button>
+            <a class="button" href={mapsUrl} target="_blank" rel="noopener noreferrer">Visit Store &amp; Buy <span aria-hidden="true">↗</span></a>
+            <a class="button-whatsapp" href={base + "products/"}>Browse The Pantry <span aria-hidden="true">→</span></a>
+            <button class="text-link" type="button" data-ehp-dialog="enquiry" aria-haspopup="dialog">WhatsApp Enquiry ↗</button>
           </div>
           <div class="home-hero-proof">
             <a class="home-proof-rating" href={mapsUrl} target="_blank" rel="noopener noreferrer">
@@ -1073,7 +1074,7 @@ const sourcingHighlights = [
   .home-spinner-ring {
     width: 22px;
     height: 22px;
-    border: 2.5px solid rgba(24, 56, 40, 0.16);
+    border: 2.5px solid rgba(66, 39, 25, 0.16);
     border-top-color: var(--accent-green);
     border-radius: 50%;
     animation: ehpGridSpin 650ms linear infinite;
@@ -1109,7 +1110,7 @@ const sourcingHighlights = [
   .home-product-card.is-featured {
     border: 1.5px solid rgba(130, 86, 16, 0.55);
     background: #F7F4EC;
-    box-shadow: 0 10px 24px rgba(24, 56, 40, 0.08);
+    box-shadow: 0 10px 24px rgba(66, 39, 25, 0.08);
   }
 
   .home-product-card.is-featured .home-product-body h3 {
@@ -1138,7 +1139,7 @@ const sourcingHighlights = [
   .home-product-card:focus-within,
   .product-card:focus-within {
     transform: translateY(-4px) scale(1.02);
-    border-color: rgba(24, 56, 40, 0.48);
+    border-color: rgba(66, 39, 25, 0.48);
     box-shadow: 0 18px 36px rgba(23, 29, 24, 0.13);
   }
 
@@ -1477,7 +1478,7 @@ const sourcingHighlights = [
     overflow: hidden;
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.16);
-    background: #10281C;
+    background: #2B1A11;
     text-decoration: none;
   }
 
@@ -1634,7 +1635,7 @@ const sourcingHighlights = [
 
   .home-story-card:hover {
     transform: translateY(-2px);
-    border-color: rgba(24, 56, 40, 0.32);
+    border-color: rgba(66, 39, 25, 0.32);
     box-shadow: 0 10px 24px rgba(23, 29, 24, 0.05);
   }
 

@@ -35,7 +35,19 @@ const base = import.meta.env.BASE_URL;
       <a href={base + "about/"} aria-current={current === "about" ? "page" : undefined}>Our Story</a>
       <a href={base + "kitchen-guides/"} aria-current={current === "blog" || current === "kitchen-guides" ? "page" : undefined}>Kitchen Guides</a>
       <a href={base + "contact/"} aria-current={current === "contact" ? "page" : undefined}>Visit Us</a>
-      <a class="mobile-nav-contact" href={storeConfig.whatsappUrl} data-ehp-dialog="enquiry" aria-haspopup="dialog">WhatsApp Enquiry ↗</a>
+      <div class="mobile-nav-actions" aria-label="Quick store actions">
+        <a class="mobile-nav-action-primary" href={storeConfig.mapsUrl} target="_blank" rel="noopener noreferrer">
+          <span>Visit Store &amp; Directions</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+        <a class="mobile-nav-contact" href={storeConfig.whatsappUrl} data-ehp-dialog="enquiry" aria-haspopup="dialog">
+          <span>WhatsApp Enquiry</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+        <a class="mobile-nav-action-secondary" href={storeConfig.phoneHref}>
+          <span>Call Store · {storeConfig.phoneDisplay}</span>
+        </a>
+      </div>
     </nav>
     <div class="mobile-nav-backdrop" id="mobile-nav-backdrop" aria-hidden="true"></div>
 

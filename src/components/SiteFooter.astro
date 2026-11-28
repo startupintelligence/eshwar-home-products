@@ -84,6 +84,7 @@ const facebookUrl = storeConfig.socials.facebook.url;
       <a href={base + "contact/"}>Visit us</a>
       <a href={base + "perambur-millet-store/"}>Perambur guide</a>
       <a href={base + "kitchen-guides/"}>Kitchen guides</a>
+      <a href={base + "privacy-policy/"}>Privacy policy</a>
     </nav>
 
     <div class="footer-contact">
@@ -98,6 +99,10 @@ const facebookUrl = storeConfig.socials.facebook.url;
 
   <div class="container footer-bottom">
     <span>{storeConfig.address}</span>
-    <span>© {new Date().getFullYear()} {storeConfig.name}</span>
+    <div class="footer-legal-links">
+      <a class="footer-legal-link" href={base + "privacy-policy/"}>Privacy Policy</a>
+      <button class="footer-cookie-btn" type="button" data-ehp-cookie-prefs>Cookie Preferences</button>
+      <span>© {new Date().getFullYear()} {storeConfig.name}</span>
+    </div>
   </div>
 </footer>

@@ -6,7 +6,9 @@
       "name": "eshwar-home-products",
       "dependencies": {
         "@astrojs/react": "4.4.2",
+        "@fontsource-variable/fraunces": "^5.3.0",
         "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
+        "@fontsource/noto-sans-tamil": "^5.3.0",
         "@googlemaps/js-api-loader": "^2.1.3",
         "@types/google.maps": "^3.67.0",
         "@vis.gl/react-google-maps": "^1.10.2",
@@ -265,7 +267,11 @@
 
     "@firebase/webchannel-wrapper": ["@firebase/webchannel-wrapper@1.0.5", "", {}, "sha512-+uGNN7rkfn41HLO0vekTFhTxk61eKa8mTpRGLO0QSqlQdKvIoGAvLp3ppdVIWbTGYJWM6Kp0iN+PjMIOcnVqTw=="],
 
+    "@fontsource-variable/fraunces": ["@fontsource-variable/fraunces@5.3.0", "", {}, "sha512-9BYGySn4AHEJdgp9Z28tQ3X+laJMEOITXkQarZXeloWQZDq5oOvXJ3kDA8c7MGIfpogIaZfjrQBqmda8POOCKA=="],
+
     "@fontsource-variable/plus-jakarta-sans": ["@fontsource-variable/plus-jakarta-sans@5.3.0", "", {}, "sha512-/l/4r0yyWK9JzAlmA0LiYgGgmJe/Gswt4jTJEzr5QhJfwMbvJZDmYWyW0M4X7yCK69BajMVlV/Lx8g7WDc1+sw=="],
+
+    "@fontsource/noto-sans-tamil": ["@fontsource/noto-sans-tamil@5.3.0", "", {}, "sha512-webid7fyBljiIEJ1hXuey48vCUe2Oq3/EwYjo6XBtXItO9FoUmqy0bEnXA5iE++iC324BTI8QMy80SYtDheCzA=="],
 
     "@google-cloud/cloud-sql-connector": ["@google-cloud/cloud-sql-connector@1.13.1", "", { "dependencies": { "@google-cloud/sql": "^0.32.0", "@googleapis/sqladmin": "^43.0.0", "@grpc/grpc-js": "^1.14.7", "gaxios": "^8.3.3", "google-auth-library": "^11.3.4", "p-throttle": "^8.1.1" } }, "sha512-BE7FC8JUgFBmvZQFehIzhGz1jEwQAx7jr2KNPERdgJqFIko0/WyvJuLxnb0pXNCwrmwqIX9bNxquE6PCevuiOw=="],
 

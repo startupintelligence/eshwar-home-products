@@ -91,7 +91,8 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
       <h1>Good things for<br /><em>everyday cooking.</em></h1>
       <p>Explore traditional rice, millets, cooking essentials and familiar pantry favourites for everyday South Indian kitchens. Browse by shelf, then ask our team about the variety or pack size you need.</p>
       <div class="hero-actions">
-        <a class="button pantry-hero-cta" href={buildWhatsAppUrl("Hello Eshwar Home Products, please help me check today's pantry stock.")} target="_blank" rel="noopener noreferrer">Check today's stock on WhatsApp ↗</a>
+        <a class="button pantry-hero-cta" href={mapsUrl} target="_blank" rel="noopener noreferrer">Visit Store &amp; Buy (Directions) ↗</a>
+        <a class="button-whatsapp" href={buildWhatsAppUrl("Hello Eshwar Home Products, please help me check today's pantry stock.")} target="_blank" rel="noopener noreferrer">Check stock on WhatsApp ↗</a>
         <a class="text-link phone-action" href={storeConfig.phoneHref}>Call {storeConfig.phoneDisplay}</a>
       </div>
     </div>
@@ -316,7 +317,7 @@ const pantryBreadcrumbs = { "@context": "https://schema.org", "@type": "Breadcru
   .pantry-grid-wrap { position:relative; }
   .pantry-grid-wrap.is-updating .pantry-directory { opacity:.45; transition:opacity 160ms var(--ease-out); }
   .pantry-spinner { position:absolute; top:28px; left:50%; z-index:4; transform:translateX(-50%); display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border:1px solid var(--border-light); border-radius:50%; background:rgba(250,249,246,.96); box-shadow:0 8px 20px rgba(23,29,24,.12); pointer-events:none; }
-  .pantry-spinner-ring { width:22px; height:22px; border:2.5px solid rgba(24,56,40,.16); border-top-color:var(--accent-green); border-radius:50%; animation:pantrySpin 650ms linear infinite; }
+  .pantry-spinner-ring { width:22px; height:22px; border:2.5px solid rgba(66,39,25,.16); border-top-color:var(--accent-green); border-radius:50%; animation:pantrySpin 650ms linear infinite; }
   @keyframes pantrySpin { to { transform:rotate(360deg); } }
   .pantry-search-status { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; margin:20px 0 8px; padding:12px 16px; border:1px solid var(--border-light); border-radius:10px; background:var(--bg-subtle); color:var(--text-main); font-size:.9375rem; }
   .pantry-search-clear { border:0; padding:4px 0; background:transparent; color:var(--accent-green); font-size:.875rem; font-weight:600; text-decoration:underline; text-underline-offset:4px; cursor:pointer; }
