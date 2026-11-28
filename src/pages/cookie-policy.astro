@@ -1,0 +1,32 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { storeConfig } from "../data/store";
+const base = import.meta.env.BASE_URL;
+---
+<SiteLayout title="Cookie Policy | Eshwar Home Products" description="How essential browser storage and optional analytics work on the Eshwar Home Products website.">
+  <article class="legal-page">
+    <p class="legal-updated">Last updated: 28 November 2026</p>
+    <h1>Cookie Policy</h1>
+    <p>This page explains the browser storage and optional measurement tools used by the Eshwar Home Products website. The website is a store catalogue and visit guide. It does not use advertising cookies.</p>
+    <h2>Essential preference storage</h2>
+    <p>The site stores your consent choice in browser local storage under <code>ehp_cookie_consent_v2</code>. It records whether optional analytics was enabled, the choice version and the time it was saved. This preference stays in your browser and is not sent to the store by the consent banner. It is not an advertising cookie.</p>
+    <h2>Optional analytics</h2>
+    <p>Google Analytics remains off unless you choose “Accept All” or enable analytics in Cookie Preferences. It loads only if the store has configured an analytics measurement ID. When enabled, analytics storage is allowed, advertising-related storage remains denied, and IP anonymisation is requested. If you reject or withdraw consent, the site disables future analytics collection and clears accessible analytics cookies.</p>
+    <h2>Maps and external services</h2>
+    <p>Website fonts are self-hosted. If an interactive map is included on a page and a Google Maps API key is configured, Google Maps resources may load to display that map. Opening directions, WhatsApp, YouTube or Instagram takes you to services operated by other organisations. Those services process information under their own privacy policies. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google’s Privacy Policy</a>.</p>
+    <h2>Change or withdraw your choice</h2>
+    <p>You can change your choice at any time using <strong>Cookie Preferences</strong> in the website footer. You can also clear this website’s local storage in your browser settings. Clearing it may cause the consent banner to appear again.</p>
+    <h2>Contact</h2>
+    <p>Questions about this policy? Contact {storeConfig.name} at <a href={storeConfig.emailHref}>{storeConfig.email}</a>.</p>
+    <p class="legal-related"><a href={base + "privacy-policy/"}>Privacy Policy</a> · <a href={base + "license/"}>Website Use &amp; License</a></p>
+  </article>
+</SiteLayout>
+<style>
+  .legal-page { width: min(100% - 2rem, 850px); margin-inline: auto; padding-block: clamp(3rem, 7vw, 6rem); line-height: 1.75; color: var(--text-main); }
+  .legal-page h1 { max-width: 18ch; margin: 0 0 1rem; line-height: 1.12; }
+  .legal-page h2 { margin: 2.2rem 0 .6rem; line-height: 1.25; }
+  .legal-page p { max-width: 76ch; color: var(--text-muted); }
+  .legal-page a { color: var(--accent-green); text-decoration: underline; text-underline-offset: 3px; }
+  .legal-page .legal-updated { margin-bottom: 2rem; font-size: .9rem; opacity: .75; }
+  .legal-related { margin-top: 2rem; }
+</style>
