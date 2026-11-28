@@ -39,7 +39,7 @@ iframe { display: block; }
   .site-header.ehp-site-header .wordmark {
     flex: 1 1 0;
     min-width: 0;
-    min-height: 44px;
+    min-height: 48px;
   }
   .site-header.ehp-site-header .wordmark-logo {
     width: 32px;
@@ -71,9 +71,9 @@ iframe { display: block; }
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    flex: 0 0 44px;
-    width: 44px;
-    height: 44px;
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
     padding: 0;
     border: 1px solid var(--border-light);
     border-radius: 8px;
@@ -82,8 +82,8 @@ iframe { display: block; }
     cursor: pointer;
   }
   .site-header.ehp-site-header .mobile-search-toggle[aria-expanded="true"] {
-    border-color: var(--accent-green);
-    color: var(--accent-green);
+    border-color: var(--accent-brown);
+    color: var(--accent-brown);
     background: var(--bg-subtle);
   }
 
@@ -93,9 +93,9 @@ iframe { display: block; }
   }
   .site-header.ehp-site-header .menu-toggle {
     display: grid;
-    flex: 0 0 44px;
-    width: 44px;
-    height: 44px;
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
     place-items: center;
     padding: 0;
     border: 1px solid var(--border-light);
@@ -198,8 +198,8 @@ iframe { display: block; }
     cursor: pointer;
   }
   .site-header.ehp-site-header .mobile-nav-close:hover {
-    border-color: var(--accent-green);
-    color: var(--accent-green);
+    border-color: var(--accent-brown);
+    color: var(--accent-brown);
   }
   .site-header.ehp-site-header .main-nav > a {
     display: flex;
@@ -217,7 +217,7 @@ iframe { display: block; }
     text-decoration: none;
   }
   .site-header.ehp-site-header .main-nav > a[aria-current="page"] {
-    color: var(--accent-green);
+    color: var(--accent-brown);
     font-weight: 700;
   }
   .site-header.ehp-site-header .mobile-nav-actions {
@@ -244,7 +244,7 @@ iframe { display: block; }
     text-decoration: none;
   }
   .site-header.ehp-site-header .main-nav .mobile-nav-action-primary {
-    background: var(--accent-green);
+    background: var(--accent-brown);
     color: #FFFFFF;
   }
   .site-header.ehp-site-header .main-nav .mobile-nav-contact,
@@ -284,7 +284,7 @@ iframe { display: block; }
     grid-template-columns: minmax(0, 1fr);
   }
 
-  /* Enforce >= 48px primary mobile action buttons & >= 44px secondary interactive targets */
+  /* Enforce >= 48px primary mobile action buttons & >= 48px secondary interactive targets */
   .button,
   .button-dark,
   .button-whatsapp,
@@ -307,9 +307,18 @@ iframe { display: block; }
   .site-footer .footer-contact-link,
   .pantry-search-clear,
   .pantry-item-trigger {
-    min-height: 44px;
+    min-height: 48px;
     display: inline-flex;
     align-items: center;
+  }
+
+  .home-hero-actions > a,
+  .home-visit-actions > a,
+  .home-stories-cta-actions > a {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   /* 3-Action Swiss Hairline Bottom Bar (Visit Store, WhatsApp, Call) >= 48px height */
@@ -348,7 +357,7 @@ iframe { display: block; }
   }
 
   .mobile-action-visit {
-    background: var(--accent-green);
+    background: var(--accent-brown);
     color: #FFFFFF;
   }
   .mobile-action-whatsapp {

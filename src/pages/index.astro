@@ -4,6 +4,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 import StoreLocationMap from "../components/StoreLocationMap";
 import reviewData from "../data/reviews.json";
 import { buildWhatsAppUrl, storeConfig } from "../data/store";
+import { buildGoogleMapsDirectionsUrl } from "../utils/maps.mjs";
 
 import riceImg from "../assets/images/pantry_traditional_rice_1795627178963.jpg";
 import milletsImg from "../assets/images/pantry_whole_millets_1795627178343.jpg";
@@ -25,6 +26,7 @@ interface CustomerReview {
 const reviews = reviewData as CustomerReview[];
 const base = import.meta.env.BASE_URL;
 const mapsUrl = storeConfig.mapsUrl;
+const directionsUrl = buildGoogleMapsDirectionsUrl(storeConfig.address);
 const ask = (item: string) =>
   buildWhatsAppUrl(
     "Hello Eshwar Home Products, please help me check today's availability and pack sizes for " +
@@ -169,46 +171,32 @@ const featuredProducts = [
 const kitchenHighlights = [
   {
     category: "grains",
-    tag: "Thinai, Varagu & Traditional Rice",
-    title: "Honest grain matching for everyday cooking",
-    summary: "Families from Chinnaiyan Colony and Perambur often ask at the counter which rice or Siruthaniyam variety best suits pongal, upma, or idli batter before buying a full pack.",
-    area: "Perambur Counter"
+    tag: "Traditional rice & millets",
+    title: "Rice, millets and flours",
+    summary: "Browse traditional rice, whole millets and flours for everyday South Indian cooking.",
+    area: "Rice & Millets",
   },
   {
     category: "oils",
-    tag: "Chekku Gingelly & Groundnut Oil",
-    title: "Traditional wood-pressed kitchen oils",
-    summary: "Neighbours along Paddy Field Road pick up wood-pressed gingelly, groundnut, and coconut oils for daily tempering and cooking, calling ahead to confirm pack sizes.",
-    area: "Paddy Field Road"
-  },
-  {
-    category: "grains",
-    tag: "Ragi Flour & Millet Flakes",
-    title: "Quick WhatsApp checks before pickup",
-    summary: "Commuters from Sembium and nearby streets message +91 99412 09953 on WhatsApp to confirm ragi flour or millet aval availability so pickup takes just minutes.",
-    area: "Sembium & Perambur"
+    tag: "Wood-pressed oils",
+    title: "Chekku oils for everyday cooking",
+    summary: "Explore gingelly, groundnut and coconut oils. Contact the store to confirm available brands and pack sizes.",
+    area: "Cooking Oils",
   },
   {
     category: "pantry",
-    tag: "Badam, Cashews & Wild Honey",
-    title: "Clean-counter dry fruits and festive packs",
-    summary: "Customers preparing sweets, payasam, or daily breakfasts check for clean whole almonds, cashews, pistachios, and forest honey without needing bulk quantities.",
-    area: "Madhavaram & Kolathur"
+    tag: "Nuts & dry fruits",
+    title: "Nuts for snacks and recipes",
+    summary: "Find almonds, cashews, pistachios and walnuts, subject to current stock.",
+    area: "Nuts & Dry Fruits",
   },
   {
-    category: "grains",
-    tag: "Samai, Kuthiraivali & Tamil Names",
-    title: "Friendly help with Tamil Siruthaniyam names",
-    summary: "Whether you know a grain by its Tamil name (தினை, வரகு, சாமை, குதிரைவாலி) or English name, the store team helps match varieties to familiar recipes.",
-    area: "Tamil & English Guide"
+    category: "pantry",
+    tag: "Honey & ghee",
+    title: "Honey, ghee and pantry essentials",
+    summary: "Browse honey, cow ghee, pulses and other pantry staples at the store.",
+    area: "Pantry",
   },
-  {
-    category: "oils",
-    tag: "Cow Ghee & Batch Transparency",
-    title: "Straightforward stock updates with no upselling",
-    summary: "If a particular batch or pack size is out of stock, the store lets you know upfront by phone or WhatsApp before you travel.",
-    area: "Mon–Sat, 9 AM – 9 PM"
-  }
 ];
 
 const sourcingHighlights = [
@@ -254,12 +242,11 @@ const sourcingHighlights = [
           </p>
           <h1 id="home-title">Traditional Rice, Millets &amp; <em>Everyday Pantry</em> Essentials</h1>
           <p class="home-hero-lede">
-            Thoughtfully chosen staples for everyday South Indian kitchens. Visit our neighbourhood pantry on Paddy Field Road in Perambur, or message us directly to check today's fresh stock.
+            Browse everyday South Indian pantry essentials. Visit our Perambur store or message us to check current stock and pack sizes.
           </p>
           <div class="home-hero-actions">
-            <a class="button" href={mapsUrl} target="_blank" rel="noopener noreferrer">Visit Store &amp; Buy <span aria-hidden="true">↗</span></a>
+            <a class="button" href={directionsUrl} target="_blank" rel="noopener noreferrer">Visit Store &amp; Buy <span aria-hidden="true">↗</span></a>
             <a class="button-whatsapp" href={base + "products/"}>Browse The Pantry <span aria-hidden="true">→</span></a>
-            <button class="text-link" type="button" data-ehp-dialog="enquiry" aria-haspopup="dialog">WhatsApp Enquiry ↗</button>
           </div>
           <div class="home-hero-proof">
             <a class="home-proof-rating" href={mapsUrl} target="_blank" rel="noopener noreferrer">
@@ -543,7 +530,7 @@ const sourcingHighlights = [
           </p>
           <div class="home-story-actions">
             <a class="home-dark-link" href={base + "about/"}>Read Our Story <span aria-hidden="true">→</span></a>
-            <a class="home-dark-link" href="#customer-stories">{reviews.length > 0 ? "Read Customer Stories" : "What Families Shop For"} <span aria-hidden="true">↓</span></a>
+            <a class="home-dark-link" href="#customer-stories">{reviews.length > 0 ? "Read Customer Stories" : "Pantry Highlights"} <span aria-hidden="true">↓</span></a>
           </div>
 
           <div class="home-gallery-strip" aria-label="Storefront photo and printed product boards from Eshwar Home Products">
@@ -582,12 +569,12 @@ const sourcingHighlights = [
     <div class="container">
       <div class="home-stories-header">
         <div class="home-stories-heading">
-          <p class="eyebrow">Community Trust · Perambur</p>
-          <h2 id="customer-stories-title">{reviews.length > 0 ? <>Customer <em>Stories</em></> : <>What Perambur Families <em>Shop With Us For</em></>}</h2>
+          <p class="eyebrow">{reviews.length > 0 ? "Community Trust · Perambur" : "Pantry Highlights · Perambur"}</p>
+          <h2 id="customer-stories-title">{reviews.length > 0 ? <>Customer <em>Stories</em></> : <>Explore Our <em>Pantry</em></>}</h2>
           <p class="home-stories-lede">
             {reviews.length > 0
               ? "Verified customer notes from households across Perambur, Sembium, and North Chennai."
-              : "See why households across Perambur, Sembium, and North Chennai message or visit us for everyday rice, Siruthaniyam millets, and Chekku oils, or read live customer reviews directly on Google Maps and Justdial."}
+              : "Browse the product ranges available at our Perambur store. Message us to confirm current stock and pack sizes before you visit."}
           </p>
         </div>
         <div class="home-stories-proof">
@@ -627,8 +614,12 @@ const sourcingHighlights = [
           {reviews.map((review) => (
             <article class="home-story-card" data-story-category={review.category ?? "pantry"}>
               <div class="home-story-top">
-                <span class="five-stars-reveal" role="img" aria-label={`${(review.rating ?? 5).toFixed(1)} out of 5 stars`}>★★★★★</span>
-                <span class="home-story-rating-num">{(review.rating ?? 5).toFixed(1)}</span>
+                {typeof review.rating === "number" && (
+                  <>
+                    <span class="five-stars-reveal" role="img" aria-label={`${review.rating.toFixed(1)} out of 5 stars`}>★★★★★</span>
+                    <span class="home-story-rating-num">{review.rating.toFixed(1)}</span>
+                  </>
+                )}
                 {review.staple && (
                   <>
                     <span aria-hidden="true">·</span>
@@ -672,7 +663,7 @@ const sourcingHighlights = [
       <div class="home-stories-cta">
         <p>
           <strong>Want help choosing for your kitchen?</strong>
-          <span>Message us on WhatsApp to check today’s fresh rice, millet, or Chekku oil varieties before you visit.</span>
+          <span>Message us on WhatsApp to check today’s available rice, millet, or Chekku oil varieties before you visit.</span>
         </p>
         <div class="home-stories-cta-actions">
           <button class="button" type="button" data-ehp-dialog="enquiry" aria-haspopup="dialog">Check Stock on WhatsApp</button>
@@ -707,11 +698,11 @@ const sourcingHighlights = [
           </details>
           <details name="ehp-home-faq">
             <summary>Where is Eshwar Home Products located?</summary>
-            <p>119/1, Paddy Field Road, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011. <a href={mapsUrl} target="_blank" rel="noopener noreferrer">Open Google Maps directions ↗</a>.</p>
+            <p>119/1, Paddy Field Road, Chinnaiyan Colony, Perambur, Chennai, Tamil Nadu 600011. <a href={directionsUrl} target="_blank" rel="noopener noreferrer">Open Google Maps directions ↗</a>.</p>
           </details>
           <details name="ehp-home-faq">
-            <summary>How can I check my order status or track pickup and delivery?</summary>
-            <p>Because pantry orders are coordinated personally rather than through an automated checkout portal, simply reply to your existing <a href={ask("checking my order status")} target="_blank" rel="noopener noreferrer">WhatsApp thread ↗</a> or call <a href="tel:+919941209953">+91 99412 09953</a> with your name and item list during store hours (Mon–Sat, 9:00 AM – 9:00 PM). Our team will share an immediate update on packing, ready-for-pickup status, or local dispatch.</p>
+            <summary>How can I check my order or pickup status?</summary>
+            <p>For an order arranged with the store, reply to your existing <a href={ask("checking my order status")} target="_blank" rel="noopener noreferrer">WhatsApp thread ↗</a> or call <a href="tel:+919941209953">+91 99412 09953</a> during store hours with your name and item list. We’ll confirm packing and collection details.</p>
           </details>
           <details name="ehp-home-faq">
             <summary>Can I ask about Tamil millet names like Thinai, Varagu &amp; Samai?</summary>
@@ -740,7 +731,7 @@ const sourcingHighlights = [
             </div>
           </dl>
           <div class="home-visit-actions">
-            <a class="button" href={mapsUrl} target="_blank" rel="noopener noreferrer">Get Directions <span aria-hidden="true">↗</span></a>
+            <a class="button" href={directionsUrl} target="_blank" rel="noopener noreferrer">Get Directions <span aria-hidden="true">↗</span></a>
             <button class="button-whatsapp" type="button" data-ehp-dialog="store" aria-haspopup="dialog">Store Hours &amp; Address</button>
           </div>
         </div>
@@ -849,7 +840,7 @@ const sourcingHighlights = [
 
   .home-proof-address:hover {
     color: var(--text-main);
-    text-decoration-color: var(--accent-green);
+    text-decoration-color: var(--accent-brown);
   }
 
   .home-hero-media {
@@ -935,7 +926,7 @@ const sourcingHighlights = [
   }
 
   .home-category-item:focus-visible {
-    outline: 2px solid var(--accent-green);
+    outline: 2px solid var(--accent-brown);
     outline-offset: -2px;
   }
 
@@ -1030,7 +1021,7 @@ const sourcingHighlights = [
   }
 
   .home-meal-filters .filter-button:hover {
-    border-color: var(--accent-green);
+    border-color: var(--accent-brown);
   }
 
   .home-meal-count {
@@ -1075,7 +1066,7 @@ const sourcingHighlights = [
     width: 22px;
     height: 22px;
     border: 2.5px solid rgba(66, 39, 25, 0.16);
-    border-top-color: var(--accent-green);
+    border-top-color: var(--accent-brown);
     border-radius: 50%;
     animation: ehpGridSpin 650ms linear infinite;
   }
@@ -1125,7 +1116,7 @@ const sourcingHighlights = [
     padding: 5px 10px;
     border: 1px solid rgba(226, 183, 91, 0.65);
     border-radius: 6px;
-    background: var(--accent-green);
+    background: var(--accent-brown);
     color: var(--accent-gold);
     font-family: var(--sans);
     font-size: 0.8125rem;
@@ -1206,7 +1197,7 @@ const sourcingHighlights = [
   }
 
   .home-product-title-btn:hover {
-    color: var(--accent-green);
+    color: var(--accent-brown);
   }
 
   .home-product-desc {
@@ -1218,7 +1209,7 @@ const sourcingHighlights = [
 
   .home-product-cue {
     margin: 0 0 16px;
-    color: var(--accent-green);
+    color: var(--accent-brown);
     font-size: 0.84rem;
     font-weight: 600;
     line-height: 1.45;
@@ -1317,8 +1308,8 @@ const sourcingHighlights = [
   }
 
   .home-product-details-link:hover {
-    color: var(--accent-green);
-    text-decoration-color: var(--accent-green);
+    color: var(--accent-brown);
+    text-decoration-color: var(--accent-brown);
   }
 
   .home-product-wa {
@@ -1326,7 +1317,7 @@ const sourcingHighlights = [
     align-items: center;
     gap: 4px;
     padding: 6px 0;
-    color: var(--accent-green);
+    color: var(--accent-brown);
     font-size: 0.875rem;
     font-weight: 600;
     text-decoration: none;
@@ -1606,7 +1597,7 @@ const sourcingHighlights = [
   }
 
   .home-stories-filters .filter-button:hover {
-    border-color: var(--accent-green);
+    border-color: var(--accent-brown);
   }
 
   .home-stories-count {
@@ -1794,7 +1785,7 @@ const sourcingHighlights = [
 
   .home-faq-list summary::after {
     content: "+";
-    color: var(--accent-green);
+    color: var(--accent-brown);
     font-size: 1.25rem;
     font-weight: 400;
   }
@@ -1816,7 +1807,7 @@ const sourcingHighlights = [
     border: 0;
     padding: 0;
     background: transparent;
-    color: var(--accent-green);
+    color: var(--accent-brown);
     font: inherit;
     font-weight: 600;
     text-decoration: underline;
@@ -1826,9 +1817,9 @@ const sourcingHighlights = [
 
   .home-visit-card {
     overflow: hidden;
-    border: 1px solid var(--border-light);
+    border: 1px solid var(--accent-brown);
     border-radius: 12px;
-    background: var(--bg-card);
+    background: var(--surface-brown);
   }
 
   .home-visit-map-link {
@@ -1852,6 +1843,7 @@ const sourcingHighlights = [
 
   .home-visit-card-body .eyebrow {
     margin: 0 0 6px;
+    color: var(--brand-green);
   }
 
   .home-visit-card-body h3 {
@@ -1886,7 +1878,7 @@ const sourcingHighlights = [
   }
 
   .home-visit-dl a {
-    color: var(--accent-green);
+    color: var(--accent-brown);
     font-weight: 600;
     text-decoration: underline;
     text-underline-offset: 3px;
@@ -2124,7 +2116,7 @@ const sourcingHighlights = [
     border: 0;
     padding: 4px 0;
     background: transparent;
-    color: var(--accent-green);
+    color: var(--accent-brown);
     font-size: 0.84rem;
     font-weight: 600;
     text-decoration: underline;
