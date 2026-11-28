@@ -1,0 +1,55 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { storeConfig } from "../data/store";
+const base = import.meta.env.BASE_URL;
+---
+<SiteLayout title="Privacy Policy | Eshwar Home Products" description="How Eshwar Home Products handles information when you visit our website or contact our Perambur store.">
+  <article class="legal-page">
+    <p class="legal-updated">Last updated: 28 November 2026</p>
+    <h1>Privacy Policy</h1>
+    <p>This policy explains how Eshwar Home Products handles information when you browse this website or contact our store. This website is a product catalogue and store information site. It does not offer online checkout or customer accounts.</p>
+
+    <h2>Who we are</h2>
+    <p><strong>{storeConfig.name}</strong><br />{storeConfig.address}<br />Email: <a href={storeConfig.emailHref}>{storeConfig.email}</a><br />Phone: <a href={storeConfig.phoneHref}>{storeConfig.phoneDisplay}</a></p>
+
+    <h2>Information we may receive</h2>
+    <ul>
+      <li><strong>Website and device information:</strong> technical details such as IP address, browser and device type, pages requested, approximate visit time, referring page and error information may be processed by the website hosting and security services to deliver and protect the site.</li>
+      <li><strong>Enquiry information:</strong> if you contact us by phone, email or WhatsApp, we receive the details you choose to share, such as your name, contact details, product questions and message.</li>
+      <li><strong>Optional analytics:</strong> if an analytics service is configured on this site, it will be activated only after you choose to allow analytics in Cookie Settings.</li>
+      <li><strong>Preference information:</strong> your essential/analytics choice is saved in your browser's local storage so the site can remember your preference. This preference is not sent to us by the consent banner.</li>
+    </ul>
+
+    <h2>Why we use information</h2>
+    <ul>
+      <li>To display the website and product catalogue.</li>
+      <li>To respond to enquiries and help with store visits.</li>
+      <li>To maintain site security, diagnose errors and prevent misuse.</li>
+      <li>To understand website usage only where you have enabled optional analytics.</li>
+      <li>To meet applicable legal obligations.</li>
+    </ul>
+
+    <h2>Cookies and browser storage</h2>
+    <p>The site uses essential local browser storage to remember your privacy choice. Optional analytics are off unless you enable them. If enabled and configured, an analytics provider may use cookies or similar technologies. You can change your choice at any time using <a href="#cookie-settings" data-ehp-cookie-settings>Cookie Settings</a>. More detail is available in our <a href={base + "cookie-policy/"}>Cookie Policy</a>.</p>
+
+    <h2>Service providers and external links</h2>
+    <p>We rely on website hosting and security providers to make the site available. When you choose to open Google Maps, WhatsApp, email or social media links, those services may process information under their own privacy policies. We do not control their practices. Optional analytics providers receive information only when the relevant choice is enabled and the service is configured.</p>
+
+    <h2>Sharing and sale</h2>
+    <p>We do not sell personal information. We do not share enquiry details for unrelated third-party advertising. Information may be handled by service providers that support the website or our communications, or disclosed where required by law.</p>
+
+    <h2>Retention and security</h2>
+    <p>We keep enquiry information only for as long as reasonably needed to respond, maintain relevant business records and meet legal requirements. Technical logs may be retained according to the hosting provider's settings. We use reasonable safeguards, but no website or electronic communication can be guaranteed completely secure.</p>
+
+    <h2>Your choices and requests</h2>
+    <p>You can decline optional analytics, change your cookie choice, or contact us to ask about personal information you have shared with the store. We may need to verify a request before acting on it. Contact: <a href={storeConfig.emailHref}>{storeConfig.email}</a>.</p>
+
+    <h2>Children</h2>
+    <p>This website is intended for general audiences and is not designed to collect personal information from children. Please do not send children's personal information through an enquiry unless it is necessary and you are authorised to do so.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>We may update this policy when the website or our practices change. The date at the top shows when it was last updated.</p>
+
+    <p><strong>Important:</strong> This is a plain-language website privacy notice, not legal advice. The store should review it against its actual service providers, data practices and applicable Indian requirements before the site is promoted as legally compliant.</p>
+  </article>
+</SiteLayout>

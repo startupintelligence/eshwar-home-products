@@ -3,9 +3,11 @@ import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import FloatingActionCards from "../components/FloatingActionCards.astro";
 import FloatingContactButton from "../components/FloatingContactButton.astro";
+import CookieConsent from "../components/CookieConsent.astro";
 import { storeConfig } from "../data/store";
 import "../styles/brand-system.css";
 import "../styles/mobile-responsive.css";
+import "../styles/legal-pages.css";
 import plusJakartaPreloadHref from "@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2?url";
 
 interface Props {
@@ -34,8 +36,6 @@ const ogImage = new URL("images/og-eshwar-home-products.png", siteUrl).toString(
 const favicon32 = new URL("favicon/favicon-32.png", siteUrl).toString();
 const appleTouchIcon = new URL("icons/apple-touch-icon-180.png", siteUrl).toString();
 const schemaLogo = new URL("icons/icon-512.png", siteUrl).toString();
-const googleFontsHref =
-  "https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Noto+Sans+Tamil:wght@500;600;700&display=swap";
 
 const sameAs = [
   storeConfig.socials.youtube.url,
@@ -76,8 +76,6 @@ const storeSchema = {
 <link rel="icon" type="image/png" sizes="32x32" href={favicon32} /><link rel="apple-touch-icon" sizes="180x180" href={appleTouchIcon} /><link rel="canonical" href={canonical} />
 <link rel="preload" as="font" type="font/woff2" href={plusJakartaPreloadHref} crossorigin />
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href={googleFontsHref} media="print" onload="this.removeAttribute('media')" />
-<noscript><link rel="stylesheet" href={googleFontsHref} /></noscript>
 {preloadHomeHero && (
   <link
     rel="preload"
@@ -89,8 +87,6 @@ const storeSchema = {
   />
 )}
 <title>{title}</title>
-<script src="https://analytics.ahrefs.com/analytics.js" data-key="T8+LOj2/EakoZK7/pjg3rg" async></script>
-{import.meta.env.PUBLIC_GA4_ID && <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />}
 {includeStoreSchema && <script type="application/ld+json" set:html={JSON.stringify(storeSchema)} />}
 </head>
 <body>
@@ -98,6 +94,7 @@ const storeSchema = {
 <SiteHeader current={current} />
 <main id="main-content"><slot /></main>
 <SiteFooter />
+<CookieConsent />
 <FloatingActionCards />
 <FloatingContactButton />
 <nav class="mobile-action-bar" aria-label="Quick store actions">
@@ -130,17 +127,25 @@ const storeSchema = {
     node.textContent = emailAddress;
   });
   const measurementId = import.meta.env.PUBLIC_GA4_ID?.trim();
-  if (measurementId) {
+  let analyticsLoaded = false;
+  const loadAnalyticsIfAllowed = () => {
+    if (!measurementId || analyticsLoaded) return;
+    let consent = null;
+    try { consent = JSON.parse(window.localStorage.getItem('ehp-consent-v1') || 'null'); } catch { return; }
+    if (consent?.analytics !== true) return;
+    analyticsLoaded = true;
     const analyticsWindow = window as Window & { dataLayer?: IArguments[]; gtag?: (...args: unknown[]) => void };
     analyticsWindow.dataLayer = analyticsWindow.dataLayer || [];
     analyticsWindow.gtag = function () { analyticsWindow.dataLayer?.push(arguments); };
-    analyticsWindow.gtag("js", new Date());
-    analyticsWindow.gtag("config", measurementId, { anonymize_ip: true });
-    const analyticsScript = document.createElement("script");
+    analyticsWindow.gtag('js', new Date());
+    analyticsWindow.gtag('config', measurementId, { anonymize_ip: true });
+    const analyticsScript = document.createElement('script');
     analyticsScript.async = true;
     analyticsScript.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
     document.head.appendChild(analyticsScript);
-  }
+  };
+  loadAnalyticsIfAllowed();
+  window.addEventListener('ehp:consent-updated', loadAnalyticsIfAllowed);
 </script>
 </body>
 </html>

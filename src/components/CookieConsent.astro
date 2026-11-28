@@ -1,0 +1,84 @@
+<aside id="ehp-cookie-consent" class="ehp-cookie-consent" role="region" aria-label="Privacy and cookie choices">
+  <div class="ehp-cookie-copy">
+    <p class="ehp-cookie-title">Your privacy choices</p>
+    <p>Essential browser storage remembers your choice. Optional analytics help us understand site visits and stay off unless you allow them. Read our <a href={import.meta.env.BASE_URL + "cookie-policy/"}>Cookie Policy</a>.</p>
+  </div>
+  <div class="ehp-cookie-actions">
+    <button type="button" data-ehp-consent="all">Accept optional</button>
+    <button type="button" data-ehp-consent="necessary">Reject optional</button>
+    <button type="button" class="ehp-cookie-text-button" data-ehp-settings>Settings</button>
+  </div>
+  <div class="ehp-cookie-preferences" data-ehp-preferences hidden>
+    <p><strong>Essential storage</strong> <span>Always active. Used only to remember this choice.</span></p>
+    <label><input type="checkbox" data-ehp-analytics /> Optional analytics</label>
+    <p class="ehp-cookie-note">If analytics are enabled on this site, they will load only after you save this choice.</p>
+    <button type="button" data-ehp-save>Save choices</button>
+  </div>
+</aside>
+
+<style>
+  .ehp-cookie-consent { position: fixed; z-index: 1000; right: 16px; bottom: 16px; width: min(560px, calc(100vw - 32px)); padding: 18px; border: 1px solid rgba(42, 26, 16, .24); border-radius: 6px; background: #F6F1E7; color: #2A1A10; font: inherit; }
+  .ehp-cookie-consent[hidden], .ehp-cookie-preferences[hidden] { display: none !important; }
+  .ehp-cookie-title { margin: 0 0 6px; font-weight: 700; }
+  .ehp-cookie-copy p:not(.ehp-cookie-title) { margin: 0; font-size: .9rem; line-height: 1.55; }
+  .ehp-cookie-consent a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+  .ehp-cookie-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .ehp-cookie-consent button { min-height: 48px; padding: 10px 14px; border: 1px solid #2A1A10; border-radius: 3px; background: #2A1A10; color: #FFFDF8; font: inherit; font-size: .88rem; cursor: pointer; }
+  .ehp-cookie-consent button[data-ehp-consent="necessary"], .ehp-cookie-consent .ehp-cookie-text-button { background: transparent; color: #2A1A10; }
+  .ehp-cookie-consent button:focus-visible, .ehp-cookie-consent a:focus-visible, .ehp-cookie-consent input:focus-visible { outline: 3px solid #8A5A32; outline-offset: 3px; }
+  .ehp-cookie-preferences { margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(42, 26, 16, .2); font-size: .9rem; }
+  .ehp-cookie-preferences p { margin: 0 0 10px; }
+  .ehp-cookie-preferences span, .ehp-cookie-note { display: block; margin-top: 3px; opacity: .8; }
+  .ehp-cookie-preferences label { display: flex; align-items: center; gap: 9px; min-height: 44px; }
+  .ehp-cookie-preferences input { width: 18px; height: 18px; accent-color: #2A1A10; }
+  @media (max-width: 600px) { .ehp-cookie-consent { right: 12px; bottom: 84px; width: calc(100vw - 24px); padding: 14px; } .ehp-cookie-actions button { flex: 1 1 auto; } }
+</style>
+
+<script is:inline>
+  (() => {
+    const key = "ehp-consent-v1";
+    const banner = document.getElementById("ehp-cookie-consent");
+    if (!banner) return;
+    const preferences = banner.querySelector("[data-ehp-preferences]");
+    const analyticsToggle = banner.querySelector("[data-ehp-analytics]");
+    const readChoice = () => {
+      try { return JSON.parse(window.localStorage.getItem(key) || "null"); }
+      catch { return null; }
+    };
+    const saveChoice = (analytics) => {
+      try { window.localStorage.setItem(key, JSON.stringify({ essential: true, analytics, updatedAt: new Date().toISOString() })); }
+      catch { /* The site remains usable if browser storage is unavailable. */ }
+      banner.hidden = true;
+      window.dispatchEvent(new Event("ehp:consent-updated"));
+    };
+    const saved = readChoice();
+    if (saved && typeof saved.analytics === "boolean") banner.hidden = true;
+    if (analyticsToggle) analyticsToggle.checked = saved?.analytics === true;
+
+    banner.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const choice = target.closest("[data-ehp-consent]")?.getAttribute("data-ehp-consent");
+      if (choice === "all") saveChoice(true);
+      if (choice === "necessary") saveChoice(false);
+      if (target.closest("[data-ehp-settings]")) {
+        preferences.hidden = !preferences.hidden;
+        if (!preferences.hidden) analyticsToggle?.focus();
+      }
+      if (target.closest("[data-ehp-save]")) saveChoice(Boolean(analyticsToggle?.checked));
+    });
+
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const trigger = target.closest("[data-ehp-cookie-settings]");
+      if (!trigger) return;
+      event.preventDefault();
+      banner.hidden = false;
+      preferences.hidden = false;
+      if (analyticsToggle) analyticsToggle.checked = readChoice()?.analytics === true;
+      banner.scrollIntoView({ behavior: "auto", block: "nearest" });
+      analyticsToggle?.focus();
+    });
+  })();
+</script>

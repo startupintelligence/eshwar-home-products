@@ -1,0 +1,26 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { storeConfig } from "../data/store";
+---
+<SiteLayout title="Cookie Policy | Eshwar Home Products" description="How essential browser storage and optional analytics work on the Eshwar Home Products website.">
+  <article class="legal-page">
+    <p class="legal-updated">Last updated: 28 November 2026</p>
+    <h1>Cookie Policy</h1>
+    <p>This page explains the small amount of browser storage used by the Eshwar Home Products website.</p>
+
+    <h2>Essential preference storage</h2>
+    <p>The site saves your choice in browser local storage under the key <code>ehp-consent-v1</code>. It remembers whether you allowed optional analytics. This is needed to respect your choice on later visits. It is not an advertising cookie.</p>
+
+    <h2>Optional analytics</h2>
+    <p>Optional analytics are disabled by default. If an analytics service is configured for this website, it is loaded only after you select “Accept optional” or enable analytics in Settings and save your choice. The analytics provider may then use cookies or similar technologies to measure site usage. The provider and exact analytics configuration should be checked by the site owner before launch.</p>
+
+    <h2>External services</h2>
+    <p>Links to Google Maps, WhatsApp, email and social networks take you to services operated by other organisations. Those services may use their own cookies or similar technologies under their own policies. This website does not control those external settings.</p>
+
+    <h2>Change your choice</h2>
+    <p>You can change or withdraw your optional analytics choice at any time: <a href="#cookie-settings" data-ehp-cookie-settings>Open Cookie Settings</a>. You can also clear this site's local storage in your browser settings. Clearing it may cause the choice banner to appear again.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about this policy? Contact {storeConfig.name} at <a href={storeConfig.emailHref}>{storeConfig.email}</a>.</p>
+  </article>
+</SiteLayout>

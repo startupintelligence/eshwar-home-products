@@ -1,0 +1,7 @@
+ .legal-page { width: min(100% - 2rem, 850px); margin-inline: auto; padding-block: clamp(3rem, 7vw, 6rem); line-height: 1.75; }
+.legal-page h1 { max-width: 18ch; margin: 0 0 1rem; line-height: 1.12; }
+.legal-page h2 { margin: 2.2rem 0 .6rem; line-height: 1.25; }
+.legal-page p, .legal-page li { max-width: 76ch; }
+.legal-page a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.legal-page .legal-updated { margin-bottom: 2rem; font-size: .9rem; opacity: .75; }
+.legal-page li + li { margin-top: .35rem; }
