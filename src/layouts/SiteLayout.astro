@@ -36,6 +36,7 @@ const ogImage = new URL("images/og-eshwar-home-products.png", siteUrl).toString(
 const favicon32 = new URL("favicon/favicon-32.png", siteUrl).toString();
 const appleTouchIcon = new URL("icons/apple-touch-icon-180.png", siteUrl).toString();
 const schemaLogo = new URL("icons/icon-512.png", siteUrl).toString();
+const googleFontsHref = "https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Noto+Sans+Tamil:wght@500;600;700&display=swap";
 
 const sameAs = [
   storeConfig.socials.youtube.url,
@@ -76,6 +77,8 @@ const storeSchema = {
 <link rel="icon" type="image/png" sizes="32x32" href={favicon32} /><link rel="apple-touch-icon" sizes="180x180" href={appleTouchIcon} /><link rel="canonical" href={canonical} />
 <link rel="preload" as="font" type="font/woff2" href={plusJakartaPreloadHref} crossorigin />
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href={googleFontsHref} media="print" onload="this.removeAttribute('media')" />
+<noscript><link rel="stylesheet" href={googleFontsHref} /></noscript>
 {preloadHomeHero && (
   <link
     rel="preload"
