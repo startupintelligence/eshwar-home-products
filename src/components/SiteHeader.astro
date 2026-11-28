@@ -180,6 +180,33 @@ const base = import.meta.env.BASE_URL;
     });
   }
 
+  let inertBackground: Array<{ element: HTMLElement; wasInert: boolean }> = [];
+
+  const setBackgroundInert = (inert: boolean) => {
+    if (inert) {
+      const pageSiblings = Array.from(document.body.children).filter(
+        (element): element is HTMLElement => element instanceof HTMLElement && element !== header
+      );
+      const headerSiblings = Array.from(navigation?.parentElement?.children ?? []).filter(
+        (element): element is HTMLElement =>
+          element instanceof HTMLElement && element !== navigation && element !== navBackdrop
+      );
+      inertBackground = Array.from(new Set([...pageSiblings, ...headerSiblings])).map((element) => ({
+        element,
+        wasInert: element.inert,
+      }));
+      inertBackground.forEach(({ element }) => { element.inert = true; });
+      return;
+    }
+    inertBackground.forEach(({ element, wasInert }) => { element.inert = wasInert; });
+    inertBackground = [];
+  };
+
+  const getNavigationFocusables = () =>
+    Array.from(navigation?.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    ) ?? []).filter((element) => element.getClientRects().length > 0);
+
   const openNavigation = () => {
     if (!toggle || !navigation) return;
     setMobileSearchOpen(false);
@@ -187,6 +214,7 @@ const base = import.meta.env.BASE_URL;
     toggle.setAttribute("aria-label", "Close navigation menu");
     navigation.classList.add("is-open");
     navBackdrop?.classList.add("is-open");
+    setBackgroundInert(true);
     document.body.style.overflow = "hidden";
     window.requestAnimationFrame(() => navClose?.focus({ preventScroll: true }));
   };
@@ -197,10 +225,19 @@ const base = import.meta.env.BASE_URL;
     toggle.setAttribute("aria-label", "Open navigation menu");
     navigation.classList.remove("is-open");
     navBackdrop?.classList.remove("is-open");
+    setBackgroundInert(false);
     document.body.style.overflow = "";
   };
 
   if (toggle && navigation) {
+    const mobileNavigationQuery = window.matchMedia("(max-width: 768px)");
+    mobileNavigationQuery.addEventListener("change", (event) => {
+      if (!event.matches && toggle.getAttribute("aria-expanded") === "true") {
+        closeNavigation();
+        navigation.querySelector<HTMLElement>("a[href]")?.focus({ preventScroll: true });
+      }
+    });
+
     toggle.addEventListener("click", () => {
       const expanded = toggle.getAttribute("aria-expanded") === "true";
       if (expanded) {
@@ -230,9 +267,26 @@ const base = import.meta.env.BASE_URL;
     });
 
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
+      if (toggle.getAttribute("aria-expanded") !== "true") return;
+      if (event.key === "Escape") {
         closeNavigation();
         toggle.focus();
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const focusables = getNavigationFocusables();
+      const first = focusables[0] ?? navClose;
+      const last = focusables[focusables.length - 1] ?? navClose;
+      if (!first || !last) return;
+      if (!navigation.contains(document.activeElement)) {
+        event.preventDefault();
+        (event.shiftKey ? last : first).focus();
+      } else if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     });
   }

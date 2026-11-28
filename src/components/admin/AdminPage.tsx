@@ -12,6 +12,7 @@ import {
 } from "../../services/firebase/products";
 import type { Product } from "../../types/content";
 import { siteConfig, sitePath } from "../../app/config/site";
+import { isValidEmail } from "../../utils/validation.mjs";
 
 const categories = [
   { id: "grains", label: "Rice & millets" },
@@ -26,7 +27,6 @@ const emptyForm: ProductDraftInput = {
   available: true,
 };
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 export function AdminPage() {
   const [email, setEmail] = useState<string>(siteConfig.email);
@@ -86,7 +86,7 @@ export function AdminPage() {
 
     const trimmedEmail = email.trim();
     const nextErrors: { email?: string; password?: string } = {};
-    if (!trimmedEmail || !EMAIL_RE.test(trimmedEmail)) {
+    if (!trimmedEmail || !isValidEmail(trimmedEmail)) {
       nextErrors.email = "Enter a valid store email address.";
     }
     if (!password) {
