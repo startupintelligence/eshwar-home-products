@@ -1,13 +1,12 @@
 import type { APIRoute } from "astro";
 
 const AI_CRAWLERS = [
-  "GPTBot",
   "OAI-SearchBot",
   "ChatGPT-User",
-  "ClaudeBot",
+  "Claude-SearchBot",
   "Claude-User",
   "PerplexityBot",
-  "Google-Extended",
+  "Perplexity-User",
 ];
 
 export const GET: APIRoute = ({ site }) => {
