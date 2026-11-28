@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
+import { storeConfig } from "../data/store";
+import { buildGoogleMapsDirectionsUrl } from "../utils/maps.mjs";
 import {
   APIProvider,
   APILoadingStatus,
@@ -12,8 +14,8 @@ import {
 } from "@vis.gl/react-google-maps";
 
 const STORE_POSITION = { lat: 13.1118495, lng: 80.2493876 };
-const STORE_MAPS_URL =
-  "https://www.google.com/maps/place/Eshwar+Home+Products/@13.1118547,80.2468127,17z/data=!3m1!4b1!4m6!3m5!1s0x3a526569af8122ad:0xe485caf4b8adf074!8m2!3d13.1118495!4d80.2493876!16s%2Fg%2F11v4j6lc03";
+const STORE_MAPS_URL = storeConfig.mapsUrl;
+const STORE_DIRECTIONS_URL = buildGoogleMapsDirectionsUrl(storeConfig.address);
 const QUOTA_DOCS_URL =
   "https://developers.google.com/maps/ai/ai-studio?utm_campaign=gmp_mcp_codeassist_v1_aistudio#quota_exceeded_errors";
 
@@ -189,7 +191,7 @@ function StoreMapCanvas({ compact = false, onStatusChange }: StoreMapCanvasProps
                 </p>
                 <p className="ehp-gmap-hours">Mon–Sat: 9:00 AM – 9:00 PM · Sun: Closed</p>
                 <a
-                  href={STORE_MAPS_URL}
+                  href={STORE_DIRECTIONS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -275,7 +277,7 @@ export default function StoreLocationMap({
           </p>
           <a
             className="ehp-gmap-ext-link"
-            href={STORE_MAPS_URL}
+            href={STORE_DIRECTIONS_URL}
             target="_blank"
             rel="noopener noreferrer"
           >

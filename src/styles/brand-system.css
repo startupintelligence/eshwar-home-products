@@ -1930,3 +1930,61 @@ summary:focus-visible,
   }
 }
 
+
+
+/* EHP low-motion storefront refinements */
+.site-header.ehp-site-header {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.product-card,
+.live-product {
+  box-shadow: none;
+  will-change: auto;
+  transition: border-color 180ms var(--ease-out);
+}
+
+.product-card:hover,
+.product-card:focus-within,
+.live-product:hover,
+.live-product:focus-within {
+  transform: none;
+  box-shadow: none;
+}
+
+.skeleton-card {
+  animation: none;
+}
+
+.contact-fab-menu {
+  box-shadow: 0 6px 18px rgba(34, 21, 13, 0.12);
+}
+
+.contact-fab-trigger {
+  box-shadow: 0 4px 12px rgba(34, 21, 13, 0.12);
+}
+
+.cookie-banner {
+  box-shadow: 0 6px 18px rgba(34, 21, 13, 0.12);
+}
+
+@media (hover: hover) {
+  .button:hover,
+  .button-dark:hover,
+  .button-whatsapp:hover,
+  .button-outline:hover,
+  .action-primary:hover,
+  .action-secondary:hover,
+  .guide-card:hover,
+  .pantry-shelf-link:hover,
+  .contact-fab-trigger:hover,
+  .contact-fab-option:hover,
+  .contact-call-button:hover,
+  .contact-whatsapp-button:hover,
+  .kitchen-guides-pantry-button:hover,
+  .header-contact:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
